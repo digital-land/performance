@@ -255,13 +255,13 @@ tr:nth-child(even) {
 .dot a { text-decoration: none }
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>google.charts.load('current', {'packages':['corechart']});</script>
+<script>google.charts.load('current', {'packages':['corechart','sankey']});</script>
 </head>
 <body>
 """
     )
 
-    print("<h1>LPAs adopting PlanX</h1>")
+    print("<h1>PlanX adoption counts</h1>")
 
     print(
         """
@@ -290,7 +290,7 @@ tr:nth-child(even) {
         + """],
           ['Adopted PlanX', """
         + str(counts["adopted"])
-        + """],
+        + """]
         ]);
 
         var options = {
@@ -315,8 +315,44 @@ tr:nth-child(even) {
     """
     )
 
-    print("<h1>Overlap between projects</h1>")
+    print("<h1>Adoption pipeline</h1>")
+    print(
+        """
+    <script type="text/javascript">
+      google.charts.setOnLoadCallback(draw_sankey)
+      function draw_sankey() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'From');
+        data.addColumn('string', 'To');
+        data.addColumn('number', 'Count');
+        data.addColumn({type: 'string', role: 'tooltip'});
+        data.addRows([
+        """
+    )
 
+    sep = ""
+    for organisation, row in rows.items():
+        print(f'{sep}["Organisation", "{row["role"]}", 1, "{row["name"]}"]', end="")
+        sep = ",\n"
+
+    project = "open-digital-planning"
+    for organisation, row in rows.items():
+        if project in row["projects"]:
+            print(f'{sep}["{row["role"]}", "{project}", 1, "{row["name"]}"]', end="")
+            sep = ",\n"
+
+    print(
+        """]);
+        var options = {};
+        var chart = new google.visualization.Sankey(document.getElementById("sankey-chart"));
+        chart.draw(data, options);
+      }
+    </script>
+    <div id="sankey-chart" style="width: 1024px; height: 480px;"></div>
+    """
+    )
+
+    print("<h1>Overlap between projects</h1>")
     print(
         """
     <script type="text/javascript">
@@ -329,10 +365,14 @@ tr:nth-child(even) {
           'LLC only', 
           'Neither'],
           ['ODP', """
-        + str(counts["odp-not-llc"]) + ","
-        + str(counts["llc-and-odp"]) + ","
-        + str(counts["llc-not-odp"]) + ","
-        + str(counts["neither-odp-llc"]) + ","
+        + str(counts["odp-not-llc"])
+        + ","
+        + str(counts["llc-and-odp"])
+        + ","
+        + str(counts["llc-not-odp"])
+        + ","
+        + str(counts["neither-odp-llc"])
+        + ","
         + """]
         ]);
 
@@ -350,6 +390,8 @@ tr:nth-child(even) {
     <div id="overlap-chart" style="width: 1024px; height: 480px;"></div>
     """
     )
+
+    print("<h1>Organisations adopting PlanX</h1>")
 
     print("<table>")
     print("<thead>")
