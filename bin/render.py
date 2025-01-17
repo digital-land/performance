@@ -111,8 +111,7 @@ if __name__ == "__main__":
     """
 
     # add data quality
-    for row in csv.DictReader(open("var/cache/quality.csv", newline="")):
-        organisation = row["organisation"]
+    for organisation, row in quality.items():
         if row["ready_for_ODP_adoption"] == "yes":
             rows[organisation]["data"] = "ODP"
 

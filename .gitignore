@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store
+.ipynb_checkpoints/
+node_modules/
+package-lock.json
+package.json
+.venv/
+.cache/
+*.swp
+tmp/
+var/
+/.vs
+specification/
