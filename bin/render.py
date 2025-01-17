@@ -145,24 +145,24 @@ if __name__ == "__main__":
     }
 
     for organisation, row in rows.items():
-        funded = False
+        row["funded"] = False
         counts["org"] += 1
         if row["role"] == "local-planning-authority":
             counts["lpa"] += 1
 
         if "proptech" in row["projects"]:
             counts["proptech"] += 1
-            funded = True
+            row["funded"] = True
         if "open-digital-planning" in row["projects"]:
             counts["odp"] += 1
-            funded = True
+            row["funded"] = True
 
-        if funded:
+        if row["funded"]:
             counts["funded"] += 1
 
         if "local-land-charges" in row["projects"]:
             counts["llc"] += 1
-            if not funded:
+            if not row["funded"]:
                 counts["llc-unfunded"] += 1
 
             if "open-digital-planning" in row["projects"]:
@@ -185,6 +185,7 @@ if __name__ == "__main__":
 
     # score rows
     for organisation, row in rows.items():
+        row["providing"] = False
         if "proptech" in row["projects"]:
             rows[organisation]["score"] += 10
 
@@ -201,6 +202,7 @@ if __name__ == "__main__":
             rows[organisation]["score"] += n * 1000
             if n > 2:
                 counts["providing"] += 1
+                row["providing"] = True
 
         if rows[organisation]["data"]:
             rows[organisation]["score"] += 10000000
@@ -335,15 +337,53 @@ tr:nth-child(even) {
         print(f'{sep}["Organisation", "{row["role"]}", 1, "{row["name"]}"]', end="")
         sep = ",\n"
 
+    for organisation, row in rows.items():
+        if row["funded"]:
+            print(f'{sep}["{row["role"]}", "Funded", 1, "{row["name"]}"]', end="")
+
     project = "open-digital-planning"
     for organisation, row in rows.items():
+        source = "Funded" if row["funded"] else row["role"]
         if project in row["projects"]:
-            print(f'{sep}["{row["role"]}", "{project}", 1, "{row["name"]}"]', end="")
-            sep = ",\n"
+            print(f'{sep}["{source}", "ODP member", 1, "{row["name"]}"]', end="")
+
+    for organisation, row in rows.items():
+        source = "ODP member" if project in row["projects"] else "Funded" if row["funded"] else row["role"]
+        if row["providing"]:
+            print(f'{sep}["{source}", "Providing data", 1, "{row["name"]}"]', end="")
+
+    for organisation, row in rows.items():
+        if row["data"] == "ODP":
+            print(f'{sep}["Providing data", "Data ready for PlanX", 1, "{row["name"]}"]', end="")
+
+    for organisation, row in rows.items():
+        if row["data"] == "ODP":
+            print(f'{sep}["Providing data", "Data ready for PlanX", 1, "{row["name"]}"]', end="")
+
+    for organisation, row in rows.items():
+        dest = {
+                    "": "",
+                    "interested": "Adopting PlanX",
+                    "onboarding": "Adopting PlanX",
+                    "planning": "Adopting PlanX",
+                    "guidance": "Adopted PlanX",
+                    "submission": "Adopted PlanX",
+                }[row["adoption"]]
+
+        if dest:
+            source = "Data ready for PlanX" if row["data"] == "ODP" else "Providing data"
+            print(f'{sep}["{source}", "{dest}", 1, "{row["name"]}"]', end="")
+
 
     print(
         """]);
-        var options = {};
+        options = {
+            sankey: {
+                link: { color: { fill: '#d5d5d6' } },
+                node: { colors: [ '#222' ],
+                label: { color: '#222' } },
+            }
+        };
         var chart = new google.visualization.Sankey(document.getElementById("sankey-chart"));
         chart.draw(data, options);
       }
