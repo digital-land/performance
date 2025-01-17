@@ -1,3 +1,4 @@
+black
 svgis
 simplejson
 XlsxWriter
