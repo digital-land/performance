@@ -1,0 +1,3538 @@
+<!doctype html>
+<head>
+<meta charset="UTF-8">
+<style>
+body {
+  font-family: sans-serif;
+}
+table {
+  border-spacing: 0;
+  border: 1px solid #ddd;
+}
+thead {
+  position: sticky;
+  top: 1px;
+  background: #fff;
+}
+th, td {
+  text-align: left;
+  border: 1px solid #ddd;
+}
+td.dot {
+  valign: center;
+  text-align: center;
+  font-family: fixed;
+}
+td.dots {
+  valign: center;
+  text-align: right;
+  font-family: fixed;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.dot a { text-decoration: none }
+</style>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>google.charts.load('current', {'packages':['corechart']});</script>
+</head>
+<body>
+
+<h1>LPAs adopting PlanX</h1>
+
+    <script type="text/javascript">
+      google.charts.setOnLoadCallback(draw_adoption)
+      function draw_adoption() {
+        var data = google.visualization.arrayToDataTable([
+          ['Status', 'Count'],
+          ['LPA', 311],
+          ['Funded', 123],
+          ['ODP member', 79],
+          ['Providing data', 48],
+          ['Data ready', 16],
+          ['Planning to adopt', 11],
+          ['Adopted PlanX', 14],
+        ]);
+
+        var options = {
+          bars: 'vertical',
+          colors: ['#27a0cc', '#206095', '#003c57', '#871a5b', '#a8bd3a', '#f66068'],
+          legend: { position: "none" },
+        };
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       1]);
+        var chart = new google.visualization.ColumnChart(document.getElementById("adoption-chart"));
+        chart.draw(view, options);
+
+      }
+    </script>
+    <div id="adoption-chart" style="width: 1024px; height: 480px;"></div>
+    
+<h1>Overlap between projects</h1>
+
+    <script type="text/javascript">
+      google.charts.setOnLoadCallback(draw_adoption)
+      function draw_adoption() {
+        var data = google.visualization.arrayToDataTable([
+          ['Project', 
+          'Project only', 
+          'LLC and project', 
+          'LLC only', 
+          'Neither'],
+          ['ODP', 59,20,79,167,]
+        ]);
+
+        var options = {
+          bars: 'horizontal',
+          colors: [ "#222", "#707071", "#d5d5d6", "#f5f5f6"],
+          isStacked: true,
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById("overlap-chart"));
+        chart.draw(data, options);
+
+      }
+    </script>
+    <div id="overlap-chart" style="width: 1024px; height: 480px;"></div>
+    
+<table>
+<thead>
+<th scope="col" align="left">Organisation</th>
+<th scope="col" align="left">Datasets</th>
+<th scope="col" align="left">Data ready</th>
+<th scope="col" align="left">PlanX adoption</th>
+</thead>
+</tbody>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/220">Northumberland County Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="adoption">interested</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/291">South Gloucestershire Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="adoption">interested</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/269">Rother District Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="adoption">interested</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/350">London Borough of Tower Hamlets</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="adoption">interested</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/171">Horsham District Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 2. authoritative data from the LPA">○</a><a href="" title="tree : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-zone : 2. authoritative data from the LPA">○</a></td>
+<td class="dot"></td>
+<td class="adoption">interested</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/314">South Staffordshire Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 3. data that is good for ODP">●</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="adoption">interested</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/74">Castle Point Borough Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="adoption">interested</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/188">Royal Borough of Kingston upon Thames</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="adoption">onboarding</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/75">Canterbury City Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="adoption">onboarding</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/41">London Borough of Barking and Dagenham</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 2. authoritative data from the LPA">○</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="adoption">planning</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/44">Birmingham City Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 2. authoritative data from the LPA">○</a></td>
+<td class="dot"></td>
+<td class="adoption">planning</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/228">Newcastle City Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 2. authoritative data from the LPA">○</a><a href="" title="article-4-direction-area : 2. authoritative data from the LPA">○</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="adoption">guidance</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/339">Tewkesbury Borough Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 3. data that is good for ODP">●</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="adoption">guidance</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/145">Gloucester City Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="adoption">guidance</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/142">Gateshead Metropolitan Borough Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="adoption">guidance</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/278">St Albans City and District Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 3. data that is good for ODP">●</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="adoption">guidance</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/129">Epsom and Ewell Borough Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 3. data that is good for ODP">●</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 3. data that is good for ODP">●</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="adoption">guidance</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/329">London Borough of Southwark</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-zone : 2. authoritative data from the LPA">○</a></td>
+<td class="dot"></td>
+<td class="adoption">submission</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/192">London Borough of Lambeth</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 3. data that is good for ODP">●</a><a href="" title="article-4-direction-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-order : 2. authoritative data from the LPA">○</a><a href="" title="tree : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="adoption">submission</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/90">London Borough of Camden</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="adoption">submission</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/358">West Berkshire Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-zone : 2. authoritative data from the LPA">○</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="adoption">submission</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/212">Medway Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-order : 2. authoritative data from the LPA">○</a><a href="" title="tree : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-zone : 2. authoritative data from the LPA">○</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="adoption">submission</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/67">Buckinghamshire Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 2. authoritative data from the LPA">○</a><a href="" title="conservation-area : 2. authoritative data from the LPA">○</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 2. authoritative data from the LPA">○</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 2. authoritative data from the LPA">○</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="adoption">submission</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/109">Doncaster Metropolitan Borough Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 3. data that is good for ODP">●</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="adoption">submission</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/48">London Borough of Barnet</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 3. data that is good for ODP">●</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 3. data that is good for ODP">●</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="adoption">submission</td>
+</tr>
+</tbody>
+</table>
+<h1>All organisations</h1>
+<table>
+<thead>
+<th scope="col" align="left">Organisation</th>
+<th scope="col" align="left">Drupal</th>
+<th scope="col" align="left">LLC</th>
+<th scope="col" align="left">PropTech</th>
+<th scope="col" align="left">ODP Membership</th>
+<th scope="col" align="left">Datasets</th>
+<th scope="col" align="left">Data ready</th>
+<th scope="col" align="left">PlanX</th>
+</thead>
+</tbody>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/4700001">Middlesbrough Development Corporation</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/4700002">Hartlepool Development Corporation</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/1">Old Oak and Park Royal Development Corporation</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/3">London Legacy Development Corporation</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/6">Ebbsfleet Development Corporation</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/26">Adur District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/28">Amber Valley Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/29">Arun District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/31">Ashfield District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/36">Basingstoke and Deane Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/50">Barnsley Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/56">Braintree District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/59">Breckland District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/63">Brentwood Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/65">London Borough of Bromley</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/72">Cannock Chase District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/77">Charnwood Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/79">Cheshire East Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/80">Chichester District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/83">Chorley Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/84">Cherwell District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/99">Crawley Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/103">Dartford Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/106">Derbyshire Dales District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/107">Derby City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/115">London Borough of Ealing</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/116">Eastbourne Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/117">Eastleigh Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/130">Erewash Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/134">East Staffordshire Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/136">Exeter City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/137">Fareham Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/141">Fylde Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/148">Gosport Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/151">Guildford Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/162">London Borough of Havering</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/164">Herefordshire Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/165">Hertsmere Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/167">London Borough of Hillingdon</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/168">Hinckley and Bosworth Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/172">Hartlepool Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/176">Huntingdonshire District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/177">Hyndburn Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/186">Borough Council of King&#x27;s Lynn and West Norfolk</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/187">Kirklees Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/200">Lichfield District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/205">Maidstone Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/207">Manchester City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/210">Middlesbrough Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/213">Melton Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/216">Mole Valley District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/217">London Borough of Merton</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/227">North East Lincolnshire Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/235">North Norfolk District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/501908">North Northamptonshire Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/243">Nuneaton and Bedworth Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/244">North Warwickshire Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/248">Oadby and Wigston Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/249">Oldham Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/251">Oxford City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/256">Preston City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/262">Reading Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/265">Ribble Valley Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/268">Rochford District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/271">Rotherham Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/273">Rushmoor Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/275">Rushcliffe Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/284">South Derbyshire District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/293">Folkestone and Hythe Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/295">St Helens Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/296">South Holland District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/298">South Kesteven District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/302">Slough Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/303">Sunderland City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/308">Southend-on-Sea Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/309">South Oxfordshire District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/311">South Ribble Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/315">Stafford Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/317">Staffordshire Moorlands District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/320">Stroud District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/325">South Tyneside Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/328">Swindon Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/330">Swale Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/338">Test Valley Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/340">Telford &amp; Wrekin Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/342">Three Rivers District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/343">Thurrock Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/346">Torridge District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/348">Tunbridge Wells Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/352">Vale of White Horse District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/361">Wealden District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/368">Wiltshire Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/369">Winchester City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/371">West Lancashire Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/377">Royal Borough of Windsor and Maidenhead</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/501909">West Northamptonshire Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/378">Worcester City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/382">Worthing Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/385">Warrington Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/390">Wychavon District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/394">Wyre Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/396">South Downs National Park Authority</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/398">Yorkshire Dales National Park Authority</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/399">Broads Authority</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/400">Dartmoor National Park Authority</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/402">North York Moors National Park Authority</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/403">Exmoor National Park Authority</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/404">Northumberland National Park Authority</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/405">Peak District National Park Authority</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/33">Babergh District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/38">Bath and North East Somerset Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/42">London Borough of Brent</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/43">London Borough of Bexley</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/46">Blaby District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/49">Brighton and Hove City Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/53">Boston Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/54">Bournemouth, Christchurch and Poole Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/55">Blackpool Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/57">Bracknell Forest Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/60">Bromsgrove District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/62">Broxtowe Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/68">Burnley Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/69">Bury Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/81">Chelmsford City Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/86">Cheltenham Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/88">Calderdale Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/91">Colchester Borough Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/10000">Cumberland Unitary Authority</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/102">Darlington Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/119">East Devon District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/124">East Lindsey District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/125">Elmbridge Borough Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/131">East Riding of Yorkshire Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/132">East Suffolk Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/138">Fenland District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/149">Gravesham Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/150">Royal Borough of Greenwich</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/156">Halton Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/160">Hastings Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/161">Hart District Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/166">High Peak Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/169">London Borough of Hammersmith &amp; Fulham</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/174">London Borough of Harrow</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/179">Isle of Wight Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/180">Ipswich Borough Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/181">London Borough of Islington</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/185">Hull City Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/199">City of Lincoln Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/204">Luton Borough Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/206">Maldon District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/208">Mansfield District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/209">Malvern Hills District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/211">Mid Devon District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/218">Mid Sussex District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/219">Mid Suffolk District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/223">Newark and Sherwood District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/224">Newcastle-under-Lyme Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/232">North Hertfordshire District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/245">North West Leicestershire District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/252">Pendle Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/259">Redcar and Cleveland Borough Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/263">Redditch Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/272">Rugby Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/290">Sefton Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/294">Sheffield City Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/297">Shropshire Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/306">Solihull Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/319">London Borough of Sutton</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/323">Stockton-on-Tees Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/332">Tameside Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/335">Tamworth Borough Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/345">Tonbridge and Malling Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/351">Uttlesford District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/364">Welwyn Hatfield Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/10001">Westmorland and Furness Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/370">Wakefield Metropolitan District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/374">City of Wolverhampton Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/380">Wokingham Borough Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/386">West Suffolk Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/392">Wyre Forest District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/397">Lake District National Park Authority</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<!-- funded local-authority:CRA Craven District Council ended in 2023-03-31-->
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/98">Craven District Council</a>‡</td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<!-- funded local-authority:HAE Hambleton District Council ended in 2023-03-31-->
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/154">Hambleton District Council</a>‡</td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<!-- funded local-authority:HAG Harrogate Borough Council ended in 2023-03-31-->
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/155">Harrogate Borough Council</a>‡</td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<!-- funded local-authority:RIH Richmondshire District Council ended in 2023-03-31-->
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/267">Richmondshire District Council</a>‡</td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<!-- funded local-authority:RYE Ryedale District Council ended in 2023-03-31-->
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/277">Ryedale District Council</a>‡</td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<!-- funded local-authority:SCE Scarborough Borough Council ended in 2023-03-31-->
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/282">Scarborough Borough Council</a>‡</td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<!-- funded local-authority:SEL Selby District Council ended in 2023-03-31-->
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/287">Selby District Council</a>‡</td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/39">Blackburn with Darwen Borough Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/40">Bedford Borough Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/64">Broxbourne Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/113">Dudley Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/143">Gedling Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/178">Council of the Isles of Scilly</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/189">Knowsley Metropolitan Borough Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/237">Norwich City Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/255">Portsmouth City Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/276">Rutland County Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/321">Stratford-on-Avon District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/357">Warwick District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/379">Woking Borough Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<!-- funded local-authority:CAR Carlisle City Council ended in 2023-03-31-->
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/73">Carlisle City Council</a>‡</td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/87">Cheshire West and Chester Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/114">Durham County Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/139">Forest of Dean District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/153">Havant Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/159">Harlow District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/190">Lancaster City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/197">Lewes District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/242">North Tyneside Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/266">London Borough of Richmond upon Thames</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/274">Runnymede Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/316">Stoke-on-Trent City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/324">Stevenage Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/10003">Somerset Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/341">Thanet District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/373">Walsall Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/173">Hertfordshire County Council</a>†</td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/201">Lincolnshire County Council</a>†</td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/34">Bassetlaw District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/85">Chesterfield Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/95">Cotswold District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/158">Harborough District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/221">North Devon District Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/231">Nottingham City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/246">London Borough of Newham</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/264">Reigate and Banstead Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/288">Sevenoaks District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/299">Stockport Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/367">Wigan Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/133">Essex County Council</a>†</td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/58">City of Bradford Metropolitan District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/70">Cambridge City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/92">Cornwall Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/195">Leeds City Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/233">North Kesteven District Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/336">Teignbridge District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/355">Watford Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/372">West Lindsey District Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/312">Surrey County Council</a>†</td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/292">South Hams District Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/318">Southampton City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/359">West Devon Borough Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/376">London Borough of Wandsworth</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/383">West Oxfordshire District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/128">Epping Forest District Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<!-- funded local-authority:WYO Wycombe District Council ended in 2020-03-31-->
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/393">Wycombe District Council</a>‡</td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/96">Coventry City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/163">London Borough of Hackney</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/202">Liverpool City Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/144">Greater London Authority</a>†</td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/76">Central Bedfordshire Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/198">London Borough of Lewisham</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/52">Bolsover District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/175">London Borough of Haringey</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/182">Royal Borough of Kensington and Chelsea</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/61">Broadland District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/327">Surrey Heath Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/337">Tendring District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/344">Torbay Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/260">Rochdale Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/304">South Norfolk District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/310">Spelthorne Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/387">City of Westminster</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/100">London Borough of Croydon</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/215">Milton Keynes Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/35">Basildon Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/261">London Borough of Redbridge</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/333">Tandridge District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/122">East Hampshire District Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/123">East Hertfordshire District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/366">London Borough of Waltham Forest</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/170">London Borough of Hounslow</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/281">South Cambridgeshire District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/353">Waverley Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 2. authoritative data from the LPA">○</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/10004">North Yorkshire Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/395">City of York Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/401">New Forest National Park Authority</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/347">Trafford Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/112">Dorset Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/226">North East Derbyshire District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/101">Dacorum Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/51">Bolton Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/301">Salford City Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/229">New Forest District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 3. data that is good for ODP">●</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/126">London Borough of Enfield</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/257">Peterborough City Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/30">Ashford Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 0. no data">&nbsp;</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 4. data that is trustworthy">◉</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/193">Leicester City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/118">East Cambridgeshire District Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/203">City of London Corporation</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 3. data that is good for ODP">●</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/270">Rossendale Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 3. data that is good for ODP">●</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/279">Sandwell Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/384">Wirral Borough Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/152">Great Yarmouth Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 4. data that is trustworthy">◉</a><a href="" title="tree : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/111">Dover District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 3. data that is good for ODP">●</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 2. authoritative data from the LPA">○</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/238">North Somerset Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 3. data that is good for ODP">●</a><a href="" title="article-4-direction-area : 2. authoritative data from the LPA">○</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 3. data that is good for ODP">●</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/66">Bristol City Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 3. data that is good for ODP">●</a><a href="" title="tree-preservation-order : 2. authoritative data from the LPA">○</a><a href="" title="tree : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/253">Plymouth City Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/234">North Lincolnshire Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 4. data that is trustworthy">◉</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title=""></a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/220">Northumberland County Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="interested">·</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/291">South Gloucestershire Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="interested">·</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/269">Rother District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="interested">·</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/350">London Borough of Tower Hamlets</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="interested">·</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/171">Horsham District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 2. authoritative data from the LPA">○</a><a href="" title="tree : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-zone : 2. authoritative data from the LPA">○</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="interested">·</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/314">South Staffordshire Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 3. data that is good for ODP">●</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="interested">·</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/74">Castle Point Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="interested">·</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/188">Royal Borough of Kingston upon Thames</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="onboarding">○</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/75">Canterbury City Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="onboarding">○</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/41">London Borough of Barking and Dagenham</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 2. authoritative data from the LPA">○</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="planning">○</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/44">Birmingham City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 2. authoritative data from the LPA">○</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="planning">○</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/228">Newcastle City Council</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 2. authoritative data from the LPA">○</a><a href="" title="article-4-direction-area : 2. authoritative data from the LPA">○</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="guidance">●</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/339">Tewkesbury Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 3. data that is good for ODP">●</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title="guidance">●</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/145">Gloucester City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title="guidance">●</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/142">Gateshead Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title="guidance">●</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/278">St Albans City and District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 3. data that is good for ODP">●</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title="guidance">●</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/129">Epsom and Ewell Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 3. data that is good for ODP">●</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 3. data that is good for ODP">●</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title="guidance">●</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/329">London Borough of Southwark</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-zone : 2. authoritative data from the LPA">○</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="submission">◉</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/192">London Borough of Lambeth</a></td>
+<td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 3. data that is good for ODP">●</a><a href="" title="article-4-direction-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-order : 2. authoritative data from the LPA">○</a><a href="" title="tree : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="submission">◉</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/90">London Borough of Camden</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 4. data that is trustworthy">◉</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="submission">◉</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/358">West Berkshire Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-zone : 2. authoritative data from the LPA">○</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title="submission">◉</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/212">Medway Council</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-order : 2. authoritative data from the LPA">○</a><a href="" title="tree : 2. authoritative data from the LPA">○</a><a href="" title="tree-preservation-zone : 2. authoritative data from the LPA">○</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title="submission">◉</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/67">Buckinghamshire Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 2. authoritative data from the LPA">○</a><a href="" title="conservation-area : 2. authoritative data from the LPA">○</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 2. authoritative data from the LPA">○</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 2. authoritative data from the LPA">○</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title="submission">◉</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/109">Doncaster Metropolitan Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 3. data that is good for ODP">●</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title="submission">◉</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/48">London Borough of Barnet</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 4. data that is trustworthy">◉</a><a href="" title="article-4-direction-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area : 4. data that is trustworthy">◉</a><a href="" title="conservation-area-document : 3. data that is good for ODP">●</a><a href="" title="listed-building-outline : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-order : 3. data that is good for ODP">●</a><a href="" title="tree : 4. data that is trustworthy">◉</a><a href="" title="tree-preservation-zone : 4. data that is trustworthy">◉</a></td>
+<td class="dot"><a href="">●</a></td>
+<td class="dot"><a href="" title="submission">◉</a></td>
+</tr>
+</tbody>
+</table>
+</body>
