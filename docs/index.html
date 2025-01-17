@@ -34,11 +34,11 @@ tr:nth-child(even) {
 .dot a { text-decoration: none }
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>google.charts.load('current', {'packages':['corechart']});</script>
+<script>google.charts.load('current', {'packages':['corechart','sankey']});</script>
 </head>
 <body>
 
-<h1>LPAs adopting PlanX</h1>
+<h1>PlanX adoption counts</h1>
 
     <script type="text/javascript">
       google.charts.setOnLoadCallback(draw_adoption)
@@ -50,8 +50,8 @@ tr:nth-child(even) {
           ['ODP member', 79],
           ['Providing data', 55],
           ['Data ready', 17],
-          ['Planning to adopt', 11],
-          ['Adopted PlanX', 14],
+          ['Planning to adopt', 14],
+          ['Adopted PlanX', 14]
         ]);
 
         var options = {
@@ -73,6 +73,675 @@ tr:nth-child(even) {
       }
     </script>
     <div id="adoption-chart" style="width: 1024px; height: 480px;"></div>
+    
+<h1>Adoption pipeline</h1>
+
+    <script type="text/javascript">
+      google.charts.setOnLoadCallback(draw_sankey)
+      function draw_sankey() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'From');
+        data.addColumn('string', 'To');
+        data.addColumn('number', 'Count');
+        data.addColumn({type: 'string', role: 'tooltip'});
+        data.addRows([
+        
+["Organisation", "local-planning-authority", 1, "Middlesbrough Development Corporation"],
+["Organisation", "local-planning-authority", 1, "Hartlepool Development Corporation"],
+["Organisation", "local-planning-authority", 1, "Old Oak and Park Royal Development Corporation"],
+["Organisation", "local-planning-authority", 1, "London Legacy Development Corporation"],
+["Organisation", "local-planning-authority", 1, "Ebbsfleet Development Corporation"],
+["Organisation", "local-planning-authority", 1, "Adur District Council"],
+["Organisation", "local-planning-authority", 1, "Amber Valley Borough Council"],
+["Organisation", "local-planning-authority", 1, "Arun District Council"],
+["Organisation", "local-planning-authority", 1, "Ashford Borough Council"],
+["Organisation", "local-planning-authority", 1, "Ashfield District Council"],
+["Organisation", "local-planning-authority", 1, "Babergh District Council"],
+["Organisation", "local-planning-authority", 1, "Bassetlaw District Council"],
+["Organisation", "local-planning-authority", 1, "Basildon Borough Council"],
+["Organisation", "local-planning-authority", 1, "Basingstoke and Deane Borough Council"],
+["Organisation", "local-planning-authority", 1, "Bath and North East Somerset Council"],
+["Organisation", "local-planning-authority", 1, "Blackburn with Darwen Borough Council"],
+["Organisation", "local-planning-authority", 1, "Bedford Borough Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Barking and Dagenham"],
+["Organisation", "local-planning-authority", 1, "London Borough of Brent"],
+["Organisation", "local-planning-authority", 1, "London Borough of Bexley"],
+["Organisation", "local-planning-authority", 1, "Birmingham City Council"],
+["Organisation", "local-planning-authority", 1, "Blaby District Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Barnet"],
+["Organisation", "local-planning-authority", 1, "Brighton and Hove City Council"],
+["Organisation", "local-planning-authority", 1, "Barnsley Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "Bolton Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "Bolsover District Council"],
+["Organisation", "local-planning-authority", 1, "Boston Borough Council"],
+["Organisation", "local-planning-authority", 1, "Bournemouth, Christchurch and Poole Council"],
+["Organisation", "local-planning-authority", 1, "Blackpool Borough Council"],
+["Organisation", "local-planning-authority", 1, "Braintree District Council"],
+["Organisation", "local-planning-authority", 1, "Bracknell Forest Council"],
+["Organisation", "local-planning-authority", 1, "City of Bradford Metropolitan District Council"],
+["Organisation", "local-planning-authority", 1, "Breckland District Council"],
+["Organisation", "local-planning-authority", 1, "Bromsgrove District Council"],
+["Organisation", "local-planning-authority", 1, "Broadland District Council"],
+["Organisation", "local-planning-authority", 1, "Broxtowe Borough Council"],
+["Organisation", "local-planning-authority", 1, "Brentwood Borough Council"],
+["Organisation", "local-planning-authority", 1, "Broxbourne Borough Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Bromley"],
+["Organisation", "local-planning-authority", 1, "Bristol City Council"],
+["Organisation", "local-planning-authority", 1, "Buckinghamshire Council"],
+["Organisation", "local-planning-authority", 1, "Burnley Borough Council"],
+["Organisation", "local-planning-authority", 1, "Bury Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "Cambridge City Council"],
+["Organisation", "local-planning-authority", 1, "Cannock Chase District Council"],
+["Organisation", "local-planning-authority", 1, "Castle Point Borough Council"],
+["Organisation", "local-planning-authority", 1, "Canterbury City Council"],
+["Organisation", "local-planning-authority", 1, "Central Bedfordshire Council"],
+["Organisation", "local-planning-authority", 1, "Charnwood Borough Council"],
+["Organisation", "local-planning-authority", 1, "Cheshire East Council"],
+["Organisation", "local-planning-authority", 1, "Chichester District Council"],
+["Organisation", "local-planning-authority", 1, "Chelmsford City Council"],
+["Organisation", "local-planning-authority", 1, "Chorley Borough Council"],
+["Organisation", "local-planning-authority", 1, "Cherwell District Council"],
+["Organisation", "local-planning-authority", 1, "Chesterfield Borough Council"],
+["Organisation", "local-planning-authority", 1, "Cheltenham Borough Council"],
+["Organisation", "local-planning-authority", 1, "Cheshire West and Chester Council"],
+["Organisation", "local-planning-authority", 1, "Calderdale Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Camden"],
+["Organisation", "local-planning-authority", 1, "Colchester Borough Council"],
+["Organisation", "local-planning-authority", 1, "Cornwall Council"],
+["Organisation", "local-planning-authority", 1, "Cotswold District Council"],
+["Organisation", "local-planning-authority", 1, "Coventry City Council"],
+["Organisation", "local-planning-authority", 1, "Crawley Borough Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Croydon"],
+["Organisation", "local-planning-authority", 1, "Cumberland Unitary Authority"],
+["Organisation", "local-planning-authority", 1, "Dacorum Borough Council"],
+["Organisation", "local-planning-authority", 1, "Darlington Borough Council"],
+["Organisation", "local-planning-authority", 1, "Dartford Borough Council"],
+["Organisation", "local-planning-authority", 1, "Derbyshire Dales District Council"],
+["Organisation", "local-planning-authority", 1, "Derby City Council"],
+["Organisation", "local-planning-authority", 1, "Doncaster Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "Dover District Council"],
+["Organisation", "local-planning-authority", 1, "Dorset Council"],
+["Organisation", "local-planning-authority", 1, "Dudley Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "Durham County Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Ealing"],
+["Organisation", "local-planning-authority", 1, "Eastbourne Borough Council"],
+["Organisation", "local-planning-authority", 1, "Eastleigh Borough Council"],
+["Organisation", "local-planning-authority", 1, "East Cambridgeshire District Council"],
+["Organisation", "local-planning-authority", 1, "East Devon District Council"],
+["Organisation", "local-planning-authority", 1, "East Hampshire District Council"],
+["Organisation", "local-planning-authority", 1, "East Hertfordshire District Council"],
+["Organisation", "local-planning-authority", 1, "East Lindsey District Council"],
+["Organisation", "local-planning-authority", 1, "Elmbridge Borough Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Enfield"],
+["Organisation", "local-planning-authority", 1, "Epping Forest District Council"],
+["Organisation", "local-planning-authority", 1, "Epsom and Ewell Borough Council"],
+["Organisation", "local-planning-authority", 1, "Erewash Borough Council"],
+["Organisation", "local-planning-authority", 1, "East Riding of Yorkshire Council"],
+["Organisation", "local-planning-authority", 1, "East Suffolk Council"],
+["Organisation", "local-planning-authority", 1, "East Staffordshire Borough Council"],
+["Organisation", "local-planning-authority", 1, "Exeter City Council"],
+["Organisation", "local-planning-authority", 1, "Fareham Borough Council"],
+["Organisation", "local-planning-authority", 1, "Fenland District Council"],
+["Organisation", "local-planning-authority", 1, "Forest of Dean District Council"],
+["Organisation", "local-planning-authority", 1, "Fylde Borough Council"],
+["Organisation", "local-planning-authority", 1, "Gateshead Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "Gedling Borough Council"],
+["Organisation", "local-planning-authority", 1, "Gloucester City Council"],
+["Organisation", "local-planning-authority", 1, "Gosport Borough Council"],
+["Organisation", "local-planning-authority", 1, "Gravesham Borough Council"],
+["Organisation", "local-planning-authority", 1, "Royal Borough of Greenwich"],
+["Organisation", "local-planning-authority", 1, "Guildford Borough Council"],
+["Organisation", "local-planning-authority", 1, "Great Yarmouth Borough Council"],
+["Organisation", "local-planning-authority", 1, "Havant Borough Council"],
+["Organisation", "local-planning-authority", 1, "Halton Borough Council"],
+["Organisation", "local-planning-authority", 1, "Harborough District Council"],
+["Organisation", "local-planning-authority", 1, "Harlow District Council"],
+["Organisation", "local-planning-authority", 1, "Hastings Borough Council"],
+["Organisation", "local-planning-authority", 1, "Hart District Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Havering"],
+["Organisation", "local-planning-authority", 1, "London Borough of Hackney"],
+["Organisation", "local-planning-authority", 1, "Herefordshire Council"],
+["Organisation", "local-planning-authority", 1, "Hertsmere Borough Council"],
+["Organisation", "local-planning-authority", 1, "High Peak Borough Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Hillingdon"],
+["Organisation", "local-planning-authority", 1, "Hinckley and Bosworth Borough Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Hammersmith & Fulham"],
+["Organisation", "local-planning-authority", 1, "London Borough of Hounslow"],
+["Organisation", "local-planning-authority", 1, "Horsham District Council"],
+["Organisation", "local-planning-authority", 1, "Hartlepool Borough Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Harrow"],
+["Organisation", "local-planning-authority", 1, "London Borough of Haringey"],
+["Organisation", "local-planning-authority", 1, "Huntingdonshire District Council"],
+["Organisation", "local-planning-authority", 1, "Hyndburn Borough Council"],
+["Organisation", "local-planning-authority", 1, "Council of the Isles of Scilly"],
+["Organisation", "local-planning-authority", 1, "Isle of Wight Council"],
+["Organisation", "local-planning-authority", 1, "Ipswich Borough Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Islington"],
+["Organisation", "local-planning-authority", 1, "Royal Borough of Kensington and Chelsea"],
+["Organisation", "local-planning-authority", 1, "Hull City Council"],
+["Organisation", "local-planning-authority", 1, "Borough Council of King's Lynn and West Norfolk"],
+["Organisation", "local-planning-authority", 1, "Kirklees Council"],
+["Organisation", "local-planning-authority", 1, "Royal Borough of Kingston upon Thames"],
+["Organisation", "local-planning-authority", 1, "Knowsley Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "Lancaster City Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Lambeth"],
+["Organisation", "local-planning-authority", 1, "Leicester City Council"],
+["Organisation", "local-planning-authority", 1, "Leeds City Council"],
+["Organisation", "local-planning-authority", 1, "Lewes District Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Lewisham"],
+["Organisation", "local-planning-authority", 1, "City of Lincoln Council"],
+["Organisation", "local-planning-authority", 1, "Lichfield District Council"],
+["Organisation", "local-planning-authority", 1, "Liverpool City Council"],
+["Organisation", "local-planning-authority", 1, "City of London Corporation"],
+["Organisation", "local-planning-authority", 1, "Luton Borough Council"],
+["Organisation", "local-planning-authority", 1, "Maidstone Borough Council"],
+["Organisation", "local-planning-authority", 1, "Maldon District Council"],
+["Organisation", "local-planning-authority", 1, "Manchester City Council"],
+["Organisation", "local-planning-authority", 1, "Mansfield District Council"],
+["Organisation", "local-planning-authority", 1, "Malvern Hills District Council"],
+["Organisation", "local-planning-authority", 1, "Middlesbrough Borough Council"],
+["Organisation", "local-planning-authority", 1, "Mid Devon District Council"],
+["Organisation", "local-planning-authority", 1, "Medway Council"],
+["Organisation", "local-planning-authority", 1, "Melton Borough Council"],
+["Organisation", "local-planning-authority", 1, "Milton Keynes City Council"],
+["Organisation", "local-planning-authority", 1, "Mole Valley District Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Merton"],
+["Organisation", "local-planning-authority", 1, "Mid Sussex District Council"],
+["Organisation", "local-planning-authority", 1, "Mid Suffolk District Council"],
+["Organisation", "local-planning-authority", 1, "Northumberland County Council"],
+["Organisation", "local-planning-authority", 1, "North Devon District Council"],
+["Organisation", "local-planning-authority", 1, "Newark and Sherwood District Council"],
+["Organisation", "local-planning-authority", 1, "Newcastle-under-Lyme Borough Council"],
+["Organisation", "local-planning-authority", 1, "North East Derbyshire District Council"],
+["Organisation", "local-planning-authority", 1, "North East Lincolnshire Council"],
+["Organisation", "local-planning-authority", 1, "Newcastle City Council"],
+["Organisation", "local-planning-authority", 1, "New Forest District Council"],
+["Organisation", "local-planning-authority", 1, "Nottingham City Council"],
+["Organisation", "local-planning-authority", 1, "North Hertfordshire District Council"],
+["Organisation", "local-planning-authority", 1, "North Kesteven District Council"],
+["Organisation", "local-planning-authority", 1, "North Lincolnshire Council"],
+["Organisation", "local-planning-authority", 1, "North Norfolk District Council"],
+["Organisation", "local-planning-authority", 1, "North Northamptonshire Council"],
+["Organisation", "local-planning-authority", 1, "Norwich City Council"],
+["Organisation", "local-planning-authority", 1, "North Somerset Council"],
+["Organisation", "local-planning-authority", 1, "North Tyneside Council"],
+["Organisation", "local-planning-authority", 1, "Nuneaton and Bedworth Borough Council"],
+["Organisation", "local-planning-authority", 1, "North Warwickshire Borough Council"],
+["Organisation", "local-planning-authority", 1, "North West Leicestershire District Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Newham"],
+["Organisation", "local-planning-authority", 1, "North Yorkshire Council"],
+["Organisation", "local-planning-authority", 1, "Oadby and Wigston Borough Council"],
+["Organisation", "local-planning-authority", 1, "Oldham Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "Oxford City Council"],
+["Organisation", "local-planning-authority", 1, "Pendle Borough Council"],
+["Organisation", "local-planning-authority", 1, "Plymouth City Council"],
+["Organisation", "local-planning-authority", 1, "Portsmouth City Council"],
+["Organisation", "local-planning-authority", 1, "Preston City Council"],
+["Organisation", "local-planning-authority", 1, "Peterborough City Council"],
+["Organisation", "local-planning-authority", 1, "Redcar and Cleveland Borough Council"],
+["Organisation", "local-planning-authority", 1, "Rochdale Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Redbridge"],
+["Organisation", "local-planning-authority", 1, "Reading Borough Council"],
+["Organisation", "local-planning-authority", 1, "Redditch Borough Council"],
+["Organisation", "local-planning-authority", 1, "Reigate and Banstead Borough Council"],
+["Organisation", "local-planning-authority", 1, "Ribble Valley Borough Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Richmond upon Thames"],
+["Organisation", "local-planning-authority", 1, "Rochford District Council"],
+["Organisation", "local-planning-authority", 1, "Rother District Council"],
+["Organisation", "local-planning-authority", 1, "Rossendale Borough Council"],
+["Organisation", "local-planning-authority", 1, "Rotherham Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "Rugby Borough Council"],
+["Organisation", "local-planning-authority", 1, "Rushmoor Borough Council"],
+["Organisation", "local-planning-authority", 1, "Runnymede Borough Council"],
+["Organisation", "local-planning-authority", 1, "Rushcliffe Borough Council"],
+["Organisation", "local-planning-authority", 1, "Rutland County Council"],
+["Organisation", "local-planning-authority", 1, "St Albans City and District Council"],
+["Organisation", "local-planning-authority", 1, "Sandwell Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "South Cambridgeshire District Council"],
+["Organisation", "local-planning-authority", 1, "South Derbyshire District Council"],
+["Organisation", "local-planning-authority", 1, "Sevenoaks District Council"],
+["Organisation", "local-planning-authority", 1, "Sefton Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "South Gloucestershire Council"],
+["Organisation", "local-planning-authority", 1, "South Hams District Council"],
+["Organisation", "local-planning-authority", 1, "Folkestone and Hythe Council"],
+["Organisation", "local-planning-authority", 1, "Sheffield City Council"],
+["Organisation", "local-planning-authority", 1, "St Helens Council"],
+["Organisation", "local-planning-authority", 1, "South Holland District Council"],
+["Organisation", "local-planning-authority", 1, "Shropshire Council"],
+["Organisation", "local-planning-authority", 1, "South Kesteven District Council"],
+["Organisation", "local-planning-authority", 1, "Stockport Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "Salford City Council"],
+["Organisation", "local-planning-authority", 1, "Slough Borough Council"],
+["Organisation", "local-planning-authority", 1, "Sunderland City Council"],
+["Organisation", "local-planning-authority", 1, "South Norfolk District Council"],
+["Organisation", "local-planning-authority", 1, "Solihull Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "Southend-on-Sea Borough Council"],
+["Organisation", "local-planning-authority", 1, "South Oxfordshire District Council"],
+["Organisation", "local-planning-authority", 1, "Spelthorne Borough Council"],
+["Organisation", "local-planning-authority", 1, "South Ribble Borough Council"],
+["Organisation", "local-planning-authority", 1, "South Staffordshire Council"],
+["Organisation", "local-planning-authority", 1, "Stafford Borough Council"],
+["Organisation", "local-planning-authority", 1, "Stoke-on-Trent City Council"],
+["Organisation", "local-planning-authority", 1, "Staffordshire Moorlands District Council"],
+["Organisation", "local-planning-authority", 1, "Southampton City Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Sutton"],
+["Organisation", "local-planning-authority", 1, "Stroud District Council"],
+["Organisation", "local-planning-authority", 1, "Stratford-on-Avon District Council"],
+["Organisation", "local-planning-authority", 1, "Stockton-on-Tees Borough Council"],
+["Organisation", "local-planning-authority", 1, "Stevenage Borough Council"],
+["Organisation", "local-planning-authority", 1, "South Tyneside Council"],
+["Organisation", "local-planning-authority", 1, "Somerset Council"],
+["Organisation", "local-planning-authority", 1, "Surrey Heath Borough Council"],
+["Organisation", "local-planning-authority", 1, "Swindon Borough Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Southwark"],
+["Organisation", "local-planning-authority", 1, "Swale Borough Council"],
+["Organisation", "local-planning-authority", 1, "Tameside Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "Tandridge District Council"],
+["Organisation", "local-planning-authority", 1, "Tamworth Borough Council"],
+["Organisation", "local-planning-authority", 1, "Teignbridge District Council"],
+["Organisation", "local-planning-authority", 1, "Tendring District Council"],
+["Organisation", "local-planning-authority", 1, "Test Valley Borough Council"],
+["Organisation", "local-planning-authority", 1, "Tewkesbury Borough Council"],
+["Organisation", "local-planning-authority", 1, "Telford & Wrekin Council"],
+["Organisation", "local-planning-authority", 1, "Thanet District Council"],
+["Organisation", "local-planning-authority", 1, "Three Rivers District Council"],
+["Organisation", "local-planning-authority", 1, "Thurrock Council"],
+["Organisation", "local-planning-authority", 1, "Torbay Council"],
+["Organisation", "local-planning-authority", 1, "Tonbridge and Malling Borough Council"],
+["Organisation", "local-planning-authority", 1, "Torridge District Council"],
+["Organisation", "local-planning-authority", 1, "Trafford Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "Tunbridge Wells Borough Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Tower Hamlets"],
+["Organisation", "local-planning-authority", 1, "Uttlesford District Council"],
+["Organisation", "local-planning-authority", 1, "Vale of White Horse District Council"],
+["Organisation", "local-planning-authority", 1, "Waverley Borough Council"],
+["Organisation", "local-planning-authority", 1, "Watford Borough Council"],
+["Organisation", "local-planning-authority", 1, "Warwick District Council"],
+["Organisation", "local-planning-authority", 1, "West Berkshire Council"],
+["Organisation", "local-planning-authority", 1, "West Devon Borough Council"],
+["Organisation", "local-planning-authority", 1, "Wealden District Council"],
+["Organisation", "local-planning-authority", 1, "Welwyn Hatfield Borough Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Waltham Forest"],
+["Organisation", "local-planning-authority", 1, "Westmorland and Furness Council"],
+["Organisation", "local-planning-authority", 1, "Wigan Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "Wiltshire Council"],
+["Organisation", "local-planning-authority", 1, "Winchester City Council"],
+["Organisation", "local-planning-authority", 1, "Wakefield Metropolitan District Council"],
+["Organisation", "local-planning-authority", 1, "West Lancashire Borough Council"],
+["Organisation", "local-planning-authority", 1, "West Lindsey District Council"],
+["Organisation", "local-planning-authority", 1, "Walsall Metropolitan Borough Council"],
+["Organisation", "local-planning-authority", 1, "City of Wolverhampton Council"],
+["Organisation", "local-planning-authority", 1, "London Borough of Wandsworth"],
+["Organisation", "local-planning-authority", 1, "Royal Borough of Windsor and Maidenhead"],
+["Organisation", "local-planning-authority", 1, "West Northamptonshire Council"],
+["Organisation", "local-planning-authority", 1, "Worcester City Council"],
+["Organisation", "local-planning-authority", 1, "Woking Borough Council"],
+["Organisation", "local-planning-authority", 1, "Wokingham Borough Council"],
+["Organisation", "local-planning-authority", 1, "Worthing Borough Council"],
+["Organisation", "local-planning-authority", 1, "West Oxfordshire District Council"],
+["Organisation", "local-planning-authority", 1, "Wirral Borough Council"],
+["Organisation", "local-planning-authority", 1, "Warrington Borough Council"],
+["Organisation", "local-planning-authority", 1, "West Suffolk Council"],
+["Organisation", "local-planning-authority", 1, "City of Westminster"],
+["Organisation", "local-planning-authority", 1, "Wychavon District Council"],
+["Organisation", "local-planning-authority", 1, "Wyre Forest District Council"],
+["Organisation", "local-planning-authority", 1, "Wyre Borough Council"],
+["Organisation", "local-planning-authority", 1, "City of York Council"],
+["Organisation", "local-planning-authority", 1, "South Downs National Park Authority"],
+["Organisation", "local-planning-authority", 1, "Lake District National Park Authority"],
+["Organisation", "local-planning-authority", 1, "Yorkshire Dales National Park Authority"],
+["Organisation", "local-planning-authority", 1, "Broads Authority"],
+["Organisation", "local-planning-authority", 1, "Dartmoor National Park Authority"],
+["Organisation", "local-planning-authority", 1, "New Forest National Park Authority"],
+["Organisation", "local-planning-authority", 1, "North York Moors National Park Authority"],
+["Organisation", "local-planning-authority", 1, "Exmoor National Park Authority"],
+["Organisation", "local-planning-authority", 1, "Northumberland National Park Authority"],
+["Organisation", "local-planning-authority", 1, "Peak District National Park Authority"],
+["Organisation", "other", 1, "Carlisle City Council"],
+["Organisation", "other", 1, "Surrey County Council"],
+["Organisation", "other", 1, "Greater London Authority"],
+["Organisation", "other", 1, "Wycombe District Council"],
+["Organisation", "other", 1, "Hertfordshire County Council"],
+["Organisation", "other", 1, "Essex County Council"],
+["Organisation", "other", 1, "Lincolnshire County Council"],
+["Organisation", "other", 1, "Craven District Council"],
+["Organisation", "other", 1, "Hambleton District Council"],
+["Organisation", "other", 1, "Harrogate Borough Council"],
+["Organisation", "other", 1, "Richmondshire District Council"],
+["Organisation", "other", 1, "Ryedale District Council"],
+["Organisation", "other", 1, "Scarborough Borough Council"],
+["Organisation", "other", 1, "Selby District Council"],
+["local-planning-authority", "Funded", 1, "Ashford Borough Council"],
+["local-planning-authority", "Funded", 1, "Bassetlaw District Council"],
+["local-planning-authority", "Funded", 1, "Basildon Borough Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Barking and Dagenham"],
+["local-planning-authority", "Funded", 1, "Birmingham City Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Barnet"],
+["local-planning-authority", "Funded", 1, "Bolton Metropolitan Borough Council"],
+["local-planning-authority", "Funded", 1, "Bolsover District Council"],
+["local-planning-authority", "Funded", 1, "City of Bradford Metropolitan District Council"],
+["local-planning-authority", "Funded", 1, "Broadland District Council"],
+["local-planning-authority", "Funded", 1, "Bristol City Council"],
+["local-planning-authority", "Funded", 1, "Buckinghamshire Council"],
+["local-planning-authority", "Funded", 1, "Cambridge City Council"],
+["local-planning-authority", "Funded", 1, "Castle Point Borough Council"],
+["local-planning-authority", "Funded", 1, "Canterbury City Council"],
+["local-planning-authority", "Funded", 1, "Central Bedfordshire Council"],
+["local-planning-authority", "Funded", 1, "Chesterfield Borough Council"],
+["local-planning-authority", "Funded", 1, "Cheshire West and Chester Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Camden"],
+["local-planning-authority", "Funded", 1, "Cornwall Council"],
+["local-planning-authority", "Funded", 1, "Cotswold District Council"],
+["local-planning-authority", "Funded", 1, "Coventry City Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Croydon"],
+["local-planning-authority", "Funded", 1, "Dacorum Borough Council"],
+["local-planning-authority", "Funded", 1, "Doncaster Metropolitan Borough Council"],
+["local-planning-authority", "Funded", 1, "Dover District Council"],
+["local-planning-authority", "Funded", 1, "Dorset Council"],
+["local-planning-authority", "Funded", 1, "Durham County Council"],
+["local-planning-authority", "Funded", 1, "East Cambridgeshire District Council"],
+["local-planning-authority", "Funded", 1, "East Hampshire District Council"],
+["local-planning-authority", "Funded", 1, "East Hertfordshire District Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Enfield"],
+["local-planning-authority", "Funded", 1, "Epping Forest District Council"],
+["local-planning-authority", "Funded", 1, "Epsom and Ewell Borough Council"],
+["local-planning-authority", "Funded", 1, "Forest of Dean District Council"],
+["local-planning-authority", "Funded", 1, "Gateshead Metropolitan Borough Council"],
+["local-planning-authority", "Funded", 1, "Gloucester City Council"],
+["local-planning-authority", "Funded", 1, "Great Yarmouth Borough Council"],
+["local-planning-authority", "Funded", 1, "Havant Borough Council"],
+["local-planning-authority", "Funded", 1, "Harborough District Council"],
+["local-planning-authority", "Funded", 1, "Harlow District Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Hackney"],
+["local-planning-authority", "Funded", 1, "London Borough of Hounslow"],
+["local-planning-authority", "Funded", 1, "Horsham District Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Haringey"],
+["local-planning-authority", "Funded", 1, "Royal Borough of Kensington and Chelsea"],
+["local-planning-authority", "Funded", 1, "Royal Borough of Kingston upon Thames"],
+["local-planning-authority", "Funded", 1, "Lancaster City Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Lambeth"],
+["local-planning-authority", "Funded", 1, "Leicester City Council"],
+["local-planning-authority", "Funded", 1, "Leeds City Council"],
+["local-planning-authority", "Funded", 1, "Lewes District Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Lewisham"],
+["local-planning-authority", "Funded", 1, "Liverpool City Council"],
+["local-planning-authority", "Funded", 1, "City of London Corporation"],
+["local-planning-authority", "Funded", 1, "Medway Council"],
+["local-planning-authority", "Funded", 1, "Milton Keynes City Council"],
+["local-planning-authority", "Funded", 1, "Northumberland County Council"],
+["local-planning-authority", "Funded", 1, "North Devon District Council"],
+["local-planning-authority", "Funded", 1, "North East Derbyshire District Council"],
+["local-planning-authority", "Funded", 1, "Newcastle City Council"],
+["local-planning-authority", "Funded", 1, "New Forest District Council"],
+["local-planning-authority", "Funded", 1, "Nottingham City Council"],
+["local-planning-authority", "Funded", 1, "North Kesteven District Council"],
+["local-planning-authority", "Funded", 1, "North Lincolnshire Council"],
+["local-planning-authority", "Funded", 1, "North Somerset Council"],
+["local-planning-authority", "Funded", 1, "North Tyneside Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Newham"],
+["local-planning-authority", "Funded", 1, "North Yorkshire Council"],
+["local-planning-authority", "Funded", 1, "Plymouth City Council"],
+["local-planning-authority", "Funded", 1, "Peterborough City Council"],
+["local-planning-authority", "Funded", 1, "Rochdale Metropolitan Borough Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Redbridge"],
+["local-planning-authority", "Funded", 1, "Reigate and Banstead Borough Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Richmond upon Thames"],
+["local-planning-authority", "Funded", 1, "Rother District Council"],
+["local-planning-authority", "Funded", 1, "Rossendale Borough Council"],
+["local-planning-authority", "Funded", 1, "Runnymede Borough Council"],
+["local-planning-authority", "Funded", 1, "St Albans City and District Council"],
+["local-planning-authority", "Funded", 1, "Sandwell Metropolitan Borough Council"],
+["local-planning-authority", "Funded", 1, "South Cambridgeshire District Council"],
+["local-planning-authority", "Funded", 1, "Sevenoaks District Council"],
+["local-planning-authority", "Funded", 1, "South Gloucestershire Council"],
+["local-planning-authority", "Funded", 1, "South Hams District Council"],
+["local-planning-authority", "Funded", 1, "Stockport Metropolitan Borough Council"],
+["local-planning-authority", "Funded", 1, "Salford City Council"],
+["local-planning-authority", "Funded", 1, "South Norfolk District Council"],
+["local-planning-authority", "Funded", 1, "Spelthorne Borough Council"],
+["local-planning-authority", "Funded", 1, "South Staffordshire Council"],
+["local-planning-authority", "Funded", 1, "Stoke-on-Trent City Council"],
+["local-planning-authority", "Funded", 1, "Southampton City Council"],
+["local-planning-authority", "Funded", 1, "Stevenage Borough Council"],
+["local-planning-authority", "Funded", 1, "Somerset Council"],
+["local-planning-authority", "Funded", 1, "Surrey Heath Borough Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Southwark"],
+["local-planning-authority", "Funded", 1, "Tandridge District Council"],
+["local-planning-authority", "Funded", 1, "Teignbridge District Council"],
+["local-planning-authority", "Funded", 1, "Tendring District Council"],
+["local-planning-authority", "Funded", 1, "Tewkesbury Borough Council"],
+["local-planning-authority", "Funded", 1, "Thanet District Council"],
+["local-planning-authority", "Funded", 1, "Torbay Council"],
+["local-planning-authority", "Funded", 1, "Trafford Metropolitan Borough Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Tower Hamlets"],
+["local-planning-authority", "Funded", 1, "Waverley Borough Council"],
+["local-planning-authority", "Funded", 1, "Watford Borough Council"],
+["local-planning-authority", "Funded", 1, "West Berkshire Council"],
+["local-planning-authority", "Funded", 1, "West Devon Borough Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Waltham Forest"],
+["local-planning-authority", "Funded", 1, "Wigan Metropolitan Borough Council"],
+["local-planning-authority", "Funded", 1, "West Lindsey District Council"],
+["local-planning-authority", "Funded", 1, "Walsall Metropolitan Borough Council"],
+["local-planning-authority", "Funded", 1, "London Borough of Wandsworth"],
+["local-planning-authority", "Funded", 1, "West Oxfordshire District Council"],
+["local-planning-authority", "Funded", 1, "Wirral Borough Council"],
+["local-planning-authority", "Funded", 1, "City of Westminster"],
+["local-planning-authority", "Funded", 1, "City of York Council"],
+["local-planning-authority", "Funded", 1, "New Forest National Park Authority"],
+["other", "Funded", 1, "Surrey County Council"],
+["other", "Funded", 1, "Greater London Authority"],
+["other", "Funded", 1, "Wycombe District Council"],
+["other", "Funded", 1, "Hertfordshire County Council"],
+["other", "Funded", 1, "Essex County Council"],
+["other", "Funded", 1, "Lincolnshire County Council"],
+["Funded", "ODP member", 1, "Ashford Borough Council"],
+["Funded", "ODP member", 1, "Basildon Borough Council"],
+["Funded", "ODP member", 1, "London Borough of Barking and Dagenham"],
+["Funded", "ODP member", 1, "Birmingham City Council"],
+["Funded", "ODP member", 1, "London Borough of Barnet"],
+["Funded", "ODP member", 1, "Bolton Metropolitan Borough Council"],
+["Funded", "ODP member", 1, "Bolsover District Council"],
+["Funded", "ODP member", 1, "Broadland District Council"],
+["Funded", "ODP member", 1, "Bristol City Council"],
+["Funded", "ODP member", 1, "Buckinghamshire Council"],
+["Funded", "ODP member", 1, "Castle Point Borough Council"],
+["Funded", "ODP member", 1, "Canterbury City Council"],
+["Funded", "ODP member", 1, "Central Bedfordshire Council"],
+["Funded", "ODP member", 1, "London Borough of Camden"],
+["Funded", "ODP member", 1, "Coventry City Council"],
+["Funded", "ODP member", 1, "London Borough of Croydon"],
+["Funded", "ODP member", 1, "Dacorum Borough Council"],
+["Funded", "ODP member", 1, "Doncaster Metropolitan Borough Council"],
+["Funded", "ODP member", 1, "Dover District Council"],
+["Funded", "ODP member", 1, "Dorset Council"],
+["Funded", "ODP member", 1, "East Cambridgeshire District Council"],
+["Funded", "ODP member", 1, "East Hampshire District Council"],
+["Funded", "ODP member", 1, "East Hertfordshire District Council"],
+["Funded", "ODP member", 1, "London Borough of Enfield"],
+["Funded", "ODP member", 1, "Epsom and Ewell Borough Council"],
+["Funded", "ODP member", 1, "Gateshead Metropolitan Borough Council"],
+["Funded", "ODP member", 1, "Gloucester City Council"],
+["Funded", "ODP member", 1, "Great Yarmouth Borough Council"],
+["Funded", "ODP member", 1, "London Borough of Hackney"],
+["Funded", "ODP member", 1, "London Borough of Hounslow"],
+["Funded", "ODP member", 1, "Horsham District Council"],
+["Funded", "ODP member", 1, "London Borough of Haringey"],
+["Funded", "ODP member", 1, "Royal Borough of Kensington and Chelsea"],
+["Funded", "ODP member", 1, "Royal Borough of Kingston upon Thames"],
+["Funded", "ODP member", 1, "London Borough of Lambeth"],
+["Funded", "ODP member", 1, "Leicester City Council"],
+["Funded", "ODP member", 1, "London Borough of Lewisham"],
+["Funded", "ODP member", 1, "Liverpool City Council"],
+["Funded", "ODP member", 1, "City of London Corporation"],
+["Funded", "ODP member", 1, "Medway Council"],
+["Funded", "ODP member", 1, "Milton Keynes City Council"],
+["Funded", "ODP member", 1, "Northumberland County Council"],
+["Funded", "ODP member", 1, "North East Derbyshire District Council"],
+["Funded", "ODP member", 1, "Newcastle City Council"],
+["Funded", "ODP member", 1, "New Forest District Council"],
+["Funded", "ODP member", 1, "North Lincolnshire Council"],
+["Funded", "ODP member", 1, "North Somerset Council"],
+["Funded", "ODP member", 1, "North Yorkshire Council"],
+["Funded", "ODP member", 1, "Plymouth City Council"],
+["Funded", "ODP member", 1, "Peterborough City Council"],
+["Funded", "ODP member", 1, "Rochdale Metropolitan Borough Council"],
+["Funded", "ODP member", 1, "London Borough of Redbridge"],
+["Funded", "ODP member", 1, "Rother District Council"],
+["Funded", "ODP member", 1, "Rossendale Borough Council"],
+["Funded", "ODP member", 1, "St Albans City and District Council"],
+["Funded", "ODP member", 1, "Sandwell Metropolitan Borough Council"],
+["Funded", "ODP member", 1, "South Cambridgeshire District Council"],
+["Funded", "ODP member", 1, "South Gloucestershire Council"],
+["Funded", "ODP member", 1, "Salford City Council"],
+["Funded", "ODP member", 1, "South Norfolk District Council"],
+["Funded", "ODP member", 1, "Spelthorne Borough Council"],
+["Funded", "ODP member", 1, "South Staffordshire Council"],
+["Funded", "ODP member", 1, "Surrey Heath Borough Council"],
+["Funded", "ODP member", 1, "London Borough of Southwark"],
+["Funded", "ODP member", 1, "Tandridge District Council"],
+["Funded", "ODP member", 1, "Tendring District Council"],
+["Funded", "ODP member", 1, "Tewkesbury Borough Council"],
+["Funded", "ODP member", 1, "Torbay Council"],
+["Funded", "ODP member", 1, "Trafford Metropolitan Borough Council"],
+["Funded", "ODP member", 1, "London Borough of Tower Hamlets"],
+["Funded", "ODP member", 1, "Waverley Borough Council"],
+["Funded", "ODP member", 1, "West Berkshire Council"],
+["Funded", "ODP member", 1, "London Borough of Waltham Forest"],
+["Funded", "ODP member", 1, "Wirral Borough Council"],
+["Funded", "ODP member", 1, "City of Westminster"],
+["Funded", "ODP member", 1, "City of York Council"],
+["Funded", "ODP member", 1, "New Forest National Park Authority"],
+["Funded", "ODP member", 1, "Greater London Authority"],
+["Funded", "ODP member", 1, "Wycombe District Council"],
+["ODP member", "Providing data", 1, "Ashford Borough Council"],
+["ODP member", "Providing data", 1, "London Borough of Barking and Dagenham"],
+["ODP member", "Providing data", 1, "Birmingham City Council"],
+["ODP member", "Providing data", 1, "London Borough of Barnet"],
+["ODP member", "Providing data", 1, "Bolton Metropolitan Borough Council"],
+["ODP member", "Providing data", 1, "Broadland District Council"],
+["ODP member", "Providing data", 1, "Bristol City Council"],
+["ODP member", "Providing data", 1, "Buckinghamshire Council"],
+["ODP member", "Providing data", 1, "Castle Point Borough Council"],
+["ODP member", "Providing data", 1, "Canterbury City Council"],
+["ODP member", "Providing data", 1, "London Borough of Camden"],
+["ODP member", "Providing data", 1, "Dacorum Borough Council"],
+["ODP member", "Providing data", 1, "Doncaster Metropolitan Borough Council"],
+["ODP member", "Providing data", 1, "Dover District Council"],
+["ODP member", "Providing data", 1, "Dorset Council"],
+["ODP member", "Providing data", 1, "East Cambridgeshire District Council"],
+["ODP member", "Providing data", 1, "East Hampshire District Council"],
+["ODP member", "Providing data", 1, "London Borough of Enfield"],
+["ODP member", "Providing data", 1, "Epsom and Ewell Borough Council"],
+["ODP member", "Providing data", 1, "Gateshead Metropolitan Borough Council"],
+["ODP member", "Providing data", 1, "Gloucester City Council"],
+["ODP member", "Providing data", 1, "Great Yarmouth Borough Council"],
+["ODP member", "Providing data", 1, "Horsham District Council"],
+["ODP member", "Providing data", 1, "Royal Borough of Kensington and Chelsea"],
+["ODP member", "Providing data", 1, "London Borough of Lambeth"],
+["ODP member", "Providing data", 1, "Leicester City Council"],
+["ODP member", "Providing data", 1, "City of London Corporation"],
+["ODP member", "Providing data", 1, "Medway Council"],
+["ODP member", "Providing data", 1, "North East Derbyshire District Council"],
+["ODP member", "Providing data", 1, "Newcastle City Council"],
+["ODP member", "Providing data", 1, "New Forest District Council"],
+["ODP member", "Providing data", 1, "North Lincolnshire Council"],
+["ODP member", "Providing data", 1, "North Somerset Council"],
+["ODP member", "Providing data", 1, "North Yorkshire Council"],
+["ODP member", "Providing data", 1, "Plymouth City Council"],
+["ODP member", "Providing data", 1, "Peterborough City Council"],
+["ODP member", "Providing data", 1, "Rochdale Metropolitan Borough Council"],
+["ODP member", "Providing data", 1, "Rother District Council"],
+["ODP member", "Providing data", 1, "Rossendale Borough Council"],
+["ODP member", "Providing data", 1, "St Albans City and District Council"],
+["ODP member", "Providing data", 1, "Sandwell Metropolitan Borough Council"],
+["ODP member", "Providing data", 1, "South Cambridgeshire District Council"],
+["ODP member", "Providing data", 1, "South Gloucestershire Council"],
+["ODP member", "Providing data", 1, "Salford City Council"],
+["ODP member", "Providing data", 1, "South Norfolk District Council"],
+["ODP member", "Providing data", 1, "South Staffordshire Council"],
+["ODP member", "Providing data", 1, "London Borough of Southwark"],
+["ODP member", "Providing data", 1, "Tewkesbury Borough Council"],
+["ODP member", "Providing data", 1, "Torbay Council"],
+["ODP member", "Providing data", 1, "Trafford Metropolitan Borough Council"],
+["ODP member", "Providing data", 1, "London Borough of Tower Hamlets"],
+["ODP member", "Providing data", 1, "West Berkshire Council"],
+["ODP member", "Providing data", 1, "Wirral Borough Council"],
+["ODP member", "Providing data", 1, "City of York Council"],
+["ODP member", "Providing data", 1, "New Forest National Park Authority"],
+["Providing data", "Data ready for PlanX", 1, "London Borough of Barnet"],
+["Providing data", "Data ready for PlanX", 1, "Bristol City Council"],
+["Providing data", "Data ready for PlanX", 1, "Buckinghamshire Council"],
+["Providing data", "Data ready for PlanX", 1, "Doncaster Metropolitan Borough Council"],
+["Providing data", "Data ready for PlanX", 1, "Dover District Council"],
+["Providing data", "Data ready for PlanX", 1, "Epsom and Ewell Borough Council"],
+["Providing data", "Data ready for PlanX", 1, "Gateshead Metropolitan Borough Council"],
+["Providing data", "Data ready for PlanX", 1, "Gloucester City Council"],
+["Providing data", "Data ready for PlanX", 1, "Royal Borough of Kensington and Chelsea"],
+["Providing data", "Data ready for PlanX", 1, "North Lincolnshire Council"],
+["Providing data", "Data ready for PlanX", 1, "North Somerset Council"],
+["Providing data", "Data ready for PlanX", 1, "Plymouth City Council"],
+["Providing data", "Data ready for PlanX", 1, "St Albans City and District Council"],
+["Providing data", "Data ready for PlanX", 1, "Tewkesbury Borough Council"],
+["Providing data", "Data ready for PlanX", 1, "Torbay Council"],
+["Providing data", "Data ready for PlanX", 1, "London Borough of Tower Hamlets"],
+["Providing data", "Data ready for PlanX", 1, "West Berkshire Council"],
+["Providing data", "Data ready for PlanX", 1, "London Borough of Barnet"],
+["Providing data", "Data ready for PlanX", 1, "Bristol City Council"],
+["Providing data", "Data ready for PlanX", 1, "Buckinghamshire Council"],
+["Providing data", "Data ready for PlanX", 1, "Doncaster Metropolitan Borough Council"],
+["Providing data", "Data ready for PlanX", 1, "Dover District Council"],
+["Providing data", "Data ready for PlanX", 1, "Epsom and Ewell Borough Council"],
+["Providing data", "Data ready for PlanX", 1, "Gateshead Metropolitan Borough Council"],
+["Providing data", "Data ready for PlanX", 1, "Gloucester City Council"],
+["Providing data", "Data ready for PlanX", 1, "Royal Borough of Kensington and Chelsea"],
+["Providing data", "Data ready for PlanX", 1, "North Lincolnshire Council"],
+["Providing data", "Data ready for PlanX", 1, "North Somerset Council"],
+["Providing data", "Data ready for PlanX", 1, "Plymouth City Council"],
+["Providing data", "Data ready for PlanX", 1, "St Albans City and District Council"],
+["Providing data", "Data ready for PlanX", 1, "Tewkesbury Borough Council"],
+["Providing data", "Data ready for PlanX", 1, "Torbay Council"],
+["Providing data", "Data ready for PlanX", 1, "London Borough of Tower Hamlets"],
+["Providing data", "Data ready for PlanX", 1, "West Berkshire Council"],
+["Providing data", "Adopting PlanX", 1, "London Borough of Barking and Dagenham"],
+["Providing data", "Adopting PlanX", 1, "Birmingham City Council"],
+["Data ready for PlanX", "Adopted PlanX", 1, "London Borough of Barnet"],
+["Data ready for PlanX", "Adopted PlanX", 1, "Buckinghamshire Council"],
+["Providing data", "Adopting PlanX", 1, "Cambridge City Council"],
+["Providing data", "Adopting PlanX", 1, "Castle Point Borough Council"],
+["Providing data", "Adopting PlanX", 1, "Canterbury City Council"],
+["Providing data", "Adopted PlanX", 1, "London Borough of Camden"],
+["Data ready for PlanX", "Adopted PlanX", 1, "Doncaster Metropolitan Borough Council"],
+["Data ready for PlanX", "Adopted PlanX", 1, "Epsom and Ewell Borough Council"],
+["Data ready for PlanX", "Adopted PlanX", 1, "Gateshead Metropolitan Borough Council"],
+["Data ready for PlanX", "Adopted PlanX", 1, "Gloucester City Council"],
+["Providing data", "Adopting PlanX", 1, "Horsham District Council"],
+["Providing data", "Adopting PlanX", 1, "Royal Borough of Kingston upon Thames"],
+["Providing data", "Adopted PlanX", 1, "London Borough of Lambeth"],
+["Providing data", "Adopted PlanX", 1, "Medway Council"],
+["Providing data", "Adopting PlanX", 1, "Northumberland County Council"],
+["Providing data", "Adopted PlanX", 1, "Newcastle City Council"],
+["Providing data", "Adopting PlanX", 1, "Rother District Council"],
+["Data ready for PlanX", "Adopted PlanX", 1, "St Albans City and District Council"],
+["Providing data", "Adopting PlanX", 1, "South Cambridgeshire District Council"],
+["Providing data", "Adopting PlanX", 1, "South Gloucestershire Council"],
+["Providing data", "Adopting PlanX", 1, "South Staffordshire Council"],
+["Providing data", "Adopting PlanX", 1, "Surrey Heath Borough Council"],
+["Providing data", "Adopted PlanX", 1, "London Borough of Southwark"],
+["Data ready for PlanX", "Adopted PlanX", 1, "Tewkesbury Borough Council"],
+["Data ready for PlanX", "Adopting PlanX", 1, "London Borough of Tower Hamlets"],
+["Data ready for PlanX", "Adopted PlanX", 1, "West Berkshire Council"]]);
+        options = {
+            sankey: {
+                link: { color: { fill: '#d5d5d6' } },
+                node: { colors: [ '#222' ],
+                label: { color: '#222' } },
+            }
+        };
+        var chart = new google.visualization.Sankey(document.getElementById("sankey-chart"));
+        chart.draw(data, options);
+      }
+    </script>
+    <div id="sankey-chart" style="width: 1024px; height: 480px;"></div>
     
 <h1>Overlap between projects</h1>
 
@@ -101,6 +770,7 @@ tr:nth-child(even) {
     </script>
     <div id="overlap-chart" style="width: 1024px; height: 480px;"></div>
     
+<h1>Organisations adopting PlanX</h1>
 <table>
 <thead>
 <th scope="col" align="left">Organisation</th>
@@ -110,6 +780,18 @@ tr:nth-child(even) {
 </thead>
 </tbody>
 <tr>
+<td><a href="https://www.planning.data.gov.uk/entity/70">Cambridge City Council</a></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="adoption">interested</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/327">Surrey Heath Borough Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="adoption">interested</td>
+</tr>
+<tr>
 <td><a href="https://www.planning.data.gov.uk/entity/220">Northumberland County Council</a></td>
 <td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
 <td class="dot"></td>
@@ -117,6 +799,12 @@ tr:nth-child(even) {
 </tr>
 <tr>
 <td><a href="https://www.planning.data.gov.uk/entity/291">South Gloucestershire Council</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="adoption">interested</td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/281">South Cambridgeshire District Council</a></td>
 <td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
 <td class="dot"></td>
 <td class="adoption">interested</td>
@@ -2603,16 +3291,6 @@ tr:nth-child(even) {
 <td class="dot"><a href="" title=""></a></td>
 </tr>
 <tr>
-<td><a href="https://www.planning.data.gov.uk/entity/70">Cambridge City Council</a></td>
-<td class="dot"></td>
-<td class="dot"></td>
-<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
-<td class="dot"></td>
-<td class="dot dots"></td>
-<td class="dot"></td>
-<td class="dot"><a href="" title=""></a></td>
-</tr>
-<tr>
 <td><a href="https://www.planning.data.gov.uk/entity/92">Cornwall Council</a></td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2834,16 +3512,6 @@ tr:nth-child(even) {
 <td class="dot"><a href="" title=""></a></td>
 </tr>
 <tr>
-<td><a href="https://www.planning.data.gov.uk/entity/327">Surrey Heath Borough Council</a></td>
-<td class="dot"></td>
-<td class="dot"></td>
-<td class="dot"></td>
-<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
-<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
-<td class="dot"></td>
-<td class="dot"><a href="" title=""></a></td>
-</tr>
-<tr>
 <td><a href="https://www.planning.data.gov.uk/entity/337">Tendring District Council</a></td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -3025,16 +3693,6 @@ tr:nth-child(even) {
 </tr>
 <tr>
 <td><a href="https://www.planning.data.gov.uk/entity/101">Dacorum Borough Council</a></td>
-<td class="dot"></td>
-<td class="dot"></td>
-<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
-<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
-<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
-<td class="dot"></td>
-<td class="dot"><a href="" title=""></a></td>
-</tr>
-<tr>
-<td><a href="https://www.planning.data.gov.uk/entity/281">South Cambridgeshire District Council</a></td>
 <td class="dot"></td>
 <td class="dot"></td>
 <td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
@@ -3284,6 +3942,26 @@ tr:nth-child(even) {
 <td class="dot"><a href="" title=""></a></td>
 </tr>
 <tr>
+<td><a href="https://www.planning.data.gov.uk/entity/70">Cambridge City Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
+<td class="dot"></td>
+<td class="dot dots"></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="interested">·</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/327">Surrey Heath Borough Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 1. some data">·</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="interested">·</a></td>
+</tr>
+<tr>
 <td><a href="https://www.planning.data.gov.uk/entity/220">Northumberland County Council</a></td>
 <td class="dot"><a href="https://localgovdrupal.org/community/our-councils">●</a></td>
 <td class="dot"></td>
@@ -3298,6 +3976,16 @@ tr:nth-child(even) {
 <td class="dot"></td>
 <td class="dot"><a href="https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme">●</a></td>
 <td class="dot"></td>
+<td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
+<td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
+<td class="dot"></td>
+<td class="dot"><a href="" title="interested">·</a></td>
+</tr>
+<tr>
+<td><a href="https://www.planning.data.gov.uk/entity/281">South Cambridgeshire District Council</a></td>
+<td class="dot"></td>
+<td class="dot"></td>
+<td class="dot"><a href="https://www.localdigital.gov.uk/digital-planning/case-studies/">●</a></td>
 <td class="dot"><a href="https://opendigitalplanning.org/community-members">●</a></td>
 <td class="dot dots"><a href="" title="article-4-direction : 0. no data">&nbsp;</a><a href="" title="article-4-direction-area : 0. no data">&nbsp;</a><a href="" title="conservation-area : 3. data that is good for ODP">●</a><a href="" title="conservation-area-document : 0. no data">&nbsp;</a><a href="" title="listed-building-outline : 0. no data">&nbsp;</a><a href="" title="tree-preservation-order : 0. no data">&nbsp;</a><a href="" title="tree : 0. no data">&nbsp;</a><a href="" title="tree-preservation-zone : 0. no data">&nbsp;</a></td>
 <td class="dot"></td>
