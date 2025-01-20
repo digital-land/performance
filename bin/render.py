@@ -255,6 +255,9 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 .dot a { text-decoration: none }
+.submission { font-weight: bolder }
+.guidance { font-weight: bolder }
+.interested { color: #888}
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>google.charts.load('current', {'packages':['corechart','sankey']});</script>
@@ -263,7 +266,7 @@ tr:nth-child(even) {
 """
     )
 
-    print("<h1>PlanX adoption counts</h1>")
+    print("<h1>Organisations adopting PlanX</h1>")
 
     print(
         """
@@ -296,6 +299,7 @@ tr:nth-child(even) {
         ]);
 
         var options = {
+          title: "Number of organisations",
           bars: 'vertical',
           colors: ['#27a0cc', '#206095', '#003c57', '#871a5b', '#a8bd3a', '#f66068'],
           legend: { position: "none" },
@@ -317,7 +321,7 @@ tr:nth-child(even) {
     """
     )
 
-    print("<h1>Adoption pipeline</h1>")
+    print("<h1>Data and PlanX adoption</h1>")
     print(
         """
     <script type="text/javascript">
@@ -332,42 +336,45 @@ tr:nth-child(even) {
         """
     )
 
-    sep = ""
-    for organisation, row in rows.items():
-        print(f'{sep}["Organisation", "{row["role"]}", 1, "{row["name"]}"]', end="")
-        sep = ",\n"
+    project = "open-digital-planning"
 
+    sep = ""
+    """
     for organisation, row in rows.items():
         if row["funded"]:
-            print(f'{sep}["{row["role"]}", "Funded", 1, "{row["name"]}"]', end="")
+            print(f'{sep}["Funded organisation", "{row["role"]}", 1, "{row["name"]}"]', end="")
+            sep = ",\n"
 
-    project = "open-digital-planning"
     for organisation, row in rows.items():
-        source = "Funded" if row["funded"] else row["role"]
         if project in row["projects"]:
-            print(f'{sep}["{source}", "ODP member", 1, "{row["name"]}"]', end="")
+            print(f'{sep}["{row["role"]}", "ODP member", 1, "{row["name"]}"]', end="")
+            sep = ",\n"
 
     for organisation, row in rows.items():
         source = "ODP member" if project in row["projects"] else "Funded" if row["funded"] else row["role"]
         if row["providing"]:
             print(f'{sep}["{source}", "Providing data", 1, "{row["name"]}"]', end="")
+            sep = ",\n"
+    """
 
     for organisation, row in rows.items():
         if row["data"] == "ODP":
             print(f'{sep}["Providing data", "Data ready for PlanX", 1, "{row["name"]}"]', end="")
+            sep = ",\n"
 
     for organisation, row in rows.items():
         if row["data"] == "ODP":
             print(f'{sep}["Providing data", "Data ready for PlanX", 1, "{row["name"]}"]', end="")
+            sep = ",\n"
 
     for organisation, row in rows.items():
         dest = {
                     "": "",
-                    "interested": "Adopting PlanX",
+                    "interested": "Interested in adopting PlanX",
                     "onboarding": "Adopting PlanX",
                     "planning": "Adopting PlanX",
-                    "guidance": "Adopted PlanX",
-                    "submission": "Adopted PlanX",
+                    "guidance": "Have adopted PlanX",
+                    "submission": "Have adopted PlanX",
                 }[row["adoption"]]
 
         if dest:
@@ -391,6 +398,7 @@ tr:nth-child(even) {
     <div id="sankey-chart" style="width: 1024px; height: 480px;"></div>
     """
     )
+
 
     print("<h1>Overlap between projects</h1>")
     print(
@@ -431,77 +439,6 @@ tr:nth-child(even) {
     """
     )
 
-    print("<h1>Organisations adopting PlanX</h1>")
-
-    print("<table>")
-    print("<thead>")
-    print(f'<th scope="col" align="left">Organisation</th>')
-    print(f'<th scope="col" align="left">Datasets</th>')
-    print(f'<th scope="col" align="left">Data ready</th>')
-    print(f'<th scope="col" align="left">PlanX adoption</th>')
-    print("</thead>")
-    print("</tbody>")
-
-    for organisation, row in sorted(rows.items(), key=lambda x: x[1]["score"]):
-        if row["adoption"] == "":
-            continue
-
-        note = ""
-        note = (
-            note + ""
-            if "local-planning-authority" in organisation_roles[organisation]
-            else daggar
-        )
-
-        if row.get("end-date", ""):
-            if not "interventions" in row:
-                print(f"<!-- skipping {organisation} {row['name']} -->")
-                continue
-            print(
-                f"<!-- funded {organisation} {row['name']} ended in {row['end-date']}-->"
-            )
-            note = note + ddaggar
-
-        print(f"<tr>")
-        print(
-            f'<td><a href="{entity_url}{row["entity"]}">{escape(row["name"])}</a>{note}</td>'
-        )
-
-        # datasets
-        dots = ""
-        if organisation in quality:
-            for dataset in odp_datasets:
-                q = quality[organisation][dataset]
-                status = {
-                    "": "&nbsp;",
-                    "0. no data": "&nbsp;",
-                    "1. some data": "·",
-                    "2. authoritative data from the LPA": "○",
-                    "3. data that is good for ODP": "●",
-                    "4. data that is trustworthy": "◉",
-                }[q]
-                dots += f'<a href="{data_url}" title="{dataset} : {q}">{status}</a>'
-        print(f'<td class="dot dots">{dots}</td>')
-
-        # data
-        dot = f'<a href="{data_url}">●</a>' if row["data"] == "ODP" else ""
-        print(f'<td class="dot">{dot}</td>')
-
-        # adoption
-        status = {
-            "": "",
-            "interested": "·",
-            "onboarding": "○",
-            "planning": "○",
-            "guidance": "●",
-            "submission": "◉",
-        }[row["adoption"]]
-        print(f'<td class="adoption">{row["adoption"]}</td>')
-
-        print("</tr>")
-
-    print("</tbody>")
-    print("</table>")
 
     print("<h1>All organisations</h1>")
     print("<table>")
@@ -517,7 +454,7 @@ tr:nth-child(even) {
     print("</thead>")
     print("</tbody>")
 
-    for organisation, row in sorted(rows.items(), key=lambda x: x[1]["score"]):
+    for organisation, row in sorted(rows.items(), key=lambda x: x[1]["score"], reverse=True):
         note = ""
         note = (
             note + ""
@@ -585,15 +522,7 @@ tr:nth-child(even) {
         print(f'<td class="dot">{dot}</td>')
 
         # adoption
-        status = {
-            "": "",
-            "interested": "·",
-            "onboarding": "○",
-            "planning": "○",
-            "guidance": "●",
-            "submission": "◉",
-        }[row["adoption"]]
-        print(f'<td class="dot"><a href="" title="{row["adoption"]}">{status}</a></td>')
+        print(f'<td class="{row["adoption"]}">{row["adoption"]}</td>')
 
         print("</tr>")
 
