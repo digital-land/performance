@@ -294,7 +294,7 @@ tr:nth-child(even) {
         + str(counts["data-ready"])
         + """],
           ['Interested in PlanX', """
-        + str(counts["adopting"])
+        + str(counts["interested"])
         + """],
           ['Adopting', """
         + str(counts["adopting"])
