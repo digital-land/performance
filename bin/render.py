@@ -140,6 +140,7 @@ if __name__ == "__main__":
         "llc-unfunded": 0,
         "providing": 0,
         "data-ready": 0,
+        "interested": 0,
         "adopting": 0,
         "adopted": 0,
     }
@@ -180,6 +181,8 @@ if __name__ == "__main__":
         if row["adoption"]:
             if row["adoption"] in ["guidance", "submission"]:
                 counts["adopted"] += 1
+            elif row["adoption"] in ["interested"]:
+                counts["interested"] += 1
             else:
                 counts["adopting"] += 1
 
@@ -281,7 +284,7 @@ tr:nth-child(even) {
           ['Funded', """
         + str(counts["funded"])
         + """],
-          ['ODP member', """
+          ['Software funding', """
         + str(counts["odp"])
         + """],
           ['Providing data', """
@@ -290,7 +293,10 @@ tr:nth-child(even) {
           ['Data ready', """
         + str(counts["data-ready"])
         + """],
-          ['Planning to adopt', """
+          ['Interested in PlanX', """
+        + str(counts["adopting"])
+        + """],
+          ['Adopting', """
         + str(counts["adopting"])
         + """],
           ['Adopted PlanX', """
