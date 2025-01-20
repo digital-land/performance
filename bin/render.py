@@ -28,6 +28,7 @@ odp_datasets = [
 ]
 
 rows = {}
+sets = {}
 
 
 def load(path, key, opt=None):
@@ -46,10 +47,23 @@ def add_organisation(organisation, role):
             "role": role,
             "projects": set(),
             "interventions": {},
-            "data": "",
-            "adoption": "",
             "score": 0,
+            "adoption": "",
         },
+    )
+
+
+def set_add(name, organisation):
+    sets.setdefault(name, set())
+    sets[name].add(organisation)
+
+
+def overlaps(one, two):
+    return (
+        str(len(sets[one] - sets[two]))
+        + "," + str(len(sets[two] & sets[one]))
+        + "," + str(len(sets[two] - sets[one]))
+        #+ "," + str(len(sets["organisation"] - sets[one] - sets[two]))
     )
 
 
@@ -113,11 +127,12 @@ if __name__ == "__main__":
     # add data quality
     for organisation, row in quality.items():
         if row["ready_for_ODP_adoption"] == "yes":
-            rows[organisation]["data"] = "ODP"
+            set_add("data-ready", organisation)
 
     # add adoption
     for row in csv.DictReader(open("data/adoption.csv", newline="")):
         organisation = row["organisation"]
+        set_add(row["adoption-status"], organisation)
         rows[organisation]["adoption"] = row["adoption-status"]
 
     # add missing columns
@@ -126,69 +141,19 @@ if __name__ == "__main__":
         rows[organisation]["entity"] = organisations[organisation]["entity"]
         rows[organisation]["end-date"] = organisations[organisation]["end-date"]
 
-    counts = {
-        "lpa": 0,
-        "org": 0,
-        "proptech": 0,
-        "odp": 0,
-        "funded": 0,
-        "llc": 0,
-        "llc-not-odp": 0,
-        "llc-and-odp": 0,
-        "odp-not-llc": 0,
-        "neither-odp-llc": 0,
-        "llc-unfunded": 0,
-        "providing": 0,
-        "data-ready": 0,
-        "interested": 0,
-        "adopting": 0,
-        "adopted": 0,
-    }
-
+    # create sets of organisations
     for organisation, row in rows.items():
-        row["funded"] = False
-        counts["org"] += 1
-        if row["role"] == "local-planning-authority":
-            counts["lpa"] += 1
+        set_add("organisation", organisation)
+        set_add(row["role"], organisation)
+        for project in row["projects"]:
+            set_add(project, organisation)
 
-        if "proptech" in row["projects"]:
-            counts["proptech"] += 1
-            row["funded"] = True
-        if "open-digital-planning" in row["projects"]:
-            counts["odp"] += 1
-            row["funded"] = True
-
-        if row["funded"]:
-            counts["funded"] += 1
-
-        if "local-land-charges" in row["projects"]:
-            counts["llc"] += 1
-            if not row["funded"]:
-                counts["llc-unfunded"] += 1
-
-            if "open-digital-planning" in row["projects"]:
-                counts["llc-and-odp"] += 1
-            else:
-                counts["llc-not-odp"] += 1
-        else:
-            if "open-digital-planning" in row["projects"]:
-                counts["odp-not-llc"] += 1
-            else:
-                counts["neither-odp-llc"] += 1
-
-        if row["data"]:
-            counts["data-ready"] += 1
-        if row["adoption"]:
-            if row["adoption"] in ["guidance", "submission"]:
-                counts["adopted"] += 1
-            elif row["adoption"] in ["interested"]:
-                counts["interested"] += 1
-            else:
-                counts["adopting"] += 1
+        # TBD: funded includes partners?
+        if "proptech" in row["projects"] or "open-digital-planning" in row["projects"]:
+            set_add("funded", organisation)
 
     # score rows
     for organisation, row in rows.items():
-        row["providing"] = False
         if "proptech" in row["projects"]:
             rows[organisation]["score"] += 10
 
@@ -204,24 +169,19 @@ if __name__ == "__main__":
                     continue
             rows[organisation]["score"] += n * 1000
             if n > 2:
-                counts["providing"] += 1
-                row["providing"] = True
+                set_add("providing", organisation)
 
-        if rows[organisation]["data"]:
+        if organisation in sets["data-ready"]:
             rows[organisation]["score"] += 10000000
 
-        if rows[organisation]["adoption"]:
-            rows[organisation]["score"] += (
-                100000000
-                * {
-                    "": 0,
-                    "interested": 1,
-                    "onboarding": 2,
-                    "planning": 2,
-                    "guidance": 4,
-                    "submission": 5,
-                }[row["adoption"]]
-            )
+        if organisation in sets["interested"]:
+            rows[organisation]["score"] += 100000000
+        if organisation in sets["adopting"]:
+            rows[organisation]["score"] += 200000000
+        if organisation in sets["guidance"]:
+            rows[organisation]["score"] += 300000000
+        if organisation in sets["submission"]:
+            rows[organisation]["score"] += 400000000
 
     print(
         """<!doctype html>
@@ -263,7 +223,7 @@ tr:nth-child(even) {
 .interested { color: #888}
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>google.charts.load('current', {'packages':['corechart','sankey']});</script>
+<script>google.charts.load('current', {'packages':['corechart','bar','sankey']});</script>
 </head>
 <body>
 """
@@ -279,28 +239,28 @@ tr:nth-child(even) {
         var data = google.visualization.arrayToDataTable([
           ['Status', 'Count'],
           ['LPA', """
-        + str(counts["lpa"])
+        + str(len(sets["local-planning-authority"]))
         + """],
           ['Funded', """
-        + str(counts["funded"])
+        + str(len(sets["funded"]))
         + """],
           ['Software funding', """
-        + str(counts["odp"])
+        + str(len(sets["open-digital-planning"]))
         + """],
           ['Providing data', """
-        + str(counts["providing"])
+        + str(len(sets["providing"]))
         + """],
           ['Data ready', """
-        + str(counts["data-ready"])
+        + str(len(sets["data-ready"]))
         + """],
           ['Interested in PlanX', """
-        + str(counts["interested"])
+        + str(len(sets["interested"]))
         + """],
           ['Adopting', """
-        + str(counts["adopting"])
+        + str(len(sets["adopting"]))
         + """],
           ['Adopted PlanX', """
-        + str(counts["adopted"])
+        + str(len(sets["guidance"] | sets["submission"]))
         + """]
         ]);
 
@@ -358,35 +318,40 @@ tr:nth-child(even) {
 
     for organisation, row in rows.items():
         source = "ODP member" if project in row["projects"] else "Funded" if row["funded"] else row["role"]
-        if row["providing"]:
+        if organisation in sets("providing"):
             print(f'{sep}["{source}", "Providing data", 1, "{row["name"]}"]', end="")
+            sep = ",\n"
+
+    for organisation, row in rows.items():
+        if row["data-ready"] == "ODP":
+            print(f'{sep}["Providing data", "Data ready for PlanX", 1, "{row["name"]}"]', end="")
             sep = ",\n"
     """
 
     for organisation, row in rows.items():
-        if row["data"] == "ODP":
-            print(f'{sep}["Providing data", "Data ready for PlanX", 1, "{row["name"]}"]', end="")
-            sep = ",\n"
-
-    for organisation, row in rows.items():
-        if row["data"] == "ODP":
-            print(f'{sep}["Providing data", "Data ready for PlanX", 1, "{row["name"]}"]', end="")
+        if organisation in sets["providing"]:
+            print(
+                f'{sep}["Providing data", "Data ready for PlanX", 1, "{row["name"]}"]',
+                end="",
+            )
             sep = ",\n"
 
     for organisation, row in rows.items():
         dest = {
-                    "": "",
-                    "interested": "Interested in adopting PlanX",
-                    "onboarding": "Adopting PlanX",
-                    "planning": "Adopting PlanX",
-                    "guidance": "Have adopted PlanX",
-                    "submission": "Have adopted PlanX",
-                }[row["adoption"]]
+            "": "",
+            "interested": "Interested in adopting PlanX",
+            "adopting": "Adopting PlanX",
+            "guidance": "Have adopted PlanX",
+            "submission": "Have adopted PlanX",
+        }[row["adoption"]]
 
         if dest:
-            source = "Data ready for PlanX" if row["data"] == "ODP" else "Providing data"
+            source = (
+                "Data ready for PlanX"
+                if organisation in sets["data-ready"]
+                else "Providing data"
+            )
             print(f'{sep}["{source}", "{dest}", 1, "{row["name"]}"]', end="")
-
 
     print(
         """]);
@@ -405,46 +370,55 @@ tr:nth-child(even) {
     """
     )
 
-
-    print("<h1>Overlap between projects</h1>")
+    print("<h1>Project overlaps</h1>")
     print(
         """
     <script type="text/javascript">
-      google.charts.setOnLoadCallback(draw_adoption)
-      function draw_adoption() {
+      google.charts.setOnLoadCallback(draw_overlap)
+      function draw_overlap() {
         var data = google.visualization.arrayToDataTable([
           ['Project', 
-          'Project only', 
-          'LLC and project', 
-          'LLC only', 
-          'Neither'],
-          ['ODP', """
-        + str(counts["odp-not-llc"])
-        + ","
-        + str(counts["llc-and-odp"])
-        + ","
-        + str(counts["llc-not-odp"])
-        + ","
-        + str(counts["neither-odp-llc"])
-        + ","
-        + """]
+          'First only', 
+          'Both', 
+          'Second only'],
+          ['ODP and LLC', """
+        + overlaps("open-digital-planning", "local-land-charges")
+        + """],
+          ['ODP and PropTech', """
+        + overlaps("open-digital-planning", "proptech")
+        + """],
+          ['PropTech and LLC', """
+        + overlaps("proptech", "local-land-charges")
+        + """],
+          ['LCC and LPA', """
+        + overlaps("local-land-charges", "local-planning-authority")
+        + """],
+          ['ODP and LPA', """
+        + overlaps("open-digital-planning", "local-planning-authority")
+        + """],
+          ['PropTech and LPA', """
+        + overlaps("proptech", "local-planning-authority")
+        + """],
+          ['Drupal and LPA', """
+        + overlaps("localgov-drupal", "local-planning-authority")
+        + """],
         ]);
 
         var options = {
+          title: "Number of organisations",
           bars: 'horizontal',
           colors: [ "#222", "#707071", "#d5d5d6", "#f5f5f6"],
           isStacked: true,
         };
 
-        var chart = new google.visualization.ColumnChart(document.getElementById("overlap-chart"));
+        var chart = new google.visualization.BarChart(document.getElementById("overlap-chart"));
         chart.draw(data, options);
 
       }
     </script>
-    <div id="overlap-chart" style="width: 1024px; height: 480px;"></div>
+    <div id="overlap-chart" style="width: 1024; height: 480px;"></div>
     """
     )
-
 
     print("<h1>All organisations</h1>")
     print("<table>")
@@ -460,7 +434,9 @@ tr:nth-child(even) {
     print("</thead>")
     print("</tbody>")
 
-    for organisation, row in sorted(rows.items(), key=lambda x: x[1]["score"], reverse=True):
+    for organisation, row in sorted(
+        rows.items(), key=lambda x: x[1]["score"], reverse=True
+    ):
         note = ""
         note = (
             note + ""
@@ -524,7 +500,7 @@ tr:nth-child(even) {
         print(f'<td class="dot dots">{dots}</td>')
 
         # data
-        dot = f'<a href="{data_url}">●</a>' if row["data"] == "ODP" else ""
+        dot = f'<a href="{data_url}">●</a>' if organisation in sets["data-ready"] else ""
         print(f'<td class="dot">{dot}</td>')
 
         # adoption
