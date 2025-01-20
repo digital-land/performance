@@ -16,16 +16,28 @@ daggar = "†"
 ddaggar = "‡"
 bullet = "●"
 
-odp_datasets = [
-    "article-4-direction",
-    "article-4-direction-area",
-    "conservation-area",
-    "conservation-area-document",
-    "listed-building-outline",
-    "tree-preservation-order",
-    "tree",
-    "tree-preservation-zone",
-]
+odp_cols = {
+    "CA": [
+        "conservation-area",
+        "conservation-area-document",
+    ],
+    "A4": [
+        "article-4-direction",
+        "article-4-direction-area",
+        ], 
+    "LBO": [
+        "listed-building-outline",
+    ],
+    "TPO": [
+        "tree-preservation-order",
+        "tree",
+        "tree-preservation-zone",
+    ]
+}
+odp_datasets = {}
+for col, datasets in odp_cols.items():
+    for dataset in datasets:
+        odp_datasets[dataset] = col
 
 rows = {}
 sets = {}
@@ -208,6 +220,9 @@ td.dot {
   valign: center;
   text-align: center;
   font-family: fixed;
+}
+th.odp-col {
+  text-align: center;
 }
 td.dots {
   valign: center;
@@ -427,8 +442,12 @@ tr:nth-child(even) {
     print(f'<th scope="col" align="left">Drupal</th>')
     print(f'<th scope="col" align="left">LLC</th>')
     print(f'<th scope="col" align="left">PropTech</th>')
-    print(f'<th scope="col" align="left">ODP Membership</th>')
-    print(f'<th scope="col" align="left">Datasets</th>')
+    print(f'<th scope="col" align="left">ODP</th>')
+
+    for col, datasets in odp_cols.items():
+        colspan = len(datasets)
+        print(f'<th class="odp-col" scope="col" align="left" colspan={colspan}>{col}</th>')
+
     print(f'<th scope="col" align="left">Data ready</th>')
     print(f'<th scope="col" align="left">PlanX</th>')
     print("</thead>")
@@ -485,9 +504,9 @@ tr:nth-child(even) {
 
         # datasets
         dots = ""
-        if organisation in quality:
-            for dataset in odp_datasets:
-                q = quality[organisation][dataset]
+        for col, datasets in odp_cols.items():
+            for dataset in datasets:
+                q = quality.get(organisation, {}).get(dataset, "")
                 status = {
                     "": "&nbsp;",
                     "0. no data": "&nbsp;",
@@ -496,8 +515,7 @@ tr:nth-child(even) {
                     "3. data that is good for ODP": "●",
                     "4. data that is trustworthy": "◉",
                 }[q]
-                dots += f'<a href="{data_url}" title="{dataset} : {q}">{status}</a>'
-        print(f'<td class="dot dots">{dots}</td>')
+                print(f'<td class="dot"><a href="{data_url}" title="{dataset} : {q}">{status}</a></td>')
 
         # data
         dot = f'<a href="{data_url}">●</a>' if organisation in sets["data-ready"] else ""
