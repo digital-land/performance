@@ -396,27 +396,13 @@ tr:nth-child(even) {
           'First only', 
           'Both', 
           'Second only'],
-          ['ODP and LLC', """
-        + overlaps("open-digital-planning", "local-land-charges")
-        + """],
-          ['ODP and PropTech', """
-        + overlaps("open-digital-planning", "proptech")
-        + """],
-          ['PropTech and LLC', """
-        + overlaps("proptech", "local-land-charges")
-        + """],
-          ['LCC and LPA', """
-        + overlaps("local-land-charges", "local-planning-authority")
-        + """],
-          ['ODP and LPA', """
-        + overlaps("open-digital-planning", "local-planning-authority")
-        + """],
-          ['PropTech and LPA', """
-        + overlaps("proptech", "local-planning-authority")
-        + """],
-          ['Drupal and LPA', """
-        + overlaps("localgov-drupal", "local-planning-authority")
-        + """],
+          ['ODP and PropTech', """ + overlaps("open-digital-planning", "proptech") + """],
+          ['ODP and LLC', """ + overlaps("open-digital-planning", "local-land-charges") + """],
+          ['PropTech and LLC', """ + overlaps("proptech", "local-land-charges") + """],
+          ['LCC and LPA', """ + overlaps("local-land-charges", "local-planning-authority") + """],
+          ['ODP and LPA', """ + overlaps("open-digital-planning", "local-planning-authority") + """],
+          ['PropTech and LPA', """ + overlaps("proptech", "local-planning-authority") + """],
+          ['Drupal and LPA', """ + overlaps("localgov-drupal", "local-planning-authority") + """],
         ]);
 
         var options = {
