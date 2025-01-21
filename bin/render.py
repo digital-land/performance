@@ -424,7 +424,7 @@ tr:nth-child(even) {
     """
     )
 
-    print("<h1>All organisations</h1>")
+    print("<h1>LPAs and other funded organisations</h1>")
     print("<table>")
     print("<thead>")
     print(f'<th scope="col" align="left">Organisation</th>')
