@@ -385,7 +385,7 @@ tr:nth-child(even) {
     """
     )
 
-    print("<h1>Project overlaps</h1>")
+    print("<h1>Overlaps between projects</h1>")
     print(
         """
     <script type="text/javascript">
@@ -394,15 +394,18 @@ tr:nth-child(even) {
         var data = google.visualization.arrayToDataTable([
           ['Project', 
           'First only', 
-          'Both', 
+          'Both projects', 
           'Second only'],
+          ['ODP and LPA', """ + overlaps("local-planning-authority", "open-digital-planning") + """],
+          ['PropTech and LPA', """ + overlaps("local-planning-authority", "proptech") + """],
+          ['LCC and LPA', """ + overlaps("local-planning-authority", "local-land-charges")+ """],
+          ['Drupal and LPA', """ + overlaps("local-planning-authority", "localgov-drupal") + """],
           ['ODP and PropTech', """ + overlaps("open-digital-planning", "proptech") + """],
           ['ODP and LLC', """ + overlaps("open-digital-planning", "local-land-charges") + """],
+          ['ODP and Drupal', """ + overlaps("open-digital-planning", "localgov-drupal") + """],
           ['PropTech and LLC', """ + overlaps("proptech", "local-land-charges") + """],
-          ['LCC and LPA', """ + overlaps("local-land-charges", "local-planning-authority") + """],
-          ['ODP and LPA', """ + overlaps("open-digital-planning", "local-planning-authority") + """],
-          ['PropTech and LPA', """ + overlaps("proptech", "local-planning-authority") + """],
-          ['Drupal and LPA', """ + overlaps("localgov-drupal", "local-planning-authority") + """],
+          ['PropTech and Drupal', """ + overlaps("proptech", "localgov-drupal") + """],
+          ['Drupal and LLC', """ + overlaps("localgov-drupal", "local-land-charges") + """],
         ]);
 
         var options = {
@@ -425,6 +428,8 @@ tr:nth-child(even) {
     print("<table>")
     print("<thead>")
     print(f'<th scope="col" align="left">Organisation</th>')
+    print(f'<th scope="col" align="left">Ended</th>')
+    print(f'<th scope="col" align="left">LPA</th>')
     print(f'<th scope="col" align="left">Drupal</th>')
     print(f'<th scope="col" align="left">LLC</th>')
     print(f'<th scope="col" align="left">PropTech</th>')
@@ -442,26 +447,19 @@ tr:nth-child(even) {
     for organisation, row in sorted(
         rows.items(), key=lambda x: x[1]["score"], reverse=True
     ):
-        note = ""
-        note = (
-            note + ""
-            if "local-planning-authority" in organisation_roles[organisation]
-            else daggar
-        )
-
-        if row.get("end-date", ""):
-            if not "interventions" in row:
-                print(f"<!-- skipping {organisation} {row['name']} -->")
-                continue
-            print(
-                f"<!-- funded {organisation} {row['name']} ended in {row['end-date']}-->"
-            )
-            note = note + ddaggar
+        if not "interventions" in row:
+            print(f"<!-- skipping {organisation} {row['name']} -->")
+            continue
 
         print(f"<tr>")
-        print(
-            f'<td><a href="{entity_url}{row["entity"]}">{escape(row["name"])}</a>{note}</td>'
+        print(f'<td><a href="{entity_url}{row["entity"]}">{escape(row["name"])}</a></td>')
+        print(f'<td>{row.get("end-date", "")}</td>')
+
+        # roles
+        dot = (
+            '●' if organisation in sets["local-planning-authority"] else ""
         )
+        print(f'<td class="dot">{dot}</td>')
 
         # projects
         dot = (
