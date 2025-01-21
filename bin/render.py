@@ -394,12 +394,12 @@ tr:nth-child(even) {
         var data = google.visualization.arrayToDataTable([
           ['Project', 
           'First only', 
-          'Both projects', 
+          'Both', 
           'Second only'],
-          ['ODP and LPA', """ + overlaps("local-planning-authority", "open-digital-planning") + """],
-          ['PropTech and LPA', """ + overlaps("local-planning-authority", "proptech") + """],
-          ['LCC and LPA', """ + overlaps("local-planning-authority", "local-land-charges")+ """],
-          ['Drupal and LPA', """ + overlaps("local-planning-authority", "localgov-drupal") + """],
+          ['LPA and ODP', """ + overlaps("local-planning-authority", "open-digital-planning") + """],
+          ['LPA and PropTech', """ + overlaps("local-planning-authority", "proptech") + """],
+          ['LPA and LLC', """ + overlaps("local-planning-authority", "local-land-charges")+ """],
+          ['LPA and Drupal', """ + overlaps("local-planning-authority", "localgov-drupal") + """],
           ['ODP and PropTech', """ + overlaps("open-digital-planning", "proptech") + """],
           ['ODP and LLC', """ + overlaps("open-digital-planning", "local-land-charges") + """],
           ['ODP and Drupal', """ + overlaps("open-digital-planning", "localgov-drupal") + """],
@@ -514,6 +514,12 @@ tr:nth-child(even) {
     print("</table>")
     print("""
         <h1>Data sources</h1>
+        <ul>
+          <li><a href="https://www.planning.data.gov.uk/organisation/">Organisations</a> (<a href="https://files.planning.data.gov.uk/organisation-collection/dataset/organisation.csv">CSV</a>)
+          <li><a href="https://github.com/digital-land/specification/blob/main/content/award.csv">Funding awards</a>
+          <li><a href="https://github.com/digital-land/performance/blob/main/data/adoption.csv">Product adoption</a>
+          <li><a href="https://github.com/digital-land/performance/blob/main/data/quality.csv">Data quality</a>
+        </ul>
     """)
 
 
