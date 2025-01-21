@@ -247,56 +247,40 @@ tr:nth-child(even) {
     print("<h1>Organisations adopting PlanX</h1>")
 
     print(
-        """
+        f"""
     <script type="text/javascript">
       google.charts.setOnLoadCallback(draw_adoption)
-      function draw_adoption() {
+      function draw_adoption() {{
         var data = google.visualization.arrayToDataTable([
           ['Status', 'Count'],
-          ['LPA', """
-        + str(len(sets["local-planning-authority"]))
-        + """],
-          ['Funded', """
-        + str(len(sets["funded"]))
-        + """],
-          ['Software funding', """
-        + str(len(sets["open-digital-planning"]))
-        + """],
-          ['Providing data', """
-        + str(len(sets["providing"]))
-        + """],
-          ['Data ready', """
-        + str(len(sets["data-ready"]))
-        + """],
-          ['Interested in PlanX', """
-        + str(len(sets["interested"]))
-        + """],
-          ['Adopting', """
-        + str(len(sets["adopting"]))
-        + """],
-          ['Adopted PlanX', """
-        + str(len(sets["guidance"] | sets["submission"]))
-        + """]
+          ['LPA', {len(sets["local-planning-authority"])}],
+          ['Funded', {len(sets["funded"])}],
+          ['Software funding', {len(sets["open-digital-planning"])}],
+          ['Providing data', {len(sets["providing"])}],
+          ['Data ready', {len(sets["data-ready"])}],
+          ['Interested in PlanX', {len(sets["interested"])}],
+          ['Adopting', {len(sets["adopting"])}],
+          ['Adopted PlanX', {len(sets["guidance"] | sets["submission"])}]
         ]);
 
-        var options = {
+        var options = {{
           title: "Number of organisations",
           bars: 'vertical',
           colors: ['#27a0cc', '#206095', '#003c57', '#871a5b', '#a8bd3a', '#f66068'],
-          legend: { position: "none" },
-        };
+          legend: {{ position: "none" }},
+        }};
 
         var view = new google.visualization.DataView(data);
         view.setColumns([0, 
-                       { calc: "stringify",
+                       {{ calc: "stringify",
                          sourceColumn: 1,
                          type: "string",
-                         role: "annotation" },
-                       1]);
+                         role: "annotation"
+                         }}, 1]);
         var chart = new google.visualization.ColumnChart(document.getElementById("adoption-chart"));
         chart.draw(view, options);
 
-      }
+      }}
     </script>
     <div id="adoption-chart" style="width: 1024px; height: 480px;"></div>
     """
