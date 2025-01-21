@@ -370,39 +370,38 @@ tr:nth-child(even) {
     )
 
     print("<h1>Overlaps between projects</h1>")
-    print(
-        """
+    print(f"""
     <script type="text/javascript">
       google.charts.setOnLoadCallback(draw_overlap)
-      function draw_overlap() {
+      function draw_overlap() {{
         var data = google.visualization.arrayToDataTable([
           ['Project', 
           'First only', 
           'Both', 
           'Second only'],
-          ['LPA and ODP', """ + overlaps("local-planning-authority", "open-digital-planning") + """],
-          ['LPA and PropTech', """ + overlaps("local-planning-authority", "proptech") + """],
-          ['LPA and LLC', """ + overlaps("local-planning-authority", "local-land-charges")+ """],
-          ['LPA and Drupal', """ + overlaps("local-planning-authority", "localgov-drupal") + """],
-          ['ODP and PropTech', """ + overlaps("open-digital-planning", "proptech") + """],
-          ['ODP and LLC', """ + overlaps("open-digital-planning", "local-land-charges") + """],
-          ['ODP and Drupal', """ + overlaps("open-digital-planning", "localgov-drupal") + """],
-          ['PropTech and LLC', """ + overlaps("proptech", "local-land-charges") + """],
-          ['PropTech and Drupal', """ + overlaps("proptech", "localgov-drupal") + """],
-          ['Drupal and LLC', """ + overlaps("localgov-drupal", "local-land-charges") + """],
+          ['LPA and ODP', {overlaps("local-planning-authority", "open-digital-planning")}],
+          ['LPA and PropTech', {overlaps("local-planning-authority", "proptech")}],
+          ['LPA and LLC', {overlaps("local-planning-authority", "local-land-charges")}],
+          ['LPA and Drupal', {overlaps("local-planning-authority", "localgov-drupal")}],
+          ['ODP and PropTech', {overlaps("open-digital-planning", "proptech")}],
+          ['ODP and LLC', {overlaps("open-digital-planning", "local-land-charges")}],
+          ['ODP and Drupal', {overlaps("open-digital-planning", "localgov-drupal")}],
+          ['PropTech and LLC', {overlaps("proptech", "local-land-charges")}],
+          ['PropTech and Drupal', {overlaps("proptech", "localgov-drupal")}],
+          ['Drupal and LLC', {overlaps("localgov-drupal", "local-land-charges")}],
         ]);
 
-        var options = {
+        var options = {{
           title: "Number of organisations",
           bars: 'horizontal',
           colors: [ "#222", "#707071", "#d5d5d6", "#f5f5f6"],
           isStacked: true,
-        };
+        }};
 
         var chart = new google.visualization.BarChart(document.getElementById("overlap-chart"));
         chart.draw(data, options);
 
-      }
+      }}
     </script>
     <div id="overlap-chart" style="width: 1024; height: 480px;"></div>
     """
