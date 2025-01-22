@@ -376,8 +376,8 @@ tr:nth-child(even) {
             "": "",
             "interested": "Interested in adopting PlanX",
             "adopting": "Adopting PlanX",
-            "guidance": "Have adopted PlanX",
-            "submission": "Have adopted PlanX",
+            "guidance": "Have adopted PlanX guidance",
+            "submission": "Have adopted PlanX submission",
         }[row["adoption"]]
 
         if dest:
@@ -404,6 +404,7 @@ tr:nth-child(even) {
     <div id="sankey-chart" style="width: 1024px; height: 480px;"></div>
     """
     )
+    print(f'<p>Note: {len((sets["guidance"]|sets["submission"])-sets["data-ready"])} organisations have adopted PlanX with incomplete data.</p>')
 
     print("<h1>Overlap between projects</h1>")
     print(
@@ -530,10 +531,10 @@ tr:nth-child(even) {
                 )
 
         # data
-        dot = (
-            f'<a href="{data_url}">●</a>' if organisation in sets["data-ready"] else ""
-        )
-        print(f'<td class="dot">{dot}</td>')
+        if organisation in sets["data-ready"]:
+            print(f'<td class="dot ready"><a href="{data_url}">●</a></td>')
+        else:
+            print(f'<td class="dot"></td>')
 
         # adoption
         print(f'<td class="{row["adoption"]}">{row["adoption"]}</td>')
