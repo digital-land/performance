@@ -11,10 +11,20 @@ odp_url = "https://opendigitalplanning.org/community-members"
 drupal_url = "https://localgovdrupal.org/community/our-councils"
 proptech_url = "https://www.localdigital.gov.uk/digital-planning/case-studies/"
 data_url = ""
-circles = "·○◉●"
+circles = "·○●◉"
 daggar = "†"
 ddaggar = "‡"
 bullet = "●"
+
+# TBD make dataset
+quality_status = {
+    "": "",
+    "0. no data": "none",
+    "1. some data": "some",
+    "2. authoritative data from the LPA": "authoritative",
+    "3. data that is good for ODP": "usable",
+    "4. data that is trustworthy": "trustworthy",
+}
 
 odp_cols = {
     "CA": [
@@ -24,7 +34,7 @@ odp_cols = {
     "A4": [
         "article-4-direction",
         "article-4-direction-area",
-        ], 
+    ],
     "LBO": [
         "listed-building-outline",
     ],
@@ -32,7 +42,7 @@ odp_cols = {
         "tree-preservation-order",
         "tree",
         "tree-preservation-zone",
-    ]
+    ],
 }
 odp_datasets = {}
 for col, datasets in odp_cols.items():
@@ -73,9 +83,11 @@ def set_add(name, organisation):
 def overlaps(one, two):
     return (
         str(len(sets[one] - sets[two]))
-        + "," + str(len(sets[two] & sets[one]))
-        + "," + str(len(sets[two] - sets[one]))
-        #+ "," + str(len(sets["organisation"] - sets[one] - sets[two]))
+        + ","
+        + str(len(sets[two] & sets[one]))
+        + ","
+        + str(len(sets[two] - sets[one]))
+        # + "," + str(len(sets["organisation"] - sets[one] - sets[two]))
     )
 
 
@@ -85,6 +97,11 @@ if __name__ == "__main__":
     cohorts = load("specification/cohort.csv", "cohort")
     awards = load("specification/award.csv", "award")
     quality = load("data/quality.csv", "organisation")
+
+    # fixup quality status
+    for organisation, row in quality.items():
+        for dataset in odp_datasets:
+            row[dataset] = quality_status[row.get(dataset, "")]
 
     organisation_roles = {}
     for row in csv.DictReader(open("specification/role-organisation.csv", newline="")):
@@ -140,6 +157,9 @@ if __name__ == "__main__":
     for organisation, row in quality.items():
         if row["ready_for_ODP_adoption"] == "yes":
             set_add("data-ready", organisation)
+        for dataset in odp_datasets:
+            status = quality[organisation][dataset]
+            set_add(f"{dataset}:{status}", organisation)
 
     # add adoption
     for row in csv.DictReader(open("data/adoption.csv", newline="")):
@@ -175,10 +195,14 @@ if __name__ == "__main__":
         if organisation in quality:
             n = 0
             for dataset in odp_datasets:
-                try:
-                    n += int(quality[organisation][dataset][0])
-                except:
-                    continue
+                n += {
+                    "": 0,
+                    "none": 0,
+                    "some": 1,
+                    "authoritative": 2,
+                    "usable": 3,
+                    "trustworthy": 4,
+                }[quality[organisation][dataset]]
             rows[organisation]["score"] += n * 1000
             if n > 2:
                 set_add("providing", organisation)
@@ -357,7 +381,7 @@ tr:nth-child(even) {
         options = {
             sankey: {
                 link: { color: { fill: '#d5d5d6' } },
-                node: { colors: [ '#222' ],
+                node: { colors: [ '#27a0cc' ],
                 label: { color: '#222' } },
             }
         };
@@ -369,8 +393,9 @@ tr:nth-child(even) {
     """
     )
 
-    print("<h1>Overlaps between projects</h1>")
-    print(f"""
+    print("<h1>Overlap between projects</h1>")
+    print(
+        f"""
     <script type="text/javascript">
       google.charts.setOnLoadCallback(draw_overlap)
       function draw_overlap() {{
@@ -420,7 +445,9 @@ tr:nth-child(even) {
 
     for col, datasets in odp_cols.items():
         colspan = len(datasets)
-        print(f'<th class="odp-col" scope="col" align="left" colspan={colspan}>{col}</th>')
+        print(
+            f'<th class="odp-col" scope="col" align="left" colspan={colspan}>{col}</th>'
+        )
 
     print(f'<th scope="col" align="left">Data ready</th>')
     print(f'<th scope="col" align="left">PlanX</th>')
@@ -435,13 +462,13 @@ tr:nth-child(even) {
             continue
 
         print(f"<tr>")
-        print(f'<td><a href="{entity_url}{row["entity"]}">{escape(row["name"])}</a></td>')
+        print(
+            f'<td><a href="{entity_url}{row["entity"]}">{escape(row["name"])}</a></td>'
+        )
         print(f'<td>{row.get("end-date", "")}</td>')
 
         # roles
-        dot = (
-            '●' if organisation in sets["local-planning-authority"] else ""
-        )
+        dot = "●" if organisation in sets["local-planning-authority"] else ""
         print(f'<td class="dot">{dot}</td>')
 
         # projects
@@ -473,19 +500,23 @@ tr:nth-child(even) {
         dots = ""
         for col, datasets in odp_cols.items():
             for dataset in datasets:
-                q = quality.get(organisation, {}).get(dataset, "")
-                status = {
+                status = quality.get(organisation, {}).get(dataset, "")
+                q = {
                     "": "&nbsp;",
-                    "0. no data": "&nbsp;",
-                    "1. some data": "·",
-                    "2. authoritative data from the LPA": "○",
-                    "3. data that is good for ODP": "●",
-                    "4. data that is trustworthy": "◉",
-                }[q]
-                print(f'<td class="dot"><a href="{data_url}" title="{dataset} : {q}">{status}</a></td>')
+                    "none": "&nbsp;",
+                    "some": "·",
+                    "authoritative": "○",
+                    "usable": "●",
+                    "trustworthy": "◉",
+                }[status]
+                print(
+                    f'<td class="dot"><a href="{data_url}" title="{dataset} : {status}">{q}</a></td>'
+                )
 
         # data
-        dot = f'<a href="{data_url}">●</a>' if organisation in sets["data-ready"] else ""
+        dot = (
+            f'<a href="{data_url}">●</a>' if organisation in sets["data-ready"] else ""
+        )
         print(f'<td class="dot">{dot}</td>')
 
         # adoption
@@ -495,7 +526,8 @@ tr:nth-child(even) {
 
     print("</tbody>")
     print("</table>")
-    print("""
+    print(
+        """
         <h1>Data sources</h1>
         <ul>
           <li><a href="https://www.planning.data.gov.uk/organisation/">Organisations</a> (<a href="https://files.planning.data.gov.uk/organisation-collection/dataset/organisation.csv">CSV</a>)
@@ -503,7 +535,7 @@ tr:nth-child(even) {
           <li><a href="https://github.com/digital-land/performance/blob/main/data/adoption.csv">Product adoption</a>
           <li><a href="https://github.com/digital-land/performance/blob/main/data/quality.csv">Data quality</a>
         </ul>
-    """)
-
+    """
+    )
 
     print("</body>")
