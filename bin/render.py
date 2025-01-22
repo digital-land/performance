@@ -18,7 +18,7 @@ quality_status = {
     "0. no data": "none",
     "1. some data": "some",
     "2. authoritative data from the LPA": "authoritative",
-    "3. data that is good for ODP": "usable",
+    "3. data that is good for ODP": "ready",
     "4. data that is trustworthy": "trustworthy",
 }
 
@@ -27,7 +27,7 @@ quality_mark = {
     "none": "&nbsp;",
     "some": "·",
     "authoritative": "○",
-    "usable": "●",
+    "ready": "●",
     "trustworthy": "◉",
 }
 
@@ -206,7 +206,7 @@ if __name__ == "__main__":
                     "none": 0,
                     "some": 1,
                     "authoritative": 2,
-                    "usable": 3,
+                    "ready": 3,
                     "trustworthy": 4,
                 }[quality[organisation][dataset]]
             rows[organisation]["score"] += n * 1000
@@ -269,7 +269,7 @@ tr:nth-child(even) {
 
 .some, .some a { color:	#d4351c; }
 .authoritative, .authoritative a { color: #f47738; }
-.usable, .usable a { color: #00703c; }
+.ready, .ready a { color: #00703c; }
 .trustworthy, .trustworthy a { color: #00703c; }
 
 </style>
@@ -293,9 +293,9 @@ tr:nth-child(even) {
           ['Funded', {len(sets["funded"])}],
           ['Software funding', {len(sets["open-digital-planning"])}],
           ['Providing data', {len(sets["providing"])}],
-          ['Data ready', {len(sets["data-ready"])}],
+          ['Data ready for PlanX', {len(sets["data-ready"])}],
           ['Interested in PlanX', {len(sets["interested"])}],
-          ['Adopting', {len(sets["adopting"])}],
+          ['Adopting PlanX', {len(sets["adopting"])}],
           ['Adopted PlanX', {len(sets["guidance"] | sets["submission"])}]
         ]);
 
@@ -450,7 +450,7 @@ tr:nth-child(even) {
             <tr><td class="dot none"></td><td>No data in this area</td></tr>
             <tr><td class="dot some">·</td><td>Some data in this area</td></tr>
             <tr><td class="dot authoritative">○</td><td>Some data in this area from the authoritative source</td></tr>
-            <tr><td class="dot usable">●</td><td>Data in this area is usable by ODP</td></tr>
+            <tr><td class="dot ready">●</td><td>Data in this area is ready for PlanX</td></tr>
             <tr><td class="dot trustworthy">◉</td><td>Data in this area can be trusted</td></tr>
         </table>
         <p>Note: data quality is currently only reported in areas funded to develop or adopt ODP software:</p>
