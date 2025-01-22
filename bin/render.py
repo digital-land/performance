@@ -330,33 +330,10 @@ tr:nth-child(even) {
     )
 
     project = "open-digital-planning"
-
     sep = ""
-    """
-    for organisation, row in rows.items():
-        if row["funded"]:
-            print(f'{sep}["Funded organisation", "{row["role"]}", 1, "{row["name"]}"]', end="")
-            sep = ",\n"
 
     for organisation, row in rows.items():
-        if project in row["projects"]:
-            print(f'{sep}["{row["role"]}", "ODP member", 1, "{row["name"]}"]', end="")
-            sep = ",\n"
-
-    for organisation, row in rows.items():
-        source = "ODP member" if project in row["projects"] else "Funded" if row["funded"] else row["role"]
-        if organisation in sets("providing"):
-            print(f'{sep}["{source}", "Providing data", 1, "{row["name"]}"]', end="")
-            sep = ",\n"
-
-    for organisation, row in rows.items():
-        if row["data-ready"] == "ODP":
-            print(f'{sep}["Providing data", "Data ready for PlanX", 1, "{row["name"]}"]', end="")
-            sep = ",\n"
-    """
-
-    for organisation, row in rows.items():
-        if organisation in sets["providing"]:
+        if organisation in sets["data-ready"]:
             print(
                 f'{sep}["Providing data", "Data ready for PlanX", 1, "{row["name"]}"]',
                 end="",
@@ -373,15 +350,18 @@ tr:nth-child(even) {
         }[row["adoption"]]
 
         if dest:
-            source = (
-                "Data ready for PlanX"
-                if organisation in sets["data-ready"]
-                else "Providing data"
-            )
+            if organisation in sets["data-ready"]:
+                source = "Data ready for PlanX"
+            elif organisation in sets["providing"]:
+                source = "Providing data"
+            else:
+                source = "Not providing data"
             print(f'{sep}["{source}", "{dest}", 1, "{row["name"]}"]', end="")
+            sep = ",\n"
 
     print(
-        """]);
+        """
+        ]);
         options = {
             sankey: {
                 link: { color: { fill: '#d5d5d6' } },
