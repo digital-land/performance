@@ -28,10 +28,10 @@ quality_lookup = {
 quality_mark = {
     "": "&nbsp;",
     "none": "&nbsp;",
-    "some": "·",
-    "authoritative": "○",
-    "ready": "●",
-    "trustworthy": "◉",
+    "some": "░",
+    "authoritative": "▒",
+    "ready": "▓",
+    "trustworthy": "█",
 }
 
 
