@@ -333,14 +333,6 @@ tr:nth-child(even) {
     sep = ""
 
     for organisation, row in rows.items():
-        if organisation in sets["data-ready"]:
-            print(
-                f'{sep}["Providing data", "Data ready for PlanX", 1, "{row["name"]}"]',
-                end="",
-            )
-            sep = ",\n"
-
-    for organisation, row in rows.items():
         dest = {
             "": "",
             "interested": "Interested in adopting PlanX",
