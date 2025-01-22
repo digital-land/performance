@@ -13,7 +13,9 @@ proptech_url = "https://www.localdigital.gov.uk/digital-planning/case-studies/"
 data_url = ""
 
 # TBD make dataset
-quality_status = {
+quality_status = ["none","some","authoritative","ready","trustworthy"]
+
+quality_lookup = {
     "": "",
     "0. no data": "none",
     "1. some data": "some",
@@ -21,6 +23,7 @@ quality_status = {
     "3. data that is good for ODP": "ready",
     "4. data that is trustworthy": "trustworthy",
 }
+
 
 quality_mark = {
     "": "&nbsp;",
@@ -107,7 +110,7 @@ if __name__ == "__main__":
     # fixup quality status
     for organisation, row in quality.items():
         for dataset in odp_datasets:
-            row[dataset] = quality_status[row.get(dataset, "")]
+            row[dataset] = quality_lookup[row.get(dataset, "")]
 
     organisation_roles = {}
     for row in csv.DictReader(open("specification/role-organisation.csv", newline="")):
@@ -262,7 +265,7 @@ td.dots {
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
-.dot a { text-decoration: none }
+.dot a { text-decoration: none; color: #222; }
 .submission { font-weight: bolder }
 .guidance { font-weight: bolder }
 .interested { color: #888}
@@ -322,7 +325,7 @@ tr:nth-child(even) {
     """
     )
 
-    print("<h1>Data and PlanX adoption</h1>")
+    print("<h1 id='adoption'>Organisations adopting PlanX</h1>")
     print(
         """
     <script type="text/javascript">
@@ -406,6 +409,42 @@ tr:nth-child(even) {
     )
     print(f'<p>Note: {len((sets["guidance"]|sets["submission"])-sets["data-ready"])} organisations have adopted PlanX with incomplete data.</p>')
 
+    print("<h1>Organisations providing data needed by PlanX</h1>")
+    print(
+        f"""
+    <script type="text/javascript">
+      google.charts.setOnLoadCallback(draw_provision)
+      function draw_provision() {{
+        var data = google.visualization.arrayToDataTable([
+          ['Dataset',
+          'Trustworthy data',
+          'Data ready for PlanX', 
+          'Some authorititive data in this area', 
+          'Some data in this area', 
+          ],""")
+
+    for dataset in odp_datasets:
+        print(f'["{dataset}", ', end="")
+        for status in ["trustworthy", "ready", "authoritative", "some"]:
+            print(f'{ len( sets.get(dataset+":"+status, set()))},', end="")
+        print(f'],')
+
+    print(f"""]);
+
+        var options = {{
+          title: "Number of organisations",
+          colors: [ "#00703c", "#a8bd3a", "#f47738", "#d4351c", ],
+          isStacked: true,
+        }};
+
+        var chart = new google.visualization.ColumnChart(document.getElementById("provision-chart"));
+        chart.draw(data, options);
+
+      }}
+    </script>
+    <div id="provision-chart" style="width: 1024; height: 480px;"></div>
+    """
+    )
     print("<h1>Overlap between projects</h1>")
     print(
         f"""
