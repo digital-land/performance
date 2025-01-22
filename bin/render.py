@@ -24,17 +24,6 @@ quality_lookup = {
     "4. data that is trustworthy": "trustworthy",
 }
 
-
-quality_mark = {
-    "": "&nbsp;",
-    "none": "&nbsp;",
-    "some": "░",
-    "authoritative": "▒",
-    "ready": "▓",
-    "trustworthy": "█",
-}
-
-
 odp_cols = {
     "CA": [
         "conservation-area",
@@ -272,7 +261,7 @@ tr:nth-child(even) {
 
 .some, .some a { color:	#d4351c; }
 .authoritative, .authoritative a { color: #f47738; }
-.ready, .ready a { color: #00703c; }
+.ready, .ready a { color: #a8bd3a; }
 .trustworthy, .trustworthy a { color: #00703c; }
 
 </style>
@@ -283,7 +272,7 @@ tr:nth-child(even) {
 """
     )
 
-    print("<h1>Organisations adopting PlanX</h1>")
+    print("<h1>Number of organisations adopting PlanX</h1>")
 
     print(
         f"""
@@ -409,42 +398,6 @@ tr:nth-child(even) {
     )
     print(f'<p>Note: {len((sets["guidance"]|sets["submission"])-sets["data-ready"])} organisations have adopted PlanX with incomplete data.</p>')
 
-    print("<h1>Organisations providing data needed by PlanX</h1>")
-    print(
-        f"""
-    <script type="text/javascript">
-      google.charts.setOnLoadCallback(draw_provision)
-      function draw_provision() {{
-        var data = google.visualization.arrayToDataTable([
-          ['Dataset',
-          'Trustworthy data',
-          'Data ready for PlanX', 
-          'Some authorititive data in this area', 
-          'Some data in this area', 
-          ],""")
-
-    for dataset in odp_datasets:
-        print(f'["{dataset}", ', end="")
-        for status in ["trustworthy", "ready", "authoritative", "some"]:
-            print(f'{ len( sets.get(dataset+":"+status, set()))},', end="")
-        print(f'],')
-
-    print(f"""]);
-
-        var options = {{
-          title: "Number of organisations",
-          colors: [ "#00703c", "#a8bd3a", "#f47738", "#d4351c", ],
-          isStacked: true,
-        }};
-
-        var chart = new google.visualization.ColumnChart(document.getElementById("provision-chart"));
-        chart.draw(data, options);
-
-      }}
-    </script>
-    <div id="provision-chart" style="width: 1024; height: 480px;"></div>
-    """
-    )
     print("<h1>Overlap between projects</h1>")
     print(
         f"""
@@ -483,9 +436,46 @@ tr:nth-child(even) {
     <div id="overlap-chart" style="width: 1024; height: 480px;"></div>
     """
     )
+    print("<h1>Organisations providing data needed to adopt PlanX</h1>")
+    print(
+        f"""
+    <script type="text/javascript">
+      google.charts.setOnLoadCallback(draw_provision)
+      function draw_provision() {{
+        var data = google.visualization.arrayToDataTable([
+          ['Dataset',
+          'Trustworthy data',
+          'Data ready for PlanX', 
+          'Some authorititive data in this area', 
+          'Some data in this area', 
+          ],""")
 
-    print("<h1>LPAs and funded organisations</h1>")
+    for dataset in odp_datasets:
+        print(f'["{dataset}", ', end="")
+        for status in ["trustworthy", "ready", "authoritative", "some"]:
+            print(f'{ len( sets.get(dataset+":"+status, set()))},', end="")
+        print(f'],')
+
+    print(f"""]);
+
+        var options = {{
+          title: "Number of organisations",
+          colors: [ "#00703c", "#a8bd3a", "#f47738", "#d4351c", ],
+          isStacked: true,
+        }};
+
+        var chart = new google.visualization.ColumnChart(document.getElementById("provision-chart"));
+        chart.draw(data, options);
+
+      }}
+    </script>
+    <div id="provision-chart" style="width: 1024; height: 480px;"></div>
+    """
+    )
+
+    print("<h1>All LPAs and funded organisations</h1>")
     print(f"""
+        <!--
         <table>
             <tr><td class="dot none"></td><td>No data in this area</td></tr>
             <tr><td class="dot some">·</td><td>Some data in this area</td></tr>
@@ -493,6 +483,7 @@ tr:nth-child(even) {
             <tr><td class="dot ready">●</td><td>Data in this area is ready for PlanX</td></tr>
             <tr><td class="dot trustworthy">◉</td><td>Data in this area can be trusted</td></tr>
         </table>
+        -->
         <p>Note: data quality is currently only reported in areas funded to develop or adopt ODP software:</p>
         <table>
         <thead>
@@ -565,13 +556,16 @@ tr:nth-child(even) {
         for col, datasets in odp_cols.items():
             for dataset in datasets:
                 status = quality.get(organisation, {}).get(dataset, "")
-                print(
-                    f'<td class="dot {status}"><a href="{data_url}" title="{dataset} : {status}">{quality_mark[status]}</a></td>'
-                )
+                if status in ["", "none"]:
+                    print(f'<td class="dot"></a></td>')
+                else:
+                    print(
+                        f'<td class="dot {status}"><a href="{data_url}" title="{dataset} : {status}">█</a></td>'
+                    )
 
         # data
         if organisation in sets["data-ready"]:
-            print(f'<td class="dot ready"><a href="{data_url}">●</a></td>')
+            print(f'<td class="dot"><a href="{data_url}">●</a></td>')
         else:
             print(f'<td class="dot"></td>')
 
