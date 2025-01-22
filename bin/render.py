@@ -11,10 +11,6 @@ odp_url = "https://opendigitalplanning.org/community-members"
 drupal_url = "https://localgovdrupal.org/community/our-councils"
 proptech_url = "https://www.localdigital.gov.uk/digital-planning/case-studies/"
 data_url = ""
-circles = "·○●◉"
-daggar = "†"
-ddaggar = "‡"
-bullet = "●"
 
 # TBD make dataset
 quality_status = {
@@ -25,6 +21,16 @@ quality_status = {
     "3. data that is good for ODP": "usable",
     "4. data that is trustworthy": "trustworthy",
 }
+
+quality_mark = {
+    "": "&nbsp;",
+    "none": "&nbsp;",
+    "some": "·",
+    "authoritative": "○",
+    "usable": "●",
+    "trustworthy": "◉",
+}
+
 
 odp_cols = {
     "CA": [
@@ -260,6 +266,12 @@ tr:nth-child(even) {
 .submission { font-weight: bolder }
 .guidance { font-weight: bolder }
 .interested { color: #888}
+
+.some, .some a { color:	#d4351c; }
+.authoritative, .authoritative a { color: #f47738; }
+.usable, .usable a { color: #00703c; }
+.trustworthy, .trustworthy a { color: #00703c; }
+
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>google.charts.load('current', {'packages':['corechart','bar','sankey']});</script>
@@ -290,7 +302,7 @@ tr:nth-child(even) {
         var options = {{
           title: "Number of organisations",
           bars: 'vertical',
-          colors: ['#27a0cc', '#206095', '#003c57', '#871a5b', '#a8bd3a', '#f66068'],
+          colors: ['#27a0cc'],
           legend: {{ position: "none" }},
         }};
 
@@ -401,9 +413,9 @@ tr:nth-child(even) {
       function draw_overlap() {{
         var data = google.visualization.arrayToDataTable([
           ['Project', 
-          'First only', 
+          'First', 
           'Both', 
-          'Second only'],
+          'Second'],
           ['LPA and ODP', {overlaps("local-planning-authority", "open-digital-planning")}],
           ['LPA and PropTech', {overlaps("local-planning-authority", "proptech")}],
           ['LPA and LLC', {overlaps("local-planning-authority", "local-land-charges")}],
@@ -419,7 +431,7 @@ tr:nth-child(even) {
         var options = {{
           title: "Number of organisations",
           bars: 'horizontal',
-          colors: [ "#222", "#707071", "#d5d5d6", "#f5f5f6"],
+          colors: [ "#206095", "#003c57", "#27a0cc"],
           isStacked: true,
         }};
 
@@ -432,16 +444,26 @@ tr:nth-child(even) {
     """
     )
 
-    print("<h1>LPAs and other funded organisations</h1>")
-    print("<table>")
-    print("<thead>")
-    print(f'<th scope="col" align="left">Organisation</th>')
-    print(f'<th scope="col" align="left">Ended</th>')
-    print(f'<th scope="col" align="left">LPA</th>')
-    print(f'<th scope="col" align="left">Drupal</th>')
-    print(f'<th scope="col" align="left">LLC</th>')
-    print(f'<th scope="col" align="left">PropTech</th>')
-    print(f'<th scope="col" align="left">ODP</th>')
+    print("<h1>LPAs and funded organisations</h1>")
+    print(f"""
+        <table>
+            <tr><td class="dot none"></td><td>No data in this area</td></tr>
+            <tr><td class="dot some">·</td><td>Some data in this area</td></tr>
+            <tr><td class="dot authoritative">○</td><td>Some data in this area from the authoritative source</td></tr>
+            <tr><td class="dot usable">●</td><td>Data in this area is usable by ODP</td></tr>
+            <tr><td class="dot trustworthy">◉</td><td>Data in this area can be trusted</td></tr>
+        </table>
+        <p>Note: data quality is currently only reported in areas funded to develop or adopt ODP software:</p>
+        <table>
+        <thead>
+            <th scope="col" align="left">Organisation</th>
+            <th scope="col" align="left">Ended</th>
+            <th scope="col" align="left">LPA</th>
+            <th scope="col" align="left">Drupal</th>
+            <th scope="col" align="left">LLC</th>
+            <th scope="col" align="left">PropTech</th>
+            <th scope="col" align="left">ODP</th>
+    """)
 
     for col, datasets in odp_cols.items():
         colspan = len(datasets)
@@ -449,10 +471,12 @@ tr:nth-child(even) {
             f'<th class="odp-col" scope="col" align="left" colspan={colspan}>{col}</th>'
         )
 
-    print(f'<th scope="col" align="left">Data ready</th>')
-    print(f'<th scope="col" align="left">PlanX</th>')
-    print("</thead>")
-    print("</tbody>")
+    print(f"""
+            <th scope="col" align="left">Data ready</th>
+            <th scope="col" align="left">PlanX</th>
+        </thead>
+    </tbody>
+    """)
 
     for organisation, row in sorted(
         rows.items(), key=lambda x: x[1]["score"], reverse=True
@@ -501,16 +525,8 @@ tr:nth-child(even) {
         for col, datasets in odp_cols.items():
             for dataset in datasets:
                 status = quality.get(organisation, {}).get(dataset, "")
-                q = {
-                    "": "&nbsp;",
-                    "none": "&nbsp;",
-                    "some": "·",
-                    "authoritative": "○",
-                    "usable": "●",
-                    "trustworthy": "◉",
-                }[status]
                 print(
-                    f'<td class="dot"><a href="{data_url}" title="{dataset} : {status}">{q}</a></td>'
+                    f'<td class="dot {status}"><a href="{data_url}" title="{dataset} : {status}">{quality_mark[status]}</a></td>'
                 )
 
         # data
