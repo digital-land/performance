@@ -5,6 +5,8 @@ import csv
 from html import escape
 
 
+csv.field_size_limit(sys.maxsize)
+
 entity_url = "https://www.planning.data.gov.uk/entity/"
 llc_url = "https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme"
 odp_url = "https://opendigitalplanning.org/community-members"
@@ -49,6 +51,7 @@ for col, datasets in odp_cols.items():
 
 rows = {}
 sets = {}
+area_names = {}
 
 
 def load(path, key, opt=None):
@@ -94,6 +97,16 @@ if __name__ == "__main__":
     interventions = load("specification/intervention.csv", "intervention")
     awards = load("specification/award.csv", "award")
     quality = load("data/quality.csv", "organisation")
+    lpas = load("var/cache/local-planning-authority.csv", "reference")
+
+    # area names
+    for organisation, row in organisations.items():
+        lpa = row.get("local-planning-authority", "")
+        if lpa:
+            row['area-name'] = lpas.get(lpa, row)["name"].replace(" LPA", "")
+        else:
+            row['area-name'] = row["name"]
+        area_names[row['area-name']] = organisation
 
     # fixup quality status
     for organisation, row in quality.items():
@@ -161,6 +174,16 @@ if __name__ == "__main__":
 
         o.setdefault("amount", 0)
         o["amount"] += int(row["amount"])
+
+    for organisation, row in organisations.items():
+        if organisation in sets["PropTech"] & sets["Software"]:
+            row["bucket"] = "Both"
+        elif organisation in sets["Software"]:
+            row["bucket"] = "Software"
+        elif organisation in sets["PropTech"]:
+            row["bucket"] = "PropTech"
+        else:
+            row["bucket"] = ""
 
     # add data quality
     for organisation, row in quality.items():
@@ -277,6 +300,12 @@ tr:nth-child(even) {
   min-height: 450px;
 }
 
+.tooltip {
+    background:#fff;
+    padding:10px;
+    border-style:solid;
+}
+
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>google.charts.load('current', {'packages':['corechart','bar','sankey', 'treemap']});</script>
@@ -292,34 +321,33 @@ tr:nth-child(even) {
       google.charts.setOnLoadCallback(draw_funding_treemap)
       function draw_funding_treemap() {{
         var data = new google.visualization.DataTable();
-        data.addColumn('string', 'ID');
-        data.addColumn('string', 'Parent');
+        data.addColumn('string', 'Area name');
+        data.addColumn('string', 'Bucket');
         data.addColumn('number', 'Amount');
         data.addColumn('number', 'Color');
+        data.addColumn('string', 'Name');
+        data.addColumn('string', 'Status');
         data.addRows([
-          ['Funded organisation', null, 0, 0],
-          ['Software', 'Funded organisation', 0, 0],
-          ['PropTech', 'Funded organisation', 0, 0],
-          ['Both', 'Funded organisation', 0, 0],
+          ['Funded organisation', null, 0, 0, 'All funded organisations', ''],
+          ['Software', 'Funded organisation', 0, 0, 'Organisations funded for software', ''],
+          ['PropTech', 'Funded organisation', 0, 0, 'Funded for PropTech', ''],
+          ['Both', 'Funded organisation', 0, 0, 'Funded for Software and PropTech', ''],
 """)
     for organisation in sets["funded"]:
-        if organisation in sets["PropTech"] & sets["Software"]:
-            bucket = "Both"
-        elif organisation in sets["Software"]:
-            bucket = "Software"
-        elif organisation in sets["PropTech"]:
-            bucket = "PropTech"
-        else:
+        row = organisations[organisation]
+        if not row["bucket"]:
             continue
 
-        o = organisations[organisation]
         color = 0
+        status = "Not yet providing data"
         if organisation in sets["data-ready"]:
             color = 1
+            status = "Data is ready to adopt PlanX"
         elif organisation in sets["providing"]:
             color = 0.5
+            status = "Providing some data"
 
-        print(f"['{o['name']}', '{bucket}', {o['amount']}, {color}],")
+        print(f"          ['{row['area-name']}', '{row['bucket']}', {row['amount']}, {color}, '{row['name']}', '{status}'],")
 
     print(f"""]);
 
@@ -337,12 +365,19 @@ tr:nth-child(even) {
               unhighlight: ['mouseout'],
               rollup: ['contextmenu'],
               drilldown: ['dblclick'],
-            }}
+            }},
+            generateTooltip: showFullTooltip,
         }};
+
+        function showFullTooltip(row, size, value) {{
+            return '<div class="tooltip">' +
+                   '<span><h2>' + data.getValue(row, 4) + '</h2> ' + 
+                   '<p>Awarded £' + data.getValue(row, 2).toLocaleString() + '</p>' +
+                   '<p>' + data.getValue(row, 5) + '</p>'
+        }}
 
         var chart = new google.visualization.TreeMap(document.getElementById("funding-treemap-chart"));
         chart.draw(data, options);
-
       }}
     </script>
     <div id="funding-treemap-chart" class="chart"></div>
