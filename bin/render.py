@@ -176,6 +176,8 @@ if __name__ == "__main__":
         o["amount"] += int(row["amount"])
 
     for organisation, row in organisations.items():
+        row.setdefault("Software", 0)
+        row.setdefault("PropTech", 0)
         if organisation in sets["PropTech"] & sets["Software"]:
             row["bucket"] = "Both"
         elif organisation in sets["Software"]:
@@ -327,16 +329,20 @@ tr:nth-child(even) {
         data.addColumn('number', 'Color');
         data.addColumn('string', 'Name');
         data.addColumn('string', 'Status');
+        data.addColumn('number', 'PropTech');
+        data.addColumn('number', 'Software');
         data.addRows([
-          ['Funded organisation', null, 0, 0, 'All funded organisations', ''],
-          ['Software', 'Funded organisation', 0, 0, 'Organisations funded for software', ''],
-          ['PropTech', 'Funded organisation', 0, 0, 'Funded for PropTech', ''],
-          ['Both', 'Funded organisation', 0, 0, 'Funded for Software and PropTech', ''],
 """)
+    total = { "Software": 0, "PropTech": 0, "Both": 0, "All": 0 }
     for organisation in sets["funded"]:
         row = organisations[organisation]
-        if not row["bucket"]:
+        bucket = row["bucket"]
+        if not bucket:
             continue
+
+        amount = row["amount"]
+        total[bucket] += amount
+        total["All"] += amount
 
         color = 0
         status = "Not yet providing data"
@@ -347,9 +353,14 @@ tr:nth-child(even) {
             color = 0.5
             status = "Providing some data"
 
-        print(f"          ['{row['area-name']}', '{row['bucket']}', {row['amount']}, {color}, '{row['name']}', '{status}'],")
+        print(f"          ['{row['area-name']}', '{bucket}', {amount}, {color}, '{row['name']}', '{status}', {row['PropTech']}, {row['Software']}],")
 
-    print(f"""]);
+    print(f"""
+          ['PropTech', 'Funded organisation', {total["PropTech"]}, 0, 'Funded for PropTech', '', 0, 0],
+          ['Software', 'Funded organisation', {total["Software"]}, 0, 'Organisations funded for software', '', 0, 0],
+          ['Both', 'Funded organisation', {total["Both"]}, 0, 'Funded for Software and PropTech', '', 0, 0],
+          ['Funded organisation', null, {total["All"]}, 0, 'All funded organisations', '', 0, 0],
+    ]);
 
         var options = {{
             maxDepth: 2,
@@ -370,10 +381,26 @@ tr:nth-child(even) {
         }};
 
         function showFullTooltip(row, size, value) {{
-            return '<div class="tooltip">' +
-                   '<span><h2>' + data.getValue(row, 4) + '</h2> ' + 
-                   '<p>Awarded £' + data.getValue(row, 2).toLocaleString() + '</p>' +
-                   '<p>' + data.getValue(row, 5) + '</p>'
+            var s = '<div class="tooltip">' +
+                '<span><h2>' + data.getValue(row, 4) + '</h2>';
+
+            const bucket = data.getValue(row, 1);
+            if (bucket == 'PropTech' || bucket == 'Both') {{
+                s = s + '<p>£' + data.getValue(row, 6).toLocaleString() + ' for PropTech</p>';
+            }}
+            if (bucket == 'Software' || bucket == 'Both') {{
+                s = s + '<p>£' + data.getValue(row, 7).toLocaleString() + ' for Software</p>';
+            }}
+            if (bucket == 'Both') {{
+                s = s + '<p>£' + data.getValue(row, 2).toLocaleString() + ' in total.</p>';
+            }}
+
+            var status = data.getValue(row, 5);
+            if (status != '') {{
+                s = s + '<p>' + status + '</p>'
+            }}
+            s = s + '</div>'
+            return s;
         }}
 
         var chart = new google.visualization.TreeMap(document.getElementById("funding-treemap-chart"));
