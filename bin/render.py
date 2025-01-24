@@ -92,7 +92,6 @@ def overlaps(one, two):
 if __name__ == "__main__":
     organisations = load("var/cache/organisation.csv", "organisation")
     interventions = load("specification/intervention.csv", "intervention")
-    cohorts = load("specification/cohort.csv", "cohort")
     awards = load("specification/award.csv", "award")
     quality = load("data/quality.csv", "organisation")
 
@@ -131,25 +130,37 @@ if __name__ == "__main__":
         rows[organisation]["projects"].add(row["project"])
         rows[organisation]["score"] = rows[organisation]["score"] + 1
 
-        # create intervention for awards ..
-        if row["cohort"]:
-            intervention = cohorts[row["cohort"]]["intervention"]
-            rows[organisation]["interventions"][intervention] = {}
-
-    """
-    # add awards to interventions
+    # funding awards and interventions
     for award, row in awards.items():
         organisation = row["organisation"]
-
+        intervention = row["intervention"]
         partners = filter(None, row["organisations"].split(";"))
-        for organisation in partners:
 
-        rows[organisation]["Funding"] = "Partner"
-        # add award under intervention column
-        col = intervention_cols[row["intervention"]]
-        table[organisation].setdefault(col, 0)
-        table[organisation][col] += int(row["amount"])
-    """
+        set_add(intervention, organisation)
+
+        if intervention in ["software", "integration", "improvement"]:
+            bucket = "Software"
+        elif intervention in ["engagement", "innovation"]:
+            bucket = "PropTech"
+        elif intervention in ["plan-making"]:
+            # skipping local plan pathfinders for now ..
+            continue
+        else:
+            raise ValueError(f"unknown intervention: {intervention}")
+
+        set_add(intervention, organisation)
+        set_add(bucket, organisation)
+        set_add("funded", organisation)
+
+        o = organisations[organisation]
+        o.setdefault(intervention, 0)
+        o[intervention] += int(row["amount"])
+
+        o.setdefault(bucket, 0)
+        o[bucket] += int(row["amount"])
+
+        o.setdefault("amount", 0)
+        o["amount"] += int(row["amount"])
 
     # add data quality
     for organisation, row in quality.items():
@@ -177,10 +188,6 @@ if __name__ == "__main__":
         set_add(row["role"], organisation)
         for project in row["projects"]:
             set_add(project, organisation)
-
-        # TBD: funded includes partners?
-        if "proptech" in row["projects"] or "open-digital-planning" in row["projects"]:
-            set_add("funded", organisation)
 
     # score rows
     for organisation, row in rows.items():
@@ -264,15 +271,83 @@ tr:nth-child(even) {
 .ready, .ready a { color: #a8bd3a; }
 .trustworthy, .trustworthy a { color: #00703c; }
 
+.chart {
+  width: 100%;
+  max-width: 1280px;
+  min-height: 450px;
+}
+
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>google.charts.load('current', {'packages':['corechart','bar','sankey']});</script>
+<script>google.charts.load('current', {'packages':['corechart','bar','sankey', 'treemap']});</script>
 </head>
 <body>
 """
     )
 
-    print("<h1>Number of organisations adopting PlanX</h1>")
+    print("<h1>Digital Planning Programme funding</h1>")
+    print(
+        f"""
+    <script type="text/javascript">
+      google.charts.setOnLoadCallback(draw_funding_treemap)
+      function draw_funding_treemap() {{
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'ID');
+        data.addColumn('string', 'Parent');
+        data.addColumn('number', 'Amount');
+        data.addRows([
+          ['Funded organisation', null, 0],
+          ['Software', 'Funded organisation', 0],
+          ['PropTech', 'Funded organisation', 0],
+          ['Both', 'Funded organisation', 0],
+""")
+    for organisation in sets["funded"]:
+        if organisation in sets["PropTech"] & sets["Software"]:
+            bucket = "Both"
+        elif organisation in sets["Software"]:
+            bucket = "Software"
+        elif organisation in sets["PropTech"]:
+            bucket = "PropTech"
+        else:
+            continue
+
+        o = organisations[organisation]
+        print(f"['{o['name']}', '{bucket}', {o['amount']}],")
+
+    print(f"""]);
+
+        var options = {{
+            enableHighlight: true,
+            maxDepth: 2,
+            maxPostDepth: 2,
+            minHighlightColor: '#edf8fb',
+            midHighlightColor: '#edf8fb',
+            maxHighlightColor: '#edf8fb',
+            minColor: '#009688',
+            midColor: '#f7f7f7',
+            maxColor: '#edf8fb',
+            headerHeight: 15,
+            showScale: false,
+            useWeightedAverageForAggregation: true,
+            eventsConfig: {{
+              highlight: ['click'],
+              unhighlight: ['mouseout'],
+              rollup: ['contextmenu'],
+              drilldown: ['dblclick'],
+            }}
+        }};
+
+        var chart = new google.visualization.TreeMap(document.getElementById("funding-treemap-chart"));
+        chart.draw(data, options);
+
+      }}
+    </script>
+    <div id="funding-treemap-chart" class="chart"></div>
+    """
+    )
+
+
+    print("<h1>Organisations adopting PlanX</h1>")
 
     print(
         f"""
@@ -310,11 +385,11 @@ tr:nth-child(even) {
 
       }}
     </script>
-    <div id="adoption-chart" style="width: 1024px; height: 480px;"></div>
+    <div id="adoption-chart" class="chart"></div>
     """
     )
 
-    print("<h1 id='adoption'>Organisations adopting PlanX</h1>")
+    print("<h1 id='adoption'>Data needed to adopt PlanX</h1>")
     print(
         """
     <script type="text/javascript">
@@ -335,19 +410,19 @@ tr:nth-child(even) {
     for organisation, row in rows.items():
         dest = {
             "": "",
-            "interested": "Interested in adopting PlanX",
-            "adopting": "Adopting PlanX",
+            "interested": "Have expressd interest in adopting PlanX",
+            "adopting": "Are adopting PlanX",
             "guidance": "Have adopted PlanX guidance",
             "submission": "Have adopted PlanX submission",
         }[row["adoption"]]
 
         if dest:
             if organisation in sets["data-ready"]:
-                source = "Data ready for PlanX"
+                source = "Have data ready for PlanX"
             elif organisation in sets["providing"]:
-                source = "Providing data"
+                source = "Providing some data"
             else:
-                source = "Not providing data"
+                source = "Not yet providing data"
             print(f'{sep}["{source}", "{dest}", 1, "{row["name"]}"]', end="")
             sep = ",\n"
 
@@ -357,18 +432,21 @@ tr:nth-child(even) {
         options = {
             sankey: {
                 link: { color: { fill: '#d5d5d6' } },
-                node: { colors: [ '#27a0cc' ],
-                label: { color: '#222' } },
+                node: { colors: [ '#27a0cc' ], width: 20,
+                    label: { fontName: 'sans-serif',
+                         fontSize: 14,
+                         color: '#222',
+                         }},
             }
         };
         var chart = new google.visualization.Sankey(document.getElementById("sankey-chart"));
         chart.draw(data, options);
       }
     </script>
-    <div id="sankey-chart" style="width: 1024px; height: 480px;"></div>
+    <div id="sankey-chart" class="chart"></div>
     """
     )
-    print(f'<p>Note: {len((sets["guidance"]|sets["submission"])-sets["data-ready"])} organisations have adopted PlanX with incomplete data.</p>')
+    print(f'<p>Note: submissions includes LPA who have adopted both services. {len((sets["guidance"]|sets["submission"])-sets["data-ready"])} organisations have adopted PlanX with incomplete data.</p>')
 
     print("<h1>Overlap between projects</h1>")
     print(
@@ -405,9 +483,11 @@ tr:nth-child(even) {
 
       }}
     </script>
-    <div id="overlap-chart" style="width: 1024; height: 480px;"></div>
+    <div id="overlap-chart" class="chart"></div>
     """
     )
+
+
     print("<h1>Organisations providing data needed to adopt PlanX</h1>")
     print(
         f"""
@@ -441,9 +521,10 @@ tr:nth-child(even) {
 
       }}
     </script>
-    <div id="provision-chart" style="width: 1024; height: 480px;"></div>
+    <div id="provision-chart" class="chart"></div>
     """
     )
+
 
     print("<h1>All LPAs and funded organisations</h1>")
     print(f"""
@@ -456,7 +537,7 @@ tr:nth-child(even) {
             <tr><td class="dot trustworthy">◉</td><td>Data in this area can be trusted</td></tr>
         </table>
         -->
-        <p>Note: data quality is currently only reported in areas funded to develop or adopt ODP software:</p>
+        <p>Note: data quality is currently only reported in areas funded to develop or adopt ODP software.</p>
         <table>
         <thead>
             <th scope="col" align="left">Organisation</th>

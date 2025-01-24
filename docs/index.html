@@ -44,13 +44,174 @@ tr:nth-child(even) {
 .ready, .ready a { color: #a8bd3a; }
 .trustworthy, .trustworthy a { color: #00703c; }
 
+.chart {
+  width: 100%;
+  max-width: 1280px;
+  min-height: 450px;
+}
+
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>google.charts.load('current', {'packages':['corechart','bar','sankey']});</script>
+<script>google.charts.load('current', {'packages':['corechart','bar','sankey', 'treemap']});</script>
 </head>
 <body>
 
-<h1>Number of organisations adopting PlanX</h1>
+<h1>Digital Planning Programme funding</h1>
+
+    <script type="text/javascript">
+      google.charts.setOnLoadCallback(draw_funding_treemap)
+      function draw_funding_treemap() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'ID');
+        data.addColumn('string', 'Parent');
+        data.addColumn('number', 'Amount');
+        data.addRows([
+          ['Funded organisation', null, 0],
+          ['Software', 'Funded organisation', 0],
+          ['PropTech', 'Funded organisation', 0],
+          ['Both', 'Funded organisation', 0],
+
+['Reigate and Banstead Borough Council', 'PropTech', 47000],
+['Cheshire West and Chester Council', 'PropTech', 224400],
+['Peterborough City Council', 'Software', 100000],
+['Surrey County Council', 'PropTech', 206187],
+['London Borough of Hounslow', 'Both', 415000],
+['Trafford Metropolitan Borough Council', 'Software', 100000],
+['City of Westminster', 'Software', 100000],
+['South Cambridgeshire District Council', 'Both', 980250],
+['Tandridge District Council', 'Both', 182750],
+['East Hertfordshire District Council', 'Both', 173152],
+['Central Bedfordshire Council', 'Both', 185000],
+['Birmingham City Council', 'Both', 715500],
+['Torbay Council', 'Software', 100000],
+['Rossendale Borough Council', 'Software', 100000],
+['West Berkshire Council', 'Software', 353000],
+['London Borough of Lambeth', 'Both', 4668564],
+['Lewes District Council', 'PropTech', 112500],
+['London Borough of Redbridge', 'Both', 390600],
+['London Borough of Tower Hamlets', 'Both', 185000],
+['Spelthorne Borough Council', 'Software', 100000],
+['London Borough of Barnet', 'Software', 400000],
+['Bolton Metropolitan Borough Council', 'Software', 100000],
+['Cornwall Council', 'PropTech', 575000],
+['East Cambridgeshire District Council', 'Software', 100000],
+['Salford City Council', 'Both', 367213],
+['Nottingham City Council', 'Both', 489000],
+['Tendring District Council', 'Software', 100000],
+['London Borough of Southwark', 'Software', 250000],
+['Leicester City Council', 'Both', 186750],
+['London Borough of Barking and Dagenham', 'Both', 200000],
+['Stevenage Borough Council', 'PropTech', 125000],
+['Sevenoaks District Council', 'Both', 375000],
+['Colchester Borough Council', 'Software', 150000],
+['Harborough District Council', 'PropTech', 125000],
+['North Devon District Council', 'Both', 189000],
+['City of London Corporation', 'Software', 100000],
+['North Lincolnshire Council', 'Both', 390000],
+['London Borough of Newham', 'PropTech', 225000],
+['Thanet District Council', 'PropTech', 84250],
+['Castle Point Borough Council', 'Software', 100000],
+['Bristol City Council', 'Software', 100000],
+['East Hampshire District Council', 'Both', 140500],
+['St Albans City and District Council', 'Software', 300000],
+['Dover District Council', 'Software', 150000],
+['Bolsover District Council', 'PropTech', 478600],
+['Surrey Heath Borough Council', 'Software', 100000],
+['Havant Borough Council', 'PropTech', 183450],
+['Plymouth City Council', 'Both', 810000],
+['Liverpool City Council', 'Software', 145306],
+['London Borough of Harrow', 'Software', 150000],
+['Gloucester City Council', 'Software', 395000],
+['Northumberland County Council', 'Software', 100000],
+['South Norfolk District Council', 'Software', 100000],
+['Stoke-on-Trent City Council', 'PropTech', 66813],
+['Great Yarmouth Borough Council', 'Software', 250000],
+['Wigan Metropolitan Borough Council', 'PropTech', 85000],
+['Royal Borough of Kingston upon Thames', 'Software', 300000],
+['Newcastle City Council', 'Both', 1092760],
+['Durham County Council', 'PropTech', 85000],
+['Dacorum Borough Council', 'Both', 1294750],
+['London Borough of Wandsworth', 'PropTech', 328000],
+['City of Bradford Metropolitan District Council', 'PropTech', 206900],
+['Basingstoke and Deane Borough Council', 'Software', 58000],
+['New Forest District Council', 'Software', 100000],
+['North Kesteven District Council', 'PropTech', 225000],
+['Runnymede Borough Council', 'PropTech', 90020],
+['North Tyneside Council', 'PropTech', 80000],
+['London Borough of Camden', 'Software', 2650000],
+['Walsall Metropolitan Borough Council', 'PropTech', 120000],
+['West Oxfordshire District Council', 'PropTech', 213250],
+['Stockport Metropolitan Borough Council', 'PropTech', 90000],
+['City of York Council', 'Software', 100000],
+['Southampton City Council', 'PropTech', 730000],
+['Dorset Council', 'Both', 385000],
+['Basildon Borough Council', 'Both', 185000],
+['Ashford Borough Council', 'Software', 100000],
+['South Staffordshire Council', 'Software', 100000],
+['Watford Borough Council', 'PropTech', 222975],
+['Rother District Council', 'Software', 100000],
+['Somerset Council', 'PropTech', 85000],
+['London Borough of Havering', 'Software', 150000],
+['Buckinghamshire Council', 'Software', 4300000],
+['Lancaster City Council', 'PropTech', 46875],
+['Chesterfield Borough Council', 'PropTech', 200000],
+['Waverley Borough Council', 'Software', 100000],
+['Gateshead Metropolitan Borough Council', 'Software', 300000],
+['London Borough of Haringey', 'Both', 424000],
+['London Borough of Croydon', 'Software', 100000],
+['North Somerset Council', 'Software', 248000],
+['London Borough of Enfield', 'Software', 100000],
+['Tewkesbury Borough Council', 'Software', 450000],
+['Horsham District Council', 'Software', 100000],
+['Rochdale Metropolitan Borough Council', 'Software', 100000],
+['Teignbridge District Council', 'PropTech', 84610],
+['Medway Council', 'Software', 650000],
+['Canterbury City Council', 'Software', 400000],
+['Doncaster Metropolitan Borough Council', 'Software', 358000],
+['North East Derbyshire District Council', 'PropTech', 225000],
+['Epsom and Ewell Borough Council', 'Both', 775000],
+['Cotswold District Council', 'PropTech', 333193],
+['London Borough of Lewisham', 'PropTech', 69000],
+['Royal Borough of Kensington and Chelsea', 'Both', 303000],
+['Epping Forest District Council', 'PropTech', 523800],
+['South Gloucestershire Council', 'Software', 100000],
+['Wirral Borough Council', 'Both', 677225],
+['Sandwell Metropolitan Borough Council', 'Software', 100000],
+['London Borough of Waltham Forest', 'Both', 458500],
+['New Forest National Park Authority', 'Software', 100000],
+['Milton Keynes City Council', 'Software', 100000],
+['North Yorkshire Council', 'Software', 100000],
+]);
+
+        var options = {
+            enableHighlight: true,
+            maxDepth: 2,
+            maxPostDepth: 2,
+            minHighlightColor: '#edf8fb',
+            midHighlightColor: '#edf8fb',
+            maxHighlightColor: '#edf8fb',
+            minColor: '#009688',
+            midColor: '#f7f7f7',
+            maxColor: '#edf8fb',
+            headerHeight: 15,
+            showScale: false,
+            useWeightedAverageForAggregation: true,
+            eventsConfig: {
+              highlight: ['click'],
+              unhighlight: ['mouseout'],
+              rollup: ['contextmenu'],
+              drilldown: ['dblclick'],
+            }
+        };
+
+        var chart = new google.visualization.TreeMap(document.getElementById("funding-treemap-chart"));
+        chart.draw(data, options);
+
+      }
+    </script>
+    <div id="funding-treemap-chart" class="chart"></div>
+    
+<h1>Organisations adopting PlanX</h1>
 
     <script type="text/javascript">
       google.charts.setOnLoadCallback(draw_adoption)
@@ -58,7 +219,7 @@ tr:nth-child(even) {
         var data = google.visualization.arrayToDataTable([
           ['Status', 'Count'],
           ['LPA', 311],
-          ['Funded', 123],
+          ['Funded', 110],
           ['Software funding', 79],
           ['Providing data', 55],
           ['Data ready for PlanX', 17],
@@ -86,9 +247,9 @@ tr:nth-child(even) {
 
       }
     </script>
-    <div id="adoption-chart" style="width: 1024px; height: 480px;"></div>
+    <div id="adoption-chart" class="chart"></div>
     
-<h1 id='adoption'>Organisations adopting PlanX</h1>
+<h1 id='adoption'>Data needed to adopt PlanX</h1>
 
     <script type="text/javascript">
       google.charts.setOnLoadCallback(draw_sankey)
@@ -100,49 +261,52 @@ tr:nth-child(even) {
         data.addColumn({type: 'string', role: 'tooltip'});
         data.addRows([
         
-["Providing data", "Adopting PlanX", 1, "London Borough of Barking and Dagenham"],
-["Providing data", "Adopting PlanX", 1, "Birmingham City Council"],
-["Data ready for PlanX", "Have adopted PlanX submission", 1, "London Borough of Barnet"],
-["Data ready for PlanX", "Have adopted PlanX submission", 1, "Buckinghamshire Council"],
-["Not providing data", "Interested in adopting PlanX", 1, "Cambridge City Council"],
-["Providing data", "Interested in adopting PlanX", 1, "Castle Point Borough Council"],
-["Providing data", "Adopting PlanX", 1, "Canterbury City Council"],
-["Providing data", "Have adopted PlanX submission", 1, "London Borough of Camden"],
-["Data ready for PlanX", "Have adopted PlanX submission", 1, "Doncaster Metropolitan Borough Council"],
-["Data ready for PlanX", "Have adopted PlanX guidance", 1, "Epsom and Ewell Borough Council"],
-["Data ready for PlanX", "Have adopted PlanX guidance", 1, "Gateshead Metropolitan Borough Council"],
-["Data ready for PlanX", "Have adopted PlanX guidance", 1, "Gloucester City Council"],
-["Providing data", "Interested in adopting PlanX", 1, "Horsham District Council"],
-["Not providing data", "Adopting PlanX", 1, "Royal Borough of Kingston upon Thames"],
-["Providing data", "Have adopted PlanX submission", 1, "London Borough of Lambeth"],
-["Providing data", "Have adopted PlanX submission", 1, "Medway Council"],
-["Not providing data", "Interested in adopting PlanX", 1, "Northumberland County Council"],
-["Providing data", "Have adopted PlanX guidance", 1, "Newcastle City Council"],
-["Providing data", "Interested in adopting PlanX", 1, "Rother District Council"],
-["Data ready for PlanX", "Have adopted PlanX guidance", 1, "St Albans City and District Council"],
-["Providing data", "Interested in adopting PlanX", 1, "South Cambridgeshire District Council"],
-["Providing data", "Interested in adopting PlanX", 1, "South Gloucestershire Council"],
-["Providing data", "Interested in adopting PlanX", 1, "South Staffordshire Council"],
-["Not providing data", "Interested in adopting PlanX", 1, "Surrey Heath Borough Council"],
-["Providing data", "Have adopted PlanX submission", 1, "London Borough of Southwark"],
-["Data ready for PlanX", "Have adopted PlanX guidance", 1, "Tewkesbury Borough Council"],
-["Data ready for PlanX", "Interested in adopting PlanX", 1, "London Borough of Tower Hamlets"],
-["Data ready for PlanX", "Have adopted PlanX submission", 1, "West Berkshire Council"]
+["Providing some data", "Are adopting PlanX", 1, "London Borough of Barking and Dagenham"],
+["Providing some data", "Are adopting PlanX", 1, "Birmingham City Council"],
+["Have data ready for PlanX", "Have adopted PlanX submission", 1, "London Borough of Barnet"],
+["Have data ready for PlanX", "Have adopted PlanX submission", 1, "Buckinghamshire Council"],
+["Not yet providing data", "Have expressd interest in adopting PlanX", 1, "Cambridge City Council"],
+["Providing some data", "Have expressd interest in adopting PlanX", 1, "Castle Point Borough Council"],
+["Providing some data", "Are adopting PlanX", 1, "Canterbury City Council"],
+["Providing some data", "Have adopted PlanX submission", 1, "London Borough of Camden"],
+["Have data ready for PlanX", "Have adopted PlanX submission", 1, "Doncaster Metropolitan Borough Council"],
+["Have data ready for PlanX", "Have adopted PlanX guidance", 1, "Epsom and Ewell Borough Council"],
+["Have data ready for PlanX", "Have adopted PlanX guidance", 1, "Gateshead Metropolitan Borough Council"],
+["Have data ready for PlanX", "Have adopted PlanX guidance", 1, "Gloucester City Council"],
+["Providing some data", "Have expressd interest in adopting PlanX", 1, "Horsham District Council"],
+["Not yet providing data", "Are adopting PlanX", 1, "Royal Borough of Kingston upon Thames"],
+["Providing some data", "Have adopted PlanX submission", 1, "London Borough of Lambeth"],
+["Providing some data", "Have adopted PlanX submission", 1, "Medway Council"],
+["Not yet providing data", "Have expressd interest in adopting PlanX", 1, "Northumberland County Council"],
+["Providing some data", "Have adopted PlanX guidance", 1, "Newcastle City Council"],
+["Providing some data", "Have expressd interest in adopting PlanX", 1, "Rother District Council"],
+["Have data ready for PlanX", "Have adopted PlanX guidance", 1, "St Albans City and District Council"],
+["Providing some data", "Have expressd interest in adopting PlanX", 1, "South Cambridgeshire District Council"],
+["Providing some data", "Have expressd interest in adopting PlanX", 1, "South Gloucestershire Council"],
+["Providing some data", "Have expressd interest in adopting PlanX", 1, "South Staffordshire Council"],
+["Not yet providing data", "Have expressd interest in adopting PlanX", 1, "Surrey Heath Borough Council"],
+["Providing some data", "Have adopted PlanX submission", 1, "London Borough of Southwark"],
+["Have data ready for PlanX", "Have adopted PlanX guidance", 1, "Tewkesbury Borough Council"],
+["Have data ready for PlanX", "Have expressd interest in adopting PlanX", 1, "London Borough of Tower Hamlets"],
+["Have data ready for PlanX", "Have adopted PlanX submission", 1, "West Berkshire Council"]
         ]);
         options = {
             sankey: {
                 link: { color: { fill: '#d5d5d6' } },
-                node: { colors: [ '#27a0cc' ],
-                label: { color: '#222' } },
+                node: { colors: [ '#27a0cc' ], width: 20,
+                    label: { fontName: 'sans-serif',
+                         fontSize: 14,
+                         color: '#222',
+                         }},
             }
         };
         var chart = new google.visualization.Sankey(document.getElementById("sankey-chart"));
         chart.draw(data, options);
       }
     </script>
-    <div id="sankey-chart" style="width: 1024px; height: 480px;"></div>
+    <div id="sankey-chart" class="chart"></div>
     
-<p>Note: 5 organisations have adopted PlanX with incomplete data.</p>
+<p>Note: submissions includes LPA who have adopted both services. 5 organisations have adopted PlanX with incomplete data.</p>
 <h1>Overlap between projects</h1>
 
     <script type="text/javascript">
@@ -177,7 +341,7 @@ tr:nth-child(even) {
 
       }
     </script>
-    <div id="overlap-chart" style="width: 1024; height: 480px;"></div>
+    <div id="overlap-chart" class="chart"></div>
     
 <h1>Organisations providing data needed to adopt PlanX</h1>
 
@@ -212,7 +376,7 @@ tr:nth-child(even) {
 
       }
     </script>
-    <div id="provision-chart" style="width: 1024; height: 480px;"></div>
+    <div id="provision-chart" class="chart"></div>
     
 <h1>All LPAs and funded organisations</h1>
 
@@ -225,7 +389,7 @@ tr:nth-child(even) {
             <tr><td class="dot trustworthy">◉</td><td>Data in this area can be trusted</td></tr>
         </table>
         -->
-        <p>Note: data quality is currently only reported in areas funded to develop or adopt ODP software:</p>
+        <p>Note: data quality is currently only reported in areas funded to develop or adopt ODP software.</p>
         <table>
         <thead>
             <th scope="col" align="left">Organisation</th>
