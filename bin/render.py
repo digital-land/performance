@@ -295,11 +295,12 @@ tr:nth-child(even) {
         data.addColumn('string', 'ID');
         data.addColumn('string', 'Parent');
         data.addColumn('number', 'Amount');
+        data.addColumn('number', 'Color');
         data.addRows([
-          ['Funded organisation', null, 0],
-          ['Software', 'Funded organisation', 0],
-          ['PropTech', 'Funded organisation', 0],
-          ['Both', 'Funded organisation', 0],
+          ['Funded organisation', null, 0, 0],
+          ['Software', 'Funded organisation', 0, 0],
+          ['PropTech', 'Funded organisation', 0, 0],
+          ['Both', 'Funded organisation', 0, 0],
 """)
     for organisation in sets["funded"]:
         if organisation in sets["PropTech"] & sets["Software"]:
@@ -312,23 +313,25 @@ tr:nth-child(even) {
             continue
 
         o = organisations[organisation]
-        print(f"['{o['name']}', '{bucket}', {o['amount']}],")
+        color = 0
+        if organisation in sets["data-ready"]:
+            color = 1
+        elif organisation in sets["providing"]:
+            color = 0.5
+
+        print(f"['{o['name']}', '{bucket}', {o['amount']}, {color}],")
 
     print(f"""]);
 
         var options = {{
-            enableHighlight: true,
             maxDepth: 2,
             maxPostDepth: 2,
-            minHighlightColor: '#edf8fb',
-            midHighlightColor: '#edf8fb',
-            maxHighlightColor: '#edf8fb',
-            minColor: '#009688',
-            midColor: '#f7f7f7',
-            maxColor: '#edf8fb',
             headerHeight: 15,
             showScale: false,
-            useWeightedAverageForAggregation: true,
+            //"#00703c", "#a8bd3a", "#f47738", "#d4351c",
+            minColor: '#d4351c', 
+            midColor: '#f47738',
+            maxColor: '#a8bd3a', 
             eventsConfig: {{
               highlight: ['click'],
               unhighlight: ['mouseout'],
@@ -358,12 +361,14 @@ tr:nth-child(even) {
           ['Status', 'Count'],
           ['LPA', {len(sets["local-planning-authority"])}],
           ['Funded', {len(sets["funded"])}],
-          ['Software funding', {len(sets["open-digital-planning"])}],
-          ['Providing data', {len(sets["providing"])}],
+          ['Software funding', {len(sets["Software"])}],
+          ['ODP member', {len(sets["open-digital-planning"])}],
+          ['Providing some data', {len(sets["providing"])}],
           ['Data ready for PlanX', {len(sets["data-ready"])}],
           ['Interested in PlanX', {len(sets["interested"])}],
           ['Adopting PlanX', {len(sets["adopting"])}],
-          ['Adopted PlanX', {len(sets["guidance"] | sets["submission"])}]
+          ['Adopted PlanX guidance', {len(sets["guidance"])}],
+          ['Adopted PlanX submission', {len(sets["submission"])}],
         ]);
 
         var options = {{
@@ -371,6 +376,7 @@ tr:nth-child(even) {
           bars: 'vertical',
           colors: ['#27a0cc'],
           legend: {{ position: "none" }},
+          vAxis: {{ gridlines: {{ count:0 }}}}
         }};
 
         var view = new google.visualization.DataView(data);
@@ -386,6 +392,7 @@ tr:nth-child(even) {
       }}
     </script>
     <div id="adoption-chart" class="chart"></div>
+    <p>Note: submission includes LPA who have adopted both services.</p>
     """
     )
 
@@ -446,7 +453,7 @@ tr:nth-child(even) {
     <div id="sankey-chart" class="chart"></div>
     """
     )
-    print(f'<p>Note: submissions includes LPA who have adopted both services. {len((sets["guidance"]|sets["submission"])-sets["data-ready"])} organisations have adopted PlanX with incomplete data.</p>')
+    print(f'<p>Note: {len((sets["guidance"]|sets["submission"])-sets["data-ready"])} organisations have adopted PlanX with incomplete data.</p>')
 
     print("<h1>Overlap between projects</h1>")
     print(
@@ -459,16 +466,16 @@ tr:nth-child(even) {
           'First', 
           'Both', 
           'Second'],
-          ['LPA and ODP', {overlaps("local-planning-authority", "open-digital-planning")}],
-          ['LPA and PropTech', {overlaps("local-planning-authority", "proptech")}],
-          ['LPA and LLC', {overlaps("local-planning-authority", "local-land-charges")}],
-          ['LPA and Drupal', {overlaps("local-planning-authority", "localgov-drupal")}],
-          ['ODP and PropTech', {overlaps("open-digital-planning", "proptech")}],
           ['ODP and LLC', {overlaps("open-digital-planning", "local-land-charges")}],
+          ['ODP and PropTech', {overlaps("open-digital-planning", "proptech")}],
           ['ODP and Drupal', {overlaps("open-digital-planning", "localgov-drupal")}],
           ['PropTech and LLC', {overlaps("proptech", "local-land-charges")}],
           ['PropTech and Drupal', {overlaps("proptech", "localgov-drupal")}],
           ['Drupal and LLC', {overlaps("localgov-drupal", "local-land-charges")}],
+          ['LPA and ODP', {overlaps("local-planning-authority", "open-digital-planning")}],
+          ['LPA and PropTech', {overlaps("local-planning-authority", "proptech")}],
+          ['LPA and LLC', {overlaps("local-planning-authority", "local-land-charges")}],
+          ['LPA and Drupal', {overlaps("local-planning-authority", "localgov-drupal")}],
         ]);
 
         var options = {{
@@ -476,6 +483,7 @@ tr:nth-child(even) {
           bars: 'horizontal',
           colors: [ "#206095", "#003c57", "#27a0cc"],
           isStacked: true,
+          hAxis: {{ gridlines: {{ count:0 }}}}
         }};
 
         var chart = new google.visualization.BarChart(document.getElementById("overlap-chart"));
@@ -489,11 +497,10 @@ tr:nth-child(even) {
 
 
     print("<h1>Organisations providing data needed to adopt PlanX</h1>")
-    print(
-        f"""
+    print("""
     <script type="text/javascript">
       google.charts.setOnLoadCallback(draw_provision)
-      function draw_provision() {{
+      function draw_provision() {
         var data = google.visualization.arrayToDataTable([
           ['Dataset',
           'Trustworthy data',
@@ -509,16 +516,15 @@ tr:nth-child(even) {
         print(f'],')
 
     print(f"""]);
-
         var options = {{
           title: "Number of organisations",
           colors: [ "#00703c", "#a8bd3a", "#f47738", "#d4351c", ],
           isStacked: true,
+          vAxis: {{ gridlines: {{ count:2 }} }}
         }};
 
         var chart = new google.visualization.ColumnChart(document.getElementById("provision-chart"));
         chart.draw(data, options);
-
       }}
     </script>
     <div id="provision-chart" class="chart"></div>
