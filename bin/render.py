@@ -335,7 +335,107 @@ th[role=columnheader]:not(.no-sort):hover:after {
 """
     )
 
-    print("<h1>Digital Planning Programme funding</h1>")
+    print("<h1>Funding and PlanX adoption</h1>")
+    print(
+        f"""
+    <script type="text/javascript">
+      google.charts.setOnLoadCallback(draw_adoption_treemap)
+      function draw_adoption_treemap() {{
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Area name');
+        data.addColumn('string', 'Bucket');
+        data.addColumn('number', 'Amount');
+        data.addColumn('number', 'Color');
+        data.addColumn('string', 'Name');
+        data.addColumn('string', 'Data status');
+        data.addColumn('number', 'PropTech');
+        data.addColumn('number', 'Software');
+        data.addRows([
+""")
+    total = { "Software": 0, "PropTech": 0, "Both": 0, "All": 0 }
+    for organisation in sets["funded"]:
+        row = rows[organisation]
+        bucket = row["bucket"]
+        if not bucket:
+            continue
+
+        amount = row["amount"]
+        total[bucket] += amount
+        total["All"] += amount
+
+        color = 0
+        status = "Not yet declared interest"
+        if organisation in sets["guidance"]:
+            color = 1
+            status = "Adopted PlanX guidance"
+        elif organisation in sets["submission"]:
+            color = 1
+            status = "Adopted PlanX submission"
+        elif organisation in sets["interested"]:
+            color = 0.5
+            status = "Interested in adopting PlanX"
+        elif organisation in sets["adopting"]:
+            color = 0.5
+            status = "Adopting PlanX"
+
+        print(f"          ['{row['area-name']}', '{bucket}', {amount}, {color}, '{row['name']}', '{status}', {row['PropTech']}, {row['Software']}],")
+
+    print(f"""
+          ['PropTech', 'Funded organisation', {total["PropTech"]}, 0, 'Funded for PropTech', '', 0, 0,],
+          ['Software', 'Funded organisation', {total["Software"]}, 0, 'Organisations funded for software', '', 0, 0,],
+          ['Both', 'Funded organisation', {total["Both"]}, 0, 'Funded for Software and PropTech', '', 0, 0,],
+          ['Funded organisation', null, {total["All"]}, 0, 'All funded organisations', '', 0, 0,],
+    ]);
+
+        var options = {{
+            maxDepth: 2,
+            maxPostDepth: 2,
+            headerHeight: 15,
+            showScale: false,
+            minColor: '#f5f5f6', 
+            midColor: '#bcbcbd',
+            maxColor: '#27a0cc', 
+            eventsConfig: {{
+              highlight: ['click'],
+              unhighlight: ['mouseout'],
+              rollup: ['contextmenu'],
+              drilldown: ['dblclick'],
+            }},
+            generateTooltip: showFullTooltip,
+        }};
+
+        function showFullTooltip(row, size, value) {{
+            var s = '<div class="tooltip">' +
+                '<span><h2>' + data.getValue(row, 4) + '</h2>';
+
+            const bucket = data.getValue(row, 1);
+            if (bucket == 'PropTech' || bucket == 'Both') {{
+                s = s + '<p>£' + data.getValue(row, 6).toLocaleString() + ' for PropTech</p>';
+            }}
+            if (bucket == 'Software' || bucket == 'Both') {{
+                s = s + '<p>£' + data.getValue(row, 7).toLocaleString() + ' for Software</p>';
+            }}
+            if (bucket == 'Both') {{
+                s = s + '<p>£' + data.getValue(row, 2).toLocaleString() + ' in total.</p>';
+            }}
+
+            var status = data.getValue(row, 5);
+            if (status != '') {{
+                s = s + '<p>' + status + '</p>'
+            }}
+            s = s + '</div>'
+            return s;
+        }}
+
+        var chart = new google.visualization.TreeMap(document.getElementById("adoption-treemap-chart"));
+        chart.draw(data, options);
+      }}
+    </script>
+    <div id="adoption-treemap-chart" class="chart"></div>
+    """
+    )
+
+    print("<h1>Funding and data quality</h1>")
     print(
         f"""
     <script type="text/javascript">
@@ -431,7 +531,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
     )
 
 
-    print("<h1>Organisations adopting PlanX</h1>")
+    print("<h1>Number of organisations adopting PlanX</h1>")
 
     print(
         f"""
