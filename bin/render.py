@@ -635,7 +635,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
             <th scope="col" align="left">Drupal</th>
             <th scope="col" align="left">LLC</th>
             <th scope="col" align="right">PropTech</th>
-            <th scope="col" align="right">ODP</th>
+            <th scope="col" align="right">Software</th>
             <th scope="col" align="right">Both</th>
     """)
 
@@ -647,7 +647,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 
     print(f"""
             <th scope="col" align="left">Data ready</th>
-            <th scope="col" align="left">PlanX</th>
+            <th scope="col" align="left" data-sort-method="number">PlanX</th>
         </thead>
     </tbody>
     """)
