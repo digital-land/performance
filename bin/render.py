@@ -99,15 +99,6 @@ if __name__ == "__main__":
     quality = load("data/quality.csv", "organisation")
     lpas = load("var/cache/local-planning-authority.csv", "reference")
 
-    # area names
-    for organisation, row in organisations.items():
-        lpa = row.get("local-planning-authority", "")
-        if lpa:
-            row['area-name'] = lpas.get(lpa, row)["name"].replace(" LPA", "")
-        else:
-            row['area-name'] = row["name"]
-        area_names[row['area-name']] = organisation
-
     # fixup quality status
     for organisation, row in quality.items():
         for dataset in odp_datasets:
@@ -165,7 +156,7 @@ if __name__ == "__main__":
         set_add(bucket, organisation)
         set_add("funded", organisation)
 
-        o = organisations[organisation]
+        o = rows[organisation]
         o.setdefault(intervention, 0)
         o[intervention] += int(row["amount"])
 
@@ -175,7 +166,7 @@ if __name__ == "__main__":
         o.setdefault("amount", 0)
         o["amount"] += int(row["amount"])
 
-    for organisation, row in organisations.items():
+    for organisation, row in rows.items():
         row.setdefault("Software", 0)
         row.setdefault("PropTech", 0)
         if organisation in sets["PropTech"] & sets["Software"]:
@@ -215,16 +206,17 @@ if __name__ == "__main__":
             set_add(project, organisation)
 
     # score rows
+    sets["providing"] = set()
     for organisation, row in rows.items():
-        if "proptech" in row["projects"]:
-            rows[organisation]["score"] += 10
+        shift = 10
+        for project in ["localgov-drupal","local-land-charges", "proptech", "open-digital-planning"]:
+            if project in row["projects"]:
+                rows[organisation]["score"] += shift
+            shift *= 10
 
-        if "open-digital-planning" in row["projects"]:
-            rows[organisation]["score"] += 100
-
-        if organisation in quality:
-            n = 0
-            for dataset in odp_datasets:
+        for dataset in odp_datasets:
+            if organisation in quality:
+                n = 0
                 n += {
                     "": 0,
                     "none": 0,
@@ -233,21 +225,24 @@ if __name__ == "__main__":
                     "ready": 3,
                     "trustworthy": 4,
                 }[quality[organisation][dataset]]
-            rows[organisation]["score"] += n * 1000
-            if n > 2:
-                set_add("providing", organisation)
+                rows[organisation]["score"] += n * shift
+                if n > 2:
+                    set_add("providing", organisation)
+            shift *= 10
 
-        if organisation in sets["data-ready"]:
-            rows[organisation]["score"] += 10000000
+        for _set in ["providing", "data-ready", "interested", "adopting", "guidance", "submission"]:
+            if organisation in sets[_set]:
+                rows[organisation]["score"] += shift
+            shift *= 10
 
-        if organisation in sets["interested"]:
-            rows[organisation]["score"] += 100000000
-        if organisation in sets["adopting"]:
-            rows[organisation]["score"] += 200000000
-        if organisation in sets["guidance"]:
-            rows[organisation]["score"] += 300000000
-        if organisation in sets["submission"]:
-            rows[organisation]["score"] += 400000000
+    # area names
+    for organisation, row in rows.items():
+        lpa = organisations[organisation].get("local-planning-authority", "")
+        if lpa:
+            row['area-name'] = lpas.get(lpa, row)["name"].replace(" LPA", "")
+        else:
+            row['area-name'] = row["name"]
+        area_names[row['area-name']] = organisation
 
     print(
         """<!doctype html>
@@ -267,7 +262,6 @@ thead {
   background: #fff;
 }
 th, td {
-  text-align: left;
   border: 1px solid #ddd;
 }
 td.dot {
@@ -290,6 +284,7 @@ tr:nth-child(even) {
 .submission { font-weight: bolder }
 .guidance { font-weight: bolder }
 .interested { color: #888}
+.amount { text-align: right }
 
 .some, .some a { color:	#d4351c; }
 .authoritative, .authoritative a { color: #f47738; }
@@ -308,6 +303,40 @@ tr:nth-child(even) {
     border-style:solid;
 }
 
+/* sortable table */
+th[role=columnheader]:not(.no-sort) {
+	cursor: pointer;
+}
+
+th[role=columnheader]:not(.no-sort):after {
+	content: '';
+	float: right;
+	margin-top: 7px;
+	border-width: 0 4px 4px;
+	border-style: solid;
+	border-color: #404040 transparent;
+	visibility: hidden;
+	opacity: 0;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+th[aria-sort=ascending]:not(.no-sort):after {
+	border-bottom: none;
+	border-width: 4px 4px 0;
+}
+
+th[aria-sort]:not(.no-sort):after {
+	visibility: visible;
+	opacity: 0.4;
+}
+
+th[role=columnheader]:not(.no-sort):hover:after {
+	visibility: visible;
+	opacity: 1;
+}
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>google.charts.load('current', {'packages':['corechart','bar','sankey', 'treemap']});</script>
@@ -335,7 +364,7 @@ tr:nth-child(even) {
 """)
     total = { "Software": 0, "PropTech": 0, "Both": 0, "All": 0 }
     for organisation in sets["funded"]:
-        row = organisations[organisation]
+        row = rows[organisation]
         bucket = row["bucket"]
         if not bucket:
             continue
@@ -596,25 +625,18 @@ tr:nth-child(even) {
 
     print("<h1>All LPAs and funded organisations</h1>")
     print(f"""
-        <!--
-        <table>
-            <tr><td class="dot none"></td><td>No data in this area</td></tr>
-            <tr><td class="dot some">·</td><td>Some data in this area</td></tr>
-            <tr><td class="dot authoritative">○</td><td>Some data in this area from the authoritative source</td></tr>
-            <tr><td class="dot ready">●</td><td>Data in this area is ready for PlanX</td></tr>
-            <tr><td class="dot trustworthy">◉</td><td>Data in this area can be trusted</td></tr>
-        </table>
-        -->
         <p>Note: data quality is currently only reported in areas funded to develop or adopt ODP software.</p>
-        <table>
+        <table id='sortable'>
         <thead>
+            <th scope="col" align="right">Order</th>
             <th scope="col" align="left">Organisation</th>
             <th scope="col" align="left">Ended</th>
             <th scope="col" align="left">LPA</th>
             <th scope="col" align="left">Drupal</th>
             <th scope="col" align="left">LLC</th>
-            <th scope="col" align="left">PropTech</th>
-            <th scope="col" align="left">ODP</th>
+            <th scope="col" align="right">PropTech</th>
+            <th scope="col" align="right">ODP</th>
+            <th scope="col" align="right">Both</th>
     """)
 
     for col, datasets in odp_cols.items():
@@ -630,14 +652,18 @@ tr:nth-child(even) {
     </tbody>
     """)
 
+    order = 0
     for organisation, row in sorted(
         rows.items(), key=lambda x: x[1]["score"], reverse=True
     ):
+        order += 1
         if not "interventions" in row:
             print(f"<!-- skipping {organisation} {row['name']} -->")
             continue
 
         print(f"<tr>")
+        print(f'<td>{order}</td>')
+
         print(
             f'<td><a href="{entity_url}{row["entity"]}">{escape(row["name"])}</a></td>'
         )
@@ -662,15 +688,17 @@ tr:nth-child(even) {
         )
         print(f'<td class="dot">{dot}</td>')
 
-        dot = f'<a href="{proptech_url}">●</a>' if "proptech" in row["projects"] else ""
-        print(f'<td class="dot">{dot}</td>')
+        n = row["PropTech"]
+        amount = f'£{n:,}' if "proptech" in row["projects"] else ""
+        print(f'<td class="amount" data-sort="{n}">{amount}</td>')
 
-        dot = (
-            f'<a href="{odp_url}">●</a>'
-            if "open-digital-planning" in row["projects"]
-            else ""
-        )
-        print(f'<td class="dot">{dot}</td>')
+        n = row["Software"]
+        amount = f'£{n:,}' if "open-digital-planning" in row["projects"] else ""
+        print(f'<td class="amount" data-sort="{n}">{amount}</td>')
+
+        n = row.get("amount", "")
+        amount = f'£{n:,}' if n else ""
+        print(f'<td class="amount" data-sort="{n}">{amount}</td>')
 
         # datasets
         dots = ""
@@ -691,9 +719,8 @@ tr:nth-child(even) {
             print(f'<td class="dot"></td>')
 
         # adoption
-        print(f'<td class="{row["adoption"]}">{row["adoption"]}</td>')
-
-        print("</tr>")
+        print(f'<td class="{row["adoption"]}" data-sort="{order}" data-sort-method="number">{row["adoption"]}</td>')
+        print(f"</tr>")
 
     print("</tbody>")
     print("</table>")
@@ -709,4 +736,11 @@ tr:nth-child(even) {
     """
     )
 
+    print("""
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js" integrity="sha512-F/gIMdDfda6OD2rnzt/Iyp2V9JLHlFQ+EUyixDg9+rkwjqgW1snpkpx7FD5FV1+gG2fmFj7I3r6ReQDUidHelA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js" integrity="sha512-dRD755QRxlybm0h3LXXIGrFcjNakuxW3reZqnPtUkMv6YsSWoJf+slPjY5v4lZvx2ss+wBZQFegepmA7a2W9eA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+new Tablesort(document.getElementById('sortable'));
+</script>
+""")
     print("</body>")
