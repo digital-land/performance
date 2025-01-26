@@ -26,28 +26,25 @@ quality_lookup = {
     "4. data that is trustworthy": "trustworthy",
 }
 
-odp_cols = {
-    "CA": [
-        "conservation-area",
-        "conservation-area-document",
-    ],
-    "A4": [
-        "article-4-direction",
-        "article-4-direction-area",
-    ],
-    "LBO": [
-        "listed-building-outline",
-    ],
-    "TPO": [
-        "tree-preservation-order",
-        "tree",
-        "tree-preservation-zone",
-    ],
+quality_scores = {
+    "": 0,
+    "none": 0,
+    "some": 1,
+    "authoritative": 2,
+    "ready": 3,
+    "trustworthy": 4,
 }
-odp_datasets = {}
-for col, datasets in odp_cols.items():
-    for dataset in datasets:
-        odp_datasets[dataset] = col
+
+odp_datasets = {
+    "conservation-area": "CA",
+    "conservation-area-document": "CAD",
+    "article-4-direction": "A4",
+    "article-4-direction-area": "A4A",
+    "listed-building-outline": "LBO",
+    "tree-preservation-order": "TPO",
+    "tree": "Tree",
+    "tree-preservation-zone": "TPZ",
+}
 
 rows = {}
 sets = {}
@@ -214,21 +211,14 @@ if __name__ == "__main__":
                 rows[organisation]["score"] += shift
             shift *= 10
 
-        for dataset in odp_datasets:
-            if organisation in quality:
-                n = 0
-                n += {
-                    "": 0,
-                    "none": 0,
-                    "some": 1,
-                    "authoritative": 2,
-                    "ready": 3,
-                    "trustworthy": 4,
-                }[quality[organisation][dataset]]
-                rows[organisation]["score"] += n * shift
+        if organisation in quality:
+            n = 0
+            for dataset in odp_datasets:
+                n = quality_scores[quality[organisation][dataset]]
                 if n > 2:
                     set_add("providing", organisation)
-            shift *= 10
+                rows[organisation]["score"] += n * shift
+            shift *= 100
 
         for _set in ["providing", "data-ready", "interested", "adopting", "guidance", "submission"]:
             if organisation in sets[_set]:
@@ -639,11 +629,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
             <th scope="col" align="right">Both</th>
     """)
 
-    for col, datasets in odp_cols.items():
-        colspan = len(datasets)
-        print(
-            f'<th class="odp-col" scope="col" align="left" colspan={colspan}>{col}</th>'
-        )
+    for dataset, col  in odp_datasets.items():
+        print(f'<th class="odp-col" scope="col" align="left">{col}</th>')
 
     print(f"""
             <th scope="col" align="left">Data ready</th>
@@ -702,15 +689,15 @@ th[role=columnheader]:not(.no-sort):hover:after {
 
         # datasets
         dots = ""
-        for col, datasets in odp_cols.items():
-            for dataset in datasets:
-                status = quality.get(organisation, {}).get(dataset, "")
-                if status in ["", "none"]:
-                    print(f'<td class="dot"></a></td>')
-                else:
-                    print(
-                        f'<td class="dot {status}"><a href="{data_url}" title="{dataset} : {status}">█</a></td>'
-                    )
+        for dataset, col in odp_datasets.items():
+            status = quality.get(organisation, {}).get(dataset, "")
+            if status in ["", "none"]:
+                print(f'<td class="dot" data-score="0"></a></td>')
+            else:
+                score = quality_scores[quality[organisation][dataset]]
+                print(
+                    f'<td class="dot {status}" data-sort="{score}"><a href="{data_url}" title="{dataset} : {status}">█</a></td>'
+                )
 
         # data
         if organisation in sets["data-ready"]:
