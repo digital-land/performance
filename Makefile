@@ -15,6 +15,7 @@ CACHE_DIR=var/cache/
 
 DATA_FILES=\
 	$(DATA_DIR)quality.csv\
+	$(DATA_DIR)p153.csv\
 	$(CACHE_DIR)organisation.csv\
 	$(CACHE_DIR)local-planning-authority.csv\
 	$(SPECIFICATION_DIR)award.csv\
@@ -37,7 +38,7 @@ $(DOCS_DIR)index.html:
 	@mkdir -p $(DOCS_DIR)
 	> $@
 	
-$(DOCS_DIR)adoption/planx/index.html: $(DATASET) bin/render.py 
+$(DOCS_DIR)adoption/planx/index.html: $(DATA_FILES) bin/render.py 
 	@mkdir -p $(dir $@)
 	python3 bin/render.py > $@
 
@@ -52,6 +53,15 @@ $(CACHE_DIR)local-planning-authority.csv:
 $(SPECIFICATION_DIR)%:
 	@mkdir -p $(SPECIFICATION_DIR)
 	curl -qfsL 'https://raw.githubusercontent.com/digital-land/specification/main/specification/$(notdir $@)' > $@
+
+# https://www.gov.uk/government/statistical-data-sets/live-tables-on-planning-application-statistics
+$(DATA_DIR)p153.csv: $(CACHE_DIR)P153.ods bin/p153.py
+	@mkdir -p $(dir $@)
+	python3 bin/p153.py $(CACHE_DIR)P153.ods $@
+
+$(CACHE_DIR)P153.ods:
+	@mkdir -p $(CACHE_DIR)
+	curl -qfsL 'https://assets.publishing.service.gov.uk/media/678654e4f041702a11ca0f53/Table_P153_Final.ods' > $@
 
 clean::
 

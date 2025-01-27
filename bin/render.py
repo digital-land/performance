@@ -98,6 +98,7 @@ if __name__ == "__main__":
     awards = load("specification/award.csv", "award")
     quality = load("data/quality.csv", "organisation")
     lpas = load("var/cache/local-planning-authority.csv", "reference")
+    p153 = load("data/p153.csv", "organisation")
 
     # fixup quality status
     for organisation, row in quality.items():
@@ -207,6 +208,12 @@ if __name__ == "__main__":
         for project in row["projects"]:
             set_add(project, organisation)
 
+    # add minor application statistics
+    for organisation, row in p153.items():
+        if organisation in rows:
+            rows[organisation]["volume"] = row["volume"] 
+            rows[organisation]["percentage"] = row["percentage"] 
+
     # score rows
     sets["providing"] = set()
     for organisation, row in rows.items():
@@ -290,6 +297,7 @@ tr:nth-child(even) {
 .guidance { font-weight: bolder }
 .interested { color: #888}
 .amount { text-align: right }
+.number { text-align: right }
 
 .some, .some a { color:	#d4351c; }
 .authoritative, .authoritative a { color: #f47738; }
@@ -733,9 +741,11 @@ th[role=columnheader]:not(.no-sort):hover:after {
         <p>Note: data quality is currently only reported in areas funded to develop or adopt ODP software.</p>
         <table id='sortable'>
         <thead>
-            <th scope="col" align="right">Order</th>
+            <th scope="col" align="right">#</th>
             <th scope="col" align="left">Organisation</th>
             <th scope="col" align="left">Ended</th>
+            <th scope="col" align="right">Minor applications in 2024</th>
+            <th scope="col" align="right">% processed in 8 weeks</th>
             <th scope="col" align="left">LPA</th>
             <th scope="col" align="left">Drupal</th>
             <th scope="col" align="left">LLC</th>
@@ -771,6 +781,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
             f'<td><a href="{entity_url}{row["entity"]}">{escape(row["name"])}</a></td>'
         )
         print(f'<td>{row.get("end-date", "")}</td>')
+        print(f'<td class="number">{row.get("volume", "")}</td>')
+        print(f'<td class="number">{row.get("percentage", "")}</td>')
 
         # roles
         dot = "●" if organisation in sets["local-planning-authority"] else ""

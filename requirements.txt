@@ -2,3 +2,5 @@ black
 svgis
 simplejson
 XlsxWriter
+pandas
+odfpy
