@@ -30,9 +30,9 @@ quality_scores = {
     "": 0,
     "none": 0,
     "some": 1,
-    "authoritative": 2,
-    "ready": 3,
-    "trustworthy": 4,
+    "authoritative": 4,
+    "ready": 5,
+    "trustworthy": 6,
 }
 
 odp_datasets = {
@@ -68,6 +68,8 @@ def add_organisation(organisation, role):
             "projects": set(),
             "interventions": {},
             "score": 0,
+            "data-ready": "",
+            "data-score": 0,
             "adoption": "",
         },
     )
@@ -212,15 +214,18 @@ if __name__ == "__main__":
             shift *= 10
 
         if organisation in quality:
-            n = 0
             for dataset in odp_datasets:
                 n = quality_scores[quality[organisation][dataset]]
-                if n > 2:
-                    set_add("providing", organisation)
-                rows[organisation]["score"] += n * shift
-            shift *= 100
+                rows[organisation]["data-score"] += n
+            if rows[organisation]["data-score"] >= 4:
+                set_add("providing", organisation)
+            if organisation in sets["data-ready"]:
+                rows[organisation]["data-score"] += 100
+            rows[organisation]["score"] += rows[organisation]["data-score"] * shift
 
-        for _set in ["providing", "data-ready", "interested", "adopting", "guidance", "submission"]:
+        shift *= 1000
+
+        for _set in ["interested", "adopting", "guidance", "submission"]:
             if organisation in sets[_set]:
                 rows[organisation]["score"] += shift
             shift *= 10
@@ -792,7 +797,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
         for dataset, col in odp_datasets.items():
             status = quality.get(organisation, {}).get(dataset, "")
             if status in ["", "none"]:
-                print(f'<td class="dot" data-score="0"></a></td>')
+                print(f'<td class="dot" data-sort="0"></a></td>')
             else:
                 score = quality_scores[quality[organisation][dataset]]
                 print(
@@ -800,10 +805,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
                 )
 
         # data
-        if organisation in sets["data-ready"]:
-            print(f'<td class="dot"><a href="{data_url}">●</a></td>')
-        else:
-            print(f'<td class="dot"></td>')
+        dot = "●" if organisation in sets["data-ready"] else ""
+        print(f'<td class="dot" data-sort="{row["data-score"]}">{dot}</td>')
 
         # adoption
         print(f'<td class="{row["adoption"]}" data-sort="{order}" data-sort-method="number">{row["adoption"]}</td>')
