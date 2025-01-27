@@ -28,12 +28,17 @@ DATA_FILES=\
 	$(SPECIFICATION_DIR)role-organisation.csv
 
 DOCS=\
-	$(DOCS_DIR)index.html
+	$(DOCS_DIR)index.html\
+	$(DOCS_DIR)adoption/planx/index.html
 
 all: $(DOCS) $(DATA_FILES)
-	
-$(DOCS_DIR)index.html: $(DATASET) bin/render.py 
+
+$(DOCS_DIR)index.html:
 	@mkdir -p $(DOCS_DIR)
+	> $@
+	
+$(DOCS_DIR)adoption/planx/index.html: $(DATASET) bin/render.py 
+	@mkdir -p $(dir $@)
 	python3 bin/render.py > $@
 
 $(CACHE_DIR)organisation.csv:
