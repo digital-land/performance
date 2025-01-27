@@ -41,6 +41,7 @@ tr:nth-child(even) {
 .guidance { font-weight: bolder }
 .interested { color: #888}
 .amount { text-align: right }
+.number { text-align: right }
 
 .some, .some a { color:	#d4351c; }
 .authoritative, .authoritative a { color: #f47738; }
@@ -115,116 +116,116 @@ th[role=columnheader]:not(.no-sort):hover:after {
         data.addColumn('number', 'Software');
         data.addRows([
 
-          ['Bolsover', 'PropTech', 478600, 0, 'Bolsover District Council', 'Not yet declared interest', 478600, 0],
-          ['East Hertfordshire', 'Both', 173152, 0, 'East Hertfordshire District Council', 'Not yet declared interest', 73152, 100000],
-          ['Spelthorne', 'Software', 100000, 0, 'Spelthorne Borough Council', 'Not yet declared interest', 0, 100000],
-          ['St Albans', 'Software', 300000, 1, 'St Albans City and District Council', 'Adopted PlanX guidance', 0, 300000],
-          ['Chesterfield', 'PropTech', 200000, 0, 'Chesterfield Borough Council', 'Not yet declared interest', 200000, 0],
-          ['Doncaster', 'Software', 358000, 1, 'Doncaster Metropolitan Borough Council', 'Adopted PlanX submission', 0, 358000],
-          ['Sevenoaks', 'Both', 375000, 0, 'Sevenoaks District Council', 'Not yet declared interest', 225000, 150000],
-          ['Cornwall', 'PropTech', 575000, 0, 'Cornwall Council', 'Not yet declared interest', 575000, 0],
-          ['Stockport', 'PropTech', 90000, 0, 'Stockport Metropolitan Borough Council', 'Not yet declared interest', 90000, 0],
-          ['New Forest National Park', 'Software', 100000, 0, 'New Forest National Park Authority', 'Not yet declared interest', 0, 100000],
-          ['Birmingham', 'Both', 715500, 0.5, 'Birmingham City Council', 'Adopting PlanX', 315500, 400000],
-          ['Plymouth', 'Both', 810000, 0, 'Plymouth City Council', 'Not yet declared interest', 710000, 100000],
-          ['Lancaster', 'PropTech', 46875, 0, 'Lancaster City Council', 'Not yet declared interest', 46875, 0],
-          ['Rochdale', 'Software', 100000, 0, 'Rochdale Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
-          ['Tendring', 'Software', 100000, 0, 'Tendring District Council', 'Not yet declared interest', 0, 100000],
-          ['Dover', 'Software', 150000, 0, 'Dover District Council', 'Not yet declared interest', 0, 150000],
-          ['North East Derbyshire', 'PropTech', 225000, 0, 'North East Derbyshire District Council', 'Not yet declared interest', 225000, 0],
-          ['Medway', 'Software', 650000, 1, 'Medway Council', 'Adopted PlanX submission', 0, 650000],
-          ['North Tyneside', 'PropTech', 80000, 0, 'North Tyneside Council', 'Not yet declared interest', 80000, 0],
-          ['Cotswold', 'PropTech', 333193, 0, 'Cotswold District Council', 'Not yet declared interest', 333193, 0],
-          ['York', 'Software', 100000, 0, 'City of York Council', 'Not yet declared interest', 0, 100000],
-          ['City of London', 'Software', 100000, 0, 'City of London Corporation', 'Not yet declared interest', 0, 100000],
-          ['Rother', 'Software', 100000, 0.5, 'Rother District Council', 'Interested in adopting PlanX', 0, 100000],
-          ['Waverley', 'Software', 100000, 0, 'Waverley Borough Council', 'Not yet declared interest', 0, 100000],
-          ['South Staffordshire', 'Software', 100000, 0.5, 'South Staffordshire Council', 'Interested in adopting PlanX', 0, 100000],
-          ['Teignbridge', 'PropTech', 84610, 0, 'Teignbridge District Council', 'Not yet declared interest', 84610, 0],
-          ['North Devon', 'Both', 189000, 0, 'North Devon District Council', 'Not yet declared interest', 40000, 149000],
-          ['Thanet', 'PropTech', 84250, 0, 'Thanet District Council', 'Not yet declared interest', 84250, 0],
-          ['Leicester', 'Both', 186750, 0, 'Leicester City Council', 'Not yet declared interest', 86750, 100000],
-          ['Dorset', 'Both', 385000, 0, 'Dorset Council', 'Not yet declared interest', 95000, 290000],
-          ['Rossendale', 'Software', 100000, 0, 'Rossendale Borough Council', 'Not yet declared interest', 0, 100000],
-          ['Horsham', 'Software', 100000, 0.5, 'Horsham District Council', 'Interested in adopting PlanX', 0, 100000],
-          ['Ashford', 'Software', 100000, 0, 'Ashford Borough Council', 'Not yet declared interest', 0, 100000],
           ['Wandsworth', 'PropTech', 328000, 0, 'London Borough of Wandsworth', 'Not yet declared interest', 328000, 0],
-          ['Colchester', 'Software', 150000, 0, 'Colchester Borough Council', 'Not yet declared interest', 0, 150000],
-          ['Epping Forest', 'PropTech', 523800, 0, 'Epping Forest District Council', 'Not yet declared interest', 523800, 0],
-          ['Sandwell', 'Software', 100000, 0, 'Sandwell Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
-          ['County Durham', 'PropTech', 85000, 0, 'Durham County Council', 'Not yet declared interest', 85000, 0],
-          ['North Somerset', 'Software', 248000, 0, 'North Somerset Council', 'Not yet declared interest', 0, 248000],
-          ['Hounslow', 'Both', 415000, 0, 'London Borough of Hounslow', 'Not yet declared interest', 315000, 100000],
-          ['New Forest', 'Software', 100000, 0, 'New Forest District Council', 'Not yet declared interest', 0, 100000],
+          ['Medway', 'Software', 650000, 1, 'Medway Council', 'Adopted PlanX submission', 0, 650000],
           ['Canterbury', 'Software', 400000, 0.5, 'Canterbury City Council', 'Adopting PlanX', 0, 400000],
-          ['Epsom and Ewell', 'Both', 775000, 1, 'Epsom and Ewell Borough Council', 'Adopted PlanX guidance', 375000, 400000],
-          ['Barking and Dagenham', 'Both', 200000, 0.5, 'London Borough of Barking and Dagenham', 'Adopting PlanX', 100000, 100000],
-          ['South Cambridgeshire', 'Both', 980250, 0.5, 'South Cambridgeshire District Council', 'Interested in adopting PlanX', 880250, 100000],
-          ['South Norfolk', 'Software', 100000, 0, 'South Norfolk District Council', 'Not yet declared interest', 0, 100000],
-          ['Barnet', 'Software', 400000, 1, 'London Borough of Barnet', 'Adopted PlanX submission', 0, 400000],
-          ['Somerset', 'PropTech', 85000, 0, 'Somerset Council', 'Not yet declared interest', 85000, 0],
-          ['Dacorum', 'Both', 1294750, 0, 'Dacorum Borough Council', 'Not yet declared interest', 626750, 668000],
-          ['Great Yarmouth', 'Software', 250000, 0, 'Great Yarmouth Borough Council', 'Not yet declared interest', 0, 250000],
-          ['Runnymede', 'PropTech', 90020, 0, 'Runnymede Borough Council', 'Not yet declared interest', 90020, 0],
           ['Wigan', 'PropTech', 85000, 0, 'Wigan Metropolitan Borough Council', 'Not yet declared interest', 85000, 0],
-          ['Cheshire West and Chester', 'PropTech', 224400, 0, 'Cheshire West and Chester Council', 'Not yet declared interest', 224400, 0],
-          ['Buckinghamshire', 'Software', 4300000, 1, 'Buckinghamshire Council', 'Adopted PlanX submission', 0, 4300000],
-          ['Stoke-on-Trent', 'PropTech', 66813, 0, 'Stoke-on-Trent City Council', 'Not yet declared interest', 66813, 0],
-          ['Basildon', 'Both', 185000, 0, 'Basildon Borough Council', 'Not yet declared interest', 85000, 100000],
-          ['East Hampshire', 'Both', 140500, 0, 'East Hampshire District Council', 'Not yet declared interest', 40500, 100000],
-          ['Nottingham', 'Both', 489000, 0, 'Nottingham City Council', 'Not yet declared interest', 375000, 114000],
-          ['Kingston upon Thames', 'Software', 300000, 0.5, 'Royal Borough of Kingston upon Thames', 'Adopting PlanX', 0, 300000],
-          ['North Kesteven', 'PropTech', 225000, 0, 'North Kesteven District Council', 'Not yet declared interest', 225000, 0],
-          ['Walsall', 'PropTech', 120000, 0, 'Walsall Metropolitan Borough Council', 'Not yet declared interest', 120000, 0],
-          ['Lewisham', 'PropTech', 69000, 0, 'London Borough of Lewisham', 'Not yet declared interest', 69000, 0],
-          ['North Yorkshire', 'Software', 100000, 0, 'North Yorkshire Council', 'Not yet declared interest', 0, 100000],
-          ['Harrow', 'Software', 150000, 0, 'London Borough of Harrow', 'Not yet declared interest', 0, 150000],
-          ['Westminster', 'Software', 100000, 0, 'City of Westminster', 'Not yet declared interest', 0, 100000],
-          ['Milton Keynes', 'Software', 100000, 0, 'Milton Keynes City Council', 'Not yet declared interest', 0, 100000],
-          ['Havant', 'PropTech', 183450, 0, 'Havant Borough Council', 'Not yet declared interest', 183450, 0],
           ['Salford', 'Both', 367213, 0, 'Salford City Council', 'Not yet declared interest', 77213, 290000],
-          ['West Oxfordshire', 'PropTech', 213250, 0, 'West Oxfordshire District Council', 'Not yet declared interest', 213250, 0],
-          ['Bradford', 'PropTech', 206900, 0, 'City of Bradford Metropolitan District Council', 'Not yet declared interest', 206900, 0],
-          ['Newcastle upon Tyne', 'Both', 1092760, 1, 'Newcastle City Council', 'Adopted PlanX guidance', 306760, 786000],
-          ['Torbay', 'Software', 100000, 0, 'Torbay Council', 'Not yet declared interest', 0, 100000],
-          ['Castle Point', 'Software', 100000, 0.5, 'Castle Point Borough Council', 'Interested in adopting PlanX', 0, 100000],
-          ['Newham', 'PropTech', 225000, 0, 'London Borough of Newham', 'Not yet declared interest', 225000, 0],
-          ['Haringey', 'Both', 424000, 0, 'London Borough of Haringey', 'Not yet declared interest', 324000, 100000],
-          ['Watford', 'PropTech', 222975, 0, 'Watford Borough Council', 'Not yet declared interest', 222975, 0],
-          ['Liverpool', 'Software', 145306, 0, 'Liverpool City Council', 'Not yet declared interest', 0, 145306],
-          ['Northumberland', 'Software', 100000, 0.5, 'Northumberland County Council', 'Interested in adopting PlanX', 0, 100000],
-          ['Surrey Heath', 'Software', 100000, 0.5, 'Surrey Heath Borough Council', 'Interested in adopting PlanX', 0, 100000],
-          ['Croydon', 'Software', 100000, 0, 'London Borough of Croydon', 'Not yet declared interest', 0, 100000],
-          ['West Berkshire', 'Software', 353000, 1, 'West Berkshire Council', 'Adopted PlanX submission', 0, 353000],
-          ['Havering', 'Software', 150000, 0, 'London Borough of Havering', 'Not yet declared interest', 0, 150000],
-          ['Gateshead', 'Software', 300000, 1, 'Gateshead Metropolitan Borough Council', 'Adopted PlanX guidance', 0, 300000],
-          ['Bolton', 'Software', 100000, 0, 'Bolton Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
-          ['Peterborough', 'Software', 100000, 0, 'Peterborough City Council', 'Not yet declared interest', 0, 100000],
-          ['Southwark', 'Software', 250000, 1, 'London Borough of Southwark', 'Adopted PlanX submission', 0, 250000],
-          ['East Cambridgeshire', 'Software', 100000, 0, 'East Cambridgeshire District Council', 'Not yet declared interest', 0, 100000],
-          ['Gloucester', 'Software', 395000, 1, 'Gloucester City Council', 'Adopted PlanX guidance', 0, 395000],
-          ['Tower Hamlets', 'Both', 185000, 0.5, 'London Borough of Tower Hamlets', 'Interested in adopting PlanX', 85000, 100000],
-          ['Central Bedfordshire', 'Both', 185000, 0, 'Central Bedfordshire Council', 'Not yet declared interest', 85000, 100000],
-          ['Lewes', 'PropTech', 112500, 0, 'Lewes District Council', 'Not yet declared interest', 112500, 0],
-          ['Camden', 'Software', 2650000, 1, 'London Borough of Camden', 'Adopted PlanX submission', 0, 2650000],
-          ['Lambeth', 'Both', 4668564, 1, 'London Borough of Lambeth', 'Adopted PlanX submission', 168564, 4500000],
-          ['Harborough', 'PropTech', 125000, 0, 'Harborough District Council', 'Not yet declared interest', 125000, 0],
           ['Enfield', 'Software', 100000, 0, 'London Borough of Enfield', 'Not yet declared interest', 0, 100000],
-          ['Reigate and Banstead', 'PropTech', 47000, 0, 'Reigate and Banstead Borough Council', 'Not yet declared interest', 47000, 0],
-          ['Kensington and Chelsea', 'Both', 303000, 0, 'Royal Borough of Kensington and Chelsea', 'Not yet declared interest', 203000, 100000],
-          ['Southampton', 'PropTech', 730000, 0, 'Southampton City Council', 'Not yet declared interest', 730000, 0],
-          ['Basingstoke and Deane', 'Software', 58000, 0, 'Basingstoke and Deane Borough Council', 'Not yet declared interest', 0, 58000],
-          ['Wirral', 'Both', 677225, 0, 'Wirral Borough Council', 'Not yet declared interest', 501000, 176225],
-          ['Tewkesbury', 'Software', 450000, 1, 'Tewkesbury Borough Council', 'Adopted PlanX guidance', 0, 450000],
-          ['South Gloucestershire', 'Software', 100000, 0.5, 'South Gloucestershire Council', 'Interested in adopting PlanX', 0, 100000],
+          ['Doncaster', 'Software', 358000, 1, 'Doncaster Metropolitan Borough Council', 'Adopted PlanX submission', 0, 358000],
+          ['Somerset', 'PropTech', 85000, 0, 'Somerset Council', 'Not yet declared interest', 85000, 0],
+          ['North Devon', 'Both', 189000, 0, 'North Devon District Council', 'Not yet declared interest', 40000, 149000],
+          ['East Hertfordshire', 'Both', 173152, 0, 'East Hertfordshire District Council', 'Not yet declared interest', 73152, 100000],
+          ['Cornwall', 'PropTech', 575000, 0, 'Cornwall Council', 'Not yet declared interest', 575000, 0],
+          ['Watford', 'PropTech', 222975, 0, 'Watford Borough Council', 'Not yet declared interest', 222975, 0],
           ['Waltham Forest', 'Both', 458500, 0, 'London Borough of Waltham Forest', 'Not yet declared interest', 168500, 290000],
+          ['Dorset', 'Both', 385000, 0, 'Dorset Council', 'Not yet declared interest', 95000, 290000],
+          ['Dacorum', 'Both', 1294750, 0, 'Dacorum Borough Council', 'Not yet declared interest', 626750, 668000],
           ['Surrey County Council', 'PropTech', 206187, 0, 'Surrey County Council', 'Not yet declared interest', 206187, 0],
-          ['North Lincolnshire', 'Both', 390000, 0, 'North Lincolnshire Council', 'Not yet declared interest', 100000, 290000],
-          ['Tandridge', 'Both', 182750, 0, 'Tandridge District Council', 'Not yet declared interest', 82750, 100000],
-          ['Bristol, City of', 'Software', 100000, 0, 'Bristol City Council', 'Not yet declared interest', 0, 100000],
-          ['Redbridge', 'Both', 390600, 0, 'London Borough of Redbridge', 'Not yet declared interest', 125000, 265600],
-          ['Stevenage', 'PropTech', 125000, 0, 'Stevenage Borough Council', 'Not yet declared interest', 125000, 0],
+          ['Epsom and Ewell', 'Both', 775000, 1, 'Epsom and Ewell Borough Council', 'Adopted PlanX guidance', 375000, 400000],
+          ['North Somerset', 'Software', 248000, 0, 'North Somerset Council', 'Not yet declared interest', 0, 248000],
+          ['Liverpool', 'Software', 145306, 0, 'Liverpool City Council', 'Not yet declared interest', 0, 145306],
+          ['Colchester', 'Software', 150000, 0, 'Colchester Borough Council', 'Not yet declared interest', 0, 150000],
+          ['Tendring', 'Software', 100000, 0, 'Tendring District Council', 'Not yet declared interest', 0, 100000],
+          ['Thanet', 'PropTech', 84250, 0, 'Thanet District Council', 'Not yet declared interest', 84250, 0],
           ['Trafford', 'Software', 100000, 0, 'Trafford Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
+          ['Basildon', 'Both', 185000, 0, 'Basildon Borough Council', 'Not yet declared interest', 85000, 100000],
+          ['West Berkshire', 'Software', 353000, 1, 'West Berkshire Council', 'Adopted PlanX submission', 0, 353000],
+          ['Rossendale', 'Software', 100000, 0, 'Rossendale Borough Council', 'Not yet declared interest', 0, 100000],
+          ['York', 'Software', 100000, 0, 'City of York Council', 'Not yet declared interest', 0, 100000],
+          ['Havering', 'Software', 150000, 0, 'London Borough of Havering', 'Not yet declared interest', 0, 150000],
+          ['East Hampshire', 'Both', 140500, 0, 'East Hampshire District Council', 'Not yet declared interest', 40500, 100000],
+          ['Castle Point', 'Software', 100000, 0.5, 'Castle Point Borough Council', 'Interested in adopting PlanX', 0, 100000],
+          ['Barnet', 'Software', 400000, 1, 'London Borough of Barnet', 'Adopted PlanX submission', 0, 400000],
+          ['North Kesteven', 'PropTech', 225000, 0, 'North Kesteven District Council', 'Not yet declared interest', 225000, 0],
+          ['North Yorkshire', 'Software', 100000, 0, 'North Yorkshire Council', 'Not yet declared interest', 0, 100000],
+          ['Reigate and Banstead', 'PropTech', 47000, 0, 'Reigate and Banstead Borough Council', 'Not yet declared interest', 47000, 0],
+          ['Surrey Heath', 'Software', 100000, 0.5, 'Surrey Heath Borough Council', 'Interested in adopting PlanX', 0, 100000],
+          ['South Staffordshire', 'Software', 100000, 0.5, 'South Staffordshire Council', 'Interested in adopting PlanX', 0, 100000],
+          ['Great Yarmouth', 'Software', 250000, 0, 'Great Yarmouth Borough Council', 'Not yet declared interest', 0, 250000],
+          ['South Norfolk', 'Software', 100000, 0, 'South Norfolk District Council', 'Not yet declared interest', 0, 100000],
+          ['Hounslow', 'Both', 415000, 0, 'London Borough of Hounslow', 'Not yet declared interest', 315000, 100000],
+          ['Kensington and Chelsea', 'Both', 303000, 0, 'Royal Borough of Kensington and Chelsea', 'Not yet declared interest', 203000, 100000],
+          ['North Lincolnshire', 'Both', 390000, 0, 'North Lincolnshire Council', 'Not yet declared interest', 100000, 290000],
+          ['Spelthorne', 'Software', 100000, 0, 'Spelthorne Borough Council', 'Not yet declared interest', 0, 100000],
+          ['Rochdale', 'Software', 100000, 0, 'Rochdale Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
+          ['Cotswold', 'PropTech', 333193, 0, 'Cotswold District Council', 'Not yet declared interest', 333193, 0],
+          ['Sevenoaks', 'Both', 375000, 0, 'Sevenoaks District Council', 'Not yet declared interest', 225000, 150000],
+          ['Harborough', 'PropTech', 125000, 0, 'Harborough District Council', 'Not yet declared interest', 125000, 0],
+          ['Basingstoke and Deane', 'Software', 58000, 0, 'Basingstoke and Deane Borough Council', 'Not yet declared interest', 0, 58000],
+          ['Tewkesbury', 'Software', 450000, 1, 'Tewkesbury Borough Council', 'Adopted PlanX guidance', 0, 450000],
+          ['Southwark', 'Software', 250000, 1, 'London Borough of Southwark', 'Adopted PlanX submission', 0, 250000],
+          ['Bradford', 'PropTech', 206900, 0, 'City of Bradford Metropolitan District Council', 'Not yet declared interest', 206900, 0],
+          ['Barking and Dagenham', 'Both', 200000, 0.5, 'London Borough of Barking and Dagenham', 'Adopting PlanX', 100000, 100000],
+          ['Lambeth', 'Both', 4668564, 1, 'London Borough of Lambeth', 'Adopted PlanX submission', 168564, 4500000],
+          ['Milton Keynes', 'Software', 100000, 0, 'Milton Keynes City Council', 'Not yet declared interest', 0, 100000],
+          ['Buckinghamshire', 'Software', 4300000, 1, 'Buckinghamshire Council', 'Adopted PlanX submission', 0, 4300000],
+          ['Newcastle upon Tyne', 'Both', 1092760, 1, 'Newcastle City Council', 'Adopted PlanX guidance', 306760, 786000],
+          ['Waverley', 'Software', 100000, 0, 'Waverley Borough Council', 'Not yet declared interest', 0, 100000],
+          ['West Oxfordshire', 'PropTech', 213250, 0, 'West Oxfordshire District Council', 'Not yet declared interest', 213250, 0],
+          ['Tower Hamlets', 'Both', 185000, 0.5, 'London Borough of Tower Hamlets', 'Interested in adopting PlanX', 85000, 100000],
+          ['Dover', 'Software', 150000, 0, 'Dover District Council', 'Not yet declared interest', 0, 150000],
+          ['Ashford', 'Software', 100000, 0, 'Ashford Borough Council', 'Not yet declared interest', 0, 100000],
+          ['Redbridge', 'Both', 390600, 0, 'London Borough of Redbridge', 'Not yet declared interest', 125000, 265600],
+          ['Havant', 'PropTech', 183450, 0, 'Havant Borough Council', 'Not yet declared interest', 183450, 0],
+          ['Rother', 'Software', 100000, 0.5, 'Rother District Council', 'Interested in adopting PlanX', 0, 100000],
+          ['Northumberland', 'Software', 100000, 0.5, 'Northumberland County Council', 'Interested in adopting PlanX', 0, 100000],
+          ['Epping Forest', 'PropTech', 523800, 0, 'Epping Forest District Council', 'Not yet declared interest', 523800, 0],
+          ['Stevenage', 'PropTech', 125000, 0, 'Stevenage Borough Council', 'Not yet declared interest', 125000, 0],
+          ['North East Derbyshire', 'PropTech', 225000, 0, 'North East Derbyshire District Council', 'Not yet declared interest', 225000, 0],
+          ['Gateshead', 'Software', 300000, 1, 'Gateshead Metropolitan Borough Council', 'Adopted PlanX guidance', 0, 300000],
+          ['Sandwell', 'Software', 100000, 0, 'Sandwell Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
+          ['Cheshire West and Chester', 'PropTech', 224400, 0, 'Cheshire West and Chester Council', 'Not yet declared interest', 224400, 0],
+          ['Teignbridge', 'PropTech', 84610, 0, 'Teignbridge District Council', 'Not yet declared interest', 84610, 0],
+          ['Croydon', 'Software', 100000, 0, 'London Borough of Croydon', 'Not yet declared interest', 0, 100000],
+          ['East Cambridgeshire', 'Software', 100000, 0, 'East Cambridgeshire District Council', 'Not yet declared interest', 0, 100000],
+          ['Nottingham', 'Both', 489000, 0, 'Nottingham City Council', 'Not yet declared interest', 375000, 114000],
+          ['Central Bedfordshire', 'Both', 185000, 0, 'Central Bedfordshire Council', 'Not yet declared interest', 85000, 100000],
+          ['Haringey', 'Both', 424000, 0, 'London Borough of Haringey', 'Not yet declared interest', 324000, 100000],
+          ['Stoke-on-Trent', 'PropTech', 66813, 0, 'Stoke-on-Trent City Council', 'Not yet declared interest', 66813, 0],
+          ['Gloucester', 'Software', 395000, 1, 'Gloucester City Council', 'Adopted PlanX guidance', 0, 395000],
+          ['South Gloucestershire', 'Software', 100000, 0.5, 'South Gloucestershire Council', 'Interested in adopting PlanX', 0, 100000],
+          ['New Forest National Park', 'Software', 100000, 0, 'New Forest National Park Authority', 'Not yet declared interest', 0, 100000],
+          ['Newham', 'PropTech', 225000, 0, 'London Borough of Newham', 'Not yet declared interest', 225000, 0],
+          ['Bolton', 'Software', 100000, 0, 'Bolton Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
+          ['Chesterfield', 'PropTech', 200000, 0, 'Chesterfield Borough Council', 'Not yet declared interest', 200000, 0],
+          ['South Cambridgeshire', 'Both', 980250, 0.5, 'South Cambridgeshire District Council', 'Interested in adopting PlanX', 880250, 100000],
+          ['Leicester', 'Both', 186750, 0, 'Leicester City Council', 'Not yet declared interest', 86750, 100000],
+          ['Plymouth', 'Both', 810000, 0, 'Plymouth City Council', 'Not yet declared interest', 710000, 100000],
+          ['Stockport', 'PropTech', 90000, 0, 'Stockport Metropolitan Borough Council', 'Not yet declared interest', 90000, 0],
+          ['Birmingham', 'Both', 715500, 0.5, 'Birmingham City Council', 'Adopting PlanX', 315500, 400000],
+          ['Kingston upon Thames', 'Software', 300000, 0.5, 'Royal Borough of Kingston upon Thames', 'Adopting PlanX', 0, 300000],
+          ['Horsham', 'Software', 100000, 0.5, 'Horsham District Council', 'Interested in adopting PlanX', 0, 100000],
+          ['Westminster', 'Software', 100000, 0, 'City of Westminster', 'Not yet declared interest', 0, 100000],
+          ['Lancaster', 'PropTech', 46875, 0, 'Lancaster City Council', 'Not yet declared interest', 46875, 0],
+          ['St Albans', 'Software', 300000, 1, 'St Albans City and District Council', 'Adopted PlanX guidance', 0, 300000],
+          ['Lewes', 'PropTech', 112500, 0, 'Lewes District Council', 'Not yet declared interest', 112500, 0],
+          ['Bristol, City of', 'Software', 100000, 0, 'Bristol City Council', 'Not yet declared interest', 0, 100000],
+          ['City of London', 'Software', 100000, 0, 'City of London Corporation', 'Not yet declared interest', 0, 100000],
+          ['Tandridge', 'Both', 182750, 0, 'Tandridge District Council', 'Not yet declared interest', 82750, 100000],
+          ['Torbay', 'Software', 100000, 0, 'Torbay Council', 'Not yet declared interest', 0, 100000],
+          ['Runnymede', 'PropTech', 90020, 0, 'Runnymede Borough Council', 'Not yet declared interest', 90020, 0],
+          ['New Forest', 'Software', 100000, 0, 'New Forest District Council', 'Not yet declared interest', 0, 100000],
+          ['Walsall', 'PropTech', 120000, 0, 'Walsall Metropolitan Borough Council', 'Not yet declared interest', 120000, 0],
+          ['Peterborough', 'Software', 100000, 0, 'Peterborough City Council', 'Not yet declared interest', 0, 100000],
+          ['Harrow', 'Software', 150000, 0, 'London Borough of Harrow', 'Not yet declared interest', 0, 150000],
+          ['Lewisham', 'PropTech', 69000, 0, 'London Borough of Lewisham', 'Not yet declared interest', 69000, 0],
+          ['Southampton', 'PropTech', 730000, 0, 'Southampton City Council', 'Not yet declared interest', 730000, 0],
+          ['North Tyneside', 'PropTech', 80000, 0, 'North Tyneside Council', 'Not yet declared interest', 80000, 0],
+          ['County Durham', 'PropTech', 85000, 0, 'Durham County Council', 'Not yet declared interest', 85000, 0],
+          ['Bolsover', 'PropTech', 478600, 0, 'Bolsover District Council', 'Not yet declared interest', 478600, 0],
+          ['Camden', 'Software', 2650000, 1, 'London Borough of Camden', 'Adopted PlanX submission', 0, 2650000],
+          ['Wirral', 'Both', 677225, 0, 'Wirral Borough Council', 'Not yet declared interest', 501000, 176225],
 
           ['PropTech', 'Funded organisation', 6496823, 0, 'Funded for PropTech', '', 0, 0,],
           ['Software', 'Funded organisation', 15407306, 0, 'Organisations funded for software', '', 0, 0,],
@@ -294,116 +295,116 @@ th[role=columnheader]:not(.no-sort):hover:after {
         data.addColumn('number', 'Software');
         data.addRows([
 
-          ['Bolsover', 'PropTech', 478600, 0, 'Bolsover District Council', 'Not yet providing data', 478600, 0],
-          ['East Hertfordshire', 'Both', 173152, 0, 'East Hertfordshire District Council', 'Not yet providing data', 73152, 100000],
-          ['Spelthorne', 'Software', 100000, 0, 'Spelthorne Borough Council', 'Not yet providing data', 0, 100000],
-          ['St Albans', 'Software', 300000, 1, 'St Albans City and District Council', 'Data is ready to adopt PlanX', 0, 300000],
-          ['Chesterfield', 'PropTech', 200000, 0, 'Chesterfield Borough Council', 'Not yet providing data', 200000, 0],
-          ['Doncaster', 'Software', 358000, 1, 'Doncaster Metropolitan Borough Council', 'Data is ready to adopt PlanX', 0, 358000],
-          ['Sevenoaks', 'Both', 375000, 0, 'Sevenoaks District Council', 'Not yet providing data', 225000, 150000],
-          ['Cornwall', 'PropTech', 575000, 0, 'Cornwall Council', 'Not yet providing data', 575000, 0],
-          ['Stockport', 'PropTech', 90000, 0, 'Stockport Metropolitan Borough Council', 'Not yet providing data', 90000, 0],
-          ['New Forest National Park', 'Software', 100000, 0.5, 'New Forest National Park Authority', 'Providing some data', 0, 100000],
-          ['Birmingham', 'Both', 715500, 0.5, 'Birmingham City Council', 'Providing some data', 315500, 400000],
-          ['Plymouth', 'Both', 810000, 1, 'Plymouth City Council', 'Data is ready to adopt PlanX', 710000, 100000],
-          ['Lancaster', 'PropTech', 46875, 0, 'Lancaster City Council', 'Not yet providing data', 46875, 0],
-          ['Rochdale', 'Software', 100000, 0.5, 'Rochdale Metropolitan Borough Council', 'Providing some data', 0, 100000],
-          ['Tendring', 'Software', 100000, 0, 'Tendring District Council', 'Not yet providing data', 0, 100000],
-          ['Dover', 'Software', 150000, 1, 'Dover District Council', 'Data is ready to adopt PlanX', 0, 150000],
-          ['North East Derbyshire', 'PropTech', 225000, 0.5, 'North East Derbyshire District Council', 'Providing some data', 225000, 0],
-          ['Medway', 'Software', 650000, 0.5, 'Medway Council', 'Providing some data', 0, 650000],
-          ['North Tyneside', 'PropTech', 80000, 0, 'North Tyneside Council', 'Not yet providing data', 80000, 0],
-          ['Cotswold', 'PropTech', 333193, 0, 'Cotswold District Council', 'Not yet providing data', 333193, 0],
-          ['York', 'Software', 100000, 0.5, 'City of York Council', 'Providing some data', 0, 100000],
-          ['City of London', 'Software', 100000, 0.5, 'City of London Corporation', 'Providing some data', 0, 100000],
-          ['Rother', 'Software', 100000, 0.5, 'Rother District Council', 'Providing some data', 0, 100000],
-          ['Waverley', 'Software', 100000, 0.5, 'Waverley Borough Council', 'Providing some data', 0, 100000],
-          ['South Staffordshire', 'Software', 100000, 0.5, 'South Staffordshire Council', 'Providing some data', 0, 100000],
-          ['Teignbridge', 'PropTech', 84610, 0, 'Teignbridge District Council', 'Not yet providing data', 84610, 0],
-          ['North Devon', 'Both', 189000, 0, 'North Devon District Council', 'Not yet providing data', 40000, 149000],
-          ['Thanet', 'PropTech', 84250, 0, 'Thanet District Council', 'Not yet providing data', 84250, 0],
-          ['Leicester', 'Both', 186750, 0.5, 'Leicester City Council', 'Providing some data', 86750, 100000],
-          ['Dorset', 'Both', 385000, 0.5, 'Dorset Council', 'Providing some data', 95000, 290000],
-          ['Rossendale', 'Software', 100000, 0.5, 'Rossendale Borough Council', 'Providing some data', 0, 100000],
-          ['Horsham', 'Software', 100000, 0.5, 'Horsham District Council', 'Providing some data', 0, 100000],
-          ['Ashford', 'Software', 100000, 0.5, 'Ashford Borough Council', 'Providing some data', 0, 100000],
           ['Wandsworth', 'PropTech', 328000, 0, 'London Borough of Wandsworth', 'Not yet providing data', 328000, 0],
-          ['Colchester', 'Software', 150000, 0, 'Colchester Borough Council', 'Not yet providing data', 0, 150000],
-          ['Epping Forest', 'PropTech', 523800, 0, 'Epping Forest District Council', 'Not yet providing data', 523800, 0],
-          ['Sandwell', 'Software', 100000, 0.5, 'Sandwell Metropolitan Borough Council', 'Providing some data', 0, 100000],
-          ['County Durham', 'PropTech', 85000, 0, 'Durham County Council', 'Not yet providing data', 85000, 0],
-          ['North Somerset', 'Software', 248000, 1, 'North Somerset Council', 'Data is ready to adopt PlanX', 0, 248000],
-          ['Hounslow', 'Both', 415000, 0, 'London Borough of Hounslow', 'Not yet providing data', 315000, 100000],
-          ['New Forest', 'Software', 100000, 0.5, 'New Forest District Council', 'Providing some data', 0, 100000],
+          ['Medway', 'Software', 650000, 0.5, 'Medway Council', 'Providing some data', 0, 650000],
           ['Canterbury', 'Software', 400000, 0.5, 'Canterbury City Council', 'Providing some data', 0, 400000],
-          ['Epsom and Ewell', 'Both', 775000, 1, 'Epsom and Ewell Borough Council', 'Data is ready to adopt PlanX', 375000, 400000],
-          ['Barking and Dagenham', 'Both', 200000, 0.5, 'London Borough of Barking and Dagenham', 'Providing some data', 100000, 100000],
-          ['South Cambridgeshire', 'Both', 980250, 0.5, 'South Cambridgeshire District Council', 'Providing some data', 880250, 100000],
-          ['South Norfolk', 'Software', 100000, 0.5, 'South Norfolk District Council', 'Providing some data', 0, 100000],
-          ['Barnet', 'Software', 400000, 1, 'London Borough of Barnet', 'Data is ready to adopt PlanX', 0, 400000],
-          ['Somerset', 'PropTech', 85000, 0, 'Somerset Council', 'Not yet providing data', 85000, 0],
-          ['Dacorum', 'Both', 1294750, 0.5, 'Dacorum Borough Council', 'Providing some data', 626750, 668000],
-          ['Great Yarmouth', 'Software', 250000, 0.5, 'Great Yarmouth Borough Council', 'Providing some data', 0, 250000],
-          ['Runnymede', 'PropTech', 90020, 0, 'Runnymede Borough Council', 'Not yet providing data', 90020, 0],
           ['Wigan', 'PropTech', 85000, 0, 'Wigan Metropolitan Borough Council', 'Not yet providing data', 85000, 0],
-          ['Cheshire West and Chester', 'PropTech', 224400, 0, 'Cheshire West and Chester Council', 'Not yet providing data', 224400, 0],
-          ['Buckinghamshire', 'Software', 4300000, 1, 'Buckinghamshire Council', 'Data is ready to adopt PlanX', 0, 4300000],
-          ['Stoke-on-Trent', 'PropTech', 66813, 0, 'Stoke-on-Trent City Council', 'Not yet providing data', 66813, 0],
-          ['Basildon', 'Both', 185000, 0, 'Basildon Borough Council', 'Not yet providing data', 85000, 100000],
-          ['East Hampshire', 'Both', 140500, 0.5, 'East Hampshire District Council', 'Providing some data', 40500, 100000],
-          ['Nottingham', 'Both', 489000, 0, 'Nottingham City Council', 'Not yet providing data', 375000, 114000],
-          ['Kingston upon Thames', 'Software', 300000, 0, 'Royal Borough of Kingston upon Thames', 'Not yet providing data', 0, 300000],
-          ['North Kesteven', 'PropTech', 225000, 0, 'North Kesteven District Council', 'Not yet providing data', 225000, 0],
-          ['Walsall', 'PropTech', 120000, 0, 'Walsall Metropolitan Borough Council', 'Not yet providing data', 120000, 0],
-          ['Lewisham', 'PropTech', 69000, 0, 'London Borough of Lewisham', 'Not yet providing data', 69000, 0],
-          ['North Yorkshire', 'Software', 100000, 0.5, 'North Yorkshire Council', 'Providing some data', 0, 100000],
-          ['Harrow', 'Software', 150000, 0, 'London Borough of Harrow', 'Not yet providing data', 0, 150000],
-          ['Westminster', 'Software', 100000, 0, 'City of Westminster', 'Not yet providing data', 0, 100000],
-          ['Milton Keynes', 'Software', 100000, 0, 'Milton Keynes City Council', 'Not yet providing data', 0, 100000],
-          ['Havant', 'PropTech', 183450, 0, 'Havant Borough Council', 'Not yet providing data', 183450, 0],
           ['Salford', 'Both', 367213, 0.5, 'Salford City Council', 'Providing some data', 77213, 290000],
-          ['West Oxfordshire', 'PropTech', 213250, 0, 'West Oxfordshire District Council', 'Not yet providing data', 213250, 0],
-          ['Bradford', 'PropTech', 206900, 0, 'City of Bradford Metropolitan District Council', 'Not yet providing data', 206900, 0],
-          ['Newcastle upon Tyne', 'Both', 1092760, 0.5, 'Newcastle City Council', 'Providing some data', 306760, 786000],
-          ['Torbay', 'Software', 100000, 1, 'Torbay Council', 'Data is ready to adopt PlanX', 0, 100000],
-          ['Castle Point', 'Software', 100000, 0.5, 'Castle Point Borough Council', 'Providing some data', 0, 100000],
-          ['Newham', 'PropTech', 225000, 0, 'London Borough of Newham', 'Not yet providing data', 225000, 0],
-          ['Haringey', 'Both', 424000, 0, 'London Borough of Haringey', 'Not yet providing data', 324000, 100000],
-          ['Watford', 'PropTech', 222975, 0, 'Watford Borough Council', 'Not yet providing data', 222975, 0],
-          ['Liverpool', 'Software', 145306, 0, 'Liverpool City Council', 'Not yet providing data', 0, 145306],
-          ['Northumberland', 'Software', 100000, 0, 'Northumberland County Council', 'Not yet providing data', 0, 100000],
-          ['Surrey Heath', 'Software', 100000, 0, 'Surrey Heath Borough Council', 'Not yet providing data', 0, 100000],
-          ['Croydon', 'Software', 100000, 0, 'London Borough of Croydon', 'Not yet providing data', 0, 100000],
-          ['West Berkshire', 'Software', 353000, 1, 'West Berkshire Council', 'Data is ready to adopt PlanX', 0, 353000],
-          ['Havering', 'Software', 150000, 0, 'London Borough of Havering', 'Not yet providing data', 0, 150000],
-          ['Gateshead', 'Software', 300000, 1, 'Gateshead Metropolitan Borough Council', 'Data is ready to adopt PlanX', 0, 300000],
-          ['Bolton', 'Software', 100000, 0.5, 'Bolton Metropolitan Borough Council', 'Providing some data', 0, 100000],
-          ['Peterborough', 'Software', 100000, 0.5, 'Peterborough City Council', 'Providing some data', 0, 100000],
-          ['Southwark', 'Software', 250000, 0.5, 'London Borough of Southwark', 'Providing some data', 0, 250000],
-          ['East Cambridgeshire', 'Software', 100000, 0.5, 'East Cambridgeshire District Council', 'Providing some data', 0, 100000],
-          ['Gloucester', 'Software', 395000, 1, 'Gloucester City Council', 'Data is ready to adopt PlanX', 0, 395000],
-          ['Tower Hamlets', 'Both', 185000, 1, 'London Borough of Tower Hamlets', 'Data is ready to adopt PlanX', 85000, 100000],
-          ['Central Bedfordshire', 'Both', 185000, 0, 'Central Bedfordshire Council', 'Not yet providing data', 85000, 100000],
-          ['Lewes', 'PropTech', 112500, 0, 'Lewes District Council', 'Not yet providing data', 112500, 0],
-          ['Camden', 'Software', 2650000, 0.5, 'London Borough of Camden', 'Providing some data', 0, 2650000],
-          ['Lambeth', 'Both', 4668564, 0.5, 'London Borough of Lambeth', 'Providing some data', 168564, 4500000],
-          ['Harborough', 'PropTech', 125000, 0, 'Harborough District Council', 'Not yet providing data', 125000, 0],
           ['Enfield', 'Software', 100000, 0.5, 'London Borough of Enfield', 'Providing some data', 0, 100000],
-          ['Reigate and Banstead', 'PropTech', 47000, 0, 'Reigate and Banstead Borough Council', 'Not yet providing data', 47000, 0],
-          ['Kensington and Chelsea', 'Both', 303000, 1, 'Royal Borough of Kensington and Chelsea', 'Data is ready to adopt PlanX', 203000, 100000],
-          ['Southampton', 'PropTech', 730000, 0, 'Southampton City Council', 'Not yet providing data', 730000, 0],
-          ['Basingstoke and Deane', 'Software', 58000, 0, 'Basingstoke and Deane Borough Council', 'Not yet providing data', 0, 58000],
-          ['Wirral', 'Both', 677225, 0.5, 'Wirral Borough Council', 'Providing some data', 501000, 176225],
-          ['Tewkesbury', 'Software', 450000, 1, 'Tewkesbury Borough Council', 'Data is ready to adopt PlanX', 0, 450000],
-          ['South Gloucestershire', 'Software', 100000, 0.5, 'South Gloucestershire Council', 'Providing some data', 0, 100000],
+          ['Doncaster', 'Software', 358000, 1, 'Doncaster Metropolitan Borough Council', 'Data is ready to adopt PlanX', 0, 358000],
+          ['Somerset', 'PropTech', 85000, 0, 'Somerset Council', 'Not yet providing data', 85000, 0],
+          ['North Devon', 'Both', 189000, 0, 'North Devon District Council', 'Not yet providing data', 40000, 149000],
+          ['East Hertfordshire', 'Both', 173152, 0, 'East Hertfordshire District Council', 'Not yet providing data', 73152, 100000],
+          ['Cornwall', 'PropTech', 575000, 0, 'Cornwall Council', 'Not yet providing data', 575000, 0],
+          ['Watford', 'PropTech', 222975, 0, 'Watford Borough Council', 'Not yet providing data', 222975, 0],
           ['Waltham Forest', 'Both', 458500, 0, 'London Borough of Waltham Forest', 'Not yet providing data', 168500, 290000],
+          ['Dorset', 'Both', 385000, 0.5, 'Dorset Council', 'Providing some data', 95000, 290000],
+          ['Dacorum', 'Both', 1294750, 0.5, 'Dacorum Borough Council', 'Providing some data', 626750, 668000],
           ['Surrey County Council', 'PropTech', 206187, 0, 'Surrey County Council', 'Not yet providing data', 206187, 0],
-          ['North Lincolnshire', 'Both', 390000, 1, 'North Lincolnshire Council', 'Data is ready to adopt PlanX', 100000, 290000],
-          ['Tandridge', 'Both', 182750, 0, 'Tandridge District Council', 'Not yet providing data', 82750, 100000],
-          ['Bristol, City of', 'Software', 100000, 1, 'Bristol City Council', 'Data is ready to adopt PlanX', 0, 100000],
-          ['Redbridge', 'Both', 390600, 0, 'London Borough of Redbridge', 'Not yet providing data', 125000, 265600],
-          ['Stevenage', 'PropTech', 125000, 0, 'Stevenage Borough Council', 'Not yet providing data', 125000, 0],
+          ['Epsom and Ewell', 'Both', 775000, 1, 'Epsom and Ewell Borough Council', 'Data is ready to adopt PlanX', 375000, 400000],
+          ['North Somerset', 'Software', 248000, 1, 'North Somerset Council', 'Data is ready to adopt PlanX', 0, 248000],
+          ['Liverpool', 'Software', 145306, 0, 'Liverpool City Council', 'Not yet providing data', 0, 145306],
+          ['Colchester', 'Software', 150000, 0, 'Colchester Borough Council', 'Not yet providing data', 0, 150000],
+          ['Tendring', 'Software', 100000, 0, 'Tendring District Council', 'Not yet providing data', 0, 100000],
+          ['Thanet', 'PropTech', 84250, 0, 'Thanet District Council', 'Not yet providing data', 84250, 0],
           ['Trafford', 'Software', 100000, 0.5, 'Trafford Metropolitan Borough Council', 'Providing some data', 0, 100000],
+          ['Basildon', 'Both', 185000, 0, 'Basildon Borough Council', 'Not yet providing data', 85000, 100000],
+          ['West Berkshire', 'Software', 353000, 1, 'West Berkshire Council', 'Data is ready to adopt PlanX', 0, 353000],
+          ['Rossendale', 'Software', 100000, 0.5, 'Rossendale Borough Council', 'Providing some data', 0, 100000],
+          ['York', 'Software', 100000, 0.5, 'City of York Council', 'Providing some data', 0, 100000],
+          ['Havering', 'Software', 150000, 0, 'London Borough of Havering', 'Not yet providing data', 0, 150000],
+          ['East Hampshire', 'Both', 140500, 0.5, 'East Hampshire District Council', 'Providing some data', 40500, 100000],
+          ['Castle Point', 'Software', 100000, 0.5, 'Castle Point Borough Council', 'Providing some data', 0, 100000],
+          ['Barnet', 'Software', 400000, 1, 'London Borough of Barnet', 'Data is ready to adopt PlanX', 0, 400000],
+          ['North Kesteven', 'PropTech', 225000, 0, 'North Kesteven District Council', 'Not yet providing data', 225000, 0],
+          ['North Yorkshire', 'Software', 100000, 0.5, 'North Yorkshire Council', 'Providing some data', 0, 100000],
+          ['Reigate and Banstead', 'PropTech', 47000, 0, 'Reigate and Banstead Borough Council', 'Not yet providing data', 47000, 0],
+          ['Surrey Heath', 'Software', 100000, 0, 'Surrey Heath Borough Council', 'Not yet providing data', 0, 100000],
+          ['South Staffordshire', 'Software', 100000, 0.5, 'South Staffordshire Council', 'Providing some data', 0, 100000],
+          ['Great Yarmouth', 'Software', 250000, 0.5, 'Great Yarmouth Borough Council', 'Providing some data', 0, 250000],
+          ['South Norfolk', 'Software', 100000, 0.5, 'South Norfolk District Council', 'Providing some data', 0, 100000],
+          ['Hounslow', 'Both', 415000, 0, 'London Borough of Hounslow', 'Not yet providing data', 315000, 100000],
+          ['Kensington and Chelsea', 'Both', 303000, 1, 'Royal Borough of Kensington and Chelsea', 'Data is ready to adopt PlanX', 203000, 100000],
+          ['North Lincolnshire', 'Both', 390000, 1, 'North Lincolnshire Council', 'Data is ready to adopt PlanX', 100000, 290000],
+          ['Spelthorne', 'Software', 100000, 0, 'Spelthorne Borough Council', 'Not yet providing data', 0, 100000],
+          ['Rochdale', 'Software', 100000, 0.5, 'Rochdale Metropolitan Borough Council', 'Providing some data', 0, 100000],
+          ['Cotswold', 'PropTech', 333193, 0, 'Cotswold District Council', 'Not yet providing data', 333193, 0],
+          ['Sevenoaks', 'Both', 375000, 0, 'Sevenoaks District Council', 'Not yet providing data', 225000, 150000],
+          ['Harborough', 'PropTech', 125000, 0, 'Harborough District Council', 'Not yet providing data', 125000, 0],
+          ['Basingstoke and Deane', 'Software', 58000, 0, 'Basingstoke and Deane Borough Council', 'Not yet providing data', 0, 58000],
+          ['Tewkesbury', 'Software', 450000, 1, 'Tewkesbury Borough Council', 'Data is ready to adopt PlanX', 0, 450000],
+          ['Southwark', 'Software', 250000, 0.5, 'London Borough of Southwark', 'Providing some data', 0, 250000],
+          ['Bradford', 'PropTech', 206900, 0, 'City of Bradford Metropolitan District Council', 'Not yet providing data', 206900, 0],
+          ['Barking and Dagenham', 'Both', 200000, 0.5, 'London Borough of Barking and Dagenham', 'Providing some data', 100000, 100000],
+          ['Lambeth', 'Both', 4668564, 0.5, 'London Borough of Lambeth', 'Providing some data', 168564, 4500000],
+          ['Milton Keynes', 'Software', 100000, 0, 'Milton Keynes City Council', 'Not yet providing data', 0, 100000],
+          ['Buckinghamshire', 'Software', 4300000, 1, 'Buckinghamshire Council', 'Data is ready to adopt PlanX', 0, 4300000],
+          ['Newcastle upon Tyne', 'Both', 1092760, 0.5, 'Newcastle City Council', 'Providing some data', 306760, 786000],
+          ['Waverley', 'Software', 100000, 0.5, 'Waverley Borough Council', 'Providing some data', 0, 100000],
+          ['West Oxfordshire', 'PropTech', 213250, 0, 'West Oxfordshire District Council', 'Not yet providing data', 213250, 0],
+          ['Tower Hamlets', 'Both', 185000, 1, 'London Borough of Tower Hamlets', 'Data is ready to adopt PlanX', 85000, 100000],
+          ['Dover', 'Software', 150000, 1, 'Dover District Council', 'Data is ready to adopt PlanX', 0, 150000],
+          ['Ashford', 'Software', 100000, 0.5, 'Ashford Borough Council', 'Providing some data', 0, 100000],
+          ['Redbridge', 'Both', 390600, 0, 'London Borough of Redbridge', 'Not yet providing data', 125000, 265600],
+          ['Havant', 'PropTech', 183450, 0, 'Havant Borough Council', 'Not yet providing data', 183450, 0],
+          ['Rother', 'Software', 100000, 0.5, 'Rother District Council', 'Providing some data', 0, 100000],
+          ['Northumberland', 'Software', 100000, 0, 'Northumberland County Council', 'Not yet providing data', 0, 100000],
+          ['Epping Forest', 'PropTech', 523800, 0, 'Epping Forest District Council', 'Not yet providing data', 523800, 0],
+          ['Stevenage', 'PropTech', 125000, 0, 'Stevenage Borough Council', 'Not yet providing data', 125000, 0],
+          ['North East Derbyshire', 'PropTech', 225000, 0.5, 'North East Derbyshire District Council', 'Providing some data', 225000, 0],
+          ['Gateshead', 'Software', 300000, 1, 'Gateshead Metropolitan Borough Council', 'Data is ready to adopt PlanX', 0, 300000],
+          ['Sandwell', 'Software', 100000, 0.5, 'Sandwell Metropolitan Borough Council', 'Providing some data', 0, 100000],
+          ['Cheshire West and Chester', 'PropTech', 224400, 0, 'Cheshire West and Chester Council', 'Not yet providing data', 224400, 0],
+          ['Teignbridge', 'PropTech', 84610, 0, 'Teignbridge District Council', 'Not yet providing data', 84610, 0],
+          ['Croydon', 'Software', 100000, 0, 'London Borough of Croydon', 'Not yet providing data', 0, 100000],
+          ['East Cambridgeshire', 'Software', 100000, 0.5, 'East Cambridgeshire District Council', 'Providing some data', 0, 100000],
+          ['Nottingham', 'Both', 489000, 0, 'Nottingham City Council', 'Not yet providing data', 375000, 114000],
+          ['Central Bedfordshire', 'Both', 185000, 0, 'Central Bedfordshire Council', 'Not yet providing data', 85000, 100000],
+          ['Haringey', 'Both', 424000, 0, 'London Borough of Haringey', 'Not yet providing data', 324000, 100000],
+          ['Stoke-on-Trent', 'PropTech', 66813, 0, 'Stoke-on-Trent City Council', 'Not yet providing data', 66813, 0],
+          ['Gloucester', 'Software', 395000, 1, 'Gloucester City Council', 'Data is ready to adopt PlanX', 0, 395000],
+          ['South Gloucestershire', 'Software', 100000, 0.5, 'South Gloucestershire Council', 'Providing some data', 0, 100000],
+          ['New Forest National Park', 'Software', 100000, 0.5, 'New Forest National Park Authority', 'Providing some data', 0, 100000],
+          ['Newham', 'PropTech', 225000, 0, 'London Borough of Newham', 'Not yet providing data', 225000, 0],
+          ['Bolton', 'Software', 100000, 0.5, 'Bolton Metropolitan Borough Council', 'Providing some data', 0, 100000],
+          ['Chesterfield', 'PropTech', 200000, 0, 'Chesterfield Borough Council', 'Not yet providing data', 200000, 0],
+          ['South Cambridgeshire', 'Both', 980250, 0.5, 'South Cambridgeshire District Council', 'Providing some data', 880250, 100000],
+          ['Leicester', 'Both', 186750, 0.5, 'Leicester City Council', 'Providing some data', 86750, 100000],
+          ['Plymouth', 'Both', 810000, 1, 'Plymouth City Council', 'Data is ready to adopt PlanX', 710000, 100000],
+          ['Stockport', 'PropTech', 90000, 0, 'Stockport Metropolitan Borough Council', 'Not yet providing data', 90000, 0],
+          ['Birmingham', 'Both', 715500, 0.5, 'Birmingham City Council', 'Providing some data', 315500, 400000],
+          ['Kingston upon Thames', 'Software', 300000, 0, 'Royal Borough of Kingston upon Thames', 'Not yet providing data', 0, 300000],
+          ['Horsham', 'Software', 100000, 0.5, 'Horsham District Council', 'Providing some data', 0, 100000],
+          ['Westminster', 'Software', 100000, 0, 'City of Westminster', 'Not yet providing data', 0, 100000],
+          ['Lancaster', 'PropTech', 46875, 0, 'Lancaster City Council', 'Not yet providing data', 46875, 0],
+          ['St Albans', 'Software', 300000, 1, 'St Albans City and District Council', 'Data is ready to adopt PlanX', 0, 300000],
+          ['Lewes', 'PropTech', 112500, 0, 'Lewes District Council', 'Not yet providing data', 112500, 0],
+          ['Bristol, City of', 'Software', 100000, 1, 'Bristol City Council', 'Data is ready to adopt PlanX', 0, 100000],
+          ['City of London', 'Software', 100000, 0.5, 'City of London Corporation', 'Providing some data', 0, 100000],
+          ['Tandridge', 'Both', 182750, 0, 'Tandridge District Council', 'Not yet providing data', 82750, 100000],
+          ['Torbay', 'Software', 100000, 1, 'Torbay Council', 'Data is ready to adopt PlanX', 0, 100000],
+          ['Runnymede', 'PropTech', 90020, 0, 'Runnymede Borough Council', 'Not yet providing data', 90020, 0],
+          ['New Forest', 'Software', 100000, 0.5, 'New Forest District Council', 'Providing some data', 0, 100000],
+          ['Walsall', 'PropTech', 120000, 0, 'Walsall Metropolitan Borough Council', 'Not yet providing data', 120000, 0],
+          ['Peterborough', 'Software', 100000, 0.5, 'Peterborough City Council', 'Providing some data', 0, 100000],
+          ['Harrow', 'Software', 150000, 0, 'London Borough of Harrow', 'Not yet providing data', 0, 150000],
+          ['Lewisham', 'PropTech', 69000, 0, 'London Borough of Lewisham', 'Not yet providing data', 69000, 0],
+          ['Southampton', 'PropTech', 730000, 0, 'Southampton City Council', 'Not yet providing data', 730000, 0],
+          ['North Tyneside', 'PropTech', 80000, 0, 'North Tyneside Council', 'Not yet providing data', 80000, 0],
+          ['County Durham', 'PropTech', 85000, 0, 'Durham County Council', 'Not yet providing data', 85000, 0],
+          ['Bolsover', 'PropTech', 478600, 0, 'Bolsover District Council', 'Not yet providing data', 478600, 0],
+          ['Camden', 'Software', 2650000, 0.5, 'London Borough of Camden', 'Providing some data', 0, 2650000],
+          ['Wirral', 'Both', 677225, 0.5, 'Wirral Borough Council', 'Providing some data', 501000, 176225],
 
           ['PropTech', 'Funded organisation', 6496823, 0, 'Funded for PropTech', '', 0, 0],
           ['Software', 'Funded organisation', 15407306, 0, 'Organisations funded for software', '', 0, 0],
@@ -634,9 +635,11 @@ th[role=columnheader]:not(.no-sort):hover:after {
         <p>Note: data quality is currently only reported in areas funded to develop or adopt ODP software.</p>
         <table id='sortable'>
         <thead>
-            <th scope="col" align="right">Order</th>
+            <th scope="col" align="right">#</th>
             <th scope="col" align="left">Organisation</th>
             <th scope="col" align="left">Ended</th>
+            <th scope="col" align="right">Minor applications in 2024</th>
+            <th scope="col" align="right">% processed in 8 weeks</th>
             <th scope="col" align="left">LPA</th>
             <th scope="col" align="left">Drupal</th>
             <th scope="col" align="left">LLC</th>
@@ -663,6 +666,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>1</td>
 <td><a href="https://www.planning.data.gov.uk/entity/48">London Borough of Barnet</a></td>
 <td></td>
+<td class="number">2583</td>
+<td class="number">90.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -685,6 +690,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>2</td>
 <td><a href="https://www.planning.data.gov.uk/entity/109">Doncaster Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">1009</td>
+<td class="number">92.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -707,6 +714,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>3</td>
 <td><a href="https://www.planning.data.gov.uk/entity/358">West Berkshire Council</a></td>
 <td></td>
+<td class="number">959</td>
+<td class="number">83</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -729,6 +738,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>4</td>
 <td><a href="https://www.planning.data.gov.uk/entity/67">Buckinghamshire Council</a></td>
 <td></td>
+<td class="number">4368</td>
+<td class="number">93.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -751,6 +762,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>5</td>
 <td><a href="https://www.planning.data.gov.uk/entity/90">London Borough of Camden</a></td>
 <td></td>
+<td class="number">1517</td>
+<td class="number">78</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -773,6 +786,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>6</td>
 <td><a href="https://www.planning.data.gov.uk/entity/192">London Borough of Lambeth</a></td>
 <td></td>
+<td class="number">1335</td>
+<td class="number">94.5</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -795,6 +810,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>7</td>
 <td><a href="https://www.planning.data.gov.uk/entity/212">Medway Council</a></td>
 <td></td>
+<td class="number">882</td>
+<td class="number">95.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -817,6 +834,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>8</td>
 <td><a href="https://www.planning.data.gov.uk/entity/329">London Borough of Southwark</a></td>
 <td></td>
+<td class="number">1039</td>
+<td class="number">94.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -839,6 +858,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>9</td>
 <td><a href="https://www.planning.data.gov.uk/entity/129">Epsom and Ewell Borough Council</a></td>
 <td></td>
+<td class="number">600</td>
+<td class="number">94.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -861,6 +882,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>10</td>
 <td><a href="https://www.planning.data.gov.uk/entity/278">St Albans City and District Council</a></td>
 <td></td>
+<td class="number">1535</td>
+<td class="number">70.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -883,6 +906,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>11</td>
 <td><a href="https://www.planning.data.gov.uk/entity/145">Gloucester City Council</a></td>
 <td></td>
+<td class="number">358</td>
+<td class="number">90.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -905,6 +930,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>12</td>
 <td><a href="https://www.planning.data.gov.uk/entity/339">Tewkesbury Borough Council</a></td>
 <td></td>
+<td class="number">564</td>
+<td class="number">88.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -927,6 +954,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>13</td>
 <td><a href="https://www.planning.data.gov.uk/entity/142">Gateshead Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">450</td>
+<td class="number">88.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -949,6 +978,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>14</td>
 <td><a href="https://www.planning.data.gov.uk/entity/228">Newcastle City Council</a></td>
 <td></td>
+<td class="number">733</td>
+<td class="number">87.3</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -971,6 +1002,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>15</td>
 <td><a href="https://www.planning.data.gov.uk/entity/44">Birmingham City Council</a></td>
 <td></td>
+<td class="number">3118</td>
+<td class="number">81.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -993,6 +1026,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>16</td>
 <td><a href="https://www.planning.data.gov.uk/entity/41">London Borough of Barking and Dagenham</a></td>
 <td></td>
+<td class="number">620</td>
+<td class="number">100</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -1015,6 +1050,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>17</td>
 <td><a href="https://www.planning.data.gov.uk/entity/75">Canterbury City Council</a></td>
 <td></td>
+<td class="number">761</td>
+<td class="number">67.9</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -1037,6 +1074,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>18</td>
 <td><a href="https://www.planning.data.gov.uk/entity/188">Royal Borough of Kingston upon Thames</a></td>
 <td></td>
+<td class="number">1087</td>
+<td class="number">88.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1059,6 +1098,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>19</td>
 <td><a href="https://www.planning.data.gov.uk/entity/350">London Borough of Tower Hamlets</a></td>
 <td></td>
+<td class="number">666</td>
+<td class="number">89.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1081,6 +1122,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>20</td>
 <td><a href="https://www.planning.data.gov.uk/entity/74">Castle Point Borough Council</a></td>
 <td></td>
+<td class="number">423</td>
+<td class="number">96</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1103,6 +1146,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>21</td>
 <td><a href="https://www.planning.data.gov.uk/entity/314">South Staffordshire Council</a></td>
 <td></td>
+<td class="number">555</td>
+<td class="number">96.9</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -1125,6 +1170,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>22</td>
 <td><a href="https://www.planning.data.gov.uk/entity/171">Horsham District Council</a></td>
 <td></td>
+<td class="number">1067</td>
+<td class="number">86.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1147,6 +1194,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>23</td>
 <td><a href="https://www.planning.data.gov.uk/entity/269">Rother District Council</a></td>
 <td></td>
+<td class="number">788</td>
+<td class="number">91.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1169,6 +1218,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>24</td>
 <td><a href="https://www.planning.data.gov.uk/entity/281">South Cambridgeshire District Council</a></td>
 <td></td>
+<td class="number">1209</td>
+<td class="number">94.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1191,6 +1242,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>25</td>
 <td><a href="https://www.planning.data.gov.uk/entity/291">South Gloucestershire Council</a></td>
 <td></td>
+<td class="number">1376</td>
+<td class="number">89.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -1213,6 +1266,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>26</td>
 <td><a href="https://www.planning.data.gov.uk/entity/220">Northumberland County Council</a></td>
 <td></td>
+<td class="number">1586</td>
+<td class="number">85.8</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -1235,6 +1290,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>27</td>
 <td><a href="https://www.planning.data.gov.uk/entity/327">Surrey Heath Borough Council</a></td>
 <td></td>
+<td class="number">533</td>
+<td class="number">92.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1257,6 +1314,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>28</td>
 <td><a href="https://www.planning.data.gov.uk/entity/70">Cambridge City Council</a></td>
 <td></td>
+<td class="number">795</td>
+<td class="number">94.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1279,6 +1338,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>29</td>
 <td><a href="https://www.planning.data.gov.uk/entity/253">Plymouth City Council</a></td>
 <td></td>
+<td class="number">554</td>
+<td class="number">94.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -1301,6 +1362,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>30</td>
 <td><a href="https://www.planning.data.gov.uk/entity/66">Bristol City Council</a></td>
 <td></td>
+<td class="number">2285</td>
+<td class="number">62.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -1323,6 +1386,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>31</td>
 <td><a href="https://www.planning.data.gov.uk/entity/234">North Lincolnshire Council</a></td>
 <td></td>
+<td class="number">756</td>
+<td class="number">83.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -1345,6 +1410,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>32</td>
 <td><a href="https://www.planning.data.gov.uk/entity/344">Torbay Council</a></td>
 <td></td>
+<td class="number">532</td>
+<td class="number">85.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1367,6 +1434,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>33</td>
 <td><a href="https://www.planning.data.gov.uk/entity/182">Royal Borough of Kensington and Chelsea</a></td>
 <td></td>
+<td class="number">1636</td>
+<td class="number">96.8</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -1389,6 +1458,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>34</td>
 <td><a href="https://www.planning.data.gov.uk/entity/111">Dover District Council</a></td>
 <td></td>
+<td class="number">643</td>
+<td class="number">89.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1411,6 +1482,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>35</td>
 <td><a href="https://www.planning.data.gov.uk/entity/238">North Somerset Council</a></td>
 <td></td>
+<td class="number">1075</td>
+<td class="number">90.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1433,6 +1506,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>36</td>
 <td><a href="https://www.planning.data.gov.uk/entity/279">Sandwell Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">804</td>
+<td class="number">91.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -1455,6 +1530,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>37</td>
 <td><a href="https://www.planning.data.gov.uk/entity/152">Great Yarmouth Borough Council</a></td>
 <td></td>
+<td class="number">291</td>
+<td class="number">90</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1477,6 +1554,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>38</td>
 <td><a href="https://www.planning.data.gov.uk/entity/384">Wirral Borough Council</a></td>
 <td></td>
+<td class="number">908</td>
+<td class="number">91.9</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -1499,6 +1578,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>39</td>
 <td><a href="https://www.planning.data.gov.uk/entity/270">Rossendale Borough Council</a></td>
 <td></td>
+<td class="number">266</td>
+<td class="number">96.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1521,6 +1602,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>40</td>
 <td><a href="https://www.planning.data.gov.uk/entity/257">Peterborough City Council</a></td>
 <td></td>
+<td class="number">658</td>
+<td class="number">83.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -1543,6 +1626,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>41</td>
 <td><a href="https://www.planning.data.gov.uk/entity/118">East Cambridgeshire District Council</a></td>
 <td></td>
+<td class="number">578</td>
+<td class="number">92.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -1565,6 +1650,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>42</td>
 <td><a href="https://www.planning.data.gov.uk/entity/229">New Forest District Council</a></td>
 <td></td>
+<td class="number">776</td>
+<td class="number">93.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1587,6 +1674,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>43</td>
 <td><a href="https://www.planning.data.gov.uk/entity/203">City of London Corporation</a></td>
 <td></td>
+<td class="number">181</td>
+<td class="number">82.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -1609,6 +1698,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>44</td>
 <td><a href="https://www.planning.data.gov.uk/entity/260">Rochdale Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">604</td>
+<td class="number">91.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1631,6 +1722,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>45</td>
 <td><a href="https://www.planning.data.gov.uk/entity/193">Leicester City Council</a></td>
 <td></td>
+<td class="number">989</td>
+<td class="number">81.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1653,6 +1746,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>46</td>
 <td><a href="https://www.planning.data.gov.uk/entity/30">Ashford Borough Council</a></td>
 <td></td>
+<td class="number">885</td>
+<td class="number">88.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1675,6 +1770,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>47</td>
 <td><a href="https://www.planning.data.gov.uk/entity/61">Broadland District Council</a></td>
 <td></td>
+<td class="number">683</td>
+<td class="number">94.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1697,6 +1794,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>48</td>
 <td><a href="https://www.planning.data.gov.uk/entity/122">East Hampshire District Council</a></td>
 <td></td>
+<td class="number">558</td>
+<td class="number">84.9</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -1719,6 +1818,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>49</td>
 <td><a href="https://www.planning.data.gov.uk/entity/126">London Borough of Enfield</a></td>
 <td></td>
+<td class="number">1533</td>
+<td class="number">83.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -1741,6 +1842,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>50</td>
 <td><a href="https://www.planning.data.gov.uk/entity/304">South Norfolk District Council</a></td>
 <td></td>
+<td class="number">861</td>
+<td class="number">91.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -1763,6 +1866,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>51</td>
 <td><a href="https://www.planning.data.gov.uk/entity/301">Salford City Council</a></td>
 <td></td>
+<td class="number">695</td>
+<td class="number">94.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -1785,6 +1890,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>52</td>
 <td><a href="https://www.planning.data.gov.uk/entity/51">Bolton Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">1046</td>
+<td class="number">93.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1807,6 +1914,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>53</td>
 <td><a href="https://www.planning.data.gov.uk/entity/101">Dacorum Borough Council</a></td>
 <td></td>
+<td class="number">1083</td>
+<td class="number">80.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1829,6 +1938,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>54</td>
 <td><a href="https://www.planning.data.gov.uk/entity/112">Dorset Council</a></td>
 <td></td>
+<td class="number">2510</td>
+<td class="number">92.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1851,6 +1962,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>55</td>
 <td><a href="https://www.planning.data.gov.uk/entity/226">North East Derbyshire District Council</a></td>
 <td></td>
+<td class="number">527</td>
+<td class="number">91.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1873,6 +1986,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>56</td>
 <td><a href="https://www.planning.data.gov.uk/entity/347">Trafford Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">1342</td>
+<td class="number">87.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -1895,6 +2010,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>57</td>
 <td><a href="https://www.planning.data.gov.uk/entity/10004">North Yorkshire Council</a></td>
 <td></td>
+<td class="number">4175</td>
+<td class="number">84.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1917,6 +2034,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>58</td>
 <td><a href="https://www.planning.data.gov.uk/entity/395">City of York Council</a></td>
 <td></td>
+<td class="number">1016</td>
+<td class="number">84</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1939,6 +2058,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>59</td>
 <td><a href="https://www.planning.data.gov.uk/entity/401">New Forest National Park Authority</a></td>
 <td></td>
+<td class="number">477</td>
+<td class="number">88.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1961,6 +2082,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>60</td>
 <td><a href="https://www.planning.data.gov.uk/entity/353">Waverley Borough Council</a></td>
 <td></td>
+<td class="number">1389</td>
+<td class="number">93.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -1983,6 +2106,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>61</td>
 <td><a href="https://www.planning.data.gov.uk/entity/366">London Borough of Waltham Forest</a></td>
 <td></td>
+<td class="number">1292</td>
+<td class="number">86.3</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -2005,6 +2130,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>62</td>
 <td><a href="https://www.planning.data.gov.uk/entity/170">London Borough of Hounslow</a></td>
 <td></td>
+<td class="number">1157</td>
+<td class="number">85.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2027,6 +2154,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>63</td>
 <td><a href="https://www.planning.data.gov.uk/entity/123">East Hertfordshire District Council</a></td>
 <td></td>
+<td class="number">1135</td>
+<td class="number">90.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2049,6 +2178,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>64</td>
 <td><a href="https://www.planning.data.gov.uk/entity/35">Basildon Borough Council</a></td>
 <td></td>
+<td class="number">660</td>
+<td class="number">79.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2071,6 +2202,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>65</td>
 <td><a href="https://www.planning.data.gov.uk/entity/261">London Borough of Redbridge</a></td>
 <td></td>
+<td class="number">1574</td>
+<td class="number">93.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2093,6 +2226,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>66</td>
 <td><a href="https://www.planning.data.gov.uk/entity/333">Tandridge District Council</a></td>
 <td></td>
+<td class="number">787</td>
+<td class="number">90.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2115,6 +2250,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>67</td>
 <td><a href="https://www.planning.data.gov.uk/entity/310">Spelthorne Borough Council</a></td>
 <td></td>
+<td class="number">559</td>
+<td class="number">99.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -2137,6 +2274,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>68</td>
 <td><a href="https://www.planning.data.gov.uk/entity/100">London Borough of Croydon</a></td>
 <td></td>
+<td class="number">1699</td>
+<td class="number">87</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -2159,6 +2298,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>69</td>
 <td><a href="https://www.planning.data.gov.uk/entity/215">Milton Keynes City Council</a></td>
 <td></td>
+<td class="number">980</td>
+<td class="number">96.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2181,6 +2322,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>70</td>
 <td><a href="https://www.planning.data.gov.uk/entity/387">City of Westminster</a></td>
 <td></td>
+<td class="number">2477</td>
+<td class="number">79.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2203,6 +2346,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>71</td>
 <td><a href="https://www.planning.data.gov.uk/entity/337">Tendring District Council</a></td>
 <td></td>
+<td class="number">770</td>
+<td class="number">88.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2225,6 +2370,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>72</td>
 <td><a href="https://www.planning.data.gov.uk/entity/175">London Borough of Haringey</a></td>
 <td></td>
+<td class="number">1382</td>
+<td class="number">91.8</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -2247,6 +2394,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>73</td>
 <td><a href="https://www.planning.data.gov.uk/entity/52">Bolsover District Council</a></td>
 <td></td>
+<td class="number">276</td>
+<td class="number">97.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2269,6 +2418,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>74</td>
 <td><a href="https://www.planning.data.gov.uk/entity/76">Central Bedfordshire Council</a></td>
 <td></td>
+<td class="number">1424</td>
+<td class="number">93.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2291,6 +2442,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>75</td>
 <td><a href="https://www.planning.data.gov.uk/entity/198">London Borough of Lewisham</a></td>
 <td></td>
+<td class="number">1356</td>
+<td class="number">91.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2313,6 +2466,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>76</td>
 <td><a href="https://www.planning.data.gov.uk/entity/202">Liverpool City Council</a></td>
 <td></td>
+<td class="number">1268</td>
+<td class="number">87.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -2335,6 +2490,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>77</td>
 <td><a href="https://www.planning.data.gov.uk/entity/128">Epping Forest District Council</a></td>
 <td></td>
+<td class="number">1344</td>
+<td class="number">86.9</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -2357,6 +2514,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>78</td>
 <td><a href="https://www.planning.data.gov.uk/entity/233">North Kesteven District Council</a></td>
 <td></td>
+<td class="number">523</td>
+<td class="number">95.4</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -2379,6 +2538,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>79</td>
 <td><a href="https://www.planning.data.gov.uk/entity/376">London Borough of Wandsworth</a></td>
 <td></td>
+<td class="number">1906</td>
+<td class="number">90.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -2401,6 +2562,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>80</td>
 <td><a href="https://www.planning.data.gov.uk/entity/383">West Oxfordshire District Council</a></td>
 <td></td>
+<td class="number">977</td>
+<td class="number">95.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -2423,6 +2586,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>81</td>
 <td><a href="https://www.planning.data.gov.uk/entity/355">Watford Borough Council</a></td>
 <td></td>
+<td class="number">490</td>
+<td class="number">91.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -2445,6 +2610,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>82</td>
 <td><a href="https://www.planning.data.gov.uk/entity/158">Harborough District Council</a></td>
 <td></td>
+<td class="number">671</td>
+<td class="number">81.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -2467,6 +2634,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>83</td>
 <td><a href="https://www.planning.data.gov.uk/entity/274">Runnymede Borough Council</a></td>
 <td></td>
+<td class="number">588</td>
+<td class="number">73.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -2489,6 +2658,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>84</td>
 <td><a href="https://www.planning.data.gov.uk/entity/288">Sevenoaks District Council</a></td>
 <td></td>
+<td class="number">1149</td>
+<td class="number">96.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -2511,6 +2682,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>85</td>
 <td><a href="https://www.planning.data.gov.uk/entity/299">Stockport Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">1357</td>
+<td class="number">98.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -2533,6 +2706,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>86</td>
 <td><a href="https://www.planning.data.gov.uk/entity/367">Wigan Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">709</td>
+<td class="number">89.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -2555,6 +2730,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>87</td>
 <td><a href="https://www.planning.data.gov.uk/entity/221">North Devon District Council</a></td>
 <td></td>
+<td class="number">762</td>
+<td class="number">98</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -2577,6 +2754,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>88</td>
 <td><a href="https://www.planning.data.gov.uk/entity/318">Southampton City Council</a></td>
 <td></td>
+<td class="number">623</td>
+<td class="number">96.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2599,6 +2778,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>89</td>
 <td><a href="https://www.planning.data.gov.uk/entity/58">City of Bradford Metropolitan District Council</a></td>
 <td></td>
+<td class="number">2213</td>
+<td class="number">90.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2621,6 +2802,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>90</td>
 <td><a href="https://www.planning.data.gov.uk/entity/92">Cornwall Council</a></td>
 <td></td>
+<td class="number">4529</td>
+<td class="number">91.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2643,6 +2826,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>91</td>
 <td><a href="https://www.planning.data.gov.uk/entity/336">Teignbridge District Council</a></td>
 <td></td>
+<td class="number">806</td>
+<td class="number">90.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2665,6 +2850,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>92</td>
 <td><a href="https://www.planning.data.gov.uk/entity/312">Surrey County Council</a></td>
 <td></td>
+<td class="number"></td>
+<td class="number"></td>
 <td class="dot"></td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2687,6 +2874,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>93</td>
 <td><a href="https://www.planning.data.gov.uk/entity/85">Chesterfield Borough Council</a></td>
 <td></td>
+<td class="number">283</td>
+<td class="number">91.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2709,6 +2898,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>94</td>
 <td><a href="https://www.planning.data.gov.uk/entity/95">Cotswold District Council</a></td>
 <td></td>
+<td class="number">1102</td>
+<td class="number">88.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2731,6 +2922,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>95</td>
 <td><a href="https://www.planning.data.gov.uk/entity/231">Nottingham City Council</a></td>
 <td></td>
+<td class="number">790</td>
+<td class="number">91</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2753,6 +2946,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>96</td>
 <td><a href="https://www.planning.data.gov.uk/entity/246">London Borough of Newham</a></td>
 <td></td>
+<td class="number">887</td>
+<td class="number">85.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2775,6 +2970,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>97</td>
 <td><a href="https://www.planning.data.gov.uk/entity/264">Reigate and Banstead Borough Council</a></td>
 <td></td>
+<td class="number">1080</td>
+<td class="number">93.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2797,6 +2994,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>98</td>
 <td><a href="https://www.planning.data.gov.uk/entity/87">Cheshire West and Chester Council</a></td>
 <td></td>
+<td class="number">1722</td>
+<td class="number">89.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2819,6 +3018,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>99</td>
 <td><a href="https://www.planning.data.gov.uk/entity/114">Durham County Council</a></td>
 <td></td>
+<td class="number">1473</td>
+<td class="number">88.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2841,6 +3042,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>100</td>
 <td><a href="https://www.planning.data.gov.uk/entity/153">Havant Borough Council</a></td>
 <td></td>
+<td class="number">449</td>
+<td class="number">91.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2863,6 +3066,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>101</td>
 <td><a href="https://www.planning.data.gov.uk/entity/190">Lancaster City Council</a></td>
 <td></td>
+<td class="number">661</td>
+<td class="number">91.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2885,6 +3090,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>102</td>
 <td><a href="https://www.planning.data.gov.uk/entity/197">Lewes District Council</a></td>
 <td></td>
+<td class="number">414</td>
+<td class="number">75.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2907,6 +3114,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>103</td>
 <td><a href="https://www.planning.data.gov.uk/entity/242">North Tyneside Council</a></td>
 <td></td>
+<td class="number">588</td>
+<td class="number">99.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2929,6 +3138,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>104</td>
 <td><a href="https://www.planning.data.gov.uk/entity/316">Stoke-on-Trent City Council</a></td>
 <td></td>
+<td class="number">499</td>
+<td class="number">95.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2951,6 +3162,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>105</td>
 <td><a href="https://www.planning.data.gov.uk/entity/324">Stevenage Borough Council</a></td>
 <td></td>
+<td class="number">236</td>
+<td class="number">98.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2973,6 +3186,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>106</td>
 <td><a href="https://www.planning.data.gov.uk/entity/10003">Somerset Council</a></td>
 <td></td>
+<td class="number">3235</td>
+<td class="number">90</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -2995,6 +3210,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>107</td>
 <td><a href="https://www.planning.data.gov.uk/entity/341">Thanet District Council</a></td>
 <td></td>
+<td class="number">648</td>
+<td class="number">74.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -3017,6 +3234,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>108</td>
 <td><a href="https://www.planning.data.gov.uk/entity/373">Walsall Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">823</td>
+<td class="number">87.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -3039,6 +3258,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>109</td>
 <td><a href="https://www.planning.data.gov.uk/entity/174">London Borough of Harrow</a></td>
 <td></td>
+<td class="number">1242</td>
+<td class="number">86.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3061,6 +3282,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>110</td>
 <td><a href="https://www.planning.data.gov.uk/entity/91">Colchester Borough Council</a></td>
 <td></td>
+<td class="number">985</td>
+<td class="number">97.8</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -3083,6 +3306,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>111</td>
 <td><a href="https://www.planning.data.gov.uk/entity/36">Basingstoke and Deane Borough Council</a></td>
 <td></td>
+<td class="number">949</td>
+<td class="number">80.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -3105,6 +3330,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>112</td>
 <td><a href="https://www.planning.data.gov.uk/entity/162">London Borough of Havering</a></td>
 <td></td>
+<td class="number">1544</td>
+<td class="number">96.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -3127,6 +3354,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>113</td>
 <td><a href="https://www.planning.data.gov.uk/entity/96">Coventry City Council</a></td>
 <td></td>
+<td class="number">1140</td>
+<td class="number">95.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -3149,6 +3378,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>114</td>
 <td><a href="https://www.planning.data.gov.uk/entity/163">London Borough of Hackney</a></td>
 <td></td>
+<td class="number">1020</td>
+<td class="number">81.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -3171,6 +3402,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>115</td>
 <td><a href="https://www.planning.data.gov.uk/entity/144">Greater London Authority</a></td>
 <td></td>
+<td class="number"></td>
+<td class="number"></td>
 <td class="dot"></td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -3193,6 +3426,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>116</td>
 <td><a href="https://www.planning.data.gov.uk/entity/393">Wycombe District Council</a></td>
 <td>2020-03-31</td>
+<td class="number"></td>
+<td class="number"></td>
 <td class="dot"></td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -3215,6 +3450,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>117</td>
 <td><a href="https://www.planning.data.gov.uk/entity/195">Leeds City Council</a></td>
 <td></td>
+<td class="number">3068</td>
+<td class="number">92.7</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -3237,6 +3474,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>118</td>
 <td><a href="https://www.planning.data.gov.uk/entity/372">West Lindsey District Council</a></td>
 <td></td>
+<td class="number">488</td>
+<td class="number">92.6</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -3259,6 +3498,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>119</td>
 <td><a href="https://www.planning.data.gov.uk/entity/34">Bassetlaw District Council</a></td>
 <td></td>
+<td class="number">582</td>
+<td class="number">86.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3281,6 +3522,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>120</td>
 <td><a href="https://www.planning.data.gov.uk/entity/292">South Hams District Council</a></td>
 <td></td>
+<td class="number">977</td>
+<td class="number">92.3</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -3303,6 +3546,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>121</td>
 <td><a href="https://www.planning.data.gov.uk/entity/359">West Devon Borough Council</a></td>
 <td></td>
+<td class="number">325</td>
+<td class="number">87.1</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -3325,6 +3570,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>122</td>
 <td><a href="https://www.planning.data.gov.uk/entity/133">Essex County Council</a></td>
 <td></td>
+<td class="number"></td>
+<td class="number"></td>
 <td class="dot"></td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -3347,6 +3594,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>123</td>
 <td><a href="https://www.planning.data.gov.uk/entity/139">Forest of Dean District Council</a></td>
 <td></td>
+<td class="number">626</td>
+<td class="number">89</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -3369,6 +3618,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>124</td>
 <td><a href="https://www.planning.data.gov.uk/entity/159">Harlow District Council</a></td>
 <td></td>
+<td class="number">234</td>
+<td class="number">86.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -3391,6 +3642,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>125</td>
 <td><a href="https://www.planning.data.gov.uk/entity/266">London Borough of Richmond upon Thames</a></td>
 <td></td>
+<td class="number">2179</td>
+<td class="number">87.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -3413,6 +3666,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>126</td>
 <td><a href="https://www.planning.data.gov.uk/entity/173">Hertfordshire County Council</a></td>
 <td></td>
+<td class="number"></td>
+<td class="number"></td>
 <td class="dot"></td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -3435,6 +3690,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>127</td>
 <td><a href="https://www.planning.data.gov.uk/entity/201">Lincolnshire County Council</a></td>
 <td></td>
+<td class="number"></td>
+<td class="number"></td>
 <td class="dot"></td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -3457,6 +3714,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>128</td>
 <td><a href="https://www.planning.data.gov.uk/entity/39">Blackburn with Darwen Borough Council</a></td>
 <td></td>
+<td class="number">503</td>
+<td class="number">99.8</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -3479,6 +3738,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>129</td>
 <td><a href="https://www.planning.data.gov.uk/entity/40">Bedford Borough Council</a></td>
 <td></td>
+<td class="number">934</td>
+<td class="number">88.4</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -3501,6 +3762,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>130</td>
 <td><a href="https://www.planning.data.gov.uk/entity/178">Council of the Isles of Scilly</a></td>
 <td></td>
+<td class="number">62</td>
+<td class="number">77.4</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -3523,6 +3786,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>131</td>
 <td><a href="https://www.planning.data.gov.uk/entity/189">Knowsley Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">312</td>
+<td class="number">91.7</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -3545,6 +3810,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>132</td>
 <td><a href="https://www.planning.data.gov.uk/entity/237">Norwich City Council</a></td>
 <td></td>
+<td class="number">415</td>
+<td class="number">88</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -3567,6 +3834,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>133</td>
 <td><a href="https://www.planning.data.gov.uk/entity/255">Portsmouth City Council</a></td>
 <td></td>
+<td class="number">612</td>
+<td class="number">97.1</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -3589,6 +3858,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>134</td>
 <td><a href="https://www.planning.data.gov.uk/entity/276">Rutland County Council</a></td>
 <td></td>
+<td class="number">417</td>
+<td class="number">96.9</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -3611,6 +3882,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>135</td>
 <td><a href="https://www.planning.data.gov.uk/entity/379">Woking Borough Council</a></td>
 <td></td>
+<td class="number">669</td>
+<td class="number">75.8</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
@@ -3633,6 +3906,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>136</td>
 <td><a href="https://www.planning.data.gov.uk/entity/64">Broxbourne Borough Council</a></td>
 <td></td>
+<td class="number">429</td>
+<td class="number">91.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3655,6 +3930,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>137</td>
 <td><a href="https://www.planning.data.gov.uk/entity/113">Dudley Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">807</td>
+<td class="number">88.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3677,6 +3954,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>138</td>
 <td><a href="https://www.planning.data.gov.uk/entity/143">Gedling Borough Council</a></td>
 <td></td>
+<td class="number">448</td>
+<td class="number">90.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3699,6 +3978,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>139</td>
 <td><a href="https://www.planning.data.gov.uk/entity/321">Stratford-on-Avon District Council</a></td>
 <td></td>
+<td class="number">1114</td>
+<td class="number">85.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3721,6 +4002,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>140</td>
 <td><a href="https://www.planning.data.gov.uk/entity/357">Warwick District Council</a></td>
 <td></td>
+<td class="number">721</td>
+<td class="number">93.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3743,6 +4026,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>141</td>
 <td><a href="https://www.planning.data.gov.uk/entity/73">Carlisle City Council</a></td>
 <td>2023-03-31</td>
+<td class="number"></td>
+<td class="number"></td>
 <td class="dot"></td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3765,6 +4050,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>142</td>
 <td><a href="https://www.planning.data.gov.uk/entity/33">Babergh District Council</a></td>
 <td></td>
+<td class="number">665</td>
+<td class="number">93.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3787,6 +4074,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>143</td>
 <td><a href="https://www.planning.data.gov.uk/entity/43">London Borough of Bexley</a></td>
 <td></td>
+<td class="number">1216</td>
+<td class="number">93.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3809,6 +4098,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>144</td>
 <td><a href="https://www.planning.data.gov.uk/entity/46">Blaby District Council</a></td>
 <td></td>
+<td class="number">443</td>
+<td class="number">95.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3831,6 +4122,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>145</td>
 <td><a href="https://www.planning.data.gov.uk/entity/53">Boston Borough Council</a></td>
 <td></td>
+<td class="number">230</td>
+<td class="number">93</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3853,6 +4146,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>146</td>
 <td><a href="https://www.planning.data.gov.uk/entity/55">Blackpool Borough Council</a></td>
 <td></td>
+<td class="number">315</td>
+<td class="number">83.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3875,6 +4170,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>147</td>
 <td><a href="https://www.planning.data.gov.uk/entity/60">Bromsgrove District Council</a></td>
 <td></td>
+<td class="number">475</td>
+<td class="number">89.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3897,6 +4194,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>148</td>
 <td><a href="https://www.planning.data.gov.uk/entity/62">Broxtowe Borough Council</a></td>
 <td></td>
+<td class="number">456</td>
+<td class="number">94.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3919,6 +4218,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>149</td>
 <td><a href="https://www.planning.data.gov.uk/entity/68">Burnley Borough Council</a></td>
 <td></td>
+<td class="number">225</td>
+<td class="number">99.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3941,6 +4242,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>150</td>
 <td><a href="https://www.planning.data.gov.uk/entity/69">Bury Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">687</td>
+<td class="number">100</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3963,6 +4266,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>151</td>
 <td><a href="https://www.planning.data.gov.uk/entity/81">Chelmsford City Council</a></td>
 <td></td>
+<td class="number">1174</td>
+<td class="number">93.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -3985,6 +4290,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>152</td>
 <td><a href="https://www.planning.data.gov.uk/entity/86">Cheltenham Borough Council</a></td>
 <td></td>
+<td class="number">786</td>
+<td class="number">92.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4007,6 +4314,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>153</td>
 <td><a href="https://www.planning.data.gov.uk/entity/88">Calderdale Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">928</td>
+<td class="number">95.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4029,6 +4338,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>154</td>
 <td><a href="https://www.planning.data.gov.uk/entity/119">East Devon District Council</a></td>
 <td></td>
+<td class="number">1152</td>
+<td class="number">81.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4051,6 +4362,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>155</td>
 <td><a href="https://www.planning.data.gov.uk/entity/124">East Lindsey District Council</a></td>
 <td></td>
+<td class="number">789</td>
+<td class="number">85.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4073,6 +4386,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>156</td>
 <td><a href="https://www.planning.data.gov.uk/entity/138">Fenland District Council</a></td>
 <td></td>
+<td class="number">482</td>
+<td class="number">83.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4095,6 +4410,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>157</td>
 <td><a href="https://www.planning.data.gov.uk/entity/149">Gravesham Borough Council</a></td>
 <td></td>
+<td class="number">560</td>
+<td class="number">93.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4117,6 +4434,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>158</td>
 <td><a href="https://www.planning.data.gov.uk/entity/156">Halton Borough Council</a></td>
 <td></td>
+<td class="number">237</td>
+<td class="number">88.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4139,6 +4458,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>159</td>
 <td><a href="https://www.planning.data.gov.uk/entity/160">Hastings Borough Council</a></td>
 <td></td>
+<td class="number">379</td>
+<td class="number">97.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4161,6 +4482,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>160</td>
 <td><a href="https://www.planning.data.gov.uk/entity/166">High Peak Borough Council</a></td>
 <td></td>
+<td class="number">354</td>
+<td class="number">93.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4183,6 +4506,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>161</td>
 <td><a href="https://www.planning.data.gov.uk/entity/179">Isle of Wight Council</a></td>
 <td></td>
+<td class="number">852</td>
+<td class="number">94.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4205,6 +4530,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>162</td>
 <td><a href="https://www.planning.data.gov.uk/entity/185">Hull City Council</a></td>
 <td></td>
+<td class="number">387</td>
+<td class="number">82.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4227,6 +4554,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>163</td>
 <td><a href="https://www.planning.data.gov.uk/entity/199">City of Lincoln Council</a></td>
 <td></td>
+<td class="number">290</td>
+<td class="number">87.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4249,6 +4578,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>164</td>
 <td><a href="https://www.planning.data.gov.uk/entity/206">Maldon District Council</a></td>
 <td></td>
+<td class="number">541</td>
+<td class="number">88.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4271,6 +4602,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>165</td>
 <td><a href="https://www.planning.data.gov.uk/entity/209">Malvern Hills District Council</a></td>
 <td></td>
+<td class="number">599</td>
+<td class="number">87.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4293,6 +4626,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>166</td>
 <td><a href="https://www.planning.data.gov.uk/entity/211">Mid Devon District Council</a></td>
 <td></td>
+<td class="number">635</td>
+<td class="number">97.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4315,6 +4650,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>167</td>
 <td><a href="https://www.planning.data.gov.uk/entity/218">Mid Sussex District Council</a></td>
 <td></td>
+<td class="number">964</td>
+<td class="number">99.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4337,6 +4674,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>168</td>
 <td><a href="https://www.planning.data.gov.uk/entity/219">Mid Suffolk District Council</a></td>
 <td></td>
+<td class="number">746</td>
+<td class="number">94.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4359,6 +4698,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>169</td>
 <td><a href="https://www.planning.data.gov.uk/entity/223">Newark and Sherwood District Council</a></td>
 <td></td>
+<td class="number">614</td>
+<td class="number">91.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4381,6 +4722,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>170</td>
 <td><a href="https://www.planning.data.gov.uk/entity/224">Newcastle-under-Lyme Borough Council</a></td>
 <td></td>
+<td class="number">436</td>
+<td class="number">96.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4403,6 +4746,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>171</td>
 <td><a href="https://www.planning.data.gov.uk/entity/232">North Hertfordshire District Council</a></td>
 <td></td>
+<td class="number">884</td>
+<td class="number">93.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4425,6 +4770,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>172</td>
 <td><a href="https://www.planning.data.gov.uk/entity/245">North West Leicestershire District Council</a></td>
 <td></td>
+<td class="number">498</td>
+<td class="number">88.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4447,6 +4794,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>173</td>
 <td><a href="https://www.planning.data.gov.uk/entity/252">Pendle Borough Council</a></td>
 <td></td>
+<td class="number">426</td>
+<td class="number">96.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4469,6 +4818,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>174</td>
 <td><a href="https://www.planning.data.gov.uk/entity/263">Redditch Borough Council</a></td>
 <td></td>
+<td class="number">139</td>
+<td class="number">86.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4491,6 +4842,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>175</td>
 <td><a href="https://www.planning.data.gov.uk/entity/272">Rugby Borough Council</a></td>
 <td></td>
+<td class="number">474</td>
+<td class="number">85.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4513,6 +4866,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>176</td>
 <td><a href="https://www.planning.data.gov.uk/entity/290">Sefton Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">921</td>
+<td class="number">98</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4535,6 +4890,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>177</td>
 <td><a href="https://www.planning.data.gov.uk/entity/306">Solihull Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">1144</td>
+<td class="number">86.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4557,6 +4914,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>178</td>
 <td><a href="https://www.planning.data.gov.uk/entity/319">London Borough of Sutton</a></td>
 <td></td>
+<td class="number">994</td>
+<td class="number">98.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4579,6 +4938,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>179</td>
 <td><a href="https://www.planning.data.gov.uk/entity/323">Stockton-on-Tees Borough Council</a></td>
 <td></td>
+<td class="number">562</td>
+<td class="number">88.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4601,6 +4962,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>180</td>
 <td><a href="https://www.planning.data.gov.uk/entity/332">Tameside Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">513</td>
+<td class="number">93.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4623,6 +4986,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>181</td>
 <td><a href="https://www.planning.data.gov.uk/entity/345">Tonbridge and Malling Borough Council</a></td>
 <td></td>
+<td class="number">725</td>
+<td class="number">82.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4645,6 +5010,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>182</td>
 <td><a href="https://www.planning.data.gov.uk/entity/364">Welwyn Hatfield Borough Council</a></td>
 <td></td>
+<td class="number">654</td>
+<td class="number">94.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4667,6 +5034,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>183</td>
 <td><a href="https://www.planning.data.gov.uk/entity/370">Wakefield Metropolitan District Council</a></td>
 <td></td>
+<td class="number">1038</td>
+<td class="number">89.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4689,6 +5058,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>184</td>
 <td><a href="https://www.planning.data.gov.uk/entity/374">City of Wolverhampton Council</a></td>
 <td></td>
+<td class="number">706</td>
+<td class="number">95.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4711,6 +5082,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>185</td>
 <td><a href="https://www.planning.data.gov.uk/entity/378">Worcester City Council</a></td>
 <td></td>
+<td class="number">310</td>
+<td class="number">93.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4733,6 +5106,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>186</td>
 <td><a href="https://www.planning.data.gov.uk/entity/386">West Suffolk Council</a></td>
 <td></td>
+<td class="number">785</td>
+<td class="number">89.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4755,6 +5130,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>187</td>
 <td><a href="https://www.planning.data.gov.uk/entity/392">Wyre Forest District Council</a></td>
 <td></td>
+<td class="number">371</td>
+<td class="number">89.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4777,6 +5154,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>188</td>
 <td><a href="https://www.planning.data.gov.uk/entity/98">Craven District Council</a></td>
 <td>2023-03-31</td>
+<td class="number"></td>
+<td class="number"></td>
 <td class="dot"></td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4799,6 +5178,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>189</td>
 <td><a href="https://www.planning.data.gov.uk/entity/154">Hambleton District Council</a></td>
 <td>2023-03-31</td>
+<td class="number"></td>
+<td class="number"></td>
 <td class="dot"></td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4821,6 +5202,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>190</td>
 <td><a href="https://www.planning.data.gov.uk/entity/155">Harrogate Borough Council</a></td>
 <td>2023-03-31</td>
+<td class="number"></td>
+<td class="number"></td>
 <td class="dot"></td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4843,6 +5226,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>191</td>
 <td><a href="https://www.planning.data.gov.uk/entity/267">Richmondshire District Council</a></td>
 <td>2023-03-31</td>
+<td class="number"></td>
+<td class="number"></td>
 <td class="dot"></td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4865,6 +5250,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>192</td>
 <td><a href="https://www.planning.data.gov.uk/entity/277">Ryedale District Council</a></td>
 <td>2023-03-31</td>
+<td class="number"></td>
+<td class="number"></td>
 <td class="dot"></td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4887,6 +5274,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>193</td>
 <td><a href="https://www.planning.data.gov.uk/entity/282">Scarborough Borough Council</a></td>
 <td>2023-03-31</td>
+<td class="number"></td>
+<td class="number"></td>
 <td class="dot"></td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4909,6 +5298,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>194</td>
 <td><a href="https://www.planning.data.gov.uk/entity/287">Selby District Council</a></td>
 <td>2023-03-31</td>
+<td class="number"></td>
+<td class="number"></td>
 <td class="dot"></td>
 <td class="dot"></td>
 <td class="dot">●</td>
@@ -4931,6 +5322,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>195</td>
 <td><a href="https://www.planning.data.gov.uk/entity/38">Bath and North East Somerset Council</a></td>
 <td></td>
+<td class="number">1255</td>
+<td class="number">88.8</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -4953,6 +5346,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>196</td>
 <td><a href="https://www.planning.data.gov.uk/entity/49">Brighton and Hove City Council</a></td>
 <td></td>
+<td class="number">1371</td>
+<td class="number">94.2</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -4975,6 +5370,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>197</td>
 <td><a href="https://www.planning.data.gov.uk/entity/57">Bracknell Forest Council</a></td>
 <td></td>
+<td class="number">555</td>
+<td class="number">93.7</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -4997,6 +5394,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>198</td>
 <td><a href="https://www.planning.data.gov.uk/entity/10000">Cumberland Unitary Authority</a></td>
 <td></td>
+<td class="number">1168</td>
+<td class="number">85.3</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -5019,6 +5418,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>199</td>
 <td><a href="https://www.planning.data.gov.uk/entity/125">Elmbridge Borough Council</a></td>
 <td></td>
+<td class="number">1520</td>
+<td class="number">88.9</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -5041,6 +5442,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>200</td>
 <td><a href="https://www.planning.data.gov.uk/entity/150">Royal Borough of Greenwich</a></td>
 <td></td>
+<td class="number">1361</td>
+<td class="number">92.7</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -5063,6 +5466,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>201</td>
 <td><a href="https://www.planning.data.gov.uk/entity/161">Hart District Council</a></td>
 <td></td>
+<td class="number">650</td>
+<td class="number">86.8</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -5085,6 +5490,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>202</td>
 <td><a href="https://www.planning.data.gov.uk/entity/169">London Borough of Hammersmith &amp; Fulham</a></td>
 <td></td>
+<td class="number">1079</td>
+<td class="number">93</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -5107,6 +5514,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>203</td>
 <td><a href="https://www.planning.data.gov.uk/entity/180">Ipswich Borough Council</a></td>
 <td></td>
+<td class="number">392</td>
+<td class="number">96.7</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -5129,6 +5538,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>204</td>
 <td><a href="https://www.planning.data.gov.uk/entity/181">London Borough of Islington</a></td>
 <td></td>
+<td class="number">940</td>
+<td class="number">96.6</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -5151,6 +5562,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>205</td>
 <td><a href="https://www.planning.data.gov.uk/entity/204">Luton Borough Council</a></td>
 <td></td>
+<td class="number">691</td>
+<td class="number">98.6</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -5173,6 +5586,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>206</td>
 <td><a href="https://www.planning.data.gov.uk/entity/259">Redcar and Cleveland Borough Council</a></td>
 <td></td>
+<td class="number">379</td>
+<td class="number">91</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -5195,6 +5610,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>207</td>
 <td><a href="https://www.planning.data.gov.uk/entity/294">Sheffield City Council</a></td>
 <td></td>
+<td class="number">1695</td>
+<td class="number">82.4</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -5217,6 +5634,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>208</td>
 <td><a href="https://www.planning.data.gov.uk/entity/335">Tamworth Borough Council</a></td>
 <td></td>
+<td class="number">164</td>
+<td class="number">99.4</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -5239,6 +5658,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>209</td>
 <td><a href="https://www.planning.data.gov.uk/entity/10001">Westmorland and Furness Council</a></td>
 <td></td>
+<td class="number">1009</td>
+<td class="number">87.2</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -5261,6 +5682,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>210</td>
 <td><a href="https://www.planning.data.gov.uk/entity/380">Wokingham Borough Council</a></td>
 <td></td>
+<td class="number">1155</td>
+<td class="number">99.6</td>
 <td class="dot">●</td>
 <td class="dot">●</td>
 <td class="dot"></td>
@@ -5283,6 +5706,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>211</td>
 <td><a href="https://www.planning.data.gov.uk/entity/42">London Borough of Brent</a></td>
 <td></td>
+<td class="number">1787</td>
+<td class="number">84.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5305,6 +5730,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>212</td>
 <td><a href="https://www.planning.data.gov.uk/entity/54">Bournemouth, Christchurch and Poole Council</a></td>
 <td></td>
+<td class="number">2287</td>
+<td class="number">85.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5327,6 +5754,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>213</td>
 <td><a href="https://www.planning.data.gov.uk/entity/102">Darlington Borough Council</a></td>
 <td></td>
+<td class="number">344</td>
+<td class="number">95.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5349,6 +5778,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>214</td>
 <td><a href="https://www.planning.data.gov.uk/entity/131">East Riding of Yorkshire Council</a></td>
 <td></td>
+<td class="number">1962</td>
+<td class="number">94.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5371,6 +5802,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>215</td>
 <td><a href="https://www.planning.data.gov.uk/entity/132">East Suffolk Council</a></td>
 <td></td>
+<td class="number">1588</td>
+<td class="number">72.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5393,6 +5826,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>216</td>
 <td><a href="https://www.planning.data.gov.uk/entity/208">Mansfield District Council</a></td>
 <td></td>
+<td class="number">246</td>
+<td class="number">94.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5415,6 +5850,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>217</td>
 <td><a href="https://www.planning.data.gov.uk/entity/297">Shropshire Council</a></td>
 <td></td>
+<td class="number">2199</td>
+<td class="number">94</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5437,6 +5874,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>218</td>
 <td><a href="https://www.planning.data.gov.uk/entity/351">Uttlesford District Council</a></td>
 <td></td>
+<td class="number">975</td>
+<td class="number">79.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5459,6 +5898,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>219</td>
 <td><a href="https://www.planning.data.gov.uk/entity/397">Lake District National Park Authority</a></td>
 <td></td>
+<td class="number">765</td>
+<td class="number">88.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5481,6 +5922,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>220</td>
 <td><a href="https://www.planning.data.gov.uk/entity/4700001">Middlesbrough Development Corporation</a></td>
 <td></td>
+<td class="number">26</td>
+<td class="number">96.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5503,6 +5946,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>221</td>
 <td><a href="https://www.planning.data.gov.uk/entity/4700002">Hartlepool Development Corporation</a></td>
 <td></td>
+<td class="number">14</td>
+<td class="number">85.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5525,6 +5970,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>222</td>
 <td><a href="https://www.planning.data.gov.uk/entity/1">Old Oak and Park Royal Development Corporation</a></td>
 <td></td>
+<td class="number">13</td>
+<td class="number">100</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5547,6 +5994,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>223</td>
 <td><a href="https://www.planning.data.gov.uk/entity/3">London Legacy Development Corporation</a></td>
 <td></td>
+<td class="number">63</td>
+<td class="number">73</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5569,6 +6018,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>224</td>
 <td><a href="https://www.planning.data.gov.uk/entity/6">Ebbsfleet Development Corporation</a></td>
 <td></td>
+<td class="number">30</td>
+<td class="number">96.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5591,6 +6042,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>225</td>
 <td><a href="https://www.planning.data.gov.uk/entity/26">Adur District Council</a></td>
 <td></td>
+<td class="number">357</td>
+<td class="number">95</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5613,6 +6066,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>226</td>
 <td><a href="https://www.planning.data.gov.uk/entity/28">Amber Valley Borough Council</a></td>
 <td></td>
+<td class="number">725</td>
+<td class="number">97.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5635,6 +6090,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>227</td>
 <td><a href="https://www.planning.data.gov.uk/entity/29">Arun District Council</a></td>
 <td></td>
+<td class="number">702</td>
+<td class="number">96.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5657,6 +6114,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>228</td>
 <td><a href="https://www.planning.data.gov.uk/entity/31">Ashfield District Council</a></td>
 <td></td>
+<td class="number">347</td>
+<td class="number">92.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5679,6 +6138,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>229</td>
 <td><a href="https://www.planning.data.gov.uk/entity/50">Barnsley Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">546</td>
+<td class="number">93.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5701,6 +6162,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>230</td>
 <td><a href="https://www.planning.data.gov.uk/entity/56">Braintree District Council</a></td>
 <td></td>
+<td class="number">821</td>
+<td class="number">89.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5723,6 +6186,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>231</td>
 <td><a href="https://www.planning.data.gov.uk/entity/59">Breckland District Council</a></td>
 <td></td>
+<td class="number">756</td>
+<td class="number">95.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5745,6 +6210,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>232</td>
 <td><a href="https://www.planning.data.gov.uk/entity/63">Brentwood Borough Council</a></td>
 <td></td>
+<td class="number">611</td>
+<td class="number">95.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5767,6 +6234,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>233</td>
 <td><a href="https://www.planning.data.gov.uk/entity/65">London Borough of Bromley</a></td>
 <td></td>
+<td class="number">2128</td>
+<td class="number">86</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5789,6 +6258,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>234</td>
 <td><a href="https://www.planning.data.gov.uk/entity/72">Cannock Chase District Council</a></td>
 <td></td>
+<td class="number">232</td>
+<td class="number">91.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5811,6 +6282,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>235</td>
 <td><a href="https://www.planning.data.gov.uk/entity/77">Charnwood Borough Council</a></td>
 <td></td>
+<td class="number">879</td>
+<td class="number">93.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5833,6 +6306,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>236</td>
 <td><a href="https://www.planning.data.gov.uk/entity/79">Cheshire East Council</a></td>
 <td></td>
+<td class="number">2272</td>
+<td class="number">88.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5855,6 +6330,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>237</td>
 <td><a href="https://www.planning.data.gov.uk/entity/80">Chichester District Council</a></td>
 <td></td>
+<td class="number">846</td>
+<td class="number">90.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5877,6 +6354,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>238</td>
 <td><a href="https://www.planning.data.gov.uk/entity/83">Chorley Borough Council</a></td>
 <td></td>
+<td class="number">463</td>
+<td class="number">99.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5899,6 +6378,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>239</td>
 <td><a href="https://www.planning.data.gov.uk/entity/84">Cherwell District Council</a></td>
 <td></td>
+<td class="number">1153</td>
+<td class="number">82.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5921,6 +6402,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>240</td>
 <td><a href="https://www.planning.data.gov.uk/entity/99">Crawley Borough Council</a></td>
 <td></td>
+<td class="number">251</td>
+<td class="number">93.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5943,6 +6426,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>241</td>
 <td><a href="https://www.planning.data.gov.uk/entity/103">Dartford Borough Council</a></td>
 <td></td>
+<td class="number">487</td>
+<td class="number">92.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5965,6 +6450,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>242</td>
 <td><a href="https://www.planning.data.gov.uk/entity/106">Derbyshire Dales District Council</a></td>
 <td></td>
+<td class="number">461</td>
+<td class="number">83.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -5987,6 +6474,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>243</td>
 <td><a href="https://www.planning.data.gov.uk/entity/107">Derby City Council</a></td>
 <td></td>
+<td class="number">881</td>
+<td class="number">90.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6009,6 +6498,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>244</td>
 <td><a href="https://www.planning.data.gov.uk/entity/115">London Borough of Ealing</a></td>
 <td></td>
+<td class="number">1945</td>
+<td class="number">98.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6031,6 +6522,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>245</td>
 <td><a href="https://www.planning.data.gov.uk/entity/116">Eastbourne Borough Council</a></td>
 <td></td>
+<td class="number">222</td>
+<td class="number">76.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6053,6 +6546,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>246</td>
 <td><a href="https://www.planning.data.gov.uk/entity/117">Eastleigh Borough Council</a></td>
 <td></td>
+<td class="number">569</td>
+<td class="number">93.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6075,6 +6570,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>247</td>
 <td><a href="https://www.planning.data.gov.uk/entity/130">Erewash Borough Council</a></td>
 <td></td>
+<td class="number">423</td>
+<td class="number">95.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6097,6 +6594,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>248</td>
 <td><a href="https://www.planning.data.gov.uk/entity/134">East Staffordshire Borough Council</a></td>
 <td></td>
+<td class="number">576</td>
+<td class="number">88.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6119,6 +6618,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>249</td>
 <td><a href="https://www.planning.data.gov.uk/entity/136">Exeter City Council</a></td>
 <td></td>
+<td class="number">434</td>
+<td class="number">84.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6141,6 +6642,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>250</td>
 <td><a href="https://www.planning.data.gov.uk/entity/137">Fareham Borough Council</a></td>
 <td></td>
+<td class="number">557</td>
+<td class="number">99.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6163,6 +6666,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>251</td>
 <td><a href="https://www.planning.data.gov.uk/entity/141">Fylde Borough Council</a></td>
 <td></td>
+<td class="number">333</td>
+<td class="number">96.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6185,6 +6690,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>252</td>
 <td><a href="https://www.planning.data.gov.uk/entity/148">Gosport Borough Council</a></td>
 <td></td>
+<td class="number">180</td>
+<td class="number">95.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6207,6 +6714,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>253</td>
 <td><a href="https://www.planning.data.gov.uk/entity/151">Guildford Borough Council</a></td>
 <td></td>
+<td class="number">1286</td>
+<td class="number">90.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6229,6 +6738,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>254</td>
 <td><a href="https://www.planning.data.gov.uk/entity/164">Herefordshire Council</a></td>
 <td></td>
+<td class="number">1109</td>
+<td class="number">78.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6251,6 +6762,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>255</td>
 <td><a href="https://www.planning.data.gov.uk/entity/165">Hertsmere Borough Council</a></td>
 <td></td>
+<td class="number">684</td>
+<td class="number">96.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6273,6 +6786,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>256</td>
 <td><a href="https://www.planning.data.gov.uk/entity/167">London Borough of Hillingdon</a></td>
 <td></td>
+<td class="number">1840</td>
+<td class="number">89.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6295,6 +6810,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>257</td>
 <td><a href="https://www.planning.data.gov.uk/entity/168">Hinckley and Bosworth Borough Council</a></td>
 <td></td>
+<td class="number">565</td>
+<td class="number">88</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6317,6 +6834,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>258</td>
 <td><a href="https://www.planning.data.gov.uk/entity/172">Hartlepool Borough Council</a></td>
 <td></td>
+<td class="number">192</td>
+<td class="number">99.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6339,6 +6858,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>259</td>
 <td><a href="https://www.planning.data.gov.uk/entity/176">Huntingdonshire District Council</a></td>
 <td></td>
+<td class="number">854</td>
+<td class="number">86.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6361,6 +6882,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>260</td>
 <td><a href="https://www.planning.data.gov.uk/entity/177">Hyndburn Borough Council</a></td>
 <td></td>
+<td class="number">273</td>
+<td class="number">94.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6383,6 +6906,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>261</td>
 <td><a href="https://www.planning.data.gov.uk/entity/186">Borough Council of King&#x27;s Lynn and West Norfolk</a></td>
 <td></td>
+<td class="number">1279</td>
+<td class="number">91.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6405,6 +6930,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>262</td>
 <td><a href="https://www.planning.data.gov.uk/entity/187">Kirklees Council</a></td>
 <td></td>
+<td class="number">1804</td>
+<td class="number">91</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6427,6 +6954,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>263</td>
 <td><a href="https://www.planning.data.gov.uk/entity/200">Lichfield District Council</a></td>
 <td></td>
+<td class="number">541</td>
+<td class="number">86.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6449,6 +6978,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>264</td>
 <td><a href="https://www.planning.data.gov.uk/entity/205">Maidstone Borough Council</a></td>
 <td></td>
+<td class="number">1061</td>
+<td class="number">97.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6471,6 +7002,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>265</td>
 <td><a href="https://www.planning.data.gov.uk/entity/207">Manchester City Council</a></td>
 <td></td>
+<td class="number">1455</td>
+<td class="number">91.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6493,6 +7026,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>266</td>
 <td><a href="https://www.planning.data.gov.uk/entity/210">Middlesbrough Borough Council</a></td>
 <td></td>
+<td class="number">290</td>
+<td class="number">93.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6515,6 +7050,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>267</td>
 <td><a href="https://www.planning.data.gov.uk/entity/213">Melton Borough Council</a></td>
 <td></td>
+<td class="number">308</td>
+<td class="number">85.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6537,6 +7074,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>268</td>
 <td><a href="https://www.planning.data.gov.uk/entity/216">Mole Valley District Council</a></td>
 <td></td>
+<td class="number">868</td>
+<td class="number">91.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6559,6 +7098,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>269</td>
 <td><a href="https://www.planning.data.gov.uk/entity/217">London Borough of Merton</a></td>
 <td></td>
+<td class="number">1183</td>
+<td class="number">91</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6581,6 +7122,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>270</td>
 <td><a href="https://www.planning.data.gov.uk/entity/227">North East Lincolnshire Council</a></td>
 <td></td>
+<td class="number">420</td>
+<td class="number">99.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6603,6 +7146,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>271</td>
 <td><a href="https://www.planning.data.gov.uk/entity/235">North Norfolk District Council</a></td>
 <td></td>
+<td class="number">912</td>
+<td class="number">96.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6625,6 +7170,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>272</td>
 <td><a href="https://www.planning.data.gov.uk/entity/501908">North Northamptonshire Council</a></td>
 <td></td>
+<td class="number">1234</td>
+<td class="number">79</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6647,6 +7194,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>273</td>
 <td><a href="https://www.planning.data.gov.uk/entity/243">Nuneaton and Bedworth Borough Council</a></td>
 <td></td>
+<td class="number">229</td>
+<td class="number">96.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6669,6 +7218,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>274</td>
 <td><a href="https://www.planning.data.gov.uk/entity/244">North Warwickshire Borough Council</a></td>
 <td></td>
+<td class="number">352</td>
+<td class="number">88.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6691,6 +7242,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>275</td>
 <td><a href="https://www.planning.data.gov.uk/entity/248">Oadby and Wigston Borough Council</a></td>
 <td></td>
+<td class="number">291</td>
+<td class="number">93.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6713,6 +7266,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>276</td>
 <td><a href="https://www.planning.data.gov.uk/entity/249">Oldham Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">734</td>
+<td class="number">96.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6735,6 +7290,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>277</td>
 <td><a href="https://www.planning.data.gov.uk/entity/251">Oxford City Council</a></td>
 <td></td>
+<td class="number">932</td>
+<td class="number">89.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6757,6 +7314,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>278</td>
 <td><a href="https://www.planning.data.gov.uk/entity/256">Preston City Council</a></td>
 <td></td>
+<td class="number">523</td>
+<td class="number">97.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6779,6 +7338,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>279</td>
 <td><a href="https://www.planning.data.gov.uk/entity/262">Reading Borough Council</a></td>
 <td></td>
+<td class="number">496</td>
+<td class="number">87.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6801,6 +7362,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>280</td>
 <td><a href="https://www.planning.data.gov.uk/entity/265">Ribble Valley Borough Council</a></td>
 <td></td>
+<td class="number">483</td>
+<td class="number">91.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6823,6 +7386,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>281</td>
 <td><a href="https://www.planning.data.gov.uk/entity/268">Rochford District Council</a></td>
 <td></td>
+<td class="number">480</td>
+<td class="number">77.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6845,6 +7410,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>282</td>
 <td><a href="https://www.planning.data.gov.uk/entity/271">Rotherham Metropolitan Borough Council</a></td>
 <td></td>
+<td class="number">765</td>
+<td class="number">99.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6867,6 +7434,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>283</td>
 <td><a href="https://www.planning.data.gov.uk/entity/273">Rushmoor Borough Council</a></td>
 <td></td>
+<td class="number">271</td>
+<td class="number">90.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6889,6 +7458,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>284</td>
 <td><a href="https://www.planning.data.gov.uk/entity/275">Rushcliffe Borough Council</a></td>
 <td></td>
+<td class="number">747</td>
+<td class="number">92.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6911,6 +7482,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>285</td>
 <td><a href="https://www.planning.data.gov.uk/entity/284">South Derbyshire District Council</a></td>
 <td></td>
+<td class="number">606</td>
+<td class="number">86</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6933,6 +7506,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>286</td>
 <td><a href="https://www.planning.data.gov.uk/entity/293">Folkestone and Hythe Council</a></td>
 <td></td>
+<td class="number">661</td>
+<td class="number">95</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6955,6 +7530,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>287</td>
 <td><a href="https://www.planning.data.gov.uk/entity/295">St Helens Council</a></td>
 <td></td>
+<td class="number">404</td>
+<td class="number">99</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6977,6 +7554,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>288</td>
 <td><a href="https://www.planning.data.gov.uk/entity/296">South Holland District Council</a></td>
 <td></td>
+<td class="number">522</td>
+<td class="number">92.5</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -6999,6 +7578,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>289</td>
 <td><a href="https://www.planning.data.gov.uk/entity/298">South Kesteven District Council</a></td>
 <td></td>
+<td class="number">796</td>
+<td class="number">78.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7021,6 +7602,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>290</td>
 <td><a href="https://www.planning.data.gov.uk/entity/302">Slough Borough Council</a></td>
 <td></td>
+<td class="number">672</td>
+<td class="number">81</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7043,6 +7626,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>291</td>
 <td><a href="https://www.planning.data.gov.uk/entity/303">Sunderland City Council</a></td>
 <td></td>
+<td class="number">463</td>
+<td class="number">98.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7065,6 +7650,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>292</td>
 <td><a href="https://www.planning.data.gov.uk/entity/308">Southend-on-Sea Borough Council</a></td>
 <td></td>
+<td class="number">906</td>
+<td class="number">99.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7087,6 +7674,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>293</td>
 <td><a href="https://www.planning.data.gov.uk/entity/309">South Oxfordshire District Council</a></td>
 <td></td>
+<td class="number">1318</td>
+<td class="number">93.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7109,6 +7698,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>294</td>
 <td><a href="https://www.planning.data.gov.uk/entity/311">South Ribble Borough Council</a></td>
 <td></td>
+<td class="number">473</td>
+<td class="number">93.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7131,6 +7722,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>295</td>
 <td><a href="https://www.planning.data.gov.uk/entity/315">Stafford Borough Council</a></td>
 <td></td>
+<td class="number">600</td>
+<td class="number">83.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7153,6 +7746,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>296</td>
 <td><a href="https://www.planning.data.gov.uk/entity/317">Staffordshire Moorlands District Council</a></td>
 <td></td>
+<td class="number">460</td>
+<td class="number">93.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7175,6 +7770,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>297</td>
 <td><a href="https://www.planning.data.gov.uk/entity/320">Stroud District Council</a></td>
 <td></td>
+<td class="number">919</td>
+<td class="number">94.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7197,6 +7794,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>298</td>
 <td><a href="https://www.planning.data.gov.uk/entity/325">South Tyneside Council</a></td>
 <td></td>
+<td class="number">400</td>
+<td class="number">90</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7219,6 +7818,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>299</td>
 <td><a href="https://www.planning.data.gov.uk/entity/328">Swindon Borough Council</a></td>
 <td></td>
+<td class="number">716</td>
+<td class="number">90.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7241,6 +7842,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>300</td>
 <td><a href="https://www.planning.data.gov.uk/entity/330">Swale Borough Council</a></td>
 <td></td>
+<td class="number">560</td>
+<td class="number">95</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7263,6 +7866,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>301</td>
 <td><a href="https://www.planning.data.gov.uk/entity/338">Test Valley Borough Council</a></td>
 <td></td>
+<td class="number">850</td>
+<td class="number">96.4</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7285,6 +7890,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>302</td>
 <td><a href="https://www.planning.data.gov.uk/entity/340">Telford &amp; Wrekin Council</a></td>
 <td></td>
+<td class="number">638</td>
+<td class="number">98.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7307,6 +7914,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>303</td>
 <td><a href="https://www.planning.data.gov.uk/entity/342">Three Rivers District Council</a></td>
 <td></td>
+<td class="number">779</td>
+<td class="number">99</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7329,6 +7938,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>304</td>
 <td><a href="https://www.planning.data.gov.uk/entity/343">Thurrock Council</a></td>
 <td></td>
+<td class="number">649</td>
+<td class="number">99.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7351,6 +7962,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>305</td>
 <td><a href="https://www.planning.data.gov.uk/entity/346">Torridge District Council</a></td>
 <td></td>
+<td class="number">670</td>
+<td class="number">94.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7373,6 +7986,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>306</td>
 <td><a href="https://www.planning.data.gov.uk/entity/348">Tunbridge Wells Borough Council</a></td>
 <td></td>
+<td class="number">1100</td>
+<td class="number">96.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7395,6 +8010,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>307</td>
 <td><a href="https://www.planning.data.gov.uk/entity/352">Vale of White Horse District Council</a></td>
 <td></td>
+<td class="number">861</td>
+<td class="number">95.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7417,6 +8034,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>308</td>
 <td><a href="https://www.planning.data.gov.uk/entity/361">Wealden District Council</a></td>
 <td></td>
+<td class="number">1341</td>
+<td class="number">94</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7439,6 +8058,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>309</td>
 <td><a href="https://www.planning.data.gov.uk/entity/368">Wiltshire Council</a></td>
 <td></td>
+<td class="number">2991</td>
+<td class="number">95.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7461,6 +8082,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>310</td>
 <td><a href="https://www.planning.data.gov.uk/entity/369">Winchester City Council</a></td>
 <td></td>
+<td class="number">899</td>
+<td class="number">95.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7483,6 +8106,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>311</td>
 <td><a href="https://www.planning.data.gov.uk/entity/371">West Lancashire Borough Council</a></td>
 <td></td>
+<td class="number">600</td>
+<td class="number">84.8</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7505,6 +8130,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>312</td>
 <td><a href="https://www.planning.data.gov.uk/entity/377">Royal Borough of Windsor and Maidenhead</a></td>
 <td></td>
+<td class="number">1316</td>
+<td class="number">84.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7527,6 +8154,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>313</td>
 <td><a href="https://www.planning.data.gov.uk/entity/501909">West Northamptonshire Council</a></td>
 <td></td>
+<td class="number">1792</td>
+<td class="number">87.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7549,6 +8178,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>314</td>
 <td><a href="https://www.planning.data.gov.uk/entity/382">Worthing Borough Council</a></td>
 <td></td>
+<td class="number">510</td>
+<td class="number">94.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7571,6 +8202,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>315</td>
 <td><a href="https://www.planning.data.gov.uk/entity/385">Warrington Borough Council</a></td>
 <td></td>
+<td class="number">893</td>
+<td class="number">85.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7593,6 +8226,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>316</td>
 <td><a href="https://www.planning.data.gov.uk/entity/390">Wychavon District Council</a></td>
 <td></td>
+<td class="number">1012</td>
+<td class="number">85.1</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7615,6 +8250,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>317</td>
 <td><a href="https://www.planning.data.gov.uk/entity/394">Wyre Borough Council</a></td>
 <td></td>
+<td class="number">490</td>
+<td class="number">90.2</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7637,6 +8274,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>318</td>
 <td><a href="https://www.planning.data.gov.uk/entity/396">South Downs National Park Authority</a></td>
 <td></td>
+<td class="number">1458</td>
+<td class="number">89.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7659,6 +8298,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>319</td>
 <td><a href="https://www.planning.data.gov.uk/entity/398">Yorkshire Dales National Park Authority</a></td>
 <td></td>
+<td class="number">435</td>
+<td class="number">88.3</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7681,6 +8322,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>320</td>
 <td><a href="https://www.planning.data.gov.uk/entity/399">Broads Authority</a></td>
 <td></td>
+<td class="number">146</td>
+<td class="number">100</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7703,6 +8346,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>321</td>
 <td><a href="https://www.planning.data.gov.uk/entity/400">Dartmoor National Park Authority</a></td>
 <td></td>
+<td class="number">284</td>
+<td class="number">86.6</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7725,6 +8370,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>322</td>
 <td><a href="https://www.planning.data.gov.uk/entity/402">North York Moors National Park Authority</a></td>
 <td></td>
+<td class="number">434</td>
+<td class="number">79.7</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7747,6 +8394,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>323</td>
 <td><a href="https://www.planning.data.gov.uk/entity/403">Exmoor National Park Authority</a></td>
 <td></td>
+<td class="number">128</td>
+<td class="number">75</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7769,6 +8418,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>324</td>
 <td><a href="https://www.planning.data.gov.uk/entity/404">Northumberland National Park Authority</a></td>
 <td></td>
+<td class="number">37</td>
+<td class="number">100</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
@@ -7791,6 +8442,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <td>325</td>
 <td><a href="https://www.planning.data.gov.uk/entity/405">Peak District National Park Authority</a></td>
 <td></td>
+<td class="number">546</td>
+<td class="number">87.9</td>
 <td class="dot">●</td>
 <td class="dot"></td>
 <td class="dot"></td>
