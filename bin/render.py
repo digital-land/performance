@@ -258,6 +258,9 @@ table {
   border-spacing: 0;
   border: 1px solid #ddd;
 }
+#sortable table {
+  width: 100%;
+}
 thead {
   position: sticky;
   top: 1px;
@@ -295,7 +298,7 @@ tr:nth-child(even) {
 
 .chart {
   width: 100%;
-  max-width: 1280px;
+  max-width: 100%;
   min-height: 450px;
 }
 
