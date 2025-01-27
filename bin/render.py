@@ -746,20 +746,20 @@ th[role=columnheader]:not(.no-sort):hover:after {
             <th scope="col" align="left">Ended</th>
             <th scope="col" align="right">Minor applications in 2024</th>
             <th scope="col" align="right">% processed in 8 weeks</th>
-            <th scope="col" align="left">LPA</th>
+            <th scope="col" align="left"><abbr title="Local Planning Authority">LPA</th>
             <th scope="col" align="left">Drupal</th>
-            <th scope="col" align="left">LLC</th>
-            <th scope="col" align="left">ODP</th>
+            <th scope="col" align="left"><abbr title="local-land-charges">LLC</abbr></th>
+            <th scope="col" align="left"><abbr title="open-digital-planning">ODP</th>
             <th scope="col" align="right">PropTech</th>
             <th scope="col" align="right">Software</th>
             <th scope="col" align="right">Both</th>
     """)
 
     for dataset, col  in odp_datasets.items():
-        print(f'<th class="odp-col" scope="col" align="left">{col}</th>')
+        print(f'<th class="odp-col" scope="col" align="left"><abbr title="{dataset}">{col}</abbr></th>')
 
     print(f"""
-            <th scope="col" align="left">Data ready</th>
+            <th scope="col" align="left"><abbr title="Data is good enough to adopt PlanX">Data ready</abbr></th>
             <th scope="col" align="left" data-sort-method="number">PlanX</th>
         </thead>
     </tbody>
