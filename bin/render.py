@@ -71,6 +71,7 @@ def add_organisation(organisation, role):
             "data-ready": "",
             "data-score": 0,
             "adoption": "",
+            "amount": 0,
         },
     )
 
@@ -151,19 +152,21 @@ if __name__ == "__main__":
         else:
             raise ValueError(f"unknown intervention: {intervention}")
 
+        amount = int(row["amount"])
+
         set_add(intervention, organisation)
         set_add(bucket, organisation)
         set_add("funded", organisation)
 
         o = rows[organisation]
         o.setdefault(intervention, 0)
-        o[intervention] += int(row["amount"])
+        o[intervention] += amount
 
         o.setdefault(bucket, 0)
-        o[bucket] += int(row["amount"])
+        o[bucket] += amount
 
         o.setdefault("amount", 0)
-        o["amount"] += int(row["amount"])
+        o["amount"] += amount
 
     for organisation, row in rows.items():
         row.setdefault("Software", 0)
@@ -210,24 +213,28 @@ if __name__ == "__main__":
         shift = 10
         for project in ["localgov-drupal","local-land-charges", "proptech", "open-digital-planning"]:
             if project in row["projects"]:
-                rows[organisation]["score"] += shift
+                row["score"] += shift
             shift *= 10
+
+        if row["amount"]:
+            row["score"] += shift
+        shift *= 10
 
         if organisation in quality:
             for dataset in odp_datasets:
                 n = quality_scores[quality[organisation][dataset]]
-                rows[organisation]["data-score"] += n
-            if rows[organisation]["data-score"] >= 4:
+                row["data-score"] += n
+            if row["data-score"] >= 4:
                 set_add("providing", organisation)
             if organisation in sets["data-ready"]:
-                rows[organisation]["data-score"] += 100
-            rows[organisation]["score"] += rows[organisation]["data-score"] * shift
+                row["data-score"] += 100
+            row["score"] += rows[organisation]["data-score"] * shift
 
         shift *= 1000
 
         for _set in ["interested", "adopting", "guidance", "submission"]:
             if organisation in sets[_set]:
-                rows[organisation]["score"] += shift
+                row["score"] += shift
             shift *= 10
 
     # area names
@@ -729,6 +736,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
             <th scope="col" align="left">LPA</th>
             <th scope="col" align="left">Drupal</th>
             <th scope="col" align="left">LLC</th>
+            <th scope="col" align="left">ODP</th>
             <th scope="col" align="right">PropTech</th>
             <th scope="col" align="right">Software</th>
             <th scope="col" align="right">Both</th>
@@ -766,26 +774,16 @@ th[role=columnheader]:not(.no-sort):hover:after {
         print(f'<td class="dot">{dot}</td>')
 
         # projects
-        dot = (
-            f'<a href="{drupal_url}">●</a>'
-            if "localgov-drupal" in row["projects"]
-            else ""
-        )
-        print(f'<td class="dot">{dot}</td>')
-
-        dot = (
-            f'<a href="{llc_url}">●</a>'
-            if "local-land-charges" in row["projects"]
-            else ""
-        )
-        print(f'<td class="dot">{dot}</td>')
+        for project in ["localgov-drupal", "local-land-charges", "open-digital-planning"]:
+            dot = "●" if project in row["projects"] else ""
+            print(f'<td class="dot">{dot}</td>')
 
         n = row["PropTech"]
-        amount = f'£{n:,}' if "proptech" in row["projects"] else ""
+        amount = f'£{n:,}' if n else ""
         print(f'<td class="amount" data-sort="{n}">{amount}</td>')
 
         n = row["Software"]
-        amount = f'£{n:,}' if "open-digital-planning" in row["projects"] else ""
+        amount = f'£{n:,}' if n else ""
         print(f'<td class="amount" data-sort="{n}">{amount}</td>')
 
         n = row.get("amount", "")
