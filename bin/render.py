@@ -621,7 +621,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
     for organisation, row in rows.items():
         dest = {
             "": "",
-            "interested": "Have expressd interest in adopting PlanX",
+            "interested": "Have expressed interest in adopting PlanX",
             "adopting": "Are adopting PlanX",
             "guidance": "Have adopted PlanX guidance",
             "submission": "Have adopted PlanX submission",
