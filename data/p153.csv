@@ -212,7 +212,7 @@ local-authority:BDF,E06000055,Bedford,934,88.4
 local-authority:STT,E06000004,Stockton-on-Tees,562,88.4
 local-authority:KTT,E09000021,Kingston upon Thames,1087,88.3
 local-authority:TEN,E07000076,Tendring,770,88.3
-national-park:Q27178932,E26000012,Yorkshire Dales National Park,435,88.3
+national-park-authority:Q27178932,E26000012,Yorkshire Dales National Park,435,88.3
 local-authority:COT,E07000079,Cotswold,1102,88.2
 local-authority:GAT,E08000037,Gateshead,450,88.2
 local-authority:HAL,E06000006,Halton,237,88.2
@@ -310,20 +310,20 @@ local-authority:ESK,E07000244,East Suffolk,1588,72.7
 local-authority:SAL,E07000240,St Albans,1535,70.6
 local-authority:CAT,E07000106,Canterbury,761,67.9
 local-authority:BST,E06000023,"Bristol, City of",2285,62.1
-local-authority:ALL,E07000026,Allerdale,~,-
-local-authority:BAR,E07000027,Barrow-in-Furness,~,-
-local-authority:CAR,E07000028,Carlisle,~,-
-local-authority:COP,E07000029,Copeland,~,-
-local-authority:CRA,E07000163,Craven,~,-
-local-authority:EDN,E07000030,Eden,~,-
-local-authority:HAE,E07000164,Hambleton,~,-
-local-authority:HAG,E07000165,Harrogate,~,-
-local-authority:MEN,E07000187,Mendip,~,-
-local-authority:RIH,E07000166,Richmondshire,~,-
-local-authority:RYE,E07000167,Ryedale,~,-
-local-authority:SCE,E07000168,Scarborough,~,-
-local-authority:SEG,E07000188,Sedgemoor,~,-
-local-authority:SEL,E07000169,Selby,~,-
-local-authority:SWT,E07000246,Somerset West and Taunton,~,-
-local-authority:SLA,E07000031,South Lakeland,~,-
-local-authority:SSO,E07000189,South Somerset,~,-
+local-authority:ALL,E07000026,Allerdale,,
+local-authority:BAR,E07000027,Barrow-in-Furness,,
+local-authority:CAR,E07000028,Carlisle,,
+local-authority:COP,E07000029,Copeland,,
+local-authority:CRA,E07000163,Craven,,
+local-authority:EDN,E07000030,Eden,,
+local-authority:HAE,E07000164,Hambleton,,
+local-authority:HAG,E07000165,Harrogate,,
+local-authority:MEN,E07000187,Mendip,,
+local-authority:RIH,E07000166,Richmondshire,,
+local-authority:RYE,E07000167,Ryedale,,
+local-authority:SCE,E07000168,Scarborough,,
+local-authority:SEG,E07000188,Sedgemoor,,
+local-authority:SEL,E07000169,Selby,,
+local-authority:SWT,E07000246,Somerset West and Taunton,,
+local-authority:SLA,E07000031,South Lakeland,,
+local-authority:SSO,E07000189,South Somerset,,
