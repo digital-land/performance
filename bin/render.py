@@ -358,7 +358,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 """
     )
 
-    print("<h1>Funding and PlanX adoption</h1>")
+    print("<h1 id='funding-and-adoption'>Funding and PlanX adoption</h1>")
     print(
         f"""
     <script type="text/javascript">
@@ -458,7 +458,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
     """
     )
 
-    print("<h1>Funding and data quality</h1>")
+    print("<h1 id='funding-and-data'>Funding and data quality</h1>")
     print(
         f"""
     <script type="text/javascript">
@@ -554,7 +554,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
     )
 
 
-    print("<h1>Number of organisations adopting PlanX</h1>")
+    print("<h1 id='adoption-numbers'>Number of organisations adopting PlanX</h1>")
 
     print(
         f"""
@@ -600,7 +600,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
     """
     )
 
-    print("<h1 id='adoption'>Data needed to adopt PlanX</h1>")
+    print("<h1 id='adoption-data-needed'>Data needed to adopt PlanX</h1>")
     print(
         """
     <script type="text/javascript">
@@ -659,7 +659,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
     )
     print(f'<p>Note: {len((sets["guidance"]|sets["submission"])-sets["data-ready"])} organisations have adopted PlanX with incomplete data.</p>')
 
-    print("<h1>Overlap between projects</h1>")
+    print("<h1 id='project-overlaps'>Overlap between projects</h1>")
     print(
         f"""
     <script type="text/javascript">
@@ -700,7 +700,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
     )
 
 
-    print("<h1>Organisations providing data needed to adopt PlanX</h1>")
+    print("<h1 id='organisations'>Organisations providing data needed to adopt PlanX</h1>")
     print("""
     <script type="text/javascript">
       google.charts.setOnLoadCallback(draw_provision)
@@ -736,7 +736,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
     )
 
 
-    print("<h1>All LPAs and funded organisations</h1>")
+    print("<h1 id='all-organisations'>All LPAs and funded organisations</h1>")
     print(f"""
         <p>Note: data quality is currently only reported in areas funded to develop or adopt ODP software.</p>
         <table id='sortable'>
@@ -778,7 +778,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
         print(f'<td>{order}</td>')
 
         print(
-            f'<td><a href="{entity_url}{row["entity"]}">{escape(row["name"])}</a></td>'
+            f'<td id="{row["organisation"]}"><a href="{entity_url}{row["entity"]}">{escape(row["name"])}</a></td>'
         )
         print(f'<td>{row.get("end-date", "")}</td>')
         print(f'<td class="number">{row.get("volume", "")}</td>')
