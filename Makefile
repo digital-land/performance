@@ -30,13 +30,18 @@ DATA_FILES=\
 
 DOCS=\
 	$(DOCS_DIR)index.html\
-	$(DOCS_DIR)adoption/planx/index.html
+	$(DOCS_DIR)adoption/planx/index.html\
+	$(DOCS_DIR).nojekyll
 
 all: $(DOCS) $(DATA_FILES)
 
 $(DOCS_DIR)index.html:
 	@mkdir -p $(DOCS_DIR)
 	> $@
+
+$(DOCS_DIR).nojekyll:
+	@mkdir -p $(DOCS_DIR)
+	touch $@
 	
 $(DOCS_DIR)adoption/planx/index.html: $(DATA_FILES) bin/render.py $(CACHE_DIR)organisation.csv
 	@mkdir -p $(dir $@)
