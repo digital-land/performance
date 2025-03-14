@@ -38,7 +38,7 @@ $(DOCS_DIR)index.html:
 	@mkdir -p $(DOCS_DIR)
 	> $@
 	
-$(DOCS_DIR)adoption/planx/index.html: $(DATA_FILES) bin/render.py 
+$(DOCS_DIR)adoption/planx/index.html: $(DATA_FILES) bin/render.py $(CACHE_DIR)organisation.csv
 	@mkdir -p $(dir $@)
 	python3 bin/render.py > $@
 
@@ -55,7 +55,7 @@ $(SPECIFICATION_DIR)%:
 	curl -qfsL 'https://raw.githubusercontent.com/digital-land/specification/main/specification/$(notdir $@)' > $@
 
 # https://www.gov.uk/government/statistical-data-sets/live-tables-on-planning-application-statistics
-$(DATA_DIR)p153.csv: $(CACHE_DIR)P153.ods bin/p153.py
+$(DATA_DIR)p153.csv: $(CACHE_DIR)P153.ods bin/p153.py $(CACHE_DIR)organisation.csv
 	@mkdir -p $(dir $@)
 	python3 bin/p153.py $(CACHE_DIR)P153.ods $@
 
