@@ -141,6 +141,9 @@ if __name__ == "__main__":
         intervention = row["intervention"]
         partners = filter(None, row["organisations"].split(";"))
 
+        if organisation not in rows:
+            add_organisation(organisation, "")
+
         set_add(intervention, organisation)
 
         if intervention in ["software", "integration", "improvement"]:
@@ -670,6 +673,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
           'First', 
           'Both', 
           'Second'],
+          ['ODP and Software', {overlaps("open-digital-planning", "software")}],
           ['ODP and LLC', {overlaps("open-digital-planning", "local-land-charges")}],
           ['ODP and PropTech', {overlaps("open-digital-planning", "proptech")}],
           ['ODP and Drupal', {overlaps("open-digital-planning", "localgov-drupal")}],
