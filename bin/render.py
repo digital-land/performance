@@ -269,7 +269,7 @@ table {
   border-spacing: 0;
   border: 1px solid #ddd;
 }
-#sortable table {
+table.sortable {
   width: 100%;
 }
 thead {
@@ -744,7 +744,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
     print("<h1 id='all-organisations'>All LPAs and funded organisations</h1>")
     print(f"""
         <p>Note: data quality is currently only reported in areas funded to develop or adopt ODP software.</p>
-        <table id='sortable'>
+        <table id='sortable' class='sortable'>
         <thead>
             <th scope="col" align="right">#</th>
             <th scope="col" align="left">Organisation</th>
@@ -835,15 +835,17 @@ th[role=columnheader]:not(.no-sort):hover:after {
 
     print("<h1 id='awards'>Awards</h1>")
     print(f"""
-        <table id='awards-table'>
+        <table id='awards-table' class='sortable'>
         <thead>
             <th scope="col" align="right">#</th>
             <th scope="col" align="left">Date</th>
             <th scope="col" align="left">Organisation</th>
             <th scope="col" align="left">Fund</th>
-            <th scope="col" align="right">Intervention</th>
+            <th scope="col" align="left">Intervention</th>
             <th scope="col" align="right">Amount</th>
             <th scope="col" align="left">Partners</th>
+        </thead>
+        <tbody>
     """)
 
     for award, row in awards.items():
