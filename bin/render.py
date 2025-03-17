@@ -95,6 +95,7 @@ def overlaps(one, two):
 if __name__ == "__main__":
     organisations = load("var/cache/organisation.csv", "organisation")
     interventions = load("specification/intervention.csv", "intervention")
+    funds = load("specification/fund.csv", "fund")
     awards = load("specification/award.csv", "award")
     quality = load("data/quality.csv", "organisation")
     lpas = load("var/cache/local-planning-authority.csv", "reference")
@@ -831,6 +832,37 @@ th[role=columnheader]:not(.no-sort):hover:after {
 
     print("</tbody>")
     print("</table>")
+
+    print("<h1 id='awards'>Awards</h1>")
+    print(f"""
+        <table id='awards-table'>
+        <thead>
+            <th scope="col" align="right">#</th>
+            <th scope="col" align="left">Date</th>
+            <th scope="col" align="left">Organisation</th>
+            <th scope="col" align="left">Fund</th>
+            <th scope="col" align="right">Intervention</th>
+            <th scope="col" align="right">Amount</th>
+            <th scope="col" align="left">Partners</th>
+    """)
+
+    for award, row in awards.items():
+        print(f"<tr>")
+        print(f'<td>{award}</td>')
+        print(f'<td>{row["start-date"]}</td>')
+        print(f'<td><a href="#{row["organisation"]}">{escape(organisations[row["organisation"]]["name"])}</a></td>')
+        print(f'<td>{funds[row["fund"]]["name"]}</td>')
+        print(f'<td>{interventions[row["intervention"]]["name"]}</td>')
+        n = int(row["amount"])
+        amount = f'£{n:,}' if n else ""
+        print(f'<td class="amount" data-sort="{n}">{amount}</td>')
+        print(f'<td>')
+        print(f'</td>')
+
+    print("</tbody>")
+    print("</table>")
+
+
     print(
         """
         <h1>Data sources</h1>
@@ -848,6 +880,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js" integrity="sha512-dRD755QRxlybm0h3LXXIGrFcjNakuxW3reZqnPtUkMv6YsSWoJf+slPjY5v4lZvx2ss+wBZQFegepmA7a2W9eA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 new Tablesort(document.getElementById('sortable'), { descending: true });
+new Tablesort(document.getElementById('awards-table'));
 </script>
 """)
     print("</body>")
