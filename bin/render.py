@@ -280,6 +280,9 @@ thead {
 th, td {
   border: 1px solid #ddd;
 }
+th.date {
+    min-width: 5.5em;
+}
 td.dot {
   valign: center;
   text-align: center;
@@ -748,7 +751,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
         <thead>
             <th scope="col" align="right">#</th>
             <th scope="col" align="left">Organisation</th>
-            <th scope="col" align="left">Ended</th>
+            <th scope="col" align="left" class="date">Ended</th>
             <th scope="col" align="right">Minor applications in 2024</th>
             <th scope="col" align="right">% processed in 8 weeks</th>
             <th scope="col" align="left"><abbr title="Local Planning Authority">LPA</th>
@@ -838,7 +841,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
         <table id='awards-table' class='sortable'>
         <thead>
             <th scope="col" align="right">#</th>
-            <th scope="col" align="left">Date</th>
+            <th scope="col" align="left" class="date">Date</th>
             <th scope="col" align="left">Organisation</th>
             <th scope="col" align="left">Fund</th>
             <th scope="col" align="left">Intervention</th>
@@ -852,13 +855,17 @@ th[role=columnheader]:not(.no-sort):hover:after {
         print(f"<tr>")
         print(f'<td>{award}</td>')
         print(f'<td>{row["start-date"]}</td>')
-        print(f'<td><a href="#{row["organisation"]}">{escape(organisations[row["organisation"]]["name"])}</a></td>')
+        print(f'<td><a href="https://www.planning.data.gov.uk/curie/{row["organisation"]}">{escape(organisations[row["organisation"]]["name"])}</a></td>')
         print(f'<td>{funds[row["fund"]]["name"]}</td>')
         print(f'<td>{interventions[row["intervention"]]["name"]}</td>')
         n = int(row["amount"])
         amount = f'£{n:,}' if n else ""
         print(f'<td class="amount" data-sort="{n}">{amount}</td>')
         print(f'<td>')
+        sep = ""
+        for organisation in [o for o in row["organisations"].split(";") if o]:
+            print(f'{sep}<a href="https://www.planning.data.gov.uk/curie/{row["organisation"]}">{organisations[organisation]["name"]}</a>', end="")
+            sep = ", "
         print(f'</td>')
 
     print("</tbody>")
