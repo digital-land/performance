@@ -359,7 +359,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 }
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>google.charts.load('current', {'packages':['corechart','bar','sankey', 'treemap']});</script>
+<script>google.charts.load('current', {'packages':['corechart','bar','sankey', 'treemap', 'geochart']});</script>
 </head>
 <body>
 """
@@ -847,6 +847,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
             <th scope="col" align="left">Intervention</th>
             <th scope="col" align="right">Amount</th>
             <th scope="col" align="left">Partners</th>
+            <th scope="col" align="left">Notes</th>
         </thead>
         <tbody>
     """)
@@ -867,10 +868,10 @@ th[role=columnheader]:not(.no-sort):hover:after {
             print(f'{sep}<a href="https://www.planning.data.gov.uk/curie/{row["organisation"]}">{organisations[organisation]["name"]}</a>', end="")
             sep = ", "
         print(f'</td>')
+        print(f'<td class="notes">{row["notes"]}</td>')
 
     print("</tbody>")
     print("</table>")
-
 
     print(
         """
