@@ -31,7 +31,7 @@ DATA_FILES=\
 DOCS=\
 	$(DOCS_DIR)index.html\
 	$(DOCS_DIR)adoption/planx/index.html\
-	$(DOCS_DIR)funding/index.html\
+	$(DOCS_DIR)award/index.html\
 	$(DOCS_DIR).nojekyll
 
 all: $(DOCS) $(DATA_FILES)
@@ -48,9 +48,9 @@ $(DOCS_DIR)adoption/planx/index.html: $(DATA_FILES) bin/render.py $(CACHE_DIR)or
 	@mkdir -p $(dir $@)
 	python3 bin/render.py > $@
 
-$(DOCS_DIR)funding/index.html: $(DATA_FILES) bin/funding.py $(CACHE_DIR)organisation.csv $(CACHE_DIR)point.svg $(CACHE_DIR)local-planning-authority.svg
+$(DOCS_DIR)award/index.html: $(DATA_FILES) bin/award.py $(CACHE_DIR)organisation.csv $(CACHE_DIR)point.svg $(CACHE_DIR)local-planning-authority.svg
 	@mkdir -p $(dir $@)
-	python3 bin/funding.py > $@
+	python3 bin/award.py > $@
 
 $(CACHE_DIR)organisation.csv:
 	@mkdir -p $(CACHE_DIR)
