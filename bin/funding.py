@@ -6,20 +6,59 @@ import csv
 from math import pi, sqrt
 from html import escape
 
-
-csv.field_size_limit(sys.maxsize)
-
-entity_url = "https://www.planning.data.gov.uk/entity/"
-llc_url = "https://www.gov.uk/government/publications/hm-land-registry-local-land-charges-programme/local-land-charges-programme"
-odp_url = "https://opendigitalplanning.org/community-members"
-drupal_url = "https://localgovdrupal.org/community/our-councils"
-proptech_url = "https://www.localdigital.gov.uk/digital-planning/case-studies/"
-data_url = ""
+# see https://analysisfunction.civilservice.gov.uk/policy-store/data-visualisation-colours-in-charts/
+legends = [
+    {
+        "reference": "Software",
+        "name": "Software",
+        "colour": "#22d0b6",
+        "description": "Funded for Software (software, integration or improvement)",
+    },
+    {
+        "reference": "PropTech_Software",
+        "name": "PropTech and Software",
+        "colour": "#a8bd3a",
+        "description": "Funded for Software and PropTech",
+    },
+    {
+        "reference": "Plan-making_Software",
+        "name": "Plan-making and Software",
+        "colour": "#118c7b",
+        "description": "Funded for Software and Plan-making",
+    },
+    {
+        "reference": "Plan-making_PropTech_Software",
+        "name": "Plan-making and Software",
+        "colour": "#746cb1",
+        "description": "Funded for Software, PropTech and Plan-making",
+    },
+    {
+        "reference": "PropTech",
+        "name": "PropTech",
+        "colour": "#27a0cc",
+        "description": "Funded for PropTech (engagement or innovation)",
+    },
+    {
+        "reference": "Plan-making_PropTech",
+        "name": "PropTech and Plan-making",
+        "colour": "#206095",
+        "description": "Funded for PropTech and Plan-making",
+    },
+    {
+        "reference": "Plan-making",
+        "name": "Plan-making",
+        "colour": "#eee",
+        "description": "Funded for Plan-making",
+    },
+]
 
 funds = {}
 funded_organisation = {}
 circles = {}
 lpas = {}
+counts = {}
+total = 311
+found = set()
 
 
 def load(path, key, opt=None):
@@ -55,7 +94,7 @@ def circle(row):
         area = o.get(f, "")
         if area in circles:
             line = circles[area]
-            r = sqrt(float(row["amount"])/pi)/25
+            r = sqrt(float(row["amount"]) / pi) / 25
             line = line.replace('r="1"', f'r="{r:.2f}"')
             line = line.replace('class="point"', f'class="{classes}"')
             return line
@@ -69,6 +108,7 @@ if __name__ == "__main__":
     interventions = load("specification/intervention.csv", "intervention")
     funds = load("specification/fund.csv", "fund")
     awards = load("specification/award.csv", "award")
+    interventions = load("specification/intervention.csv", "intervention")
 
     # funding awards and interventions
     for award, row in awards.items():
@@ -82,6 +122,19 @@ if __name__ == "__main__":
         for partner in partners:
             add_award(partner, intervention, 0)
 
+    for row in legends:
+        counts[row["reference"]] = 0
+
+    for organisation, row in funded_organisation.items():
+        buckets = set()
+        if row["interventions"] & set(["innovation", "engagement"]):
+            buckets.add("PropTech")
+        if row["interventions"] & set(["software", "integration", "improvement"]):
+            buckets.add("Software")
+        if row["interventions"] & set(["plan-making"]):
+            buckets.add("Plan-making")
+        row["class"] = "_".join(sorted(list(buckets)))
+        counts[row["class"]] += 1
 
     print(
         """<!doctype html>
@@ -184,18 +237,13 @@ th[role=columnheader]:not(.no-sort):hover:after {
 	opacity: 1;
 }
 
-.shapes {
- width: 800px;
- resize: both;
-}
-
 .shapes svg {
  width: 100%;
  fill: 	#0b0c0c;
 }
 
-.points {
- width: 800px;
+.map {
+ width: 640px;
  resize: both;
 }
 
@@ -207,28 +255,62 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .shapes svg path {
   fill:none;
   stroke:#000;
-  stroke-width:1px;
+  stroke-width:0.5px;
 }
 
 svg path {
   fill:none;
   stroke:#000;
-  stroke-width:1px;
+  stroke-width:0.5px;
 }
 
 svg circle {
   fill:red;
-  opacity: 0.25;
+  opacity: 0.125;
 }
 
-svg path.software, svg path.improvement, svg path.integration { fill: #F46A25;}
+.stacked-chart {
+  display: flex;
+  width: 99%;
+  margin: 1em 0;
+}
 
-</style>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>google.charts.load('current', {'packages':['corechart','bar','sankey', 'treemap', 'geochart']});</script>
-</head>
-<body>
-"""
+.stacked-chart .bar {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 2em;
+  text-indent: 1em;
+  color: #ffffff;
+}
+
+ul.key {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.key-item {
+   border-left: 16px solid;
+   margin-bottom: 5px;
+   padding-left: 5px;
+}
+    """)
+
+    for item in legends:
+        (reference, colour) = (item["reference"], item["colour"])
+        print(f".stacked-chart .bar.{reference} {{ background-color: {colour}; color: #000 }}")
+        print(f".key-item.{reference} {{ border-color: {colour}; }}")
+        print(f"svg path.{reference} {{ fill: {colour}; stroke: #000; stroke-width: 0.5px }}")
+    print(f"svg path:hover {{ opacity: 0.5 }}")
+
+    print("""
+    </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>google.charts.load('current', {'packages':['corechart','bar','sankey', 'treemap', 'geochart']});</script>
+    </head>
+    <body>
+    """
     )
 
     print("<h1 id='Funding'>Digital Planning Funding</h1>")
@@ -246,7 +328,7 @@ svg path.software, svg path.improvement, svg path.integration { fill: #F46A25;}
                     area = match.group("id")
                     circles[area] = line
 
-    print('<div class="points">')
+    print('<div class="points map">')
     first = True
     with open("var/cache/point.svg") as f:
         for line in f.readlines():
@@ -257,44 +339,83 @@ svg path.software, svg path.improvement, svg path.integration { fill: #F46A25;}
 
                     first = False
             else:
+                if "<svg" in line:
+                    line = line.replace("594", "525")
                 print(line, end="")
-                #if "<svg" in line:
-                    #print('<text x="0" y="35" class="small">Funding in £k</text>')
-                
+                if "<svg" in line:
+                    print(
+                        """
+                      <text x="0" y="100">Funding in £k</text>
+                      <circle cx="55" cy="110" r="10" />
+                      """
+                    )
 
-    print('</div>')
+    print("</div>")
 
-
-    print('<div class="shapes">')
+    print('<div class="shapes map">')
     re_id = re.compile(r"id=\"(?P<lpa>\w+)")
+
+    _class = ""
+    lpa = ""
+    name = ""
 
     with open("var/cache/local-planning-authority.svg") as f:
         for line in f.readlines():
 
-            line = line.replace(' fill-rule="evenodd"', '')
+            line = line.replace(' fill-rule="evenodd"', "")
             line = line.replace('class="polygon ', 'class="')
 
-            _class = ""
-            lpa = ""
             match = re_id.search(line)
             if match:
                 lpa = match.group("lpa")
-                if lpa in lpas:
+                if lpa in found:
+                    print(f"already found {lpa}", file=sys.stderr)
+                if lpa not in lpas:
+                    _class = ""
+                    lpa = ""
+                    name = ""
+                else:
+                    found.add(lpa)
                     organisation = lpas[lpa]
                     row = funded_organisation[organisation]
                     name = organisations[organisation]["name"]
-                    _class = " ".join(list(row["interventions"]))
+                    _class = row["class"]
 
             if 'class="local-planning-authority"' in line:
-                line = line.replace('<path', f'<a href="#{lpa}"><path')
-                line = line.replace('class="local-planning-authority"/>', f'class="local-planning-authority {_class}"><title>{name}</title></path></a>')
+                line = line.replace("<path", f'<a href="#{lpa}"><path')
+                line = line.replace(
+                    'class="local-planning-authority"/>',
+                    f'class="local-planning-authority {_class}"><title>{name}</title></path></a>',
+                )
 
             print(line, end="")
 
-    print('</div>')
+    notfound = list(set(lpas.keys()) - found)
+    print(f"not found {notfound}", file=sys.stderr)
+
+    print("</div>")
+
+    print('<div class="stacked-chart">')
+
+    for item in legends:
+        value = counts[item["reference"]]
+        if value:
+            percent = 100 * value / total
+            print(f'<div class="bar {item["reference"]}" style="width:{percent:.2f}%;">{value}</div>')
+
+    print("""</div>
+    <ul class="key">""")
+
+    for item in legends:
+        value = counts[item["reference"]]
+        if value:
+            print(f'<li class="key-item {item["reference"]}">{item["description"]}</li>')
+
+    print("""</ul></div>""")
 
     print("<h1 id='awards'>Awards</h1>")
-    print(f"""
+    print(
+        f"""
         <table id='awards-table' class='sortable'>
         <thead>
             <th scope="col" align="right">#</th>
@@ -307,24 +428,30 @@ svg path.software, svg path.improvement, svg path.integration { fill: #F46A25;}
             <th scope="col" align="left">Notes</th>
         </thead>
         <tbody>
-    """)
+    """
+    )
 
     for award, row in awards.items():
         print(f"<tr>")
-        print(f'<td>{award}</td>')
+        print(f"<td>{award}</td>")
         print(f'<td>{row["start-date"]}</td>')
-        print(f'<td><a href="https://www.planning.data.gov.uk/curie/{row["organisation"]}">{escape(organisations[row["organisation"]]["name"])}</a></td>')
+        print(
+            f'<td><a href="https://www.planning.data.gov.uk/curie/{row["organisation"]}">{escape(organisations[row["organisation"]]["name"])}</a></td>'
+        )
         print(f'<td>{funds[row["fund"]]["name"]}</td>')
         print(f'<td>{interventions[row["intervention"]]["name"]}</td>')
         n = int(row["amount"])
-        amount = f'£{n:,}' if n else ""
+        amount = f"£{n:,}" if n else ""
         print(f'<td class="amount" data-sort="{n}">{amount}</td>')
-        print(f'<td>')
+        print(f"<td>")
         sep = ""
         for organisation in [o for o in row["organisations"].split(";") if o]:
-            print(f'{sep}<a href="https://www.planning.data.gov.uk/curie/{row["organisation"]}">{organisations[organisation]["name"]}</a>', end="")
+            print(
+                f'{sep}<a href="https://www.planning.data.gov.uk/curie/{row["organisation"]}">{organisations[organisation]["name"]}</a>',
+                end="",
+            )
             sep = ", "
-        print(f'</td>')
+        print(f"</td>")
         print(f'<td class="notes">{row["notes"]}</td>')
 
     print("</tbody>")
@@ -340,12 +467,14 @@ svg path.software, svg path.improvement, svg path.integration { fill: #F46A25;}
     """
     )
 
-    print("""
+    print(
+        """
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js" integrity="sha512-F/gIMdDfda6OD2rnzt/Iyp2V9JLHlFQ+EUyixDg9+rkwjqgW1snpkpx7FD5FV1+gG2fmFj7I3r6ReQDUidHelA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js" integrity="sha512-dRD755QRxlybm0h3LXXIGrFcjNakuxW3reZqnPtUkMv6YsSWoJf+slPjY5v4lZvx2ss+wBZQFegepmA7a2W9eA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 new Tablesort(document.getElementById('sortable'), { descending: true });
 new Tablesort(document.getElementById('awards-table'));
 </script>
-""")
+"""
+    )
     print("</body>")
