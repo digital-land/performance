@@ -36,8 +36,10 @@ df.columns.values[50] = "volume"
 df.columns.values[57] = "percentage"
 
 for index, row in df.iterrows():
-    df.loc[index, 'organisation'] = organisations[row["reference"]]
-    df.loc[index, "volume"] = str(row["volume"]).replace("~", "")
-    df.loc[index, "percentage"] = str(row["percentage"]).replace("-", "")
+    reference = str(row["reference"])
+    if reference in organisations:
+        df.loc[index, 'organisation'] = organisations[reference]
+        df.loc[index, "volume"] = str(row["volume"]).replace("~", "")
+        df.loc[index, "percentage"] = str(row["percentage"]).replace("-", "")
 
 df.to_csv(sys.argv[2], header=True, index=False, columns=["organisation", "reference", "name", "volume", "percentage"])
