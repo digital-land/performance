@@ -31,6 +31,7 @@ DATA_FILES=\
 DOCS=\
 	$(DOCS_DIR)index.html\
 	$(DOCS_DIR)adoption/planx/index.html\
+	$(DOCS_DIR)funding/index.html\
 	$(DOCS_DIR).nojekyll
 
 all: $(DOCS) $(DATA_FILES)
@@ -46,6 +47,10 @@ $(DOCS_DIR).nojekyll:
 $(DOCS_DIR)adoption/planx/index.html: $(DATA_FILES) bin/render.py $(CACHE_DIR)organisation.csv
 	@mkdir -p $(dir $@)
 	python3 bin/render.py > $@
+
+$(DOCS_DIR)funding/index.html: $(DATA_FILES) bin/funding.py $(CACHE_DIR)organisation.csv $(CACHE_DIR)point.svg $(CACHE_DIR)local-planning-authority.svg
+	@mkdir -p $(dir $@)
+	python3 bin/funding.py > $@
 
 $(CACHE_DIR)organisation.csv:
 	@mkdir -p $(CACHE_DIR)
@@ -68,7 +73,14 @@ $(CACHE_DIR)P153.ods:
 	@mkdir -p $(CACHE_DIR)
 	curl -qfsL 'https://assets.publishing.service.gov.uk/media/678654e4f041702a11ca0f53/Table_P153_Final.ods' > $@
 
+$(CACHE_DIR)point.svg:
+	curl -qfsL 'https://raw.githubusercontent.com/digital-land/choropleth/refs/heads/main/svg/point.svg' > $@
+
+$(CACHE_DIR)local-planning-authority.svg:
+	curl -qfsL 'https://raw.githubusercontent.com/digital-land/choropleth/refs/heads/main/svg/local-planning-authority.svg' > $@
+
 clean::
+	rm -rf var/
 
 clobber::
 	rm -f $(DOCS) $(DATA)
