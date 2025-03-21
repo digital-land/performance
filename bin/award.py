@@ -284,6 +284,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .shapes svg {
  width: 100%;
  fill: 	#0b0c0c;
+ padding: 2.5em;
 }
 
 .map {
@@ -294,6 +295,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .points svg {
  width: 100%;
  fill: 	#0b0c0c;
+ padding: 2.5em;
 }
 
 .shapes svg path {
