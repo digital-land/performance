@@ -87,6 +87,10 @@ def add_award(organisation, intervention, amount):
         lpas[lpa] = organisation
 
 
+def radius(amount):
+    return sqrt(float(amount) / pi) / 25
+
+
 def circle(row):
     o = organisations[row["organisation"]]
     classes = " ".join(list(row["interventions"]))
@@ -94,7 +98,7 @@ def circle(row):
         area = o.get(f, "")
         if area in circles:
             line = circles[area]
-            r = sqrt(float(row["amount"]) / pi) / 25
+            r = radius(row["amount"])
             line = line.replace('r="1"', f'r="{r:.2f}"')
             line = line.replace('class="point"', f'class="{classes}"')
             return line
@@ -313,7 +317,7 @@ li.key-item {
     """
     )
 
-    print("<h1 id='Funding'>Digital Planning Programme funding</h1>")
+    print("<h1 id='Funding'>Digital Planning Programme</h1>")
     print("<p>Local planining authorities funded by the Digital Planning Programme.</p>")
 
 
@@ -408,10 +412,17 @@ li.key-item {
                     line = line.replace("455", "465")
                 print(line, end="")
                 if "<svg" in line:
+                    r100k = radius(100000)
+                    r500k = radius(500000)
+                    r1m = radius(1000000)
+                    y100k = 100 - r100k
+                    y500k = 100 - r500k
+                    y1m = 100 - r1m
                     print(
-                        """
-                      <circle cx="10" cy="10" r="7.14" />
-                      <text x="30" y="15" class="key">£100k</text>
+                        f"""
+                        <circle cx="50" cy="{y1m}" r="{r1m}" /><text x="75" y="62.5" class="key" style="font-size: 11px">£1m</text>
+                        <circle cx="50" cy="{y500k}" r="{r500k}" /><text x="75" y="81" class="key" style="font-size: 11px">£500k</text>
+                        <circle cx="50" cy="{y100k}" r="{r100k}" /><text x="75" y="100" class="key" style="font-size: 11px">£100k</text>
                       """
                     )
 
