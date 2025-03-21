@@ -91,21 +91,61 @@ def radius(amount):
     return sqrt(float(amount) / pi) / 25
 
 
-def circle(row):
-    o = organisations[row["organisation"]]
-    classes = " ".join(list(row["interventions"]))
+def circle(organisation, intervention, amount):
+    o = organisations[organisation]
     for f in ["local-planning-authority", "local-authority-district", "region"]:
         area = o.get(f, "")
         if area in circles:
             line = circles[area]
-            r = radius(row["amount"])
+            r = radius(amount)
             line = line.replace('r="1"', f'r="{r:.2f}"')
-            line = line.replace('class="point"', f'class="{classes}"')
+            line = line.replace('class="point"', f'class="{intervention}"')
             return line
 
     print(f"circle for {o}: not found", file=sys.stderr)
     return None
 
+def points_map():
+    re_id = re.compile(r"id=\"(?P<id>\w+)")
+
+    with open("var/cache/point.svg") as f:
+        for line in f.readlines():
+            if "<circle" in line:
+                match = re_id.search(line)
+                if match:
+                    area = match.group("id")
+                    circles[area] = line
+
+    print('<div class="points map">')
+    first = True
+    with open("var/cache/point.svg") as f:
+        for line in f.readlines():
+            if "<circle" in line:
+                if first:
+                    for row in awards.values():
+                        print(circle(row["organisation"], row["intervention"], row["amount"]))
+
+                    first = False
+            else:
+                if "<svg" in line:
+                    line = line.replace("455", "465")
+                print(line, end="")
+                if "<svg" in line:
+                    r100k = radius(100000)
+                    r500k = radius(500000)
+                    r1m = radius(1000000)
+                    y100k = 100 - r100k
+                    y500k = 100 - r500k
+                    y1m = 100 - r1m
+                    print(
+                        f"""
+                        <circle cx="50" cy="{y1m}" r="{r1m}" /><text x="75" y="62.5" class="key" style="font-size: 11px">£1m</text>
+                        <circle cx="50" cy="{y500k}" r="{r500k}" /><text x="75" y="81" class="key" style="font-size: 11px">£500k</text>
+                        <circle cx="50" cy="{y100k}" r="{r100k}" /><text x="75" y="100" class="key" style="font-size: 11px">£100k</text>
+                      """
+                    )
+
+    print("</div>")
 
 if __name__ == "__main__":
     organisations = load("var/cache/organisation.csv", "organisation")
@@ -387,46 +427,7 @@ li.key-item {
 
     print("<h1 id='awards'>Awards</h1>")
 
-    re_id = re.compile(r"id=\"(?P<id>\w+)")
-
-    with open("var/cache/point.svg") as f:
-        for line in f.readlines():
-            if "<circle" in line:
-                match = re_id.search(line)
-                if match:
-                    area = match.group("id")
-                    circles[area] = line
-
-    print('<div class="points map">')
-    first = True
-    with open("var/cache/point.svg") as f:
-        for line in f.readlines():
-            if "<circle" in line:
-                if first:
-                    for organisation, row in funded_organisation.items():
-                        print(circle(row))
-
-                    first = False
-            else:
-                if "<svg" in line:
-                    line = line.replace("455", "465")
-                print(line, end="")
-                if "<svg" in line:
-                    r100k = radius(100000)
-                    r500k = radius(500000)
-                    r1m = radius(1000000)
-                    y100k = 100 - r100k
-                    y500k = 100 - r500k
-                    y1m = 100 - r1m
-                    print(
-                        f"""
-                        <circle cx="50" cy="{y1m}" r="{r1m}" /><text x="75" y="62.5" class="key" style="font-size: 11px">£1m</text>
-                        <circle cx="50" cy="{y500k}" r="{r500k}" /><text x="75" y="81" class="key" style="font-size: 11px">£500k</text>
-                        <circle cx="50" cy="{y100k}" r="{r100k}" /><text x="75" y="100" class="key" style="font-size: 11px">£100k</text>
-                      """
-                    )
-
-    print("</div>")
+    points_map()
 
     print(
         f"""
