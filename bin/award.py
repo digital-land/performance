@@ -313,44 +313,9 @@ li.key-item {
     """
     )
 
-    print("<h1 id='Funding'>Digital Planning Funding</h1>")
+    print("<h1 id='Funding'>Digital Planning Programme funding</h1>")
+    print("<p>Local planining authorities funded by the Digital Planning Programme.</p>")
 
-    #
-    #  point map ..
-    #
-    re_id = re.compile(r"id=\"(?P<id>\w+)")
-
-    with open("var/cache/point.svg") as f:
-        for line in f.readlines():
-            if "<circle" in line:
-                match = re_id.search(line)
-                if match:
-                    area = match.group("id")
-                    circles[area] = line
-
-    print('<div class="points map">')
-    first = True
-    with open("var/cache/point.svg") as f:
-        for line in f.readlines():
-            if "<circle" in line:
-                if first:
-                    for organisation, row in funded_organisation.items():
-                        print(circle(row))
-
-                    first = False
-            else:
-                if "<svg" in line:
-                    line = line.replace("594", "525")
-                print(line, end="")
-                if "<svg" in line:
-                    print(
-                        """
-                      <text x="0" y="100">Funding in £k</text>
-                      <circle cx="55" cy="110" r="10" />
-                      """
-                    )
-
-    print("</div>")
 
     print('<div class="shapes map">')
     re_id = re.compile(r"id=\"(?P<lpa>\w+)")
@@ -362,6 +327,8 @@ li.key-item {
     with open("var/cache/local-planning-authority.svg") as f:
         for line in f.readlines():
 
+            if "<svg" in line:
+                line = line.replace("455", "465")
             line = line.replace(' fill-rule="evenodd"', "")
             line = line.replace('class="polygon ', 'class="')
 
@@ -391,7 +358,8 @@ li.key-item {
             print(line, end="")
 
     notfound = list(set(lpas.keys()) - found)
-    print(f"not found {notfound}", file=sys.stderr)
+    if notfound:
+        print(f"not found {notfound}", file=sys.stderr)
 
     print("</div>")
 
@@ -414,6 +382,41 @@ li.key-item {
     print("""</ul></div>""")
 
     print("<h1 id='awards'>Awards</h1>")
+
+    re_id = re.compile(r"id=\"(?P<id>\w+)")
+
+    with open("var/cache/point.svg") as f:
+        for line in f.readlines():
+            if "<circle" in line:
+                match = re_id.search(line)
+                if match:
+                    area = match.group("id")
+                    circles[area] = line
+
+    print('<div class="points map">')
+    first = True
+    with open("var/cache/point.svg") as f:
+        for line in f.readlines():
+            if "<circle" in line:
+                if first:
+                    for organisation, row in funded_organisation.items():
+                        print(circle(row))
+
+                    first = False
+            else:
+                if "<svg" in line:
+                    line = line.replace("455", "465")
+                print(line, end="")
+                if "<svg" in line:
+                    print(
+                        """
+                      <circle cx="10" cy="10" r="7.14" />
+                      <text x="30" y="15" class="key">£100k</text>
+                      """
+                    )
+
+    print("</div>")
+
     print(
         f"""
         <table id='awards-table' class='sortable'>
