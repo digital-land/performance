@@ -58,7 +58,6 @@ circles = {}
 lpas = {}
 counts = {}
 total = 311
-found = set()
 
 
 def load(path, key, opt=None):
@@ -146,6 +145,52 @@ def points_map():
                     )
 
     print("</div>")
+
+def shapes_map():
+    re_id = re.compile(r"id=\"(?P<lpa>\w+)")
+
+    found = set()
+    _class = ""
+    lpa = ""
+    name = ""
+
+    with open("var/cache/local-planning-authority.svg") as f:
+        for line in f.readlines():
+
+            if "<svg" in line:
+                line = line.replace("455", "465")
+            line = line.replace(' fill-rule="evenodd"', "")
+            line = line.replace('class="polygon ', 'class="')
+
+            match = re_id.search(line)
+            if match:
+                lpa = match.group("lpa")
+                if lpa in found:
+                    print(f"already found {lpa}", file=sys.stderr)
+                if lpa not in lpas:
+                    _class = ""
+                    lpa = ""
+                    name = ""
+                else:
+                    found.add(lpa)
+                    organisation = lpas[lpa]
+                    row = funded_organisation[organisation]
+                    name = organisations[organisation]["name"]
+                    _class = row["class"]
+
+            if 'class="local-planning-authority"' in line:
+                line = line.replace("<path", f'<a href="#{lpa}"><path')
+                line = line.replace(
+                    'class="local-planning-authority"/>',
+                    f'class="local-planning-authority {_class}"><title>{name}</title></path></a>',
+                )
+
+            print(line, end="")
+
+    notfound = list(set(lpas.keys()) - found)
+    if notfound:
+        print(f"not found {notfound}", file=sys.stderr)
+
 
 if __name__ == "__main__":
     organisations = load("var/cache/organisation.csv", "organisation")
@@ -287,6 +332,11 @@ th[role=columnheader]:not(.no-sort):hover:after {
  padding: 2.5em;
 }
 
+#membership-map {
+ width: 640px;
+ resize: both;
+}
+
 .map {
  width: 640px;
  resize: both;
@@ -341,6 +391,14 @@ li.key-item {
    margin-bottom: 5px;
    padding-left: 5px;
 }
+
+#membership-map svg path.Plan-making { fill: #fff; stroke: #000; stroke-width: 0.5px }
+#membership-map svg path.Software,
+#membership-map svg path.PropTech,
+#membership-map svg path.PropTech_Software,
+#membership-map svg path.Plan-making_PropTech,
+#membership-map svg path.Plan-making_Software,
+#membership-map svg path.Plan-making_PropTech_Software { fill: #f66068; stroke: #000; stroke-width: 0.5px }
     """)
 
     for item in legends:
@@ -360,53 +418,17 @@ li.key-item {
     )
 
     print("<h1 id='Funding'>Digital Planning Programme</h1>")
+
+    print("<p>Open Digital Planning members.</p>")
+
+    print('<div id="membership-map">')
+    shapes_map()
+    print("</div>")
+
+    print("<h1 id='Funding'>Digital Planning Programme</h1>")
     print("<p>Local planining authorities funded by the Digital Planning Programme.</p>")
-
-
     print('<div class="shapes map">')
-    re_id = re.compile(r"id=\"(?P<lpa>\w+)")
-
-    _class = ""
-    lpa = ""
-    name = ""
-
-    with open("var/cache/local-planning-authority.svg") as f:
-        for line in f.readlines():
-
-            if "<svg" in line:
-                line = line.replace("455", "465")
-            line = line.replace(' fill-rule="evenodd"', "")
-            line = line.replace('class="polygon ', 'class="')
-
-            match = re_id.search(line)
-            if match:
-                lpa = match.group("lpa")
-                if lpa in found:
-                    print(f"already found {lpa}", file=sys.stderr)
-                if lpa not in lpas:
-                    _class = ""
-                    lpa = ""
-                    name = ""
-                else:
-                    found.add(lpa)
-                    organisation = lpas[lpa]
-                    row = funded_organisation[organisation]
-                    name = organisations[organisation]["name"]
-                    _class = row["class"]
-
-            if 'class="local-planning-authority"' in line:
-                line = line.replace("<path", f'<a href="#{lpa}"><path')
-                line = line.replace(
-                    'class="local-planning-authority"/>',
-                    f'class="local-planning-authority {_class}"><title>{name}</title></path></a>',
-                )
-
-            print(line, end="")
-
-    notfound = list(set(lpas.keys()) - found)
-    if notfound:
-        print(f"not found {notfound}", file=sys.stderr)
-
+    shapes_map()
     print("</div>")
 
     print('<div class="stacked-chart">')
