@@ -480,6 +480,7 @@ li.key-item {
         <ul>
           <li><a href="https://www.planning.data.gov.uk/organisation/">Organisations</a> (<a href="https://files.planning.data.gov.uk/organisation-collection/dataset/organisation.csv">CSV</a>)
           <li>Funding awards (<a href="https://github.com/digital-land/specification/blob/main/content/award.csv">CSV</a>)
+          <li><a href="https://github.com/digital-land/performance/">Open source code</a></li>
         </ul>
     """
     )
