@@ -335,6 +335,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 #membership-map {
  width: 640px;
  resize: both;
+ padding: 2.5em;
 }
 
 .map {
@@ -419,7 +420,7 @@ li.key-item {
 
     print("<h1 id='Funding'>Digital Planning Programme</h1>")
 
-    print("<p>Open Digital Planning members.</p>")
+    print("<p>Open Digital Planning community members.</p>")
 
     print('<div id="membership-map">')
     shapes_map()
