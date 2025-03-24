@@ -282,7 +282,7 @@ li.key-item {
           <li>{len(funded_organisation)} ODP members</p>
           <li>{len(sets["lpa"])} LPAs</p>
           <li>{len(sets["engagement"])} Funded for engagement</p>
-          <li>{len(sets["innovation"])} Funded for engagement</p>
+          <li>{len(sets["innovation"])} Funded for innovation</p>
           <li>{len(sets["software"])} Funded for product</p>
           <li>{len(sets["integration"])} Funded for integration</p>
           <li>{len(sets["improvement"])} Funded for improvement</p>
