@@ -15,7 +15,7 @@ def load(path, key, opt=None):
     return d
 
 
-def add_award(organisation, start_date, intervention, amount):
+def add_award(organisation, start_date, intervention, amount, partners):
     funded_organisation.setdefault(
         organisation,
         {
@@ -23,10 +23,12 @@ def add_award(organisation, start_date, intervention, amount):
             "end-date": start_date,
             "interventions": set(),
             "amount": 0,
+            "organisations": set(),
         },
     )
     funded_organisation[organisation]["interventions"].add(intervention)
     funded_organisation[organisation]["end-date"] = organisations[organisation]["end-date"]
+    funded_organisation[organisation]["organisations"].update(partners)
 
     if start_date < funded_organisation[organisation]["start-date"]:
         funded_organisation[organisation]["start-date"] = start_date
@@ -59,11 +61,18 @@ if __name__ == "__main__":
         if intervention in ["plan-making"] and start_date < "2021-06-01":
             continue
 
-        add_award(organisation, start_date, intervention, amount)
+        partners = set(filter(None, row["organisations"].split(";")))
 
-        partners = filter(None, row["organisations"].split(";"))
+        add_award(organisation, start_date, intervention, amount, partners)
+
         for partner in partners:
-            add_award(partner, start_date, intervention, 0)
+            add_award(partner, start_date, intervention, 0, partners - set(partner) & set(organisation))
+
+    for organisation, row in funded_organisation.items():
+        for partner in row["organisations"]:
+            funded_organisation[partner]["organisations"].add(organisation)
+
+
 
     print("""<!doctype html>
 <head>
@@ -245,19 +254,19 @@ li.key-item {
     print("<p>Open Digital Planning community members.</p>")
 
     print(
-        f"""
+        """
         <table id='awards-table' class='sortable'>
         <thead>
             <th scope="col" align="left" class="date">Date</th>
             <th scope="col" align="left">LPA</th>
             <th scope="col" align="left">Organisation</th>
+            <th scope="col" align="left">Partners</th>
             <th scope="col" align="left">Interventions</th>
             <th scope="col" align="right">Amount</th>
             <th scope="col" align="left" class="date">End date</th>
         </thead>
         <tbody>
-    """
-    )
+    """)
 
     for organisation, row in funded_organisation.items():
         print(f"<tr>")
@@ -267,6 +276,12 @@ li.key-item {
         print(
             f'<td><a href="https://www.planning.data.gov.uk/curie/{organisation}">{escape(organisations[organisation]["name"])}</a></td>'
         )
+        print('<td>')
+        sep = ""
+        for organisation in row["organisations"]:
+            print(f'{sep}<a href="https://www.planning.data.gov.uk/curie/{organisation}">{organisations[organisation]["name"]}</a>', end="")
+            sep = ", "
+        print(f'</td>')
         print(f'<td>{", ".join([interventions[intervention]["name"] for intervention in row["interventions"]])}</td>')
         n = int(row["amount"])
         amount = f"£{n:,}" if n else ""
