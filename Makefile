@@ -32,6 +32,7 @@ DOCS=\
 	$(DOCS_DIR)index.html\
 	$(DOCS_DIR)adoption/planx/index.html\
 	$(DOCS_DIR)award/index.html\
+	$(DOCS_DIR)project/open-digital-planning/index.html\
 	$(DOCS_DIR).nojekyll
 
 all: $(DOCS) $(DATA_FILES)
@@ -51,6 +52,10 @@ $(DOCS_DIR)adoption/planx/index.html: $(DATA_FILES) bin/render.py $(CACHE_DIR)or
 $(DOCS_DIR)award/index.html: $(DATA_FILES) bin/award.py $(CACHE_DIR)organisation.csv $(CACHE_DIR)point.svg $(CACHE_DIR)local-planning-authority.svg
 	@mkdir -p $(dir $@)
 	python3 bin/award.py > $@
+
+$(DOCS_DIR)project/open-digital-planning/index.html: $(DATA_FILES) bin/open-digital-planning.py $(CACHE_DIR)organisation.csv
+	@mkdir -p $(dir $@)
+	python3 bin/open-digital-planning.py > $@
 
 $(CACHE_DIR)organisation.csv:
 	@mkdir -p $(CACHE_DIR)
