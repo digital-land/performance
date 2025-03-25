@@ -48,6 +48,20 @@ if __name__ == "__main__":
     interventions = load("specification/intervention.csv", "intervention")
     awards = load("specification/award.csv", "award")
 
+    for organisation, row in organisations.items():
+        dataset = row["dataset"]
+        if dataset not in sets:
+            sets[dataset] = set()
+        sets[dataset].add(organisation)
+
+    for row in csv.DictReader(open("specification/role-organisation.csv", newline="")):
+        organisation = row["organisation"]
+        role = row["role"]
+        if role not in sets:
+            sets[role] = set()
+        if not organisations[organisation]["end-date"]:
+            sets[role].add(organisation)
+
     for intervention in interventions:
         sets.setdefault(intervention, set())
 
@@ -290,17 +304,27 @@ li.key-item {
 
     print("</tbody>")
     print("</table>")
-    print("<h1>Counts</h1>")
+
+    print("<h1>Numbers</h1>")
 
     print(f"""
           <ul>
-          <li>{len(funded_organisation)} ODP members</p>
-          <li>{len(sets["lpa"])} LPAs</p>
-          <li>{len(sets["engagement"])} Funded for engagement</p>
-          <li>{len(sets["innovation"])} Funded for innovation</p>
-          <li>{len(sets["software"])} Funded for product</p>
-          <li>{len(sets["integration"])} Funded for integration</p>
-          <li>{len(sets["improvement"])} Funded for improvement</p>
+          <li>{len(sets["engagement"])} Funded for engagement
+          <li>{len(sets["innovation"])} Funded for innovation
+          <li>{len(sets["software"])} Funded for product
+          <li>{len(sets["integration"])} Funded for integration
+          <li>{len(sets["improvement"])} Funded for improvement
+          <li>{len(sets["innovation"] | sets["engagement"])} Funded for PropTech (engagement or innovation)
+          <li>{len(sets["software"] | sets["integration"] | sets["improvement"])} Funded for Software (product, integration or improvement)
+          <li>{len(funded_organisation)} Funded and partner organisations are classed as being ODP members
+          <li>{len(sets["lpa"])} funded organisations are LPAs 
+              ({len(sets["lpa"] & sets["local-authority"])} local authorities,
+              {len(sets["lpa"] & sets["national-park-authority"])} national park authorities
+              and {len(sets["lpa"] & sets["development-corporation"])} development corporations)
+          <li>There are currently {len(sets["local-planning-authority"])} Local Planning Authorities (LPAs) in England 
+              ({len(sets["local-planning-authority"] & sets["local-authority"])} local authorities,
+              {len(sets["local-planning-authority"] & sets["national-park-authority"])} national park authorities
+              and {len(sets["local-planning-authority"] & sets["development-corporation"])} development corporations)
           </ul>
           """)
 
