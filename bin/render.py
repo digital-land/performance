@@ -100,6 +100,12 @@ if __name__ == "__main__":
     lpas = load("var/cache/local-planning-authority.csv", "reference")
     p153 = load("data/p153.csv", "organisation")
 
+    # remove awards before the programme
+    for award, row in list(awards.items()):
+        start_date = row["start-date"]
+        if start_date < "2021-06-01":
+            del awards[award]
+
     # fixup quality status
     for organisation, row in quality.items():
         for dataset in odp_datasets:
@@ -142,11 +148,8 @@ if __name__ == "__main__":
     for award, row in awards.items():
         organisation = row["organisation"]
         intervention = row["intervention"]
-        start_date = row["start-date"]
         partners = filter(None, row["organisations"].split(";"))
-
-        if intervention in ["plan-making"] and start_date < "2021-06-01":
-            continue
+        start_date = row["start-date"]
 
         # ODP membership is a set of organisations who have worked on PropTech and Software projects
         if intervention in ["engagement", "innovation", "software", "integration", "improvement"]:
