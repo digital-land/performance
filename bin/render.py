@@ -65,7 +65,6 @@ def add_organisation(organisation, role):
         {
             "organisation": organisation,
             "role": role,
-            "projects": set(),
             "interventions": {},
             "score": 0,
             "data-ready": "",
@@ -136,7 +135,7 @@ if __name__ == "__main__":
                 role = "other"
             add_organisation(organisation, role="other")
 
-        rows[organisation]["projects"].add(row["project"])
+        set_add(row["project"], organisation)
         rows[organisation]["score"] = rows[organisation]["score"] + 1
 
     # funding awards and interventions
@@ -222,8 +221,6 @@ if __name__ == "__main__":
     for organisation, row in rows.items():
         set_add("organisation", organisation)
         set_add(row["role"], organisation)
-        for project in row["projects"]:
-            set_add(project, organisation)
 
     # add minor application statistics
     for organisation, row in p153.items():
@@ -236,7 +233,7 @@ if __name__ == "__main__":
     for organisation, row in rows.items():
         shift = 10
         for project in ["localgov-drupal","local-land-charges", "proptech", "open-digital-planning"]:
-            if project in row["projects"]:
+            if organisation in sets[project]:
                 row["score"] += shift
             shift *= 10
 
@@ -690,13 +687,22 @@ th[role=columnheader]:not(.no-sort):hover:after {
           'First', 
           'Both', 
           'Second'],
+
+          ['ODP and LLC', {overlaps("open-digital-planning", "local-land-charges")}],
+
           ['Software and ODP', {overlaps("Software", "open-digital-planning")}],
-          ['Software and LLC', {overlaps("Software", "local-land-charges")}],
           ['Software and PropTech', {overlaps("Software", "proptech")}],
+          ['Software and LLC', {overlaps("Software", "local-land-charges")}],
           ['Software and Drupal', {overlaps("Software", "localgov-drupal")}],
+
+          ['PropTech and ODP', {overlaps("proptech", "local-land-charges")}],
           ['PropTech and LLC', {overlaps("proptech", "local-land-charges")}],
           ['PropTech and Drupal', {overlaps("proptech", "localgov-drupal")}],
+
           ['Drupal and LLC', {overlaps("localgov-drupal", "local-land-charges")}],
+          ['Drupal and ODP', {overlaps("localgov-drupal", "open-digital-planning")}],
+
+          ['LPA and ODP', {overlaps("local-planning-authority", "open-digital-planning")}],
           ['LPA and Software', {overlaps("local-planning-authority", "Software")}],
           ['LPA and PropTech', {overlaps("local-planning-authority", "proptech")}],
           ['LPA and LLC', {overlaps("local-planning-authority", "local-land-charges")}],
@@ -811,7 +817,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 
         # projects
         for project in ["localgov-drupal", "local-land-charges", "open-digital-planning"]:
-            dot = "●" if project in row["projects"] else ""
+            dot = "●" if organisation in sets[project] else ""
             print(f'<td class="dot">{dot}</td>')
 
         n = row["PropTech"]
