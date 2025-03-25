@@ -6,8 +6,8 @@ import csv
 from html import escape
 
 funded_organisation = {}
-sets = {"lpa": set(), "ended": set(), "direct": set()}
 lpas = {}
+sets = {"lpa": set(), "ended": set(), "direct": set()}
 
 
 def load(path, key, opt=None):
@@ -18,7 +18,7 @@ def load(path, key, opt=None):
     return d
 
 
-def add_award(organisation, start_date, intervention, amount, partners):
+def add_award(organisation, start_date, intervention, fund, amount, partners):
     funded_organisation.setdefault(
         organisation,
         {
@@ -27,6 +27,7 @@ def add_award(organisation, start_date, intervention, amount, partners):
             "interventions": set(),
             "amount": 0,
             "organisations": set(),
+            "funds": set(),
         },
     )
     funded_organisation[organisation]["interventions"].add(intervention)
@@ -44,6 +45,8 @@ def add_award(organisation, start_date, intervention, amount, partners):
     
     if organisations[organisation].get("local-planning-authority", ""):
         sets["lpa"].add(organisation)
+
+    funded_organisation[organisation]["funds"].add(fund)
 
 
 def shapes_map(_set, _class):
@@ -95,6 +98,7 @@ def shapes_map(_set, _class):
 if __name__ == "__main__":
     organisations = load("var/cache/organisation.csv", "organisation")
     interventions = load("specification/intervention.csv", "intervention")
+    funds = load("specification/fund.csv", "fund")
     awards = load("specification/award.csv", "award")
 
     for organisation, row in organisations.items():
@@ -124,18 +128,19 @@ if __name__ == "__main__":
         start_date = row["start-date"]
         intervention = row["intervention"]
         amount = int(row["amount"])
+        fund = row["fund"]
 
         if intervention in ["plan-making"] and start_date < "2021-06-01":
             continue
 
         partners = set(filter(None, row["organisations"].split(";")))
 
-        add_award(organisation, start_date, intervention, amount, partners)
+        add_award(organisation, start_date, intervention, fund, amount, partners)
         sets.setdefault("direct:" + intervention, set())
         sets["direct:" + intervention].add(organisation)
 
         for partner in partners:
-            add_award(partner, start_date, intervention, 0, partners - set(partner) & set(organisation))
+            add_award(partner, start_date, intervention, fund, 0, partners - set(partner) & set(organisation))
 
     for organisation, row in funded_organisation.items():
         for partner in row["organisations"]:
@@ -332,13 +337,14 @@ li.key-item {
         """
         <table id='awards-table' class='sortable'>
         <thead>
-            <th scope="col" align="left" class="date">Date</th>
+            <th scope="col" align="left" class="date">Start date</th>
+            <th scope="col" align="left" class="date">End date</th>
             <th scope="col" align="left">LPA</th>
             <th scope="col" align="left">Organisation</th>
             <th scope="col" align="left">Partners</th>
             <th scope="col" align="left">Interventions</th>
+            <th scope="col" align="left">Funds</th>
             <th scope="col" align="right">Amount</th>
-            <th scope="col" align="left" class="date">End date</th>
         </thead>
         <tbody>
     """)
@@ -346,22 +352,35 @@ li.key-item {
     for organisation, row in funded_organisation.items():
         print(f'<tr id="LPA-{organisations[organisation].get("local-planning-authority", "")}">')
         print(f'<td>{row["start-date"]}</td>')
-        dot = "●" if organisation in sets["lpa"] else ""
-        print(f'<td class="dot">{dot}</td>')
+        print(f'<td>{row["end-date"]}</td>')
+        lpa = organisations[organisation].get("local-planning-authority", "")
+        print(f'<td><a href="https://www.planning.data.gov.uk/curie/statistical-geography:{lpa}">{lpa}</td>')
+
+
         print(
             f'<td><a href="https://www.planning.data.gov.uk/curie/{organisation}">{escape(organisations[organisation]["name"])}</a></td>'
         )
+
         print('<td>')
         sep = ""
         for organisation in sorted(row["organisations"]):
             print(f'{sep}<a href="https://www.planning.data.gov.uk/curie/{organisation}">{organisations[organisation]["name"]}</a>', end="")
             sep = ", "
         print(f'</td>')
+
         print(f'<td>{", ".join([interventions[intervention]["name"] for intervention in row["interventions"]])}</td>')
+
+        print('<td>')
+        sep = ""
+        for fund in sorted(row["funds"]):
+            print(f'{sep}{funds[fund]["name"]}', end="")
+            sep = ", "
+        print(f'</td>')
+
         n = int(row["amount"])
         amount = f"£{n:,}" if n else ""
         print(f'<td class="amount" data-sort="{n}">{amount}</td>')
-        print(f'<td>{row["end-date"]}</td>')
+
 
     print("</tbody>")
     print("</table>")
