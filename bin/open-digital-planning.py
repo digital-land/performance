@@ -1,10 +1,13 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
+import re
+import sys
 import csv
 from html import escape
 
 funded_organisation = {}
-sets = {"lpa": set(), "ended": set()}
+sets = {"lpa": set(), "ended": set(), "direct": set()}
+lpas = {}
 
 
 def load(path, key, opt=None):
@@ -43,6 +46,52 @@ def add_award(organisation, start_date, intervention, amount, partners):
         sets["lpa"].add(organisation)
 
 
+def shapes_map(_set, _class):
+    re_id = re.compile(r"id=\"(?P<lpa>\w+)")
+
+    found = set()
+    lpa = ""
+    name = ""
+
+    with open("var/cache/local-planning-authority.svg") as f:
+        _classes = ""
+        for line in f.readlines():
+
+            if "<svg" in line:
+                line = line.replace("455", "465")
+            line = line.replace(' fill-rule="evenodd"', "")
+            line = line.replace('class="polygon ', 'class="')
+
+            match = re_id.search(line)
+            if match:
+                _classes = ""
+                lpa = match.group("lpa")
+                if lpa in found:
+                    print(f"already found {lpa}", file=sys.stderr)
+                if lpa not in lpas:
+                    lpa = ""
+                    name = ""
+                else:
+                    found.add(lpa)
+                    organisation = lpas[lpa]
+                    name = organisations[organisation]["name"]
+                    if organisation in _set:
+                        _classes = _class
+
+            if 'class="local-planning-authority"' in line:
+                line = line.replace("<path", f'<a href="#LPA-{lpa}"><path')
+                line = line.replace(
+                    'class="local-planning-authority"/>',
+                    f'class="local-planning-authority {_classes}"><title>{name}</title></path></a>',
+                )
+
+            print(line, end="")
+
+    notfound = list(set(lpas.keys()) - found)
+    if notfound:
+        print(f"not found {notfound}", file=sys.stderr)
+
+
 if __name__ == "__main__":
     organisations = load("var/cache/organisation.csv", "organisation")
     interventions = load("specification/intervention.csv", "intervention")
@@ -53,6 +102,10 @@ if __name__ == "__main__":
         if dataset not in sets:
             sets[dataset] = set()
         sets[dataset].add(organisation)
+
+        lpa = organisations[organisation].get("local-planning-authority", "")
+        if lpa:
+            lpas[lpa] = organisation
 
     for row in csv.DictReader(open("specification/role-organisation.csv", newline="")):
         organisation = row["organisation"]
@@ -78,6 +131,8 @@ if __name__ == "__main__":
         partners = set(filter(None, row["organisations"].split(";")))
 
         add_award(organisation, start_date, intervention, amount, partners)
+        sets.setdefault("direct:" + intervention, set())
+        sets["direct:" + intervention].add(organisation)
 
         for partner in partners:
             add_award(partner, start_date, intervention, 0, partners - set(partner) & set(organisation))
@@ -254,6 +309,8 @@ li.key-item {
    margin-bottom: 5px;
    padding-left: 5px;
 }
+
+#membership-map svg path.open-digital-planning { fill: #f66068; stroke: #000; stroke-width: 0.5px }
 </style>
     """)
 
@@ -266,6 +323,10 @@ li.key-item {
     print("<h1 id='Funding'>Open Digital Planning</h1>")
 
     print("<p>Open Digital Planning community members.</p>")
+
+    print('<div id="membership-map">')
+    shapes_map(set(funded_organisation.keys()), "open-digital-planning")
+    print("</div>")
 
     print(
         """
@@ -283,7 +344,7 @@ li.key-item {
     """)
 
     for organisation, row in funded_organisation.items():
-        print(f"<tr>")
+        print(f'<tr id="LPA-{organisations[organisation].get("local-planning-authority", "")}">')
         print(f'<td>{row["start-date"]}</td>')
         dot = "●" if organisation in sets["lpa"] else ""
         print(f'<td class="dot">{dot}</td>')
@@ -292,7 +353,7 @@ li.key-item {
         )
         print('<td>')
         sep = ""
-        for organisation in row["organisations"]:
+        for organisation in sorted(row["organisations"]):
             print(f'{sep}<a href="https://www.planning.data.gov.uk/curie/{organisation}">{organisations[organisation]["name"]}</a>', end="")
             sep = ", "
         print(f'</td>')
@@ -305,25 +366,28 @@ li.key-item {
     print("</tbody>")
     print("</table>")
 
-    print("<h1>Numbers</h1>")
+    print("<h1>Counts</h1>")
+    print("<ul>")
+
+    for intervention in ["engagement", "innovation", "software", "integration", "improvement"]:
+        print(f'<li>{len(sets[intervention])} organisations have been funded for {intervention}, ({len(sets["direct:"+ intervention])} directly)')
 
     print(f"""
-          <ul>
-          <li>{len(sets["engagement"])} Funded for engagement
-          <li>{len(sets["innovation"])} Funded for innovation
-          <li>{len(sets["software"])} Funded for product
-          <li>{len(sets["integration"])} Funded for integration
-          <li>{len(sets["improvement"])} Funded for improvement
-          <li>{len(sets["innovation"] | sets["engagement"])} Funded for PropTech (engagement or innovation)
-          <li>{len(sets["software"] | sets["integration"] | sets["improvement"])} Funded for Software (product, integration or improvement)
-          <li>{len(funded_organisation)} Funded and partner organisations are classed as being ODP members
-          <li>{len(sets["lpa"])} funded organisations are LPAs 
+          <li>{len(sets["innovation"] | sets["engagement"])} organisations have been funded for PropTech (engagement or innovation),
+              ({len(sets["direct:innovation"] | sets["direct:innovation"])} directly)
+
+          <li>{len(sets["software"] | sets["integration"] | sets["improvement"])} organisations have been funded for Software (software, integration or improvement),
+              ({len(sets["direct:software"] | sets["direct:integration"] | sets["direct:improvement"])} directly)
+
+          <li>{len(funded_organisation)} organisations are therefore considered to be members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
+          <li>{len(sets["lpa"])} funded organisations are a Local Planning Authority
               ({len(sets["lpa"] & sets["local-authority"])} local authorities,
-              {len(sets["lpa"] & sets["national-park-authority"])} national park authorities
+              {len(sets["lpa"] & sets["national-park-authority"])} national park authorities,
               and {len(sets["lpa"] & sets["development-corporation"])} development corporations)
+
           <li>There are currently {len(sets["local-planning-authority"])} Local Planning Authorities (LPAs) in England 
               ({len(sets["local-planning-authority"] & sets["local-authority"])} local authorities,
-              {len(sets["local-planning-authority"] & sets["national-park-authority"])} national park authorities
+              {len(sets["local-planning-authority"] & sets["national-park-authority"])} national park authorities including The Broads,
               and {len(sets["local-planning-authority"] & sets["development-corporation"])} development corporations)
           </ul>
           """)
