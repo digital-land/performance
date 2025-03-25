@@ -335,7 +335,7 @@ li.key-item {
 
     print(
         """
-        <table id='awards-table' class='sortable'>
+        <table id='sortable' class='sortable'>
         <thead>
             <th scope="col" align="left" class="date">Start date</th>
             <th scope="col" align="left" class="date">End date</th>
@@ -428,7 +428,6 @@ li.key-item {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js" integrity="sha512-dRD755QRxlybm0h3LXXIGrFcjNakuxW3reZqnPtUkMv6YsSWoJf+slPjY5v4lZvx2ss+wBZQFegepmA7a2W9eA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 new Tablesort(document.getElementById('sortable'), { descending: true });
-new Tablesort(document.getElementById('awards-table'));
 </script>
 """
     )
