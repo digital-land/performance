@@ -125,6 +125,9 @@ if __name__ == "__main__":
     for row in csv.DictReader(
         open("specification/project-organisation.csv", newline="")
     ):
+        if row["end-date"]:
+            continue
+
         organisation = row["organisation"]
         if organisation not in rows:
             if "local-planning-authority" in organisation_roles.get(organisation, []):
@@ -140,7 +143,17 @@ if __name__ == "__main__":
     for award, row in awards.items():
         organisation = row["organisation"]
         intervention = row["intervention"]
+        start_date = row["start-date"]
         partners = filter(None, row["organisations"].split(";"))
+
+        if intervention in ["plan-making"] and start_date < "2021-06-01":
+            continue
+
+        # ODP membership is a set of organisations who have worked on PropTech and Software projects
+        if intervention in ["engagement", "innovation", "software", "integration", "improvement"]:
+            set_add("open-digital-planning", organisation)
+            for partner in partners:
+                set_add("open-digital-planning", partner)
 
         if organisation not in rows:
             add_organisation(organisation, "")
@@ -571,9 +584,9 @@ th[role=columnheader]:not(.no-sort):hover:after {
         var data = google.visualization.arrayToDataTable([
           ['Status', 'Count'],
           ['LPA', {len(sets["local-planning-authority"])}],
-          ['Funded', {len(sets["funded"])}],
-          ['Software funding', {len(sets["Software"])}],
           ['ODP member', {len(sets["open-digital-planning"])}],
+          ['Awarded funding', {len(sets["funded"])}],
+          ['Funded for Software', {len(sets["Software"])}],
           ['Providing some data', {len(sets["providing"])}],
           ['Data ready for PlanX', {len(sets["data-ready"])}],
           ['Interested in PlanX', {len(sets["interested"])}],
