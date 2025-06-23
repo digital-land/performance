@@ -419,15 +419,7 @@ li.key-item {
     )
 
     print("<h1 id='Funding'>Digital Planning Programme</h1>")
-
-    print("<p>Open Digital Planning community members.</p>")
-
-    print('<div id="membership-map">')
-    shapes_map()
-    print("</div>")
-
-    print("<h1 id='Funding'>Digital Planning Programme</h1>")
-    print("<p>Local planining authorities funded by the Digital Planning Programme.</p>")
+    print("<p>Local planining authorities awarded funding related to digital planning.</p>")
     print('<div class="shapes map">')
     shapes_map()
     print("</div>")
@@ -446,7 +438,7 @@ li.key-item {
     for item in legends:
         value = counts[item["reference"]]
         if value:
-            print(f'<li class="key-item {item["reference"]}">{item["description"]}</li>')
+            print(f'<li class="key-item {item["reference"]}">{item["description"]} ({value})</li>')
 
     print("""</ul></div>""")
 
