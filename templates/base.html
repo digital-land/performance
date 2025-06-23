@@ -1,0 +1,159 @@
+{% set base_url = base_url or "https://www.planning.data.gov.uk/" %}
+{% set github_organisation = github_organisation or "digital-land" %}
+{% set github_repository = "performance" %}
+{% set github_url = "https://github.com/" + github_organisation + "/" + github_repository %}
+{% set licence_url = licence_url or github_url + "/blob/master/LICENSE" %}
+
+<!DOCTYPE html>
+<html lang="en" class="govuk-template">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ title }} | Planning Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0c0c">
+    <link rel="shortcut icon" sizes="48x48" href="{{ base_url }}/static/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" sizes="32x32" href="{{ base_url }}/static/images/favicon-32x32.png" type="image/png">
+    <link rel="shortcut icon" sizes="16x16" href="{{ base_url }}/static/images/favicon-16x16.png" type="image/png">
+    <link rel="apple-touch-icon" href="{{ base_url }}/static/images/apple-touch-icon.png">
+    <link rel="stylesheet" href="{{ base_url }}/static/stylesheets/application.css">
+    <link rel="stylesheet" href="{{ base_url }}/static/stylesheets/vendor/accessible-autocomplete.css">
+  </head>
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+    <a href="#main-content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+    <script>
+      // Wait for DOM content to be loaded and dptp to be initialized
+      document.addEventListener('DOMContentLoaded', function() {
+        // Check if dptp is available
+        if (window.dptp && window.dptp.cookies) {
+          window.acceptCookies = window.dptp.cookies.acceptCookies;
+          window.hideCookieBanner = window.dptp.cookies.hideCookieBanner;
+          window.hideCookieConfirmation = window.dptp.cookies.hideCookieConfirmation;
+        } else {
+          console.error('Cookie functions not available');
+        }
+      });
+    </script>
+    <div class="govuk-cookie-banner" data-nosnippet role="region" aria-label="Cookies on planning.data.gov.uk/"
+         id="cookie-banner" aria-label="Cookies on planning.data.gov.uk" style="display: none" aria-hidden="true">
+    <div class="govuk-cookie-banner__message govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h2 class="govuk-cookie-banner__heading govuk-heading-m">
+          Cookies on planning.data.gov.uk
+        </h2>
+        <div class="govuk-cookie-banner__content">
+          <p class="govuk-body">We use some essential cookies to make this service work.</p>
+          <p class="govuk-body">We'd also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
+        </div>
+      </div>
+    </div>
+    <div class="govuk-button-group">
+      <button value="accept" type="button" name="cookies" class="govuk-button" data-module="govuk-button"
+         onclick="acceptCookies({ essential: true, settings: false, usage: true, campaigns: false });">
+        Accept analytics cookies
+      </button>
+      <button value="reject" type="button" name="cookies" class="govuk-button" data-module="govuk-button"
+         onclick="acceptCookies({ essential: true, settings: false, usage: false, campaigns: false });">
+        Reject analytics cookies
+      </button>
+      <a class="govuk-link" href="cookies">Customise cookie preferences</a>
+    </div>
+  </div>
+</div>
+<div class="govuk-cookie-banner" data-nosnippet role="region" aria-label="Cookies on planning.data.gov.uk"
+     id="cookie-confirmation" style="display: none" aria-hidden="true">
+  
+  <div class="govuk-cookie-banner__message govuk-width-container">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        
+        <div class="govuk-cookie-banner__content">
+          
+          <p class="govuk-notification-banner__heading">
+              You have accepted additional cookies. You can <a class="govuk-notification-banner__link" href="/cookies">change your cookie settings</a> at any time.
+            </p>
+          
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="govuk-button-group">
+      <a href="#" role="button" draggable="false" class="govuk-button" data-module="govuk-button"
+         onclick="hideCookieConfirmation();">
+        Hide cookie message
+      </a>
+    </div>
+  </div>
+</div>
+
+
+{% include "_header.html" %}
+
+
+{% block content %}
+<div class="govuk-width-container">
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+    </main>
+</div>
+{% endblock content %}
+    
+<footer class="govuk-footer">
+  <div class="govuk-width-container">
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+          <h2 class="govuk-visually-hidden">Admin links</h2>
+          <ul class="govuk-footer__inline-list">
+
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies">
+                Cookies
+              </a>
+            </li>
+            
+          </ul>
+        <div class="govuk-footer__meta-custom">
+            The <a class="govuk-footer__link" href="{{ github_url }}/">software</a> and <a class="govuk-footer__link" href="{{ github_url }}/">data</a> used to build these pages is <a class="govuk-footer__link" href="{{ licence_url }}">open source</a>.
+        </div>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          class="govuk-footer__licence-logo"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 483.2 195.7"
+          height="17"
+          width="41">
+          <path
+            fill="currentColor"
+            d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145" />
+        </svg>
+        <span class="govuk-footer__licence-description">
+          All content is available under the
+          <a
+            class="govuk-footer__link"
+            href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+            rel="license">Open Government Licence v3.0</a>, except where otherwise stated
+        </span>
+      </div>
+      <div class="govuk-footer__meta-item">
+        <a class="govuk-footer__link govuk-footer__copyright-logo"
+          href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/">
+          © Crown copyright
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+    <script src="{{ base_url }}/static/javascripts/digital-land-cookies.js"></script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <script src="{{ base_url }}/static/javascripts/govuk/govuk-frontend.js"></script>
+    <script>
+      // initiate all GOVUK components
+      window.GOVUKFrontend.initAll();
+    </script>
+    <script src="{{ base_url }}/static/javascripts/digital-land-frontend.js"></script>
+    <script>window.DLFrontend.initAll();</script>
+  </body>
+</html>

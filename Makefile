@@ -26,7 +26,8 @@ DATA_FILES=\
 	$(SPECIFICATION_DIR)project.csv\
 	$(SPECIFICATION_DIR)project-organisation.csv\
 	$(SPECIFICATION_DIR)role.csv\
-	$(SPECIFICATION_DIR)role-organisation.csv
+	$(SPECIFICATION_DIR)role-organisation.csv\
+	$(SPECIFICATION_DIR)provision-quality.csv\
 
 DOCS=\
 	$(DOCS_DIR)index.html\
@@ -35,11 +36,14 @@ DOCS=\
 	$(DOCS_DIR)project/open-digital-planning/index.html\
 	$(DOCS_DIR).nojekyll
 
+
+TEMPLATES=$(shell find templates/ -type f)
+
 all: $(DOCS) $(DATA_FILES)
 
-$(DOCS_DIR)index.html:
+$(DOCS_DIR)index.html: bin/render.py $(TEMPLATES)
 	@mkdir -p $(DOCS_DIR)
-	> $@
+	python3 bin/render.py
 
 $(DOCS_DIR).nojekyll:
 	@mkdir -p $(DOCS_DIR)
@@ -83,6 +87,9 @@ $(CACHE_DIR)point.svg:
 
 $(CACHE_DIR)local-planning-authority.svg:
 	curl -qfsL 'https://raw.githubusercontent.com/digital-land/choropleth/refs/heads/main/svg/local-planning-authority.svg' > $@
+
+# refreshing data/quality.csv is a manual process
+# https://github.com/digital-land/jupyter-analysis/tree/main/reports/weekly_odp_status_reports
 
 clean::
 	rm -rf var/

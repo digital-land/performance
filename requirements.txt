@@ -4,3 +4,4 @@ simplejson
 XlsxWriter
 pandas
 odfpy
+jinja2
