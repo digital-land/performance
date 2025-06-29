@@ -13,8 +13,7 @@ SPECIFICATION_DIR=specification/
 # downloaded data from other sources
 CACHE_DIR=var/cache/
 
-DATA_FILES=\
-	$(DATA_DIR)quality.csv\
+DOWNLOADED_FILES=\
 	$(DATA_DIR)p153.csv\
 	$(CACHE_DIR)organisation.csv\
 	$(CACHE_DIR)local-planning-authority.csv\
@@ -26,8 +25,12 @@ DATA_FILES=\
 	$(SPECIFICATION_DIR)project.csv\
 	$(SPECIFICATION_DIR)project-organisation.csv\
 	$(SPECIFICATION_DIR)role.csv\
-	$(SPECIFICATION_DIR)role-organisation.csv\
-	$(SPECIFICATION_DIR)provision-quality.csv\
+	$(SPECIFICATION_DIR)role-organisation.csv
+#	$(SPECIFICATION_DIR)provision-quality.csv
+
+DATA_FILES=\
+	$(DATA_DIR)quality.csv\
+	$(DOWNLOADED_FILES)
 
 DOCS=\
 	$(DOCS_DIR)index.html\
@@ -92,10 +95,10 @@ $(CACHE_DIR)local-planning-authority.svg:
 # https://github.com/digital-land/jupyter-analysis/tree/main/reports/weekly_odp_status_reports
 
 clean::
-	rm -rf var/
+	rm -rf var/ $(DOWNLOADED_FILES) 
 
 clobber::
-	rm -f $(DOCS) $(DATA)
+	rm -f $(DOCS) 
 
 init::
 	pip install -r requirements.txt
