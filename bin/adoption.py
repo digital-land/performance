@@ -421,7 +421,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
             color = 0.5
             status = "Adopting PlanX"
 
-        print(f"          ['{row['area-name']}', '{bucket}', {amount}, {color}, '{row['name']}', '{status}', {row['PropTech']}, {row['Software']}],")
+        print(f"          ['{escape(row['area-name'])}', '{bucket}', {amount}, {color}, '{escape(row['name'])}', '{status}', {row['PropTech']}, {row['Software']}],")
 
     print(f"""
           ['PropTech', 'Funded organisation', {total["PropTech"]}, 0, 'Funded for PropTech', '', 0, 0,],
@@ -515,7 +515,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
             color = 0.5
             status = "Providing some data"
 
-        print(f"          ['{row['area-name']}', '{bucket}', {amount}, {color}, '{row['name']}', '{status}', {row['PropTech']}, {row['Software']}],")
+        print(f"          ['{escape(row['area-name'])}', '{bucket}', {amount}, {color}, '{escape(row['name'])}', '{status}', {row['PropTech']}, {row['Software']}],")
 
     print(f"""
           ['PropTech', 'Funded organisation', {total["PropTech"]}, 0, 'Funded for PropTech', '', 0, 0],
@@ -808,7 +808,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
         print(f'<td>{order}</td>')
 
         print(
-            f'<td id="{row["organisation"]}"><a href="{entity_url}{row["entity"]}">{escape(row["name"])}</a></td>'
+            f'<td id="{escape(row["organisation"])}"><a href="{entity_url}{row["entity"]}">{escape(row["name"])}</a></td>'
         )
         print(f'<td>{row.get("end-date", "")}</td>')
         print(f'<td class="number">{row.get("volume", "")}</td>')
