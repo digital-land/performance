@@ -132,7 +132,7 @@ if __name__ == "__main__":
         amount = int(row["amount"])
         fund = row["fund"]
 
-        if intervention in ["plan-making"] and start_date < "2021-06-01":
+        if (intervention not in odp_interventions) or start_date < "2021-06-01":
             continue
 
         partners = set(filter(None, row["organisations"].split(";")))
@@ -149,12 +149,6 @@ if __name__ == "__main__":
             funded_organisation[partner]["organisations"].add(organisation)
 
 
-    filtered = {}
-    for organisation, row in funded_organisation.items():
-        if set(odp_interventions).intersection(set(row["interventions"])):
-            filtered[organisation] = row
-
-    funded_organisation = filtered
 
     print("""<!doctype html>
 <head>
