@@ -17,6 +17,8 @@ type_names = {
         }
 
 odp_interventions = ["engagement", "innovation", "software", "integration", "improvement"]
+data_interventions = ["software", "integration", "improvement"]
+planx_datasets = ["conservation-area", "article-4-direction-area", "listed-building-outline", "tree", "tree-preservation-zone"]
 
 today = datetime.today().strftime('%Y-%m-%d')
 
@@ -112,6 +114,11 @@ if __name__ == "__main__":
     funds = load("specification/fund.csv", "fund")
     awards = load("specification/award.csv", "award")
     local_authority_types = load("var/cache/local-authority-type.csv", "reference")
+
+    for row in csv.DictReader(open("specification/provision.csv", newline="")):
+        if (not row["end-date"]) and row["dataset"] in planx_datasets and row["provision-reason"] in ["expected"]:
+            sets.setdefault("planx-data", set())
+            sets["planx-data"].add(row["organisation"]) 
 
     for organisation, row in organisations.items():
         dataset = row["dataset"]
@@ -432,11 +439,22 @@ li.key-item {
           <li>{len(funded_organisation)} organisations are therefore considered to be current members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
           """)
 
+    software_lpa = sets["local-planning-authority"].intersection(sets["software"] | sets["integration"] | sets["improvement"])
     print(f"""
           <li>{len(sets["lpa"])} funded organisations are a Local Planning Authority
               ({len(sets["lpa"] & sets["local-authority"])} local authorities,
               {len(sets["lpa"] & sets["national-park-authority"])} national park authorities,
               and {len(sets["lpa"] & sets["development-corporation"])} development corporations)
+
+          <li>{len(software_lpa)} Local Planning Authorities (LPAs) have been funded for Software (software, integration or improvement) 
+
+          <li>{len(sets["planx-data"])} of these LPAs are expected to provide the data needed to adopt the PlanX product
+          """)
+
+    difference = software_lpa.difference(sets["planx-data"])
+    if difference:
+        print(f"""
+          (excludes { ", ".join([organisations[l]["name"] for l in difference])})
 
           <li>There are currently {len(sets["local-planning-authority"])} Local Planning Authorities (LPAs) in England 
               ({len(sets["local-planning-authority"] & sets["local-authority"])} local authorities,
