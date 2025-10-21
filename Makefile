@@ -17,6 +17,7 @@ DOWNLOADED_FILES=\
 	$(DATA_DIR)p153.csv\
 	$(CACHE_DIR)organisation.csv\
 	$(CACHE_DIR)local-planning-authority.csv\
+	$(CACHE_DIR)local-authority-type.csv\
 	$(SPECIFICATION_DIR)award.csv\
 	$(SPECIFICATION_DIR)cohort.csv\
 	$(SPECIFICATION_DIR)fund.csv\
@@ -71,6 +72,10 @@ $(CACHE_DIR)organisation.csv:
 $(CACHE_DIR)local-planning-authority.csv:
 	@mkdir -p $(CACHE_DIR)
 	curl -qfsL 'https://files.planning.data.gov.uk/dataset/local-planning-authority.csv' > $@
+            
+$(CACHE_DIR)local-authority-type.csv:
+	@mkdir -p $(CACHE_DIR)
+	curl -qfsL 'https://files.planning.data.gov.uk/dataset/local-authority-type.csv' > $@
             
 $(SPECIFICATION_DIR)%:
 	@mkdir -p $(SPECIFICATION_DIR)

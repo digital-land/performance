@@ -4,12 +4,21 @@ import re
 import sys
 import csv
 from html import escape
+from datetime import datetime
 
 funded_organisation = {}
 lpas = {}
 sets = {"lpa": set(), "ended": set(), "direct": set()}
 
+type_sets = {}
+type_names = {
+        "national-park-authority": "National Park Authority",
+        "development-corporation": "Development Corporation",
+        }
+
 odp_interventions = ["engagement", "innovation", "software", "integration", "improvement"]
+
+today = datetime.today().strftime('%Y-%m-%d')
 
 
 def load(path, key, opt=None):
@@ -42,7 +51,7 @@ def add_award(organisation, start_date, intervention, fund, amount, partners):
     funded_organisation[organisation]["amount"] += amount
     sets[intervention].add(organisation)
 
-    if organisations[organisation].get("end-date"):
+    if organisations[organisation].get("end-date") > today:
         sets["ended"].add(organisation)
     
     if organisations[organisation].get("local-planning-authority", ""):
@@ -102,6 +111,7 @@ if __name__ == "__main__":
     interventions = load("specification/intervention.csv", "intervention")
     funds = load("specification/fund.csv", "fund")
     awards = load("specification/award.csv", "award")
+    local_authority_types = load("var/cache/local-authority-type.csv", "reference")
 
     for organisation, row in organisations.items():
         dataset = row["dataset"]
@@ -147,6 +157,16 @@ if __name__ == "__main__":
     for organisation, row in funded_organisation.items():
         for partner in row["organisations"]:
             funded_organisation[partner]["organisations"].add(organisation)
+
+    # organisation type ..
+    for organisation, row in funded_organisation.items():
+        o = organisations[organisation]
+        _type = o["dataset"]
+        if _type == "local-authority":
+            _type = o["local-authority-type"]
+            type_names[_type] = local_authority_types[_type]["name"]
+        type_sets.setdefault(_type, set())
+        type_sets[_type].add(organisation)
 
 
 
@@ -400,7 +420,19 @@ li.key-item {
           <li>{len(sets["software"] | sets["integration"] | sets["improvement"])} organisations have been funded for Software (software, integration or improvement),
               ({len(sets["direct:software"] | sets["direct:integration"] | sets["direct:improvement"])} directly)
 
-          <li>{len(funded_organisation)} organisations are therefore considered to be members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
+          <li>{len(funded_organisation)} organisations are therefore considered to have been members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
+        """)
+
+    l = [f"{len(type_sets[_type])} {type_names[_type]}" for _type in type_sets]
+    print("(" + ", ".join(l[:-2] + [" and ".join(l[-2:])]) + ")")
+
+    if sets["ended"]:
+        print(f"""
+          <li>{len(set(funded_organisation).intersection(sets["ended"]))} of those organisations have been disolved.
+          <li>{len(funded_organisation)} organisations are therefore considered to be current members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
+          """)
+
+    print(f"""
           <li>{len(sets["lpa"])} funded organisations are a Local Planning Authority
               ({len(sets["lpa"] & sets["local-authority"])} local authorities,
               {len(sets["lpa"] & sets["national-park-authority"])} national park authorities,
