@@ -9,6 +9,8 @@ funded_organisation = {}
 lpas = {}
 sets = {"lpa": set(), "ended": set(), "direct": set()}
 
+odp_interventions = ["engagement", "innovation", "software", "integration", "improvement"]
+
 
 def load(path, key, opt=None):
     d = {}
@@ -147,6 +149,12 @@ if __name__ == "__main__":
             funded_organisation[partner]["organisations"].add(organisation)
 
 
+    filtered = {}
+    for organisation, row in funded_organisation.items():
+        if set(odp_interventions).intersection(set(row["interventions"])):
+            filtered[organisation] = row
+
+    funded_organisation = filtered
 
     print("""<!doctype html>
 <head>
@@ -388,7 +396,7 @@ li.key-item {
     print("<h1>Counts</h1>")
     print("<ul>")
 
-    for intervention in ["engagement", "innovation", "software", "integration", "improvement"]:
+    for intervention in odp_interventions:
         print(f'<li>{len(sets[intervention])} organisations have been funded for {intervention}, ({len(sets["direct:"+ intervention])} directly)')
 
     print(f"""
