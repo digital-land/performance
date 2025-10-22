@@ -6,21 +6,48 @@ import csv
 from html import escape
 from datetime import datetime
 
-funded_organisation = {}
+funded_organisations = {}
 lpas = {}
-sets = {"lpa": set(), "ended": set(), "direct": set(), "Software": set(), "direct:Software": set()}
+sets = {
+    "lpa": set(),
+    "ended": set(),
+    "direct": set(),
+    "Software": set(),
+    "direct:Software": set(),
+    "PropTech": set(),
+    "direct:PropTech": set(),
+}
 
 type_sets = {}
 type_names = {
-        "national-park-authority": "National Park Authority",
-        "development-corporation": "Development Corporation",
-        }
+    "national-park-authority": "National Park Authority",
+    "development-corporation": "Development Corporation",
+}
 
-odp_interventions = ["engagement", "innovation", "software", "integration", "improvement"]
-data_interventions = ["software", "integration", "improvement"]
-planx_datasets = ["conservation-area", "article-4-direction-area", "listed-building-outline", "tree", "tree-preservation-zone"]
+software_interventions = [
+    "software",
+    "integration",
+    "improvement",
+]
 
-today = datetime.today().strftime('%Y-%m-%d')
+proptech_interventions = [
+    "innovation",
+    "engagement",
+]
+
+odp_interventions = proptech_interventions + software_interventions
+
+data_interventions = software_interventions
+
+planx_datasets = [
+    "conservation-area",
+    "article-4-direction-area",
+    "listed-building-outline",
+    "tree",
+    "tree-preservation-zone",
+]
+
+today = datetime.today().strftime("%Y-%m-%d")
 
 
 def load(path, key, opt=None):
@@ -32,7 +59,7 @@ def load(path, key, opt=None):
 
 
 def add_award(organisation, start_date, intervention, fund, amount, partners):
-    funded_organisation.setdefault(
+    funded_organisations.setdefault(
         organisation,
         {
             "start-date": start_date,
@@ -43,23 +70,25 @@ def add_award(organisation, start_date, intervention, fund, amount, partners):
             "funds": set(),
         },
     )
-    funded_organisation[organisation]["interventions"].add(intervention)
-    funded_organisation[organisation]["end-date"] = organisations[organisation]["end-date"]
-    funded_organisation[organisation]["organisations"].update(partners)
+    funded_organisations[organisation]["interventions"].add(intervention)
+    funded_organisations[organisation]["end-date"] = organisations[organisation][
+        "end-date"
+    ]
+    funded_organisations[organisation]["organisations"].update(partners)
 
-    if start_date < funded_organisation[organisation]["start-date"]:
-        funded_organisation[organisation]["start-date"] = start_date
+    if start_date < funded_organisations[organisation]["start-date"]:
+        funded_organisations[organisation]["start-date"] = start_date
 
-    funded_organisation[organisation]["amount"] += amount
+    funded_organisations[organisation]["amount"] += amount
     sets[intervention].add(organisation)
 
     if organisations[organisation].get("end-date") > today:
         sets["ended"].add(organisation)
-    
+
     if organisations[organisation].get("local-planning-authority", ""):
         sets["lpa"].add(organisation)
 
-    funded_organisation[organisation]["funds"].add(fund)
+    funded_organisations[organisation]["funds"].add(fund)
 
 
 def shapes_map(_set, _class):
@@ -116,9 +145,13 @@ if __name__ == "__main__":
     local_authority_types = load("var/cache/local-authority-type.csv", "reference")
 
     for row in csv.DictReader(open("specification/provision.csv", newline="")):
-        if (not row["end-date"]) and row["dataset"] in planx_datasets and row["provision-reason"] in ["expected"]:
+        if (
+            (not row["end-date"])
+            and row["dataset"] in planx_datasets
+            and row["provision-reason"] in ["expected"]
+        ):
             sets.setdefault("planx-data", set())
-            sets["planx-data"].add(row["organisation"]) 
+            sets["planx-data"].add(row["organisation"])
 
     for organisation, row in organisations.items():
         dataset = row["dataset"]
@@ -159,14 +192,21 @@ if __name__ == "__main__":
         sets["direct:" + intervention].add(organisation)
 
         for partner in partners:
-            add_award(partner, start_date, intervention, fund, 0, partners - set(partner) & set(organisation))
+            add_award(
+                partner,
+                start_date,
+                intervention,
+                fund,
+                0,
+                partners - set(partner) & set(organisation),
+            )
 
-    for organisation, row in funded_organisation.items():
+    for organisation, row in funded_organisations.items():
         for partner in row["organisations"]:
-            funded_organisation[partner]["organisations"].add(organisation)
+            funded_organisations[partner]["organisations"].add(organisation)
 
     # organisation type ..
-    for organisation, row in funded_organisation.items():
+    for organisation, row in funded_organisations.items():
         o = organisations[organisation]
         _type = o["dataset"]
         if _type == "local-authority":
@@ -175,16 +215,23 @@ if __name__ == "__main__":
         type_sets.setdefault(_type, set())
         type_sets[_type].add(organisation)
 
-
         # funded for Software ..
-        if organisation in sets["software"] | sets["integration"] | sets["improvement"]:
-            sets["Software"].add(organisation)
+        for _s in software_interventions:
+            if organisation in sets[_s]:
+                sets["Software"].add(organisation)
+            if organisation in sets["direct:"+_s]:
+                sets["direct:Software"].add(organisation)
 
-        if organisation in sets["direct:software"] | sets["direct:integration"] | sets["direct:improvement"]:
-            sets["direct:Software"].add(organisation)
+        # funded for PropTech ..
+        for _s in proptech_interventions:
+            if organisation in sets[_s]:
+                sets["PropTech"].add(organisation)
+            if organisation in sets["direct:"+_s]:
+                sets["direct:PropTech"].add(organisation)
 
 
-    print("""<!doctype html>
+    print(
+        """<!doctype html>
 <head>
 <meta charset="UTF-8">
 <style>
@@ -353,9 +400,11 @@ li.key-item {
 
 #membership-map svg path.open-digital-planning { fill: #f66068; stroke: #000; stroke-width: 0.5px }
 </style>
-    """)
+    """
+    )
 
-    print("""
+    print(
+        """
     </head>
     <body>
     """
@@ -366,22 +415,26 @@ li.key-item {
     print("<p>Open Digital Planning community members.</p>")
 
     print('<div id="membership-map">')
-    shapes_map(set(funded_organisation.keys()), "open-digital-planning")
+    shapes_map(set(funded_organisations.keys()), "open-digital-planning")
     print("</div>")
 
     print("""<h1 id="numbers">Numbers</h1>""")
     print("<ul>")
 
     for intervention in odp_interventions:
-        print(f'<li>{len(sets[intervention])} organisations have been funded for {intervention}, ({len(sets["direct:"+ intervention])} directly)')
+        print(
+            f'<li>{len(sets[intervention])} organisations have been funded for {intervention}, ({len(sets["direct:"+ intervention])} directly)'
+        )
 
-    print(f"""
-          <li>{len(sets["innovation"] | sets["engagement"])} organisations have been funded for PropTech (engagement or innovation),
+    print(
+        f"""
+          <li>{len(sets["PropTech"])} organisations have been funded for PropTech (engagement or innovation),
               ({len(sets["direct:innovation"] | sets["direct:innovation"])} directly)
 
           <li>{len(sets["Software"])} organisations have been funded for Software (software, integration or improvement),
               ({len(sets["direct:Software"])} directly)
-        """)
+        """
+    )
 
     l = [f"{len(type_sets[_type])} {type_names[_type]}" for _type in type_sets]
     print("(" + ", ".join(l[:-2] + [" and ".join(l[-2:])]) + ")")
@@ -391,18 +444,25 @@ li.key-item {
     else:
         to_be = "to have been"
 
-    print(f"""
-          <li id="odp-member-count">{len(funded_organisation)} organisations have been funded for Software or PropTech and are therefore considered {to_be} members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
-        """)
+    print(
+        f"""
+          <li id="odp-member-count">{len(funded_organisations)} organisations have been funded for Software or PropTech and are therefore considered {to_be} members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
+        """
+    )
 
     if sets["ended"]:
-        print(f"""
-          <li>{len(set(funded_organisation).intersection(sets["ended"]))} of those organisations have been disolved.
-          <li id="odp-current-member-count">{len(funded_organisation)} organisations are therefore considered to be current members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
-          """)
+        print(
+            f"""
+          <li>{len(set(funded_organisations).intersection(sets["ended"]))} of those organisations have been disolved.
+          <li id="odp-current-member-count">{len(funded_organisations)} organisations are therefore considered to be current members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
+          """
+        )
 
-    software_lpa = sets["local-planning-authority"].intersection(sets["software"] | sets["integration"] | sets["improvement"])
-    print(f"""
+    software_lpa = sets["local-planning-authority"].intersection(
+        sets["software"] | sets["integration"] | sets["improvement"]
+    )
+    print(
+        f"""
           <li>{len(sets["lpa"])} funded organisations are a Local Planning Authority
               ({len(sets["lpa"] & sets["local-authority"])} local authorities,
               {len(sets["lpa"] & sets["national-park-authority"])} national park authorities,
@@ -411,30 +471,31 @@ li.key-item {
           <li id="software-lpa-count">{len(software_lpa)} Local Planning Authorities (LPAs) have been funded for Software (software, integration or improvement) 
 
           <li id="planx-lpa-count">{len(sets["planx-data"])} of these LPAs are expected to provide the data needed to adopt the PlanX product
-          """)
+          """
+    )
 
     includes = sets["planx-data"].difference(software_lpa)
     excludes = software_lpa.difference(sets["planx-data"])
 
     if includes:
-          print("including ")
-          print(", ".join([organisations[l]["name"] for l in includes]))
-
+        print("including ")
+        print(", ".join([organisations[l]["name"] for l in includes]))
 
     if excludes:
-          if includes:
-              print(" and ")
-          print("excluding ")
-          print(", ".join([organisations[l]["name"] for l in excludes]))
+        if includes:
+            print(" and ")
+        print("excluding ")
+        print(", ".join([organisations[l]["name"] for l in excludes]))
 
-
-    print(f"""
+    print(
+        f"""
           <li>There are currently {len(sets["local-planning-authority"])} Local Planning Authorities (LPAs) in England 
               ({len(sets["local-planning-authority"] & sets["local-authority"])} local authorities,
               {len(sets["local-planning-authority"] & sets["national-park-authority"])} national park authorities including The Broads,
               and {len(sets["local-planning-authority"] & sets["development-corporation"])} development corporations)
           </ul>
-          """)
+          """
+    )
 
     print(
         """
@@ -463,48 +524,55 @@ li.key-item {
             <th scope="col" align="right">Amount</th>
         </thead>
         <tbody>
-    """)
+    """
+    )
 
     number = 0
-    for organisation, row in funded_organisation.items():
+    for organisation, row in funded_organisations.items():
         number = number + 1
-        print(f'<tr id="LPA-{organisations[organisation].get("local-planning-authority", "")}">')
+        print(
+            f'<tr id="LPA-{organisations[organisation].get("local-planning-authority", "")}">'
+        )
         print(f'<td id="row-{number}"><a href="#row-{number}">{number}</a></td>')
         print(f'<td>{row["start-date"]}</td>')
         print(f'<td>{row["end-date"]}</td>')
         lpa = organisations[organisation].get("local-planning-authority", "")
-        print(f'<td><a href="https://www.planning.data.gov.uk/curie/statistical-geography:{lpa}">{lpa}</td>')
-
+        print(
+            f'<td><a href="https://www.planning.data.gov.uk/curie/statistical-geography:{lpa}">{lpa}</td>'
+        )
 
         print(
             f'<td><a href="https://www.planning.data.gov.uk/curie/{organisation}">{escape(organisations[organisation]["name"])}</a></td>'
         )
 
-        print('<td>')
+        print("<td>")
         sep = ""
         for organisation in sorted(row["organisations"]):
-            print(f'{sep}<a href="https://www.planning.data.gov.uk/curie/{organisation}">{organisations[organisation]["name"]}</a>', end="")
+            print(
+                f'{sep}<a href="https://www.planning.data.gov.uk/curie/{organisation}">{organisations[organisation]["name"]}</a>',
+                end="",
+            )
             sep = ", "
-        print(f'</td>')
+        print(f"</td>")
 
-        print(f'<td>{", ".join([interventions[intervention]["name"] for intervention in row["interventions"]])}</td>')
+        print(
+            f'<td>{", ".join([interventions[intervention]["name"] for intervention in row["interventions"]])}</td>'
+        )
 
-        print('<td>')
+        print("<td>")
         sep = ""
         for fund in sorted(row["funds"]):
             print(f'{sep}{funds[fund]["name"]}', end="")
             sep = ", "
-        print(f'</td>')
+        print(f"</td>")
 
         n = int(row["amount"])
         amount = f"£{n:,}" if n else ""
         print(f'<td class="amount" data-sort="{n}">{amount}</td>')
         print("</tr>")
 
-
     print("</tbody>")
     print("</table>")
-
 
     print(
         """
@@ -516,3 +584,18 @@ new Tablesort(document.getElementById('sortable'), { descending: true });
 """
     )
     print("</body>")
+
+    fieldnames = ["organisation", "interventions", "tags"]
+    w = csv.DictWriter(
+        open("docs/project/open-digital-planning/members.csv", "w", newline=""),
+        fieldnames,
+    )
+    w.writeheader()
+    for organisation, o in sorted(funded_organisations.items()):
+        tags = [tag for tag, _set in sets.items() if organisation in _set]
+        row = {
+            "organisation": organisation,
+            "interventions": ";".join(o["interventions"]),
+            "tags": ";".join(tags),
+        }
+        w.writerow(row)
