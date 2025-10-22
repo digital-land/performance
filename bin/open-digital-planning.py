@@ -362,11 +362,75 @@ li.key-item {
     shapes_map(set(funded_organisation.keys()), "open-digital-planning")
     print("</div>")
 
+    print("""<h1 id="numbers">Numbers</h1>""")
+    print("<ul>")
+
+    for intervention in odp_interventions:
+        print(f'<li>{len(sets[intervention])} organisations have been funded for {intervention}, ({len(sets["direct:"+ intervention])} directly)')
+
+    print(f"""
+          <li>{len(sets["innovation"] | sets["engagement"])} organisations have been funded for PropTech (engagement or innovation),
+              ({len(sets["direct:innovation"] | sets["direct:innovation"])} directly)
+
+          <li>{len(sets["software"] | sets["integration"] | sets["improvement"])} organisations have been funded for Software (software, integration or improvement),
+              ({len(sets["direct:software"] | sets["direct:integration"] | sets["direct:improvement"])} directly)
+        """)
+
+    l = [f"{len(type_sets[_type])} {type_names[_type]}" for _type in type_sets]
+    print("(" + ", ".join(l[:-2] + [" and ".join(l[-2:])]) + ")")
+
+    if sets["ended"]:
+        print("""
+          <li id="odp-member-count">{len(funded_organisation)} organisations are therefore considered to be members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
+        """)
+    else:
+        print(f"""
+          <li id="odp-member-count">{len(funded_organisation)} organisations are therefore considered to have been members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
+          <li>{len(set(funded_organisation).intersection(sets["ended"]))} of those organisations have been disolved.
+          <li id="odp-current-member-count">{len(funded_organisation)} organisations are therefore considered to be current members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
+          """)
+
+    software_lpa = sets["local-planning-authority"].intersection(sets["software"] | sets["integration"] | sets["improvement"])
+    print(f"""
+          <li>{len(sets["lpa"])} funded organisations are a Local Planning Authority
+              ({len(sets["lpa"] & sets["local-authority"])} local authorities,
+              {len(sets["lpa"] & sets["national-park-authority"])} national park authorities,
+              and {len(sets["lpa"] & sets["development-corporation"])} development corporations)
+
+          <li id="software-lpa-count">{len(software_lpa)} Local Planning Authorities (LPAs) have been funded for Software (software, integration or improvement) 
+
+          <li id="planx-lpa-count">{len(sets["planx-data"])} of these LPAs are expected to provide the data needed to adopt the PlanX product
+          """)
+
+    difference = software_lpa.difference(sets["planx-data"])
+    if difference:
+        print(f"""
+          (excludes { ", ".join([organisations[l]["name"] for l in difference])})
+
+          <li>There are currently {len(sets["local-planning-authority"])} Local Planning Authorities (LPAs) in England 
+              ({len(sets["local-planning-authority"] & sets["local-authority"])} local authorities,
+              {len(sets["local-planning-authority"] & sets["national-park-authority"])} national park authorities including The Broads,
+              and {len(sets["local-planning-authority"] & sets["development-corporation"])} development corporations)
+          </ul>
+          """)
+
+    print(
+        """
+        <h1>Data sources</h1>
+        <ul>
+          <li><a href="https://www.planning.data.gov.uk/organisation/">Organisations</a> (<a href="https://files.planning.data.gov.uk/organisation-collection/dataset/organisation.csv">CSV</a>)
+          <li>Funding awards (<a href="https://github.com/digital-land/specification/blob/main/content/award.csv">CSV</a>)
+          <li><a href="https://github.com/digital-land/performance/">Open source code</a></li>
+        </ul>
+    """
+    )
+
+    print("""<h1 id="awards">Funding</h1>""")
     print(
         """
         <table id='sortable' class='sortable'>
         <thead>
-            <th scope="col" align="left"">Number</th>
+            <th scope="col" align="left">#</th>
             <th scope="col" align="left" class="date">Start date</th>
             <th scope="col" align="left" class="date">End date</th>
             <th scope="col" align="left">LPA</th>
@@ -413,70 +477,12 @@ li.key-item {
         n = int(row["amount"])
         amount = f"£{n:,}" if n else ""
         print(f'<td class="amount" data-sort="{n}">{amount}</td>')
+        print("</tr>")
 
 
     print("</tbody>")
     print("</table>")
 
-    print("<h1>Counts</h1>")
-    print("<ul>")
-
-    for intervention in odp_interventions:
-        print(f'<li>{len(sets[intervention])} organisations have been funded for {intervention}, ({len(sets["direct:"+ intervention])} directly)')
-
-    print(f"""
-          <li>{len(sets["innovation"] | sets["engagement"])} organisations have been funded for PropTech (engagement or innovation),
-              ({len(sets["direct:innovation"] | sets["direct:innovation"])} directly)
-
-          <li>{len(sets["software"] | sets["integration"] | sets["improvement"])} organisations have been funded for Software (software, integration or improvement),
-              ({len(sets["direct:software"] | sets["direct:integration"] | sets["direct:improvement"])} directly)
-
-          <li>{len(funded_organisation)} organisations are therefore considered to have been members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
-        """)
-
-    l = [f"{len(type_sets[_type])} {type_names[_type]}" for _type in type_sets]
-    print("(" + ", ".join(l[:-2] + [" and ".join(l[-2:])]) + ")")
-
-    if sets["ended"]:
-        print(f"""
-          <li>{len(set(funded_organisation).intersection(sets["ended"]))} of those organisations have been disolved.
-          <li>{len(funded_organisation)} organisations are therefore considered to be current members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
-          """)
-
-    software_lpa = sets["local-planning-authority"].intersection(sets["software"] | sets["integration"] | sets["improvement"])
-    print(f"""
-          <li>{len(sets["lpa"])} funded organisations are a Local Planning Authority
-              ({len(sets["lpa"] & sets["local-authority"])} local authorities,
-              {len(sets["lpa"] & sets["national-park-authority"])} national park authorities,
-              and {len(sets["lpa"] & sets["development-corporation"])} development corporations)
-
-          <li>{len(software_lpa)} Local Planning Authorities (LPAs) have been funded for Software (software, integration or improvement) 
-
-          <li>{len(sets["planx-data"])} of these LPAs are expected to provide the data needed to adopt the PlanX product
-          """)
-
-    difference = software_lpa.difference(sets["planx-data"])
-    if difference:
-        print(f"""
-          (excludes { ", ".join([organisations[l]["name"] for l in difference])})
-
-          <li>There are currently {len(sets["local-planning-authority"])} Local Planning Authorities (LPAs) in England 
-              ({len(sets["local-planning-authority"] & sets["local-authority"])} local authorities,
-              {len(sets["local-planning-authority"] & sets["national-park-authority"])} national park authorities including The Broads,
-              and {len(sets["local-planning-authority"] & sets["development-corporation"])} development corporations)
-          </ul>
-          """)
-
-    print(
-        """
-        <h1>Data sources</h1>
-        <ul>
-          <li><a href="https://www.planning.data.gov.uk/organisation/">Organisations</a> (<a href="https://files.planning.data.gov.uk/organisation-collection/dataset/organisation.csv">CSV</a>)
-          <li>Funding awards (<a href="https://github.com/digital-land/specification/blob/main/content/award.csv">CSV</a>)
-          <li><a href="https://github.com/digital-land/performance/">Open source code</a></li>
-        </ul>
-    """
-    )
 
     print(
         """
