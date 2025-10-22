@@ -366,6 +366,7 @@ li.key-item {
         """
         <table id='sortable' class='sortable'>
         <thead>
+            <th scope="col" align="left"">Number</th>
             <th scope="col" align="left" class="date">Start date</th>
             <th scope="col" align="left" class="date">End date</th>
             <th scope="col" align="left">LPA</th>
@@ -378,8 +379,11 @@ li.key-item {
         <tbody>
     """)
 
+    number = 0
     for organisation, row in funded_organisation.items():
+        number = number + 1
         print(f'<tr id="LPA-{organisations[organisation].get("local-planning-authority", "")}">')
+        print(f'<td id="row-{number}"><a href="#row-{number}">{number}</a></td>')
         print(f'<td>{row["start-date"]}</td>')
         print(f'<td>{row["end-date"]}</td>')
         lpa = organisations[organisation].get("local-planning-authority", "")
