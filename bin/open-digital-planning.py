@@ -8,7 +8,7 @@ from datetime import datetime
 
 funded_organisation = {}
 lpas = {}
-sets = {"lpa": set(), "ended": set(), "direct": set()}
+sets = {"lpa": set(), "ended": set(), "direct": set(), "Software": set(), "direct:Software": set()}
 
 type_sets = {}
 type_names = {
@@ -175,6 +175,13 @@ if __name__ == "__main__":
         type_sets.setdefault(_type, set())
         type_sets[_type].add(organisation)
 
+
+        # funded for Software ..
+        if organisation in sets["software"] | sets["integration"] | sets["improvement"]:
+            sets["Software"].add(organisation)
+
+        if organisation in sets["direct:software"] | sets["direct:integration"] | sets["direct:improvement"]:
+            sets["direct:Software"].add(organisation)
 
 
     print("""<!doctype html>
@@ -372,20 +379,24 @@ li.key-item {
           <li>{len(sets["innovation"] | sets["engagement"])} organisations have been funded for PropTech (engagement or innovation),
               ({len(sets["direct:innovation"] | sets["direct:innovation"])} directly)
 
-          <li>{len(sets["software"] | sets["integration"] | sets["improvement"])} organisations have been funded for Software (software, integration or improvement),
-              ({len(sets["direct:software"] | sets["direct:integration"] | sets["direct:improvement"])} directly)
+          <li>{len(sets["Software"])} organisations have been funded for Software (software, integration or improvement),
+              ({len(sets["direct:Software"])} directly)
         """)
 
     l = [f"{len(type_sets[_type])} {type_names[_type]}" for _type in type_sets]
     print("(" + ", ".join(l[:-2] + [" and ".join(l[-2:])]) + ")")
 
-    if sets["ended"]:
-        print("""
-          <li id="odp-member-count">{len(funded_organisation)} organisations are therefore considered to be members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
-        """)
+    if not sets["ended"]:
+        to_be = "to be"
     else:
+        to_be = "to have been"
+
+    print(f"""
+          <li id="odp-member-count">{len(funded_organisation)} organisations have been funded for Software or PropTech and are therefore considered {to_be} members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
+        """)
+
+    if sets["ended"]:
         print(f"""
-          <li id="odp-member-count">{len(funded_organisation)} organisations are therefore considered to have been members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
           <li>{len(set(funded_organisation).intersection(sets["ended"]))} of those organisations have been disolved.
           <li id="odp-current-member-count">{len(funded_organisation)} organisations are therefore considered to be current members of the <a href="https://opendigitalplanning.org/community">Open Digital Planning</a> community.
           """)
