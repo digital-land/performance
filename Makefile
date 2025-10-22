@@ -45,7 +45,7 @@ TEMPLATES=$(shell find templates/ -type f)
 
 all: $(DOCS) $(DATA_FILES)
 
-$(DOCS_DIR)index.html: bin/render.py $(TEMPLATES)
+$(DOCS_DIR)index.html: bin/render.py $(TEMPLATES) $(CACHE_DIR)organisation.csv
 	@mkdir -p $(DOCS_DIR)
 	python3 bin/render.py
 
