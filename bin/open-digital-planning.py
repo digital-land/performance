@@ -413,11 +413,22 @@ li.key-item {
           <li id="planx-lpa-count">{len(sets["planx-data"])} of these LPAs are expected to provide the data needed to adopt the PlanX product
           """)
 
-    difference = software_lpa.difference(sets["planx-data"])
-    if difference:
-        print(f"""
-          (excludes { ", ".join([organisations[l]["name"] for l in difference])})
+    includes = sets["planx-data"].difference(software_lpa)
+    excludes = software_lpa.difference(sets["planx-data"])
 
+    if includes:
+          print("including ")
+          print(", ".join([organisations[l]["name"] for l in includes]))
+
+
+    if excludes:
+          if includes:
+              print(" and ")
+          print("excluding ")
+          print(", ".join([organisations[l]["name"] for l in excludes]))
+
+
+    print(f"""
           <li>There are currently {len(sets["local-planning-authority"])} Local Planning Authorities (LPAs) in England 
               ({len(sets["local-planning-authority"] & sets["local-authority"])} local authorities,
               {len(sets["local-planning-authority"] & sets["national-park-authority"])} national park authorities including The Broads,
