@@ -26,6 +26,12 @@ quality_lookup = {
     "4. data that is trustworthy": "trustworthy",
 }
 
+adoption_status = {
+    "interested", 
+    "adopting", 
+    "live",
+}
+
 quality_scores = {
     "": 0,
     "none": 0,
@@ -99,6 +105,9 @@ if __name__ == "__main__":
     quality = load("data/quality.csv", "organisation")
     lpas = load("var/cache/local-planning-authority.csv", "reference")
     p153 = load("data/p153.csv", "organisation")
+
+    for status in adoption_status:
+        sets.setdefault(status, set())
 
     # remove awards before the programme
     for award, row in list(awards.items()):
@@ -256,7 +265,7 @@ if __name__ == "__main__":
 
         shift *= 1000
 
-        for _set in ["interested", "adopting", "guidance", "submission"]:
+        for _set in adoption_status:
             if organisation in sets[_set]:
                 row["score"] += shift
             shift *= 10
@@ -378,6 +387,51 @@ th[role=columnheader]:not(.no-sort):hover:after {
 """
     )
 
+    print("<h1 id='adoption-numbers'>Number of organisations adopting PlanX</h1>")
+
+    print(
+        f"""
+    <script type="text/javascript">
+      google.charts.setOnLoadCallback(draw_adoption)
+      function draw_adoption() {{
+        var data = google.visualization.arrayToDataTable([
+          ['Status', 'Count'],
+          ['LPA', {len(sets["local-planning-authority"])}],
+          ['ODP member', {len(sets["open-digital-planning"])}],
+          ['Awarded funding', {len(sets["funded"])}],
+          ['Funded for Software', {len(sets["Software"])}],
+          ['Providing some data', {len(sets["providing"])}],
+          ['Data ready for PlanX', {len(sets["data-ready"])}],
+          ['Preparing to launch PlanX', {len(sets["interested"]|sets["adopting"])}],
+          ['Live with PlanX', {len(sets["live"])}],
+        ]);
+
+        var options = {{
+          title: "Number of organisations",
+          bars: 'vertical',
+          colors: ['#27a0cc'],
+          legend: {{ position: "none" }},
+          vAxis: {{ gridlines: {{ count:0 }}}}
+        }};
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 
+                       {{ calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation"
+                         }}, 1]);
+        var chart = new google.visualization.ColumnChart(document.getElementById("adoption-chart"));
+        chart.draw(view, options);
+
+      }}
+    </script>
+    <div id="adoption-chart" class="chart"></div>
+    <p>Note: submission includes LPA who have adopted both services.</p>
+    """
+    )
+
+
     print("<h1 id='funding-and-adoption'>Funding and PlanX adoption</h1>")
     print(
         f"""
@@ -408,18 +462,15 @@ th[role=columnheader]:not(.no-sort):hover:after {
 
         color = 0
         status = "Not yet declared interest"
-        if organisation in sets["guidance"]:
-            color = 1
-            status = "Adopted PlanX guidance"
-        elif organisation in sets["submission"]:
-            color = 1
-            status = "Adopted PlanX submission"
-        elif organisation in sets["interested"]:
+        if organisation in sets["interested"]:
             color = 0.5
-            status = "Interested in adopting PlanX"
+            status = "Have expressed interest in adopting PlanX"
         elif organisation in sets["adopting"]:
             color = 0.5
             status = "Adopting PlanX"
+        elif organisation in sets["live"]:
+            color = 0.5
+            status = "Have adopted PlanX"
 
         print(f"          ['{escape(row['area-name'])}', '{bucket}', {amount}, {color}, '{escape(row['name'])}', '{status}', {row['PropTech']}, {row['Software']}],")
 
@@ -574,52 +625,6 @@ th[role=columnheader]:not(.no-sort):hover:after {
     )
 
 
-    print("<h1 id='adoption-numbers'>Number of organisations adopting PlanX</h1>")
-
-    print(
-        f"""
-    <script type="text/javascript">
-      google.charts.setOnLoadCallback(draw_adoption)
-      function draw_adoption() {{
-        var data = google.visualization.arrayToDataTable([
-          ['Status', 'Count'],
-          ['LPA', {len(sets["local-planning-authority"])}],
-          ['ODP member', {len(sets["open-digital-planning"])}],
-          ['Awarded funding', {len(sets["funded"])}],
-          ['Funded for Software', {len(sets["Software"])}],
-          ['Providing some data', {len(sets["providing"])}],
-          ['Data ready for PlanX', {len(sets["data-ready"])}],
-          ['Interested in PlanX', {len(sets["interested"])}],
-          ['Adopting PlanX', {len(sets["adopting"])}],
-          ['Adopted PlanX guidance', {len(sets["guidance"])}],
-          ['Adopted PlanX submission', {len(sets["submission"])}],
-        ]);
-
-        var options = {{
-          title: "Number of organisations",
-          bars: 'vertical',
-          colors: ['#27a0cc'],
-          legend: {{ position: "none" }},
-          vAxis: {{ gridlines: {{ count:0 }}}}
-        }};
-
-        var view = new google.visualization.DataView(data);
-        view.setColumns([0, 
-                       {{ calc: "stringify",
-                         sourceColumn: 1,
-                         type: "string",
-                         role: "annotation"
-                         }}, 1]);
-        var chart = new google.visualization.ColumnChart(document.getElementById("adoption-chart"));
-        chart.draw(view, options);
-
-      }}
-    </script>
-    <div id="adoption-chart" class="chart"></div>
-    <p>Note: submission includes LPA who have adopted both services.</p>
-    """
-    )
-
     print("<h1 id='adoption-data-needed'>Data needed to adopt PlanX</h1>")
     print(
         """
@@ -643,8 +648,8 @@ th[role=columnheader]:not(.no-sort):hover:after {
             "": "",
             "interested": "Have expressed interest in adopting PlanX",
             "adopting": "Are adopting PlanX",
-            "guidance": "Have adopted PlanX guidance",
             "submission": "Have adopted PlanX submission",
+            "live": "Have adopted PlanX",
         }[row["adoption"]]
 
         if dest:
@@ -677,7 +682,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
     <div id="sankey-chart" class="chart"></div>
     """
     )
-    print(f'<p>Note: {len((sets["guidance"]|sets["submission"])-sets["data-ready"])} organisations have adopted PlanX with incomplete data.</p>')
+    print(f'<p>Note: {len((sets["live"])-sets["data-ready"])} organisations have adopted PlanX with incomplete data.</p>')
 
     print("<h1 id='project-overlaps'>Overlap between projects</h1>")
     print(
