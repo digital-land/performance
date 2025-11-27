@@ -218,10 +218,17 @@ if __name__ == "__main__":
             set_add(f"{dataset}:{status}", organisation)
 
     # add adoption
+    adoption_timeline = []
     for row in csv.DictReader(open("data/adoption.csv", newline="")):
         organisation = row["organisation"]
         set_add(row["adoption-status"], organisation)
         rows[organisation]["adoption"] = row["adoption-status"]
+        adoption_timeline.append({
+            "organisation": organisation,
+            "product": row["product"],
+            "start-date": row["start-date"],
+            "adoption-status": row["adoption-status"]
+        })
 
     # add missing columns
     for organisation in rows:
@@ -381,7 +388,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 }
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>google.charts.load('current', {'packages':['corechart','bar','sankey', 'treemap', 'geochart']});</script>
+<script>google.charts.load('current', {'packages':['corechart','bar','sankey', 'treemap', 'geochart', 'timeline']});</script>
 </head>
 <body>
 """
@@ -428,6 +435,61 @@ th[role=columnheader]:not(.no-sort):hover:after {
     </script>
     <div id="adoption-chart" class="chart"></div>
     <p>Note: submission includes LPA who have adopted both services.</p>
+    """
+    )
+
+    print("<h1 id='adoption-timeline'>PlanX adoption</h1>")
+    print("""
+    <script type="text/javascript">
+      google.charts.setOnLoadCallback(draw_timeline)
+      function draw_timeline() {
+        var container = document.getElementById('timeline-chart');
+        var chart = new google.visualization.Timeline(container);
+        var dataTable = new google.visualization.DataTable();
+
+        dataTable.addColumn({ type: 'string', id: 'LPA' });
+        dataTable.addColumn({ type: 'string', id: 'Product' });
+        dataTable.addColumn({ type: 'date', id: 'Start' });
+        dataTable.addColumn({ type: 'date', id: 'End' });
+        dataTable.addRows([
+    """)
+
+    # Sort timeline by date
+    sorted_timeline = sorted(adoption_timeline, key=lambda x: (x["start-date"], x["organisation"]))
+
+    # Get current date for timeline end
+    from datetime import datetime
+    today = datetime.now()
+    today_str = f"new Date({today.year}, {today.month-1}, {today.day})"
+
+    for item in sorted_timeline:
+        if item["product"] == "planx":
+            org_name = escape(rows[item["organisation"]]["area-name"])
+            date_parts = item["start-date"].split("-")
+            year, month, day = int(date_parts[0]), int(date_parts[1]), int(date_parts[2])
+            start_date = f"new Date({year}, {month-1}, {day})"
+            print(f"          ['{org_name}', 'PlanX', {start_date}, {today_str}],")
+
+    print("""
+        ]);
+
+        var options = {
+          timeline: {
+            showRowLabels: true,
+            colorByRowLabel: false
+          },
+          colors: ['#27a0cc'],
+          hAxis: {
+            minValue: new Date(2022, 0, 1)
+          },
+          height: 720
+        };
+
+        chart.draw(dataTable, options);
+      }
+    </script>
+    <div id="timeline-chart" style="height: 720px;" class="chart"></div>
+    <p>Timeline showing when each LPA adopted PlanX (live status only).</p>
     """
     )
 
