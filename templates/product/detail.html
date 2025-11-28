@@ -111,7 +111,8 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
-        <h2 class="govuk-heading-l">Number of organisations adopting {{ product.name }}</h2>
+        <h2 class="govuk-heading-l" id="funnel">Adoption funnel</h2>
+        <p class="govuk-body">Organisations potentially able to adopt {{ product.name }}.</p>
 
         <script type="text/javascript">
           google.charts.setOnLoadCallback(draw_adoption)
@@ -149,7 +150,6 @@
           }
         </script>
         <div id="adoption-chart" class="funnel-chart"></div>
-        <p class="govuk-body">Note: submission includes LPA who have adopted both services.</p>
     </div>
 </div>
 
@@ -157,7 +157,8 @@
     <div class="govuk-grid-column-full">
 
         {% if timeline_data %}
-        <h2 class="govuk-heading-l">{{ product.name }} adoption timeline</h2>
+        <h2 class="govuk-heading-l" id="timeline">Adoption timeline</h2>
+        <p class="govuk-body">Timeline of organisations adopting {{ product.name }}.</p>
 
         <div class="timeline-container">
             <div class="timeline-header">
@@ -177,39 +178,39 @@
             </div>
             {% endfor %}
         </div>
-        <p class="govuk-body">Timeline showing when each LPA adopted {{ product.name }} (live status only).</p>
         {% endif %}
 
         {% if treemap_svg %}
-        <h2 class="govuk-heading-l">Funding and {{ product.name }} adoption</h2>
+        <h2 class="govuk-heading-l">Funding and adoption</h2>
 
         <div class="treemap-container">
             {{ treemap_svg|safe }}
         </div>
         {% endif %}
 
-        <h2 class="govuk-heading-l">Adoptions ({{ adoptions|length }})</h2>
+        <h2 class="govuk-heading-l" id="organisations">Organisations ({{ adoptions|length }})</h2>
 
         <table class="govuk-table">
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Date</th>
                     <th scope="col" class="govuk-table__header">Organisation</th>
                     <th scope="col" class="govuk-table__header">Status</th>
-                    <th scope="col" class="govuk-table__header">Start date</th>
-                    <th scope="col" class="govuk-table__header">Documentation</th>
                 </tr>
             </thead>
             <tbody class="govuk-table__body">
                 {% for adoption in adoptions %}
                 <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">{{ adoption.start_date }}</td>
                     <td class="govuk-table__cell">
                         <a href="/organisation/{{ adoption.organisation }}/">{{ adoption.org_name }}</a>
                     </td>
-                    <td class="govuk-table__cell">{{ adoption.adoption_status }}</td>
-                    <td class="govuk-table__cell">{{ adoption.start_date }}</td>
                     <td class="govuk-table__cell">
-                        {% if adoption.documentation_url %}
-                        <a href="{{ adoption.documentation_url }}">View</a>
+                        {% if adoption.documentation_url %}<a href="{{ adoption.documentation_url }}">
+                        {% endif -%}
+                        {{ adoption.adoption_status }}
+                        {%- if adoption.documentation_url %}<a href="{{ adoption.documentation_url }}">
+                        </a>
                         {% endif %}
                     </td>
                 </tr>

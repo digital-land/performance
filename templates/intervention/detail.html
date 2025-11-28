@@ -55,7 +55,7 @@ svg path:hover { opacity: 0.5 }
                 <dd class="govuk-summary-list__value">{{ awards|length }}</dd>
             </div>
             <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">Total funding</dt>
+                <dt class="govuk-summary-list__key">Funding</dt>
                 <dd class="govuk-summary-list__value">£{{ "{:,}".format(total_amount) }}</dd>
             </div>
         </dl>
@@ -65,7 +65,7 @@ svg path:hover { opacity: 0.5 }
         {{ shapes_svg|safe }}
         </div>
 
-        <h2 class="govuk-heading-m">Awards ({{ awards|length }})</h2>
+        <h2 class="govuk-heading-m" id="awards">Awards</h2>
 
         <div class="points map">
         {{ points_svg|safe }}

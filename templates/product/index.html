@@ -6,14 +6,13 @@
     <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-xl">Products</h1>
 
-        <p class="govuk-body">Digital planning products being adopted by local planning authorities.</p>
+        <p class="govuk-body">Adoption of open source products funded by the <a href="/project/digital-planning/">Digital Planning Programme</a>.</p>
 
         <table id="products-table" class="govuk-table sortable">
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                     <th scope="col" class="govuk-table__header">Product</th>
-                    <th scope="col" class="govuk-table__header">Description</th>
-                    <th scope="col" class="govuk-table__header">Adoptions</th>
+                    <th scope="col" class="govuk-table__header govuk-table__header--numeric">Organisations</th>
                 </tr>
             </thead>
             <tbody class="govuk-table__body">
@@ -22,7 +21,6 @@
                     <td class="govuk-table__cell">
                         <a href="/product/{{ product.slug }}/" class="govuk-link">{{ product.name }}</a>
                     </td>
-                    <td class="govuk-table__cell">{{ product.description }}</td>
                     <td class="govuk-table__cell govuk-table__cell--numeric">{{ product.adoption_count }}</td>
                 </tr>
                 {% endfor %}
