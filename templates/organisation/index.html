@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% set title = "Organisations" %}
+
+{% block content %}
+<style>
+.govuk-tag--dissolved {
+    color: #383f43;
+    background-color: #eeefef;
+}
+</style>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">Organisations</h1>
+
+        <p class="govuk-body">Organisations participating in the Digital Planning Programme.</p>
+
+        <h2 class="govuk-heading-l">Local planning authorities</h2>
+
+        <table id="lpas-table" class="govuk-table sortable">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Organisation</th>
+                    <th scope="col" class="govuk-table__header">Interventions</th>
+                    <th scope="col" class="govuk-table__header govuk-table__header--numeric">Awards</th>
+                    <th scope="col" class="govuk-table__header govuk-table__header--numeric">Funding</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                {% for org in lpas %}
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="{{ path_prefix }}/organisation/{{ org.organisation }}/" class="govuk-link">{{ org.name }}</a>
+                        {% if org.is_dissolved %}
+                        <strong class="govuk-tag govuk-tag--dissolved">DISSOLVED</strong>
+                        {% endif %}
+                    </td>
+                    <td class="govuk-table__cell">
+                        {% for intervention in org.interventions %}
+                        <a href="{{ path_prefix }}/intervention/{{ intervention.intervention }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ org.award_count }}</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="{{ org.total_amount if org.total_amount else 0 }}">
+                        {% if org.total_amount and org.total_amount > 0 %}
+                        £{{ "{:,}".format(org.total_amount) }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2 class="govuk-heading-l">Other organisations</h2>
+
+        <table id="other-orgs-table" class="govuk-table sortable">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Organisation</th>
+                    <th scope="col" class="govuk-table__header">Interventions</th>
+                    <th scope="col" class="govuk-table__header govuk-table__header--numeric">Awards</th>
+                    <th scope="col" class="govuk-table__header govuk-table__header--numeric">Funding</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                {% for org in other_orgs %}
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="{{ path_prefix }}/organisation/{{ org.organisation }}/" class="govuk-link">{{ org.name }}</a>
+                        {% if org.is_dissolved %}
+                        <strong class="govuk-tag govuk-tag--dissolved">DISSOLVED</strong>
+                        {% endif %}
+                    </td>
+                    <td class="govuk-table__cell">
+                        {% for intervention in org.interventions %}
+                        <a href="{{ path_prefix }}/intervention/{{ intervention.intervention }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ org.award_count }}</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="{{ org.total_amount if org.total_amount else 0 }}">
+                        {% if org.total_amount and org.total_amount > 0 %}
+                        £{{ "{:,}".format(org.total_amount) }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js" integrity="sha512-F/gIMdDfda6OD2rnzt/Iyp2V9JLHlFQ+EUyixDg9+rkwjqgW1snpkpx7FD5FV1+gG2fmFj7I3r6ReQDUidHelA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js" integrity="sha512-dRD755QRxlybm0h3LXXIGrFcjNakuxW3reZqnPtUkMv6YsSWoJf+slPjY5v4lZvx2ss+wBZQFegepmA7a2W9eA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+new Tablesort(document.getElementById('lpas-table'));
+new Tablesort(document.getElementById('other-orgs-table'));
+</script>
+
+{% endblock content %}

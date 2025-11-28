@@ -363,6 +363,52 @@ def render_adoption_planx(env, conn):
            datasets=datasets)
 
 
+def render_organisation_index(env, conn):
+    """Render organisation index page."""
+    cursor = conn.cursor()
+
+    # Get all organisations with award counts and interventions
+    cursor.execute("""
+        SELECT o.organisation, o.name, o.role, o.end_date,
+               COUNT(DISTINCT a.award) as award_count,
+               SUM(a.amount) as total_amount,
+               COUNT(DISTINCT a.intervention) as intervention_count
+        FROM organisations o
+        LEFT JOIN awards a ON o.organisation = a.organisation
+        GROUP BY o.organisation
+        ORDER BY o.name
+    """)
+
+    all_orgs = [dict(row) for row in cursor.fetchall()]
+
+    # Add dissolved flag and get interventions
+    from datetime import date
+    today = date.today().isoformat()
+    for org in all_orgs:
+        org['is_dissolved'] = bool(org['end_date'] and org['end_date'] != '' and org['end_date'] < today)
+
+        # Get interventions for this organisation
+        cursor.execute("""
+            SELECT DISTINCT i.intervention, i.name
+            FROM awards a
+            JOIN interventions i ON a.intervention = i.intervention
+            WHERE a.organisation = ?
+            ORDER BY i.name
+        """, (org['organisation'],))
+        org['interventions'] = [dict(row) for row in cursor.fetchall()]
+
+    # Split into LPAs and other organisations
+    lpas = [org for org in all_orgs if org['role'] == 'local-planning-authority']
+    other_orgs = [org for org in all_orgs if org['role'] != 'local-planning-authority']
+
+    breadcrumbs = [
+        {'text': 'Organisations'}
+    ]
+
+    template = env.get_template("organisation/index.html")
+    render("organisation/index.html", template, lpas=lpas, other_orgs=other_orgs, breadcrumbs=breadcrumbs)
+
+
 def render_organisations(env, conn):
     """Render individual organisation pages."""
     cursor = conn.cursor()
@@ -412,6 +458,45 @@ def render_organisations(env, conn):
         """, (organisation_id,))
         quality = [dict(row) for row in cursor.fetchall()]
 
+        # Get partner organisations - partnerships are bidirectional
+        # 1. Get awards where this org is the main recipient (has partners in organisations_list)
+        # 2. Get awards where this org is in the organisations_list (partner to another org)
+
+        cursor.execute("""
+            SELECT award, organisation, organisations_list
+            FROM awards
+            WHERE organisation = ? OR organisations_list LIKE ?
+        """, (organisation_id, f'%{organisation_id}%'))
+        award_rows = cursor.fetchall()
+
+        # Parse partner organisations from awards
+        partner_counts = {}
+        for row in award_rows:
+            # Collect all organisations in this award
+            all_orgs = [row['organisation']]
+            if row['organisations_list']:
+                all_orgs.extend([org.strip() for org in row['organisations_list'].split(';') if org.strip()])
+
+            # Add each org (except ourselves) as a partner
+            for org_id in all_orgs:
+                if org_id and org_id != organisation_id:
+                    partner_counts[org_id] = partner_counts.get(org_id, 0) + 1
+
+        # Get partner organisation details
+        partners = []
+        for partner_id, count in partner_counts.items():
+            cursor.execute("SELECT organisation, name FROM organisations WHERE organisation = ?", (partner_id,))
+            partner_row = cursor.fetchone()
+            if partner_row:
+                partners.append({
+                    'organisation': partner_row['organisation'],
+                    'name': partner_row['name'],
+                    'shared_count': count
+                })
+
+        # Sort by count descending, then by name
+        partners.sort(key=lambda x: (-x['shared_count'], x['name']))
+
         breadcrumbs = [
             {'text': 'Organisations', 'url': url('/organisation/')},
             {'text': org['name']}
@@ -424,6 +509,7 @@ def render_organisations(env, conn):
                adoptions=adoptions,
                awards=awards,
                quality=quality,
+               partners=partners,
                breadcrumbs=breadcrumbs)
 
 
@@ -1522,6 +1608,7 @@ def main():
         render_interventions(env, conn)
         render_fund_index(env, conn)
         render_funds(env, conn)
+        render_organisation_index(env, conn)
         render_organisations(env, conn)
         render_project_index(env, conn)
         render_projects(env, conn)

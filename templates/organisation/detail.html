@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
         <span class="govuk-caption-xl">Organisation</span>
         <h1 class="govuk-heading-xl">{{ organisation.name }}</h1>
 
@@ -79,6 +79,28 @@
             <li><a href="{{ path_prefix }}/project/{{ project.project }}/">{{ project.name }}</a></li>
             {% endfor %}
         </ul>
+        {% endif %}
+
+        {% if partners %}
+        <h2 class="govuk-heading-m">Partner organisations</h2>
+        <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Organisation</th>
+                    <th scope="col" class="govuk-table__header govuk-table__header--numeric">Awards</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                {% for partner in partners %}
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="{{ path_prefix }}/organisation/{{ partner.organisation }}/">{{ partner.name }}</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ partner.shared_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         {% endif %}
 
         {% if adoptions %}
