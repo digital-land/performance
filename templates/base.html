@@ -94,6 +94,26 @@
 
 
 <div class="govuk-width-container">
+    {% if breadcrumbs %}
+    <div class="govuk-breadcrumbs">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        {% for crumb in breadcrumbs %}
+        {% if crumb.url %}
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="{{ crumb.url }}">{{ crumb.text }}</a>
+        </li>
+        {% else %}
+        <li class="govuk-breadcrumbs__list-item">
+          {{ crumb.text }}
+        </li>
+        {% endif %}
+        {% endfor %}
+      </ol>
+    </div>
+    {% endif %}
     <main class="govuk-main-wrapper govspeak govuk-body" id="main-content" role="main">
 {% block content %}
 {% endblock content %}

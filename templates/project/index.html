@@ -6,14 +6,13 @@
     <div class="govuk-grid-column-two-thirds">
         <h1 class="govuk-heading-xl">Projects</h1>
 
-        <p class="govuk-body">Projects in the Digital Planning Programme.</p>
+        <p class="govuk-body">Projects relevant to Planning Data.</p>
 
         <table id="projects-table" class="govuk-table sortable">
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                     <th scope="col" class="govuk-table__header">Project</th>
-                    <th scope="col" class="govuk-table__header">Description</th>
-                    <th scope="col" class="govuk-table__header">Organisations</th>
+                    <th scope="col" class="govuk-table__header govuk-table__header--numeric">Organisations</th>
                 </tr>
             </thead>
             <tbody class="govuk-table__body">
@@ -22,7 +21,6 @@
                     <td class="govuk-table__cell">
                         <a href="/project/{{ project.project }}/" class="govuk-link">{{ project.name }}</a>
                     </td>
-                    <td class="govuk-table__cell">{{ project.description }}</td>
                     <td class="govuk-table__cell govuk-table__cell--numeric">{{ project.org_count }}</td>
                 </tr>
                 {% endfor %}

@@ -12,9 +12,9 @@
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                     <th scope="col" class="govuk-table__header">Intervention</th>
-                    <th scope="col" class="govuk-table__header">Description</th>
-                    <th scope="col" class="govuk-table__header">Awards</th>
-                    <th scope="col" class="govuk-table__header">Total funding</th>
+                    <th scope="col" class="govuk-table__header govuk-table__header--numeric">Organisations</th>
+                    <th scope="col" class="govuk-table__header govuk-table__header--numeric">Awards</th>
+                    <th scope="col" class="govuk-table__header govuk-table__header--numeric">Funding</th>
                 </tr>
             </thead>
             <tbody class="govuk-table__body">
@@ -23,7 +23,7 @@
                     <td class="govuk-table__cell">
                         <a href="/intervention/{{ intervention.intervention }}/" class="govuk-link">{{ intervention.name }}</a>
                     </td>
-                    <td class="govuk-table__cell">{{ intervention.description }}</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ intervention.organisation_count }}</td>
                     <td class="govuk-table__cell govuk-table__cell--numeric">{{ intervention.award_count }}</td>
                     <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="{{ intervention.total_amount }}">
                         {% if intervention.total_amount > 0 %}

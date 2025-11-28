@@ -394,13 +394,19 @@ def render_organisations(env, conn):
         """, (organisation_id,))
         quality = [dict(row) for row in cursor.fetchall()]
 
+        breadcrumbs = [
+            {'text': 'Organisations', 'url': '/organisation/'},
+            {'text': org['name']}
+        ]
+
         template = env.get_template("organisation/detail.html")
         render(f"organisation/{organisation_id}/index.html", template,
                organisation=org,
                projects=projects,
                adoptions=adoptions,
                awards=awards,
-               quality=quality)
+               quality=quality,
+               breadcrumbs=breadcrumbs)
 
 
 def render_projects(env, conn):
@@ -460,6 +466,11 @@ def render_projects(env, conn):
         shapes_svg = process_shapes_svg(conn, filter_type='project', filter_value=project_id)
         points_svg = process_points_svg(conn, filter_type='project', filter_value=project_id)
 
+        breadcrumbs = [
+            {'text': 'Projects', 'url': '/project/'},
+            {'text': project['name']}
+        ]
+
         template = env.get_template("project/detail.html")
         render(f"project/{project_id}/index.html", template,
                project=project,
@@ -468,7 +479,8 @@ def render_projects(env, conn):
                points_svg=points_svg,
                legends=AWARD_LEGENDS,
                counts=counts,
-               total=total)
+               total=total,
+               breadcrumbs=breadcrumbs)
 
 
 def render_products(env, conn):
@@ -621,6 +633,11 @@ def render_products(env, conn):
             totals[bucket.lower()] += amount
             totals['all'] += amount
 
+        breadcrumbs = [
+            {'text': 'Products', 'url': '/product/'},
+            {'text': product['name']}
+        ]
+
         template = env.get_template("product/detail.html")
         render(f"product/{product_slug}/index.html", template,
                product=product,
@@ -630,7 +647,8 @@ def render_products(env, conn):
                timeline_years=timeline_years,
                funded_orgs=funded_orgs,
                totals=totals,
-               product_slug=product_slug)
+               product_slug=product_slug,
+               breadcrumbs=breadcrumbs)
 
 
 def render_product_index(env, conn):
@@ -654,8 +672,12 @@ def render_product_index(env, conn):
         prod['slug'] = prod['product'].replace('/', '-')
         products.append(prod)
 
+    breadcrumbs = [
+        {'text': 'Products'}
+    ]
+
     template = env.get_template("product/index.html")
-    render("product/index.html", template, products=products)
+    render("product/index.html", template, products=products, breadcrumbs=breadcrumbs)
 
 
 def render_project_index(env, conn):
@@ -674,18 +696,23 @@ def render_project_index(env, conn):
 
     projects = [dict(row) for row in cursor.fetchall()]
 
+    breadcrumbs = [
+        {'text': 'Projects'}
+    ]
+
     template = env.get_template("project/index.html")
-    render("project/index.html", template, projects=projects)
+    render("project/index.html", template, projects=projects, breadcrumbs=breadcrumbs)
 
 
 def render_intervention_index(env, conn):
     """Render interventions index page."""
     cursor = conn.cursor()
 
-    # Get all interventions with award counts and totals
+    # Get all interventions with award counts, organisation counts and totals
     cursor.execute("""
         SELECT i.intervention, i.name, i.description,
                COUNT(a.award) as award_count,
+               COUNT(DISTINCT a.organisation) as organisation_count,
                COALESCE(SUM(a.amount), 0) as total_amount
         FROM interventions i
         LEFT JOIN awards a ON i.intervention = a.intervention
@@ -695,8 +722,12 @@ def render_intervention_index(env, conn):
 
     interventions = [dict(row) for row in cursor.fetchall()]
 
+    breadcrumbs = [
+        {'text': 'Interventions'}
+    ]
+
     template = env.get_template("intervention/index.html")
-    render("intervention/index.html", template, interventions=interventions)
+    render("intervention/index.html", template, interventions=interventions, breadcrumbs=breadcrumbs)
 
 
 def render_interventions(env, conn):
@@ -740,6 +771,11 @@ def render_interventions(env, conn):
         shapes_svg = process_shapes_svg(conn, filter_type='intervention', filter_value=intervention_id)
         points_svg = process_points_svg(conn, filter_type='intervention', filter_value=intervention_id)
 
+        breadcrumbs = [
+            {'text': 'Interventions', 'url': '/intervention/'},
+            {'text': intervention['name']}
+        ]
+
         template = env.get_template("intervention/detail.html")
         render(f"intervention/{intervention_id}/index.html", template,
                intervention=intervention,
@@ -747,7 +783,8 @@ def render_interventions(env, conn):
                total_amount=total_amount,
                organisations=organisations,
                shapes_svg=shapes_svg,
-               points_svg=points_svg)
+               points_svg=points_svg,
+               breadcrumbs=breadcrumbs)
 
 
 def render_fund_index(env, conn):
@@ -779,8 +816,12 @@ def render_fund_index(env, conn):
         interventions = cursor.fetchall()
         fund['interventions'] = [dict(row) for row in interventions]
 
+    breadcrumbs = [
+        {'text': 'Funds'}
+    ]
+
     template = env.get_template("fund/index.html")
-    render("fund/index.html", template, funds=funds)
+    render("fund/index.html", template, funds=funds, breadcrumbs=breadcrumbs)
 
 
 def render_funds(env, conn):
@@ -824,6 +865,11 @@ def render_funds(env, conn):
         shapes_svg = process_shapes_svg(conn, filter_type='fund', filter_value=fund_id)
         points_svg = process_points_svg(conn, filter_type='fund', filter_value=fund_id)
 
+        breadcrumbs = [
+            {'text': 'Funds', 'url': '/fund/'},
+            {'text': fund['name']}
+        ]
+
         template = env.get_template("fund/detail.html")
         render(f"fund/{fund_id}/index.html", template,
                fund=fund,
@@ -831,7 +877,8 @@ def render_funds(env, conn):
                total_amount=total_amount,
                organisations=organisations,
                shapes_svg=shapes_svg,
-               points_svg=points_svg)
+               points_svg=points_svg,
+               breadcrumbs=breadcrumbs)
 
 
 def radius(amount):
@@ -1183,6 +1230,10 @@ def render_awards(env, conn):
     cursor.execute("SELECT COUNT(*) FROM organisations WHERE role = 'local-planning-authority'")
     total = cursor.fetchone()[0]
 
+    breadcrumbs = [
+        {'text': 'Awards'}
+    ]
+
     template = env.get_template("award/index.html")
     render("award/index.html", template,
            awards=awards,
@@ -1190,7 +1241,8 @@ def render_awards(env, conn):
            counts=counts,
            total=total,
            shapes_svg=shapes_svg,
-           points_svg=points_svg)
+           points_svg=points_svg,
+           breadcrumbs=breadcrumbs)
 
 
 def main():
