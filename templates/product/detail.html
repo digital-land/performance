@@ -2,16 +2,244 @@
 {% set title = product.name %}
 
 {% block content %}
+<style>
+.chart {
+  width: 100%;
+  max-width: 100%;
+  min-height: 450px;
+}
+
+.funnel-chart {
+  width: 100%;
+  height: 500px;
+}
+
+.timeline-container {
+  width: 100%;
+  margin: 2em 0;
+  font-size: 0.9em;
+}
+
+.timeline-header {
+  display: flex;
+  margin-bottom: 0.5em;
+  border-bottom: 2px solid #b1b4b6;
+}
+
+.timeline-labels {
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.timeline-axis {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5em;
+}
+
+.timeline-year {
+  font-weight: bold;
+  color: #0b0c0c;
+}
+
+.timeline-row {
+  display: flex;
+  margin-bottom: 0.25em;
+  min-height: 2em;
+  align-items: center;
+}
+
+.timeline-label {
+  width: 200px;
+  flex-shrink: 0;
+  padding-right: 1em;
+  font-size: 0.9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeline-track {
+  flex: 1;
+  position: relative;
+  height: 1.5em;
+  background-color: #f3f2f1;
+  border: 1px solid #b1b4b6;
+}
+
+.timeline-bar {
+  height: 100%;
+  background-color: #27a0cc;
+  position: absolute;
+  top: 0;
+}
+
+.tooltip {
+    background:#fff;
+    padding:10px;
+    border-style:solid;
+}
+</style>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>google.charts.load('current', {'packages':['corechart','bar','treemap','timeline']});</script>
+
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
         <span class="govuk-caption-xl">Product</span>
         <h1 class="govuk-heading-xl">{{ product.name }}</h1>
 
         {% if product.description %}
         <p class="govuk-body">{{ product.description }}</p>
         {% endif %}
+    </div>
+</div>
 
-        <h2 class="govuk-heading-m">Adoptions ({{ adoptions|length }})</h2>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h2 class="govuk-heading-l">Number of organisations adopting {{ product.name }}</h2>
+
+        <script type="text/javascript">
+          google.charts.setOnLoadCallback(draw_adoption)
+          function draw_adoption() {
+            var data = google.visualization.arrayToDataTable([
+              ['Status', 'Count'],
+              ['LPA', {{ counts.lpa }}],
+              ['ODP member', {{ counts.odp }}],
+              ['Awarded funding', {{ counts.funded }}],
+              ['Funded for Software', {{ counts.software }}],
+              ['Providing some data', {{ counts.providing }}],
+              ['Data ready for {{ product.name }}', {{ counts.data_ready }}],
+              ['Preparing to launch {{ product.name }}', {{ counts.interested_or_adopting }}],
+              ['Live with {{ product.name }}', {{ counts.live }}],
+            ]);
+
+            var options = {
+              title: "Number of organisations",
+              bars: 'vertical',
+              colors: ['#27a0cc'],
+              legend: { position: "none" },
+              vAxis: { gridlines: { count:0 }},
+              chartArea: { width: '90%', height: '70%' }
+            };
+
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0,
+                           { calc: "stringify",
+                             sourceColumn: 1,
+                             type: "string",
+                             role: "annotation"
+                             }, 1]);
+            var chart = new google.visualization.ColumnChart(document.getElementById("adoption-chart"));
+            chart.draw(view, options);
+          }
+        </script>
+        <div id="adoption-chart" class="funnel-chart"></div>
+        <p class="govuk-body">Note: submission includes LPA who have adopted both services.</p>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        {% if timeline_data %}
+        <h2 class="govuk-heading-l">{{ product.name }} adoption timeline</h2>
+
+        <div class="timeline-container">
+            <div class="timeline-header">
+                <div class="timeline-labels"></div>
+                <div class="timeline-axis">
+                    {% for year in timeline_years %}
+                    <div class="timeline-year">{{ year }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% for item in timeline_data %}
+            <div class="timeline-row">
+                <div class="timeline-label">{{ item.area_name }}</div>
+                <div class="timeline-track">
+                    <div class="timeline-bar" style="margin-left: {{ item.offset_percent }}%; width: {{ item.width_percent }}%;"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <p class="govuk-body">Timeline showing when each LPA adopted {{ product.name }} (live status only).</p>
+        {% endif %}
+
+        {% if funded_orgs %}
+        <h2 class="govuk-heading-l">Funding and {{ product.name }} adoption</h2>
+
+        <script type="text/javascript">
+          google.charts.setOnLoadCallback(draw_adoption_treemap)
+          function draw_adoption_treemap() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Area name');
+            data.addColumn('string', 'Bucket');
+            data.addColumn('number', 'Amount');
+            data.addColumn('number', 'Color');
+            data.addColumn('string', 'Name');
+            data.addColumn('string', 'Data status');
+            data.addColumn('number', 'PropTech');
+            data.addColumn('number', 'Software');
+            data.addRows([
+        {% for org in funded_orgs %}
+              ['{{ org.area_name }}', '{{ org.bucket }}', {{ org.amount }}, {{ org.color }}, '{{ org.name }}', '{{ org.status }}', {{ org.proptech_amount }}, {{ org.software_amount }}],
+        {% endfor %}
+              ['PropTech', 'Funded organisation', {{ totals.proptech }}, 0, 'Funded for PropTech', '', 0, 0,],
+              ['Software', 'Funded organisation', {{ totals.software }}, 0, 'Organisations funded for software', '', 0, 0,],
+              ['Both', 'Funded organisation', {{ totals.both }}, 0, 'Funded for Software and PropTech', '', 0, 0,],
+              ['Funded organisation', null, {{ totals.all }}, 0, 'All funded organisations', '', 0, 0,],
+        ]);
+
+            var options = {
+                maxDepth: 2,
+                maxPostDepth: 2,
+                headerHeight: 15,
+                showScale: false,
+                minColor: '#f5f5f6',
+                midColor: '#bcbcbd',
+                maxColor: '#27a0cc',
+                eventsConfig: {
+                  highlight: ['click'],
+                  unhighlight: ['mouseout'],
+                  rollup: ['contextmenu'],
+                  drilldown: ['dblclick'],
+                },
+                generateTooltip: showFullTooltip,
+            };
+
+            function showFullTooltip(row, size, value) {
+                var s = '<div class="tooltip">' +
+                    '<span><h2>' + data.getValue(row, 4) + '</h2>';
+
+                const bucket = data.getValue(row, 1);
+                if (bucket == 'PropTech' || bucket == 'Both') {
+                    s = s + '<p>£' + data.getValue(row, 6).toLocaleString() + ' for PropTech</p>';
+                }
+                if (bucket == 'Software' || bucket == 'Both') {
+                    s = s + '<p>£' + data.getValue(row, 7).toLocaleString() + ' for Software</p>';
+                }
+                if (bucket == 'Both') {
+                    s = s + '<p>£' + data.getValue(row, 2).toLocaleString() + ' in total.</p>';
+                }
+
+                var status = data.getValue(row, 5);
+                if (status != '') {
+                    s = s + '<p>' + status + '</p>'
+                }
+                s = s + '</div>'
+                return s;
+            }
+
+            var chart = new google.visualization.TreeMap(document.getElementById("adoption-treemap-chart"));
+            chart.draw(data, options);
+          }
+        </script>
+        <div id="adoption-treemap-chart" class="chart"></div>
+        {% endif %}
+
+        <h2 class="govuk-heading-l">Adoptions ({{ adoptions|length }})</h2>
 
         <table class="govuk-table">
             <thead class="govuk-table__head">

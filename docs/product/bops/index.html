@@ -109,14 +109,601 @@
 <div class="govuk-width-container">
     <main class="govuk-main-wrapper govspeak govuk-body" id="main-content" role="main">
 
+<style>
+.chart {
+  width: 100%;
+  max-width: 100%;
+  min-height: 450px;
+}
+
+.funnel-chart {
+  width: 100%;
+  height: 500px;
+}
+
+.timeline-container {
+  width: 100%;
+  margin: 2em 0;
+  font-size: 0.9em;
+}
+
+.timeline-header {
+  display: flex;
+  margin-bottom: 0.5em;
+  border-bottom: 2px solid #b1b4b6;
+}
+
+.timeline-labels {
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.timeline-axis {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5em;
+}
+
+.timeline-year {
+  font-weight: bold;
+  color: #0b0c0c;
+}
+
+.timeline-row {
+  display: flex;
+  margin-bottom: 0.25em;
+  min-height: 2em;
+  align-items: center;
+}
+
+.timeline-label {
+  width: 200px;
+  flex-shrink: 0;
+  padding-right: 1em;
+  font-size: 0.9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeline-track {
+  flex: 1;
+  position: relative;
+  height: 1.5em;
+  background-color: #f3f2f1;
+  border: 1px solid #b1b4b6;
+}
+
+.timeline-bar {
+  height: 100%;
+  background-color: #27a0cc;
+  position: absolute;
+  top: 0;
+}
+
+.tooltip {
+    background:#fff;
+    padding:10px;
+    border-style:solid;
+}
+</style>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>google.charts.load('current', {'packages':['corechart','bar','treemap','timeline']});</script>
+
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-grid-column-full">
         <span class="govuk-caption-xl">Product</span>
         <h1 class="govuk-heading-xl">BOPS</h1>
 
         
+    </div>
+</div>
 
-        <h2 class="govuk-heading-m">Adoptions (4)</h2>
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h2 class="govuk-heading-l">Number of organisations adopting BOPS</h2>
+
+        <script type="text/javascript">
+          google.charts.setOnLoadCallback(draw_adoption)
+          function draw_adoption() {
+            var data = google.visualization.arrayToDataTable([
+              ['Status', 'Count'],
+              ['LPA', 318],
+              ['ODP member', 141],
+              ['Awarded funding', 167],
+              ['Funded for Software', 145],
+              ['Providing some data', 37],
+              ['Data ready for BOPS', 22],
+              ['Preparing to launch BOPS', 0],
+              ['Live with BOPS', 4],
+            ]);
+
+            var options = {
+              title: "Number of organisations",
+              bars: 'vertical',
+              colors: ['#27a0cc'],
+              legend: { position: "none" },
+              vAxis: { gridlines: { count:0 }},
+              chartArea: { width: '90%', height: '70%' }
+            };
+
+            var view = new google.visualization.DataView(data);
+            view.setColumns([0,
+                           { calc: "stringify",
+                             sourceColumn: 1,
+                             type: "string",
+                             role: "annotation"
+                             }, 1]);
+            var chart = new google.visualization.ColumnChart(document.getElementById("adoption-chart"));
+            chart.draw(view, options);
+          }
+        </script>
+        <div id="adoption-chart" class="funnel-chart"></div>
+        <p class="govuk-body">Note: submission includes LPA who have adopted both services.</p>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        
+        <h2 class="govuk-heading-l">BOPS adoption timeline</h2>
+
+        <div class="timeline-container">
+            <div class="timeline-header">
+                <div class="timeline-labels"></div>
+                <div class="timeline-axis">
+                    
+                    <div class="timeline-year">2022</div>
+                    
+                    <div class="timeline-year">2023</div>
+                    
+                    <div class="timeline-year">2024</div>
+                    
+                    <div class="timeline-year">2025</div>
+                    
+                </div>
+            </div>
+            
+            <div class="timeline-row">
+                <div class="timeline-label">Lambeth</div>
+                <div class="timeline-track">
+                    <div class="timeline-bar" style="margin-left: 14.86%; width: 85.14%;"></div>
+                </div>
+            </div>
+            
+            <div class="timeline-row">
+                <div class="timeline-label">Camden</div>
+                <div class="timeline-track">
+                    <div class="timeline-bar" style="margin-left: 48.98%; width: 51.02%;"></div>
+                </div>
+            </div>
+            
+            <div class="timeline-row">
+                <div class="timeline-label">Medway</div>
+                <div class="timeline-track">
+                    <div class="timeline-bar" style="margin-left: 70.36%; width: 29.64%;"></div>
+                </div>
+            </div>
+            
+            <div class="timeline-row">
+                <div class="timeline-label">Barnet</div>
+                <div class="timeline-track">
+                    <div class="timeline-bar" style="margin-left: 83.11%; width: 16.89%;"></div>
+                </div>
+            </div>
+            
+        </div>
+        <p class="govuk-body">Timeline showing when each LPA adopted BOPS (live status only).</p>
+        
+
+        
+        <h2 class="govuk-heading-l">Funding and BOPS adoption</h2>
+
+        <script type="text/javascript">
+          google.charts.setOnLoadCallback(draw_adoption_treemap)
+          function draw_adoption_treemap() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Area name');
+            data.addColumn('string', 'Bucket');
+            data.addColumn('number', 'Amount');
+            data.addColumn('number', 'Color');
+            data.addColumn('string', 'Name');
+            data.addColumn('string', 'Data status');
+            data.addColumn('number', 'PropTech');
+            data.addColumn('number', 'Software');
+            data.addRows([
+        
+              ['Barnet', 'Software', 600000, 0.5, 'London Borough of Barnet', 'Have adopted BOPS', 0, 600000],
+        
+              ['St Albans', 'Software', 300000, 0, 'St Albans City and District Council', 'Not yet declared interest', 0, 300000],
+        
+              ['Epsom and Ewell', 'Both', 775000, 0, 'Epsom and Ewell Borough Council', 'Not yet declared interest', 375000, 400000],
+        
+              ['Gateshead', 'Software', 510000, 0, 'Gateshead Metropolitan Borough Council', 'Not yet declared interest', 0, 510000],
+        
+              ['Doncaster', 'Software', 608000, 0, 'Doncaster Metropolitan Borough Council', 'Not yet declared interest', 0, 608000],
+        
+              ['Gloucester', 'Software', 445000, 0, 'Gloucester City Council', 'Not yet declared interest', 0, 445000],
+        
+              ['Southwark', 'Software', 510000, 0, 'London Borough of Southwark', 'Not yet declared interest', 0, 510000],
+        
+              ['Tewkesbury', 'Software', 600000, 0, 'Tewkesbury Borough Council', 'Not yet declared interest', 0, 600000],
+        
+              ['West Berkshire', 'Software', 353000, 0, 'West Berkshire Council', 'Not yet declared interest', 0, 353000],
+        
+              ['Buckinghamshire', 'Software', 5650000, 0, 'Buckinghamshire Council', 'Not yet declared interest', 0, 5650000],
+        
+              ['Birmingham', 'Both', 715500, 0, 'Birmingham City Council', 'Not yet declared interest', 315500, 400000],
+        
+              ['Camden', 'Software', 4050000, 0.5, 'London Borough of Camden', 'Have adopted BOPS', 0, 4050000],
+        
+              ['Lambeth', 'Both', 6143564, 0.5, 'London Borough of Lambeth', 'Have adopted BOPS', 168564, 5975000],
+        
+              ['Medway', 'Software', 850000, 0.5, 'Medway Council', 'Have adopted BOPS', 0, 850000],
+        
+              ['Newcastle upon Tyne', 'Both', 1580897, 0, 'Newcastle City Council', 'Not yet declared interest', 544897, 1036000],
+        
+              ['Canterbury', 'Software', 400000, 0, 'Canterbury City Council', 'Not yet declared interest', 0, 400000],
+        
+              ['Plymouth', 'Both', 996200, 0, 'Plymouth City Council', 'Not yet declared interest', 896200, 100000],
+        
+              ['Peterborough', 'Software', 100000, 0, 'Peterborough City Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Torbay', 'Software', 100000, 0, 'Torbay Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Wirral', 'Both', 676225, 0, 'Wirral Borough Council', 'Not yet declared interest', 500000, 176225],
+        
+              ['Bristol, City of', 'Software', 100000, 0, 'Bristol City Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Sandwell', 'Software', 100000, 0, 'Sandwell Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Kensington and Chelsea', 'Both', 303000, 0, 'Royal Borough of Kensington and Chelsea', 'Not yet declared interest', 203000, 100000],
+        
+              ['Dover', 'Software', 150000, 0, 'Dover District Council', 'Not yet declared interest', 0, 150000],
+        
+              ['North Somerset', 'Software', 248000, 0, 'North Somerset Council', 'Not yet declared interest', 0, 248000],
+        
+              ['North Lincolnshire', 'Both', 390000, 0, 'North Lincolnshire Council', 'Not yet declared interest', 100000, 290000],
+        
+              ['Tower Hamlets', 'Both', 185000, 0, 'London Borough of Tower Hamlets', 'Not yet declared interest', 85000, 100000],
+        
+              ['Tandridge', 'Both', 277000, 0, 'Tandridge District Council', 'Not yet declared interest', 177000, 100000],
+        
+              ['Rossendale', 'Software', 100000, 0, 'Rossendale Borough Council', 'Not yet declared interest', 0, 100000],
+        
+              ['South Staffordshire', 'Software', 100000, 0, 'South Staffordshire Council', 'Not yet declared interest', 0, 100000],
+        
+              ['South Norfolk', 'Software', 100000, 0, 'South Norfolk District Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Castle Point', 'Software', 100000, 0, 'Castle Point Borough Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Barking and Dagenham', 'Both', 200000, 0, 'London Borough of Barking and Dagenham', 'Not yet declared interest', 100000, 100000],
+        
+              ['East Cambridgeshire', 'Software', 100000, 0, 'East Cambridgeshire District Council', 'Not yet declared interest', 0, 100000],
+        
+              ['South Gloucestershire', 'Software', 100000, 0, 'South Gloucestershire Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Great Yarmouth', 'Software', 250000, 0, 'Great Yarmouth Borough Council', 'Not yet declared interest', 0, 250000],
+        
+              ['New Forest', 'Software', 100000, 0, 'New Forest District Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Rochdale', 'Software', 100000, 0, 'Rochdale Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Westminster', 'Software', 100000, 0, 'City of Westminster', 'Not yet declared interest', 0, 100000],
+        
+              ['Horsham', 'Software', 100000, 0, 'Horsham District Council', 'Not yet declared interest', 0, 100000],
+        
+              ['City of London', 'Software', 100000, 0, 'City of London Corporation', 'Not yet declared interest', 0, 100000],
+        
+              ['Waltham Forest', 'Both', 458500, 0, 'London Borough of Waltham Forest', 'Not yet declared interest', 168500, 290000],
+        
+              ['Leicester', 'Both', 186250, 0, 'Leicester City Council', 'Not yet declared interest', 86250, 100000],
+        
+              ['South Cambridgeshire', 'Both', 1180000, 0, 'South Cambridgeshire District Council', 'Not yet declared interest', 1080000, 100000],
+        
+              ['Enfield', 'Software', 100000, 0, 'London Borough of Enfield', 'Not yet declared interest', 0, 100000],
+        
+              ['Rother', 'Software', 100000, 0, 'Rother District Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Salford', 'Both', 592213, 0, 'Salford City Council', 'Not yet declared interest', 77213, 515000],
+        
+              ['East Hampshire', 'Both', 140500, 0, 'East Hampshire District Council', 'Not yet declared interest', 40500, 100000],
+        
+              ['Ashford', 'Software', 100000, 0, 'Ashford Borough Council', 'Not yet declared interest', 0, 100000],
+        
+              ['West Oxfordshire', 'Both', 364500, 0, 'West Oxfordshire District Council', 'Not yet declared interest', 314500, 50000],
+        
+              ['Central Bedfordshire', 'Both', 285000, 0, 'Central Bedfordshire Council', 'Not yet declared interest', 185000, 100000],
+        
+              ['North East Derbyshire', 'PropTech', 465000, 0, 'North East Derbyshire District Council', 'Not yet declared interest', 465000, 0],
+        
+              ['Trafford', 'Software', 100000, 0, 'Trafford Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Northumberland', 'Software', 100000, 0, 'Northumberland County Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Bolton', 'Software', 100000, 0, 'Bolton Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Surrey Heath', 'Software', 100000, 0, 'Surrey Heath Borough Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Southampton', 'Both', 780000, 0, 'Southampton City Council', 'Not yet declared interest', 730000, 50000],
+        
+              ['Waverley', 'Software', 100000, 0, 'Waverley Borough Council', 'Not yet declared interest', 0, 100000],
+        
+              ['East Hertfordshire', 'Both', 273152, 0, 'East Hertfordshire District Council', 'Not yet declared interest', 173152, 100000],
+        
+              ['Hounslow', 'Both', 640000, 0, 'London Borough of Hounslow', 'Not yet declared interest', 315000, 325000],
+        
+              ['Cotswold', 'Both', 383193, 0, 'Cotswold District Council', 'Not yet declared interest', 333193, 50000],
+        
+              ['Redbridge', 'Both', 615600, 0, 'London Borough of Redbridge', 'Not yet declared interest', 125000, 490600],
+        
+              ['Basildon', 'Both', 331800, 0, 'Basildon Borough Council', 'Not yet declared interest', 231800, 100000],
+        
+              ['Forest of Dean', 'Software', 50000, 0, 'Forest of Dean District Council', 'Not yet declared interest', 0, 50000],
+        
+              ['North Tyneside', 'Both', 130000, 0, 'North Tyneside Council', 'Not yet declared interest', 80000, 50000],
+        
+              ['Stoke-on-Trent', 'Both', 116813, 0, 'Stoke-on-Trent City Council', 'Not yet declared interest', 66813, 50000],
+        
+              ['Stevenage', 'Both', 175000, 0, 'Stevenage Borough Council', 'Not yet declared interest', 125000, 50000],
+        
+              ['Kingston upon Thames', 'Software', 350000, 0, 'Royal Borough of Kingston upon Thames', 'Not yet declared interest', 0, 350000],
+        
+              ['Milton Keynes', 'Software', 100000, 0, 'Milton Keynes City Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Uttlesford', 'Software', 50000, 0, 'Uttlesford District Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Bury', 'Software', 50000, 0, 'Bury Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Cheltenham', 'Software', 50000, 0, 'Cheltenham Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Kingston upon Hull, City of', 'Software', 50000, 0, 'Hull City Council', 'Not yet declared interest', 0, 50000],
+        
+              ['North Norfolk', 'Software', 50000, 0, 'North Norfolk District Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Sefton', 'Software', 50000, 0, 'Sefton Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Spelthorne', 'Software', 100000, 0, 'Spelthorne Borough Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Wealden', 'Software', 50000, 0, 'Wealden District Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Colchester', 'Software', 200000, 0, 'Colchester City Council', 'Not yet declared interest', 0, 200000],
+        
+              ['Croydon', 'Software', 100000, 0, 'London Borough of Croydon', 'Not yet declared interest', 0, 100000],
+        
+              ['Ipswich', 'Software', 50000, 0, 'Ipswich Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['East Riding of Yorkshire', 'Software', 50000, 0, 'East Riding of Yorkshire Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Lake District National Park', 'Software', 50000, 0, 'Lake District National Park Authority', 'Not yet declared interest', 0, 50000],
+        
+              ['Basingstoke and Deane', 'Software', 108000, 0, 'Basingstoke and Deane Borough Council', 'Not yet declared interest', 0, 108000],
+        
+              ['Barnsley', 'Software', 50000, 0, 'Barnsley Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Bromley', 'Software', 50000, 0, 'London Borough of Bromley', 'Not yet declared interest', 0, 50000],
+        
+              ['Coventry', 'Software', 50000, 0, 'Coventry City Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Crawley', 'Software', 50000, 0, 'Crawley Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Exeter', 'Software', 50000, 0, 'Exeter City Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Manchester', 'Software', 50000, 0, 'Manchester City Council', 'Not yet declared interest', 0, 50000],
+        
+              ['North Warwickshire', 'Software', 50000, 0, 'North Warwickshire Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Oxford', 'Software', 50000, 0, 'Oxford City Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Stafford', 'Software', 50000, 0, 'Stafford Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Tendring', 'Software', 100000, 0, 'Tendring District Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Epping Forest', 'PropTech', 523800, 0, 'Epping Forest District Council', 'Not yet declared interest', 523800, 0],
+        
+              ['Haringey', 'Both', 424000, 0, 'London Borough of Haringey', 'Not yet declared interest', 324000, 100000],
+        
+              ['Leeds', 'Software', 275000, 0, 'Leeds City Council', 'Not yet declared interest', 0, 275000],
+        
+              ['North Kesteven', 'PropTech', 435000, 0, 'North Kesteven District Council', 'Not yet declared interest', 435000, 0],
+        
+              ['Wandsworth', 'PropTech', 328000, 0, 'London Borough of Wandsworth', 'Not yet declared interest', 328000, 0],
+        
+              ['Bassetlaw', 'Software', 50000, 0, 'Bassetlaw District Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Stockport', 'Both', 140000, 0, 'Stockport Metropolitan Borough Council', 'Not yet declared interest', 90000, 50000],
+        
+              ['Watford', 'PropTech', 222975, 0, 'Watford Borough Council', 'Not yet declared interest', 222975, 0],
+        
+              ['Harborough', 'PropTech', 125000, 0, 'Harborough District Council', 'Not yet declared interest', 125000, 0],
+        
+              ['Lewes', 'PropTech', 112500, 0, 'Lewes District Council', 'Not yet declared interest', 112500, 0],
+        
+              ['Runnymede', 'PropTech', 90020, 0, 'Runnymede Borough Council', 'Not yet declared interest', 90020, 0],
+        
+              ['Sevenoaks', 'Both', 375000, 0, 'Sevenoaks District Council', 'Not yet declared interest', 225000, 150000],
+        
+              ['Wigan', 'PropTech', 85000, 0, 'Wigan Metropolitan Borough Council', 'Not yet declared interest', 85000, 0],
+        
+              ['North Devon', 'Both', 239000, 0, 'North Devon District Council', 'Not yet declared interest', 40000, 199000],
+        
+              ['Walsall', 'PropTech', 120000, 0, 'Walsall Metropolitan Borough Council', 'Not yet declared interest', 120000, 0],
+        
+              ['Dacorum', 'Both', 1359000, 0, 'Dacorum Borough Council', 'Not yet declared interest', 691000, 668000],
+        
+              ['Bolsover', 'PropTech', 478600, 0, 'Bolsover District Council', 'Not yet declared interest', 478600, 0],
+        
+              ['Bradford', 'PropTech', 436900, 0, 'City of Bradford Metropolitan District Council', 'Not yet declared interest', 436900, 0],
+        
+              ['Cornwall', 'PropTech', 575000, 0, 'Cornwall Council', 'Not yet declared interest', 575000, 0],
+        
+              ['Dorset', 'Both', 610000, 0, 'Dorset Council', 'Not yet declared interest', 95000, 515000],
+        
+              ['Nottingham', 'Both', 539000, 0, 'Nottingham City Council', 'Not yet declared interest', 375000, 164000],
+        
+              ['Teignbridge', 'PropTech', 84610, 0, 'Teignbridge District Council', 'Not yet declared interest', 84610, 0],
+        
+              ['Surrey County Council', 'PropTech', 206187, 0, 'Surrey County Council', 'Not yet declared interest', 206187, 0],
+        
+              ['Chesterfield', 'PropTech', 200000, 0, 'Chesterfield Borough Council', 'Not yet declared interest', 200000, 0],
+        
+              ['Havant', 'Both', 233000, 0, 'Havant Borough Council', 'Not yet declared interest', 183000, 50000],
+        
+              ['Harlow', 'Software', 50000, 0, 'Harlow District Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Lewisham', 'Both', 119000, 0, 'London Borough of Lewisham', 'Not yet declared interest', 69000, 50000],
+        
+              ['Newham', 'PropTech', 225000, 0, 'London Borough of Newham', 'Not yet declared interest', 225000, 0],
+        
+              ['Reigate and Banstead', 'PropTech', 47000, 0, 'Reigate and Banstead Borough Council', 'Not yet declared interest', 47000, 0],
+        
+              ['Thanet', 'Both', 134000, 0, 'Thanet District Council', 'Not yet declared interest', 84000, 50000],
+        
+              ['Cheshire West and Chester', 'PropTech', 224400, 0, 'Cheshire West and Chester Council', 'Not yet declared interest', 224400, 0],
+        
+              ['County Durham', 'PropTech', 85000, 0, 'Durham County Council', 'Not yet declared interest', 85000, 0],
+        
+              ['Lancaster', 'PropTech', 46875, 0, 'Lancaster City Council', 'Not yet declared interest', 46875, 0],
+        
+              ['Somerset', 'PropTech', 85000, 0, 'Somerset Council', 'Not yet declared interest', 85000, 0],
+        
+              ['Knowsley', 'Software', 50000, 0, 'Knowsley Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Gedling', 'Software', 50000, 0, 'Gedling Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Bexley', 'Software', 50000, 0, 'London Borough of Bexley', 'Not yet declared interest', 0, 50000],
+        
+              ['Blackpool', 'Software', 50000, 0, 'Blackpool Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Chelmsford', 'Software', 50000, 0, 'Chelmsford City Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Calderdale', 'Software', 50000, 0, 'Calderdale Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Derby', 'Software', 50000, 0, 'Derby City Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Fenland', 'Software', 50000, 0, 'Fenland District Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Halton', 'Software', 50000, 0, 'Halton Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Liverpool', 'Software', 145306, 0, 'Liverpool City Council', 'Not yet declared interest', 0, 145306],
+        
+              ['Malvern Hills', 'Software', 50000, 0, 'Malvern Hills District Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Tameside', 'Software', 50000, 0, 'Tameside Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Worcester', 'Software', 50000, 0, 'Worcester City Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Wychavon', 'Software', 50000, 0, 'Wychavon District Council', 'Not yet declared interest', 0, 50000],
+        
+              ['York', 'Software', 100000, 0, 'City of York Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Harrow', 'Software', 150000, 0, 'London Borough of Harrow', 'Not yet declared interest', 0, 150000],
+        
+              ['Westmorland and Furness', 'Software', 50000, 0, 'Westmorland and Furness Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Brighton and Hove', 'Software', 50000, 0, 'Brighton and Hove City Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Hart', 'Software', 50000, 0, 'Hart District Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Brent', 'Software', 50000, 0, 'London Borough of Brent', 'Not yet declared interest', 0, 50000],
+        
+              ['Adur', 'Software', 50000, 0, 'Adur District Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Braintree', 'Software', 50000, 0, 'Braintree District Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Cannock Chase', 'Software', 50000, 0, 'Cannock Chase District Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Dartford', 'Software', 50000, 0, 'Dartford Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Hackney', 'Software', 50000, 0, 'London Borough of Hackney', 'Not yet declared interest', 0, 50000],
+        
+              ['Herefordshire, County of', 'Software', 50000, 0, 'Herefordshire Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Hillingdon', 'Software', 50000, 0, 'London Borough of Hillingdon', 'Not yet declared interest', 0, 50000],
+        
+              ['Huntingdonshire', 'Software', 50000, 0, 'Huntingdonshire District Council', 'Not yet declared interest', 0, 50000],
+        
+              ['King’s Lynn and West Norfolk', 'Software', 50000, 0, 'Borough Council of King&#x27;s Lynn and West Norfolk', 'Not yet declared interest', 0, 50000],
+        
+              ['Maidstone', 'Software', 50000, 0, 'Maidstone Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['North Yorkshire', 'Software', 100000, 0, 'North Yorkshire Council', 'Not yet declared interest', 0, 100000],
+        
+              ['Oldham', 'Software', 50000, 0, 'Oldham Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Rotherham', 'Software', 50000, 0, 'Rotherham Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Swale', 'Software', 50000, 0, 'Swale Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Wiltshire', 'Software', 50000, 0, 'Wiltshire Council', 'Not yet declared interest', 0, 50000],
+        
+              ['Worthing', 'Software', 50000, 0, 'Worthing Borough Council', 'Not yet declared interest', 0, 50000],
+        
+              ['New Forest National Park', 'Software', 100000, 0, 'New Forest National Park Authority', 'Not yet declared interest', 0, 100000],
+        
+              ['Havering', 'Software', 150000, 0, 'London Borough of Havering', 'Not yet declared interest', 0, 150000],
+        
+              ['Greater Manchester Combined Authority', 'Software', 100000, 0, 'Greater Manchester Combined Authority', 'Not yet declared interest', 0, 100000],
+        
+              ['Greater London Authority', 'Software', 200000, 0, 'Greater London Authority', 'Not yet declared interest', 0, 200000],
+        
+              ['PropTech', 'Funded organisation', 5201867, 0, 'Funded for PropTech', '', 0, 0,],
+              ['Software', 'Funded organisation', 22902306, 0, 'Organisations funded for software', '', 0, 0,],
+              ['Both', 'Funded organisation', 23066907, 0, 'Funded for Software and PropTech', '', 0, 0,],
+              ['Funded organisation', null, 51171080, 0, 'All funded organisations', '', 0, 0,],
+        ]);
+
+            var options = {
+                maxDepth: 2,
+                maxPostDepth: 2,
+                headerHeight: 15,
+                showScale: false,
+                minColor: '#f5f5f6',
+                midColor: '#bcbcbd',
+                maxColor: '#27a0cc',
+                eventsConfig: {
+                  highlight: ['click'],
+                  unhighlight: ['mouseout'],
+                  rollup: ['contextmenu'],
+                  drilldown: ['dblclick'],
+                },
+                generateTooltip: showFullTooltip,
+            };
+
+            function showFullTooltip(row, size, value) {
+                var s = '<div class="tooltip">' +
+                    '<span><h2>' + data.getValue(row, 4) + '</h2>';
+
+                const bucket = data.getValue(row, 1);
+                if (bucket == 'PropTech' || bucket == 'Both') {
+                    s = s + '<p>£' + data.getValue(row, 6).toLocaleString() + ' for PropTech</p>';
+                }
+                if (bucket == 'Software' || bucket == 'Both') {
+                    s = s + '<p>£' + data.getValue(row, 7).toLocaleString() + ' for Software</p>';
+                }
+                if (bucket == 'Both') {
+                    s = s + '<p>£' + data.getValue(row, 2).toLocaleString() + ' in total.</p>';
+                }
+
+                var status = data.getValue(row, 5);
+                if (status != '') {
+                    s = s + '<p>' + status + '</p>'
+                }
+                s = s + '</div>'
+                return s;
+            }
+
+            var chart = new google.visualization.TreeMap(document.getElementById("adoption-treemap-chart"));
+            chart.draw(data, options);
+          }
+        </script>
+        <div id="adoption-treemap-chart" class="chart"></div>
+        
+
+        <h2 class="govuk-heading-l">Adoptions (4)</h2>
 
         <table class="govuk-table">
             <thead class="govuk-table__head">

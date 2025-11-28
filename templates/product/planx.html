@@ -58,6 +58,67 @@ tr:nth-child(even) {
   min-height: 450px;
 }
 
+.timeline-container {
+  width: 100%;
+  margin: 2em 0;
+  font-size: 0.9em;
+}
+
+.timeline-header {
+  display: flex;
+  margin-bottom: 0.5em;
+  border-bottom: 2px solid #b1b4b6;
+}
+
+.timeline-labels {
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.timeline-axis {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5em;
+}
+
+.timeline-year {
+  font-weight: bold;
+  color: #0b0c0c;
+}
+
+.timeline-row {
+  display: flex;
+  margin-bottom: 0.25em;
+  min-height: 2em;
+  align-items: center;
+}
+
+.timeline-label {
+  width: 200px;
+  flex-shrink: 0;
+  padding-right: 1em;
+  font-size: 0.9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeline-track {
+  flex: 1;
+  position: relative;
+  height: 1.5em;
+  background-color: #f3f2f1;
+  border: 1px solid #b1b4b6;
+}
+
+.timeline-bar {
+  height: 100%;
+  background-color: #27a0cc;
+  position: absolute;
+  top: 0;
+}
+
 .tooltip {
     background:#fff;
     padding:10px;
@@ -145,39 +206,24 @@ th[role=columnheader]:not(.no-sort):hover:after {
 
 <h1 id='adoption-timeline'>PlanX adoption</h1>
 
-<script type="text/javascript">
-  google.charts.setOnLoadCallback(draw_timeline)
-  function draw_timeline() {
-    var container = document.getElementById('timeline-chart');
-    var chart = new google.visualization.Timeline(container);
-    var dataTable = new google.visualization.DataTable();
-
-    dataTable.addColumn({ type: 'string', id: 'LPA' });
-    dataTable.addColumn({ type: 'string', id: 'Product' });
-    dataTable.addColumn({ type: 'date', id: 'Start' });
-    dataTable.addColumn({ type: 'date', id: 'End' });
-    dataTable.addRows([
+<div class="timeline-container">
+    <div class="timeline-header">
+        <div class="timeline-labels"></div>
+        <div class="timeline-axis">
+            {% for year in timeline_years %}
+            <div class="timeline-year">{{ year }}</div>
+            {% endfor %}
+        </div>
+    </div>
     {% for item in timeline_data %}
-      ['{{ item.area_name }}', 'PlanX', new Date({{ item.year }}, {{ item.month }}, {{ item.day }}), new Date({{ today_year }}, {{ today_month }}, {{ today_day }})],
+    <div class="timeline-row">
+        <div class="timeline-label">{{ item.area_name }}</div>
+        <div class="timeline-track">
+            <div class="timeline-bar" style="margin-left: {{ item.offset_percent }}%; width: {{ item.width_percent }}%;"></div>
+        </div>
+    </div>
     {% endfor %}
-    ]);
-
-    var options = {
-      timeline: {
-        showRowLabels: true,
-        colorByRowLabel: false
-      },
-      colors: ['#27a0cc'],
-      hAxis: {
-        minValue: new Date(2022, 0, 1)
-      },
-      height: 720
-    };
-
-    chart.draw(dataTable, options);
-  }
-</script>
-<div id="timeline-chart" style="height: 720px;" class="chart"></div>
+</div>
 <p>Timeline showing when each LPA adopted PlanX (live status only).</p>
 
 

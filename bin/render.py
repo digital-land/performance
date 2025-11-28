@@ -10,6 +10,7 @@ import re
 import sqlite3
 from math import pi, sqrt
 from datetime import datetime
+from urllib.parse import quote
 from jinja2 import Environment, FileSystemLoader
 from html import escape
 
@@ -152,6 +153,8 @@ def render_adoption_redirect(env, conn):
 
 def render_adoption_planx(env, conn):
     """Render product/planx page (adoption and planning data)."""
+    from datetime import datetime, timedelta
+
     cursor = conn.cursor()
 
     # Get counts for the chart
@@ -190,15 +193,39 @@ def render_adoption_planx(env, conn):
     """)
 
     timeline_data = []
+    timeline_years = []
     today = datetime.now()
-    for row in cursor.fetchall():
-        date_parts = row['start_date'].split('-')
-        timeline_data.append({
-            'area_name': escape(row['area_name']),
-            'year': int(date_parts[0]),
-            'month': int(date_parts[1]) - 1,  # JavaScript months are 0-indexed
-            'day': int(date_parts[2])
-        })
+
+    rows = cursor.fetchall()
+    if rows:
+        # Define timeline range (2022 to current date)
+        start_year = 2022
+        start_date = datetime(start_year, 1, 1)
+        end_date = today
+        total_days = (end_date - start_date).days
+
+        # Generate year labels
+        for year in range(start_year, today.year + 1):
+            timeline_years.append(year)
+
+        # Calculate bar positions and widths
+        for row in rows:
+            date_parts = row['start_date'].split('-')
+            adoption_date = datetime(int(date_parts[0]), int(date_parts[1]), int(date_parts[2]))
+
+            # Calculate offset from start of timeline to adoption date
+            offset_days = (adoption_date - start_date).days
+            offset_percent = (offset_days / total_days) * 100
+
+            # Calculate width from adoption date to today
+            duration_days = (today - adoption_date).days
+            width_percent = (duration_days / total_days) * 100
+
+            timeline_data.append({
+                'area_name': escape(row['area_name']),
+                'offset_percent': round(offset_percent, 2),
+                'width_percent': round(width_percent, 2)
+            })
 
     # Get funded organisations for treemap
     cursor.execute("""
@@ -311,9 +338,7 @@ def render_adoption_planx(env, conn):
     render("product/planx/index.html", template,
            counts=counts,
            timeline_data=timeline_data,
-           today_year=today.year,
-           today_month=today.month - 1,
-           today_day=today.day,
+           timeline_years=timeline_years,
            funded_orgs=funded_orgs,
            totals=totals,
            all_orgs=all_orgs,
@@ -448,7 +473,10 @@ def render_projects(env, conn):
 
 def render_products(env, conn):
     """Render individual product pages."""
+    from datetime import datetime, timedelta
+
     cursor = conn.cursor()
+    today = datetime.now()
 
     cursor.execute("SELECT * FROM products")
     products = cursor.fetchall()
@@ -457,9 +485,12 @@ def render_products(env, conn):
         product = dict(prod_row)
         product_id = product['product']
 
+        # Create filesystem-safe slug (replace / with -)
+        product_slug = product_id.replace('/', '-')
+
         # Get adoptions for this product
         cursor.execute("""
-            SELECT a.*, o.name as org_name
+            SELECT a.*, o.name as org_name, o.area_name
             FROM adoptions a
             JOIN organisations o ON a.organisation = o.organisation
             WHERE a.product = ?
@@ -467,10 +498,164 @@ def render_products(env, conn):
         """, (product_id,))
         adoptions = [dict(row) for row in cursor.fetchall()]
 
+        # Calculate funnel counts
+        counts = {}
+        cursor.execute("SELECT COUNT(*) FROM organisations WHERE role = 'local-planning-authority'")
+        counts['lpa'] = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(DISTINCT organisation) FROM project_organisations WHERE project = 'open-digital-planning'")
+        counts['odp'] = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(DISTINCT organisation) FROM organisations WHERE amount > 0")
+        counts['funded'] = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(DISTINCT organisation) FROM organisations WHERE software_amount > 0")
+        counts['software'] = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(DISTINCT organisation) FROM organisations WHERE data_score >= 4 AND data_score < 100")
+        counts['providing'] = cursor.fetchone()[0]
+
+        cursor.execute("SELECT COUNT(*) FROM organisations WHERE data_ready = 1")
+        counts['data_ready'] = cursor.fetchone()[0]
+
+        cursor.execute("""
+            SELECT COUNT(DISTINCT o.organisation)
+            FROM organisations o
+            JOIN adoptions a ON o.organisation = a.organisation
+            WHERE a.product = ? AND a.adoption_status IN ('interested', 'adopting')
+        """, (product_id,))
+        counts['interested_or_adopting'] = cursor.fetchone()[0]
+
+        cursor.execute("""
+            SELECT COUNT(DISTINCT o.organisation)
+            FROM organisations o
+            JOIN adoptions a ON o.organisation = a.organisation
+            WHERE a.product = ? AND a.adoption_status = 'live'
+        """, (product_id,))
+        counts['live'] = cursor.fetchone()[0]
+
+        # Get timeline data (live adoptions only)
+        cursor.execute("""
+            SELECT a.start_date, o.area_name
+            FROM adoptions a
+            JOIN organisations o ON a.organisation = o.organisation
+            WHERE a.product = ? AND a.adoption_status = 'live'
+            ORDER BY a.start_date, o.area_name
+        """, (product_id,))
+
+        timeline_data = []
+        timeline_years = []
+
+        rows = cursor.fetchall()
+        if rows:
+            # Define timeline range (2022 to current date)
+            start_year = 2022
+            start_date = datetime(start_year, 1, 1)
+            end_date = today
+            total_days = (end_date - start_date).days
+
+            # Generate year labels
+            for year in range(start_year, today.year + 1):
+                timeline_years.append(year)
+
+            # Calculate bar positions and widths
+            for row in rows:
+                date_parts = row['start_date'].split('-')
+                adoption_date = datetime(int(date_parts[0]), int(date_parts[1]), int(date_parts[2]))
+
+                # Calculate offset from start of timeline to adoption date
+                offset_days = (adoption_date - start_date).days
+                offset_percent = (offset_days / total_days) * 100
+
+                # Calculate width from adoption date to today
+                duration_days = (today - adoption_date).days
+                width_percent = (duration_days / total_days) * 100
+
+                timeline_data.append({
+                    'area_name': escape(row['area_name']),
+                    'offset_percent': round(offset_percent, 2),
+                    'width_percent': round(width_percent, 2)
+                })
+
+        # Get all funded organisations and check if they've adopted this product
+        cursor.execute("""
+            SELECT DISTINCT o.organisation, o.area_name, o.bucket, o.amount,
+                   o.proptech_amount, o.software_amount, o.name, a.adoption_status
+            FROM organisations o
+            LEFT JOIN adoptions a ON o.organisation = a.organisation AND a.product = ?
+            WHERE o.amount > 0 AND o.bucket != ''
+            ORDER BY o.score DESC
+        """, (product_id,))
+
+        funded_orgs = []
+        totals = {'proptech': 0, 'software': 0, 'both': 0, 'all': 0}
+
+        for row in cursor.fetchall():
+            bucket = row['bucket']
+            amount = row['amount']
+
+            # Color blue only if they have adopted this specific product
+            color = 0
+            status = "Not yet declared interest"
+            if row['adoption_status'] == 'interested':
+                color = 0.5
+                status = f"Have expressed interest in adopting {product['name']}"
+            elif row['adoption_status'] == 'adopting':
+                color = 0.5
+                status = f"Adopting {product['name']}"
+            elif row['adoption_status'] == 'live':
+                color = 0.5
+                status = f"Have adopted {product['name']}"
+
+            funded_orgs.append({
+                'area_name': escape(row['area_name']),
+                'bucket': bucket,
+                'amount': amount,
+                'color': color,
+                'name': escape(row['name']),
+                'status': status,
+                'proptech_amount': row['proptech_amount'],
+                'software_amount': row['software_amount']
+            })
+
+            totals[bucket.lower()] += amount
+            totals['all'] += amount
+
         template = env.get_template("product/detail.html")
-        render(f"product/{product_id}/index.html", template,
+        render(f"product/{product_slug}/index.html", template,
                product=product,
-               adoptions=adoptions)
+               adoptions=adoptions,
+               counts=counts,
+               timeline_data=timeline_data,
+               timeline_years=timeline_years,
+               funded_orgs=funded_orgs,
+               totals=totals,
+               product_slug=product_slug)
+
+
+def render_product_index(env, conn):
+    """Render products index page."""
+    cursor = conn.cursor()
+
+    # Get all products with adoption counts
+    cursor.execute("""
+        SELECT p.product, p.name, p.description,
+               COUNT(a.organisation) as adoption_count
+        FROM products p
+        LEFT JOIN adoptions a ON p.product = a.product
+        GROUP BY p.product
+        ORDER BY p.name
+    """)
+
+    products = []
+    for row in cursor.fetchall():
+        prod = dict(row)
+        # Add slug for URL
+        prod['slug'] = prod['product'].replace('/', '-')
+        products.append(prod)
+
+    template = env.get_template("product/index.html")
+    render("product/index.html", template, products=products)
 
 
 def render_project_index(env, conn):
@@ -1018,6 +1203,10 @@ def main():
     conn = get_db_connection()
     env = Environment(loader=FileSystemLoader("templates/"))
 
+    # Add custom filters
+    env.filters['urlencode'] = lambda s: quote(str(s), safe='')
+    env.filters['slugify'] = lambda s: str(s).replace('/', '-')
+
     try:
         print("Rendering pages...", file=sys.stderr)
         render_index(env, conn)
@@ -1031,6 +1220,7 @@ def main():
         render_organisations(env, conn)
         render_project_index(env, conn)
         render_projects(env, conn)
+        render_product_index(env, conn)
         render_products(env, conn)
         print("All pages rendered successfully!", file=sys.stderr)
     except Exception as e:

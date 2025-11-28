@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% set title = "Products" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">Products</h1>
+
+        <p class="govuk-body">Digital planning products being adopted by local planning authorities.</p>
+
+        <table id="products-table" class="govuk-table sortable">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Product</th>
+                    <th scope="col" class="govuk-table__header">Description</th>
+                    <th scope="col" class="govuk-table__header">Adoptions</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                {% for product in products %}
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="/product/{{ product.slug }}/" class="govuk-link">{{ product.name }}</a>
+                    </td>
+                    <td class="govuk-table__cell">{{ product.description }}</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ product.adoption_count }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js" integrity="sha512-F/gIMdDfda6OD2rnzt/Iyp2V9JLHlFQ+EUyixDg9+rkwjqgW1snpkpx7FD5FV1+gG2fmFj7I3r6ReQDUidHelA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js" integrity="sha512-dRD755QRxlybm0h3LXXIGrFcjNakuxW3reZqnPtUkMv6YsSWoJf+slPjY5v4lZvx2ss+wBZQFegepmA7a2W9eA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+new Tablesort(document.getElementById('products-table'));
+</script>
+
+{% endblock content %}
