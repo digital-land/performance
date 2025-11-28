@@ -8,7 +8,7 @@
 <html lang="en" class="govuk-template">
   <head>
     <meta charset="utf-8">
-    <title> | Planning Data</title>
+    <title>Projects | Planning Data</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#0b0c0c">
     <link rel="shortcut icon" sizes="48x48" href="https://www.planning.data.gov.uk//static/images/favicon.ico" type="image/x-icon">
@@ -110,23 +110,72 @@
     <main class="govuk-main-wrapper govspeak govuk-body" id="main-content" role="main">
 
 <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">Projects</h1>
 
-        <div class="app-prose">
-            <ul>
-                <li><a href="project/open-digital-planning">Open Digital Planning membership and funding</a>
-                <li><a href="product/planx">Adoption of Open Digital Planning products by Planning Authorities</a>
-            </ul>
-            <ul>
-                <li><a href="award/">Awards</a>
-                <li><a href="fund/">Funds</a>
-                <li><a href="intervention/">Interventions</a>
-                <li><a href="organisation/">Organisations</a>
-                <li><a href="project/">Projects</a>
-            </ul>
-        </div>
+        <p class="govuk-body">Projects in the Digital Planning Programme.</p>
+
+        <table id="projects-table" class="govuk-table sortable">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Project</th>
+                    <th scope="col" class="govuk-table__header">Description</th>
+                    <th scope="col" class="govuk-table__header">Organisations</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="/project/local-land-charges/" class="govuk-link">Local Land Charges</a>
+                    </td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">130</td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="/project/localgov-drupal/" class="govuk-link">LocalGov Drupal</a>
+                    </td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">54</td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="/project/open-digital-planning/" class="govuk-link">Open Digital Planning</a>
+                    </td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">141</td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="/project/proptech/" class="govuk-link">PropTech</a>
+                    </td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">74</td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="/project/software/" class="govuk-link">Software</a>
+                    </td>
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
+                </tr>
+                
+            </tbody>
+        </table>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js" integrity="sha512-F/gIMdDfda6OD2rnzt/Iyp2V9JLHlFQ+EUyixDg9+rkwjqgW1snpkpx7FD5FV1+gG2fmFj7I3r6ReQDUidHelA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js" integrity="sha512-dRD755QRxlybm0h3LXXIGrFcjNakuxW3reZqnPtUkMv6YsSWoJf+slPjY5v4lZvx2ss+wBZQFegepmA7a2W9eA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+new Tablesort(document.getElementById('projects-table'));
+</script>
+
 
     </main>
 </div>

@@ -144,8 +144,14 @@ def render_index(env, conn):
     render("index.html", template)
 
 
+def render_adoption_redirect(env, conn):
+    """Render redirect page for old adoption/planx URL."""
+    template = env.get_template("adoption/planx.html")
+    render("adoption/planx/index.html", template)
+
+
 def render_adoption_planx(env, conn):
-    """Render adoption/planx page."""
+    """Render product/planx page (adoption and planning data)."""
     cursor = conn.cursor()
 
     # Get counts for the chart
@@ -301,8 +307,8 @@ def render_adoption_planx(env, conn):
     # Prepare datasets list
     datasets = [{'key': k, 'name': k, 'abbr': v} for k, v in odp_datasets.items()]
 
-    template = env.get_template("adoption/planx.html")
-    render("adoption/planx/index.html", template,
+    template = env.get_template("product/planx.html")
+    render("product/planx/index.html", template,
            counts=counts,
            timeline_data=timeline_data,
            today_year=today.year,
@@ -393,10 +399,51 @@ def render_projects(env, conn):
         """, (project_id,))
         organisations = [dict(row) for row in cursor.fetchall()]
 
+        # Get interventions for each organisation and calculate buckets
+        counts = {legend['reference']: 0 for legend in AWARD_LEGENDS}
+        total = 0
+
+        for org in organisations:
+            # Get interventions for this organisation
+            cursor.execute("""
+                SELECT DISTINCT i.intervention, i.name
+                FROM awards a
+                JOIN interventions i ON a.intervention = i.intervention
+                JOIN project_organisations po ON a.organisation = po.organisation
+                WHERE a.organisation = ? AND po.project = ?
+                ORDER BY i.name
+            """, (org['organisation'], project_id))
+            interventions = [dict(row) for row in cursor.fetchall()]
+            org['interventions'] = interventions
+
+            # Calculate bucket if organisation has awards
+            if interventions:
+                intervention_ids = set(i['intervention'] for i in interventions)
+                buckets = set()
+                if intervention_ids & set(["innovation", "engagement"]):
+                    buckets.add("PropTech")
+                if intervention_ids & set(["software", "integration", "improvement"]):
+                    buckets.add("Software")
+                if intervention_ids & set(["plan-making"]):
+                    buckets.add("Plan-making")
+                bucket = "_".join(sorted(list(buckets)))
+                if bucket:
+                    counts[bucket] = counts.get(bucket, 0) + 1
+                    total += 1
+
+        # Generate maps for this project
+        shapes_svg = process_shapes_svg(conn, filter_type='project', filter_value=project_id)
+        points_svg = process_points_svg(conn, filter_type='project', filter_value=project_id)
+
         template = env.get_template("project/detail.html")
         render(f"project/{project_id}/index.html", template,
                project=project,
-               organisations=organisations)
+               organisations=organisations,
+               shapes_svg=shapes_svg,
+               points_svg=points_svg,
+               legends=AWARD_LEGENDS,
+               counts=counts,
+               total=total)
 
 
 def render_products(env, conn):
@@ -424,6 +471,26 @@ def render_products(env, conn):
         render(f"product/{product_id}/index.html", template,
                product=product,
                adoptions=adoptions)
+
+
+def render_project_index(env, conn):
+    """Render projects index page."""
+    cursor = conn.cursor()
+
+    # Get all projects with organisation counts
+    cursor.execute("""
+        SELECT p.project, p.name, p.description,
+               COUNT(po.organisation) as org_count
+        FROM projects p
+        LEFT JOIN project_organisations po ON p.project = po.project
+        GROUP BY p.project
+        ORDER BY p.name
+    """)
+
+    projects = [dict(row) for row in cursor.fetchall()]
+
+    template = env.get_template("project/index.html")
+    render("project/index.html", template, projects=projects)
 
 
 def render_intervention_index(env, conn):
@@ -484,12 +551,18 @@ def render_interventions(env, conn):
         """, (intervention_id,))
         organisations = [dict(row) for row in cursor.fetchall()]
 
+        # Generate maps for this intervention
+        shapes_svg = process_shapes_svg(conn, filter_type='intervention', filter_value=intervention_id)
+        points_svg = process_points_svg(conn, filter_type='intervention', filter_value=intervention_id)
+
         template = env.get_template("intervention/detail.html")
         render(f"intervention/{intervention_id}/index.html", template,
                intervention=intervention,
                awards=awards,
                total_amount=total_amount,
-               organisations=organisations)
+               organisations=organisations,
+               shapes_svg=shapes_svg,
+               points_svg=points_svg)
 
 
 def render_fund_index(env, conn):
@@ -562,12 +635,18 @@ def render_funds(env, conn):
         """, (fund_id,))
         organisations = [dict(row) for row in cursor.fetchall()]
 
+        # Generate maps for this fund
+        shapes_svg = process_shapes_svg(conn, filter_type='fund', filter_value=fund_id)
+        points_svg = process_points_svg(conn, filter_type='fund', filter_value=fund_id)
+
         template = env.get_template("fund/detail.html")
         render(f"fund/{fund_id}/index.html", template,
                fund=fund,
                awards=awards,
                total_amount=total_amount,
-               organisations=organisations)
+               organisations=organisations,
+               shapes_svg=shapes_svg,
+               points_svg=points_svg)
 
 
 def radius(amount):
@@ -575,17 +654,49 @@ def radius(amount):
     return sqrt(float(amount) / pi) / 25
 
 
-def process_points_svg(conn):
-    """Process point.svg to add award circles."""
+def process_points_svg(conn, filter_type=None, filter_value=None):
+    """Process point.svg to add award circles.
+
+    Args:
+        conn: Database connection
+        filter_type: Optional filter type ('fund', 'intervention', 'project')
+        filter_value: Optional filter value (e.g., fund ID)
+    """
     cursor = conn.cursor()
 
-    # Get awards with organisation data
-    cursor.execute("""
-        SELECT a.award, a.intervention, a.amount, a.organisation,
-               o.local_planning_authority, o.entity
-        FROM awards a
-        JOIN organisations o ON a.organisation = o.organisation
-    """)
+    # Get awards with organisation data, optionally filtered
+    if filter_type == 'fund':
+        cursor.execute("""
+            SELECT a.award, a.intervention, a.amount, a.organisation,
+                   o.local_planning_authority, o.entity
+            FROM awards a
+            JOIN organisations o ON a.organisation = o.organisation
+            WHERE a.fund = ?
+        """, (filter_value,))
+    elif filter_type == 'intervention':
+        cursor.execute("""
+            SELECT a.award, a.intervention, a.amount, a.organisation,
+                   o.local_planning_authority, o.entity
+            FROM awards a
+            JOIN organisations o ON a.organisation = o.organisation
+            WHERE a.intervention = ?
+        """, (filter_value,))
+    elif filter_type == 'project':
+        cursor.execute("""
+            SELECT a.award, a.intervention, a.amount, a.organisation,
+                   o.local_planning_authority, o.entity
+            FROM awards a
+            JOIN organisations o ON a.organisation = o.organisation
+            JOIN project_organisations po ON a.organisation = po.organisation
+            WHERE po.project = ?
+        """, (filter_value,))
+    else:
+        cursor.execute("""
+            SELECT a.award, a.intervention, a.amount, a.organisation,
+                   o.local_planning_authority, o.entity
+            FROM awards a
+            JOIN organisations o ON a.organisation = o.organisation
+        """)
 
     awards_data = cursor.fetchall()
 
@@ -665,18 +776,49 @@ def process_points_svg(conn):
     return ''.join(output)
 
 
-def process_shapes_svg(conn):
-    """Process local-planning-authority.svg to add funding colors."""
+def process_shapes_svg(conn, filter_type=None, filter_value=None):
+    """Process local-planning-authority.svg to add funding colors.
+
+    Args:
+        conn: Database connection
+        filter_type: Optional filter type ('fund', 'intervention', 'project')
+        filter_value: Optional filter value (e.g., fund ID)
+    """
     cursor = conn.cursor()
 
-    # Get funded organisations with their classifications
-    cursor.execute("""
-        SELECT a.organisation, o.local_planning_authority, o.name
-        FROM awards a
-        JOIN organisations o ON a.organisation = o.organisation
-        WHERE o.local_planning_authority != ''
-        GROUP BY a.organisation
-    """)
+    # Get funded organisations with their classifications, optionally filtered
+    if filter_type == 'fund':
+        cursor.execute("""
+            SELECT a.organisation, o.local_planning_authority, o.name
+            FROM awards a
+            JOIN organisations o ON a.organisation = o.organisation
+            WHERE o.local_planning_authority != '' AND a.fund = ?
+            GROUP BY a.organisation
+        """, (filter_value,))
+    elif filter_type == 'intervention':
+        cursor.execute("""
+            SELECT a.organisation, o.local_planning_authority, o.name
+            FROM awards a
+            JOIN organisations o ON a.organisation = o.organisation
+            WHERE o.local_planning_authority != '' AND a.intervention = ?
+            GROUP BY a.organisation
+        """, (filter_value,))
+    elif filter_type == 'project':
+        cursor.execute("""
+            SELECT DISTINCT a.organisation, o.local_planning_authority, o.name
+            FROM awards a
+            JOIN organisations o ON a.organisation = o.organisation
+            JOIN project_organisations po ON a.organisation = po.organisation
+            WHERE o.local_planning_authority != '' AND po.project = ?
+        """, (filter_value,))
+    else:
+        cursor.execute("""
+            SELECT a.organisation, o.local_planning_authority, o.name
+            FROM awards a
+            JOIN organisations o ON a.organisation = o.organisation
+            WHERE o.local_planning_authority != ''
+            GROUP BY a.organisation
+        """)
 
     lpa_orgs = {}
     for row in cursor.fetchall():
@@ -686,10 +828,30 @@ def process_shapes_svg(conn):
         }
 
     # Get interventions per organisation to calculate bucket
-    cursor.execute("""
-        SELECT organisation, intervention
-        FROM awards
-    """)
+    if filter_type == 'fund':
+        cursor.execute("""
+            SELECT organisation, intervention
+            FROM awards
+            WHERE fund = ?
+        """, (filter_value,))
+    elif filter_type == 'intervention':
+        cursor.execute("""
+            SELECT organisation, intervention
+            FROM awards
+            WHERE intervention = ?
+        """, (filter_value,))
+    elif filter_type == 'project':
+        cursor.execute("""
+            SELECT a.organisation, a.intervention
+            FROM awards a
+            JOIN project_organisations po ON a.organisation = po.organisation
+            WHERE po.project = ?
+        """, (filter_value,))
+    else:
+        cursor.execute("""
+            SELECT organisation, intervention
+            FROM awards
+        """)
 
     org_interventions = {}
     for row in cursor.fetchall():
@@ -859,6 +1021,7 @@ def main():
     try:
         print("Rendering pages...", file=sys.stderr)
         render_index(env, conn)
+        render_adoption_redirect(env, conn)
         render_adoption_planx(env, conn)
         render_awards(env, conn)
         render_intervention_index(env, conn)
@@ -866,6 +1029,7 @@ def main():
         render_fund_index(env, conn)
         render_funds(env, conn)
         render_organisations(env, conn)
+        render_project_index(env, conn)
         render_projects(env, conn)
         render_products(env, conn)
         print("All pages rendered successfully!", file=sys.stderr)

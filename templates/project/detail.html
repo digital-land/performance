@@ -2,6 +2,72 @@
 {% set title = project.name %}
 
 {% block content %}
+<style>
+.map {
+ width: 640px;
+ resize: both;
+}
+.shapes svg {
+ width: 100%;
+ fill: #0b0c0c;
+ padding: 2.5em;
+}
+.points svg {
+ width: 100%;
+ fill: #0b0c0c;
+ padding: 2.5em;
+}
+svg path {
+  fill:none;
+  stroke:#000;
+  stroke-width:0.5px;
+}
+svg circle {
+  fill:red;
+  opacity: 0.125;
+}
+svg path.Software { fill: #22d0b6; stroke: #000; stroke-width: 0.5px }
+svg path.PropTech_Software { fill: #a8bd3a; stroke: #000; stroke-width: 0.5px }
+svg path.Plan-making_Software { fill: #118c7b; stroke: #000; stroke-width: 0.5px }
+svg path.Plan-making_PropTech_Software { fill: #746cb1; stroke: #000; stroke-width: 0.5px }
+svg path.PropTech { fill: #27a0cc; stroke: #000; stroke-width: 0.5px }
+svg path.Plan-making_PropTech { fill: #206095; stroke: #000; stroke-width: 0.5px }
+svg path.Plan-making { fill: #eee; stroke: #000; stroke-width: 0.5px }
+svg path:hover { opacity: 0.5 }
+
+.stacked-chart {
+  display: flex;
+  width: 99%;
+  margin: 1em 0;
+}
+
+.stacked-chart .bar {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 2em;
+  text-indent: 1em;
+  color: #ffffff;
+}
+
+ul.key {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.key-item {
+   border-left: 16px solid;
+   margin-bottom: 5px;
+   padding-left: 5px;
+}
+
+{% for item in legends %}
+.stacked-chart .bar.{{ item.reference }} { background-color: {{ item.colour }}; color: #000 }
+.key-item.{{ item.reference }} { border-color: {{ item.colour }}; }
+{% endfor %}
+</style>
+
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <span class="govuk-caption-xl">Project</span>
@@ -11,13 +77,39 @@
         <p class="govuk-body">{{ project.description }}</p>
         {% endif %}
 
+        <div class="shapes map">
+        {{ shapes_svg|safe }}
+        </div>
+
+        <div class="stacked-chart">
+        {% for item in legends %}
+        {% if counts[item.reference] > 0 %}
+        <div class="bar {{ item.reference }}" style="width:{{ (100 * counts[item.reference] / total)|round(2) }}%;">{{ counts[item.reference] }}</div>
+        {% endif %}
+        {% endfor %}
+        </div>
+
+        <ul class="key">
+        {% for item in legends %}
+        {% if counts[item.reference] > 0 %}
+        <li class="key-item {{ item.reference }}">
+            {{ item.description }} ({% for intervention in item.interventions %}<a href="/intervention/{{ intervention.slug }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}) ({{ counts[item.reference] }})
+        </li>
+        {% endif %}
+        {% endfor %}
+        </ul>
+
+        <div class="points map">
+        {{ points_svg|safe }}
+        </div>
+
         <h2 class="govuk-heading-m">Organisations ({{ organisations|length }})</h2>
 
         <table class="govuk-table">
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                     <th scope="col" class="govuk-table__header">Organisation</th>
-                    <th scope="col" class="govuk-table__header">Role</th>
+                    <th scope="col" class="govuk-table__header">Interventions</th>
                     <th scope="col" class="govuk-table__header">Funding</th>
                     <th scope="col" class="govuk-table__header">Adoption status</th>
                 </tr>
@@ -28,7 +120,11 @@
                     <td class="govuk-table__cell">
                         <a href="/organisation/{{ org.organisation }}/">{{ org.name }}</a>
                     </td>
-                    <td class="govuk-table__cell">{{ org.role }}</td>
+                    <td class="govuk-table__cell">
+                        {% for intervention in org.interventions %}
+                        <a href="/intervention/{{ intervention.intervention }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
                     <td class="govuk-table__cell">
                         {% if org.amount > 0 %}
                         £{{ "{:,}".format(org.amount) }}
