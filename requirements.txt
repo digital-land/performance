@@ -5,3 +5,4 @@ XlsxWriter
 pandas
 odfpy
 jinja2
+datasette

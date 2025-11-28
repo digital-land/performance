@@ -110,3 +110,6 @@ init::
 
 server::
 	python3 -m http.server -d $(DOCS_DIR)
+
+datasette:
+	datasette serve $(DATABASE)

@@ -13,3 +13,5 @@ tmp/
 var/
 /.vs
 specification/
+dataset/performance.sqlite
+dataset/performance.sqlite3
