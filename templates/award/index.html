@@ -189,7 +189,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 {% for award in awards %}
 <tr>
 <td>{{ award.award }}</td>
-<td>{{ award.start_date }}</td>
+<td>{{ award.start_date|govuk_date }}</td>
 <td><a href="/organisation/{{ award.organisation }}/">{{ award.org_name }}</a></td>
 <td><a href="/fund/{{ award.fund }}/">{{ award.fund_name }}</a></td>
 <td><a href="/intervention/{{ award.intervention }}/">{{ award.intervention_name }}</a></td>

@@ -45,21 +45,17 @@ svg path:hover { opacity: 0.5 }
         <p class="govuk-body-l">{{ fund.description }}</p>
         {% endif %}
 
-        <div class="shapes map">
-        {{ shapes_svg|safe }}
-        </div>
-
-        <div class="points map">
-        {{ points_svg|safe }}
-        </div>
-
         <dl class="govuk-summary-list">
             {% if fund.start_date %}
             <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">Start date</dt>
-                <dd class="govuk-summary-list__value">{{ fund.start_date }}</dd>
+                <dt class="govuk-summary-list__key">Date</dt>
+                <dd class="govuk-summary-list__value">{{ fund.start_date|govuk_date }}</dd>
             </div>
             {% endif %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Organisations</dt>
+                <dd class="govuk-summary-list__value">{{ organisations|length }}</dd>
+            </div>
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">Awards</dt>
                 <dd class="govuk-summary-list__value">{{ awards|length }}</dd>
@@ -68,13 +64,18 @@ svg path:hover { opacity: 0.5 }
                 <dt class="govuk-summary-list__key">Total funding</dt>
                 <dd class="govuk-summary-list__value">£{{ "{:,}".format(total_amount) }}</dd>
             </div>
-            <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">Organisations</dt>
-                <dd class="govuk-summary-list__value">{{ organisations|length }}</dd>
-            </div>
         </dl>
 
-        <h2 class="govuk-heading-m">Awards ({{ awards|length }})</h2>
+        <div class="shapes map">
+        {{ shapes_svg|safe }}
+        </div>
+
+        <div class="points map">
+        {{ points_svg|safe }}
+        </div>
+
+
+        <h2 class="govuk-heading-m">Awards</h2>
 
         <table id="awards-table" class="govuk-table sortable">
             <thead class="govuk-table__head">
@@ -88,7 +89,7 @@ svg path:hover { opacity: 0.5 }
             <tbody class="govuk-table__body">
                 {% for award in awards %}
                 <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">{{ award.start_date }}</td>
+                    <td class="govuk-table__cell">{{ award.start_date|govuk_date }}</td>
                     <td class="govuk-table__cell">
                         <a href="/organisation/{{ award.organisation }}/">{{ award.org_name }}</a>
                     </td>
@@ -104,18 +105,6 @@ svg path:hover { opacity: 0.5 }
                 {% endfor %}
             </tbody>
         </table>
-
-        {% if organisations %}
-        <h2 class="govuk-heading-m">Organisations ({{ organisations|length }})</h2>
-
-        <ul class="govuk-list">
-            {% for org in organisations %}
-            <li>
-                <a href="/organisation/{{ org.organisation }}/" class="govuk-link">{{ org.name }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-        {% endif %}
     </div>
 </div>
 

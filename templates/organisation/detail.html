@@ -25,7 +25,7 @@
             {% if organisation.end_date %}
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">End date</dt>
-                <dd class="govuk-summary-list__value">{{ organisation.end_date }}</dd>
+                <dd class="govuk-summary-list__value">{{ organisation.end_date|govuk_date }}</dd>
             </div>
             {% endif %}
 
@@ -97,7 +97,7 @@
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell"><a href="/product/{{ adoption.product|slugify }}/">{{ adoption.product }}</a></td>
                     <td class="govuk-table__cell">{{ adoption.adoption_status }}</td>
-                    <td class="govuk-table__cell">{{ adoption.start_date }}</td>
+                    <td class="govuk-table__cell">{{ adoption.start_date|govuk_date }}</td>
                     <td class="govuk-table__cell">
                         {% if adoption.documentation_url %}
                         <a href="{{ adoption.documentation_url }}">View</a>
@@ -123,7 +123,7 @@
             <tbody class="govuk-table__body">
                 {% for award in awards %}
                 <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">{{ award.start_date }}</td>
+                    <td class="govuk-table__cell">{{ award.start_date|govuk_date }}</td>
                     <td class="govuk-table__cell"><a href="/fund/{{ award.fund }}/">{{ award.fund_name }}</a></td>
                     <td class="govuk-table__cell"><a href="/intervention/{{ award.intervention }}/">{{ award.intervention_name }}</a></td>
                     <td class="govuk-table__cell" data-sort="{{ award.amount }}">£{{ "{:,}".format(award.amount) }}</td>

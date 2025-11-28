@@ -201,7 +201,7 @@
             <tbody class="govuk-table__body">
                 {% for adoption in adoptions %}
                 <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">{{ adoption.start_date }}</td>
+                    <td class="govuk-table__cell">{{ adoption.start_date|govuk_date }}</td>
                     <td class="govuk-table__cell">
                         <a href="/organisation/{{ adoption.organisation }}/">{{ adoption.org_name }}</a>
                     </td>

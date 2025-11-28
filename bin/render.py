@@ -121,6 +121,17 @@ odp_datasets = {
 }
 
 
+def format_govuk_date(date_str):
+    """Format date string to GOV.UK style: day month year."""
+    if not date_str:
+        return ""
+    try:
+        date_obj = datetime.strptime(str(date_str), "%Y-%m-%d")
+        return date_obj.strftime("%-d %B %Y")
+    except (ValueError, AttributeError):
+        return date_str
+
+
 def render(path, template, docs="docs", **kwargs):
     """Render a template to a file."""
     path = os.path.join(docs, path)
@@ -1480,6 +1491,7 @@ def main():
     # Add custom filters
     env.filters['urlencode'] = lambda s: quote(str(s), safe='')
     env.filters['slugify'] = lambda s: str(s).replace('/', '-')
+    env.filters['govuk_date'] = lambda s: format_govuk_date(s)
 
     try:
         print("Rendering pages...", file=sys.stderr)

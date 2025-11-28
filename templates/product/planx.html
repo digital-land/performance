@@ -325,7 +325,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <tr>
 <td>{{ loop.index }}</td>
 <td id="{{ org.organisation }}"><a href="https://www.planning.data.gov.uk/entity/{{ org.entity }}">{{ org.name }}</a></td>
-<td>{{ org.end_date }}</td>
+<td>{{ org.end_date|govuk_date }}</td>
 <td class="number">{{ org.volume }}</td>
 <td class="number">{{ org.percentage }}</td>
 <td class="dot">{{ org.is_lpa }}</td>
