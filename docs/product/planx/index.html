@@ -209,10 +209,23 @@
     padding:10px;
     border-style:solid;
 }
+
+.treemap-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 2em 0;
+}
+
+.treemap-container svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
 </style>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>google.charts.load('current', {'packages':['corechart','bar','treemap','timeline']});</script>
+<script>google.charts.load('current', {'packages':['corechart','bar']});</script>
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
@@ -408,405 +421,965 @@
         
         <h2 class="govuk-heading-l">Funding and PlanX adoption</h2>
 
-        <script type="text/javascript">
-          google.charts.setOnLoadCallback(draw_adoption_treemap)
-          function draw_adoption_treemap() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Area name');
-            data.addColumn('string', 'Bucket');
-            data.addColumn('number', 'Amount');
-            data.addColumn('number', 'Color');
-            data.addColumn('string', 'Name');
-            data.addColumn('string', 'Data status');
-            data.addColumn('number', 'PropTech');
-            data.addColumn('number', 'Software');
-            data.addRows([
-        
-              ['Barnet', 'Software', 600000, 0.5, 'London Borough of Barnet', 'Have adopted PlanX', 0, 600000],
-        
-              ['St Albans', 'Software', 300000, 0.5, 'St Albans City and District Council', 'Have adopted PlanX', 0, 300000],
-        
-              ['Epsom and Ewell', 'Both', 775000, 0.5, 'Epsom and Ewell Borough Council', 'Have adopted PlanX', 375000, 400000],
-        
-              ['Gateshead', 'Software', 510000, 0.5, 'Gateshead Metropolitan Borough Council', 'Have adopted PlanX', 0, 510000],
-        
-              ['Doncaster', 'Software', 608000, 0.5, 'Doncaster Metropolitan Borough Council', 'Have adopted PlanX', 0, 608000],
-        
-              ['Gloucester', 'Software', 445000, 0.5, 'Gloucester City Council', 'Have adopted PlanX', 0, 445000],
-        
-              ['Southwark', 'Software', 510000, 0.5, 'London Borough of Southwark', 'Have adopted PlanX', 0, 510000],
-        
-              ['Tewkesbury', 'Software', 600000, 0.5, 'Tewkesbury Borough Council', 'Have adopted PlanX', 0, 600000],
-        
-              ['West Berkshire', 'Software', 353000, 0.5, 'West Berkshire Council', 'Have adopted PlanX', 0, 353000],
-        
-              ['Buckinghamshire', 'Software', 5650000, 0.5, 'Buckinghamshire Council', 'Have adopted PlanX', 0, 5650000],
-        
-              ['Birmingham', 'Both', 715500, 0.5, 'Birmingham City Council', 'Have adopted PlanX', 315500, 400000],
-        
-              ['Camden', 'Software', 4050000, 0.5, 'London Borough of Camden', 'Have adopted PlanX', 0, 4050000],
-        
-              ['Lambeth', 'Both', 6143564, 0.5, 'London Borough of Lambeth', 'Have adopted PlanX', 168564, 5975000],
-        
-              ['Medway', 'Software', 850000, 0.5, 'Medway Council', 'Have adopted PlanX', 0, 850000],
-        
-              ['Newcastle upon Tyne', 'Both', 1580897, 0.5, 'Newcastle City Council', 'Have adopted PlanX', 544897, 1036000],
-        
-              ['Canterbury', 'Software', 400000, 0.5, 'Canterbury City Council', 'Have adopted PlanX', 0, 400000],
-        
-              ['Plymouth', 'Both', 996200, 0, 'Plymouth City Council', 'Not yet declared interest', 896200, 100000],
-        
-              ['Peterborough', 'Software', 100000, 0, 'Peterborough City Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Torbay', 'Software', 100000, 0, 'Torbay Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Wirral', 'Both', 676225, 0, 'Wirral Borough Council', 'Not yet declared interest', 500000, 176225],
-        
-              ['Bristol, City of', 'Software', 100000, 0, 'Bristol City Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Sandwell', 'Software', 100000, 0, 'Sandwell Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Kensington and Chelsea', 'Both', 303000, 0, 'Royal Borough of Kensington and Chelsea', 'Not yet declared interest', 203000, 100000],
-        
-              ['Dover', 'Software', 150000, 0, 'Dover District Council', 'Not yet declared interest', 0, 150000],
-        
-              ['North Somerset', 'Software', 248000, 0, 'North Somerset Council', 'Not yet declared interest', 0, 248000],
-        
-              ['North Lincolnshire', 'Both', 390000, 0, 'North Lincolnshire Council', 'Not yet declared interest', 100000, 290000],
-        
-              ['Tower Hamlets', 'Both', 185000, 0, 'London Borough of Tower Hamlets', 'Not yet declared interest', 85000, 100000],
-        
-              ['Tandridge', 'Both', 277000, 0, 'Tandridge District Council', 'Not yet declared interest', 177000, 100000],
-        
-              ['Rossendale', 'Software', 100000, 0, 'Rossendale Borough Council', 'Not yet declared interest', 0, 100000],
-        
-              ['South Staffordshire', 'Software', 100000, 0, 'South Staffordshire Council', 'Not yet declared interest', 0, 100000],
-        
-              ['South Norfolk', 'Software', 100000, 0, 'South Norfolk District Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Castle Point', 'Software', 100000, 0, 'Castle Point Borough Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Barking and Dagenham', 'Both', 200000, 0, 'London Borough of Barking and Dagenham', 'Not yet declared interest', 100000, 100000],
-        
-              ['East Cambridgeshire', 'Software', 100000, 0, 'East Cambridgeshire District Council', 'Not yet declared interest', 0, 100000],
-        
-              ['South Gloucestershire', 'Software', 100000, 0, 'South Gloucestershire Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Great Yarmouth', 'Software', 250000, 0, 'Great Yarmouth Borough Council', 'Not yet declared interest', 0, 250000],
-        
-              ['New Forest', 'Software', 100000, 0, 'New Forest District Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Rochdale', 'Software', 100000, 0, 'Rochdale Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Westminster', 'Software', 100000, 0, 'City of Westminster', 'Not yet declared interest', 0, 100000],
-        
-              ['Horsham', 'Software', 100000, 0, 'Horsham District Council', 'Not yet declared interest', 0, 100000],
-        
-              ['City of London', 'Software', 100000, 0, 'City of London Corporation', 'Not yet declared interest', 0, 100000],
-        
-              ['Waltham Forest', 'Both', 458500, 0, 'London Borough of Waltham Forest', 'Not yet declared interest', 168500, 290000],
-        
-              ['Leicester', 'Both', 186250, 0, 'Leicester City Council', 'Not yet declared interest', 86250, 100000],
-        
-              ['South Cambridgeshire', 'Both', 1180000, 0, 'South Cambridgeshire District Council', 'Not yet declared interest', 1080000, 100000],
-        
-              ['Enfield', 'Software', 100000, 0, 'London Borough of Enfield', 'Not yet declared interest', 0, 100000],
-        
-              ['Rother', 'Software', 100000, 0, 'Rother District Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Salford', 'Both', 592213, 0, 'Salford City Council', 'Not yet declared interest', 77213, 515000],
-        
-              ['East Hampshire', 'Both', 140500, 0, 'East Hampshire District Council', 'Not yet declared interest', 40500, 100000],
-        
-              ['Ashford', 'Software', 100000, 0, 'Ashford Borough Council', 'Not yet declared interest', 0, 100000],
-        
-              ['West Oxfordshire', 'Both', 364500, 0, 'West Oxfordshire District Council', 'Not yet declared interest', 314500, 50000],
-        
-              ['Central Bedfordshire', 'Both', 285000, 0, 'Central Bedfordshire Council', 'Not yet declared interest', 185000, 100000],
-        
-              ['North East Derbyshire', 'PropTech', 465000, 0, 'North East Derbyshire District Council', 'Not yet declared interest', 465000, 0],
-        
-              ['Trafford', 'Software', 100000, 0, 'Trafford Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Northumberland', 'Software', 100000, 0, 'Northumberland County Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Bolton', 'Software', 100000, 0, 'Bolton Metropolitan Borough Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Surrey Heath', 'Software', 100000, 0, 'Surrey Heath Borough Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Southampton', 'Both', 780000, 0, 'Southampton City Council', 'Not yet declared interest', 730000, 50000],
-        
-              ['Waverley', 'Software', 100000, 0, 'Waverley Borough Council', 'Not yet declared interest', 0, 100000],
-        
-              ['East Hertfordshire', 'Both', 273152, 0, 'East Hertfordshire District Council', 'Not yet declared interest', 173152, 100000],
-        
-              ['Hounslow', 'Both', 640000, 0, 'London Borough of Hounslow', 'Not yet declared interest', 315000, 325000],
-        
-              ['Cotswold', 'Both', 383193, 0, 'Cotswold District Council', 'Not yet declared interest', 333193, 50000],
-        
-              ['Redbridge', 'Both', 615600, 0, 'London Borough of Redbridge', 'Not yet declared interest', 125000, 490600],
-        
-              ['Basildon', 'Both', 331800, 0, 'Basildon Borough Council', 'Not yet declared interest', 231800, 100000],
-        
-              ['Forest of Dean', 'Software', 50000, 0, 'Forest of Dean District Council', 'Not yet declared interest', 0, 50000],
-        
-              ['North Tyneside', 'Both', 130000, 0, 'North Tyneside Council', 'Not yet declared interest', 80000, 50000],
-        
-              ['Stoke-on-Trent', 'Both', 116813, 0, 'Stoke-on-Trent City Council', 'Not yet declared interest', 66813, 50000],
-        
-              ['Stevenage', 'Both', 175000, 0, 'Stevenage Borough Council', 'Not yet declared interest', 125000, 50000],
-        
-              ['Kingston upon Thames', 'Software', 350000, 0, 'Royal Borough of Kingston upon Thames', 'Not yet declared interest', 0, 350000],
-        
-              ['Milton Keynes', 'Software', 100000, 0, 'Milton Keynes City Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Uttlesford', 'Software', 50000, 0, 'Uttlesford District Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Bury', 'Software', 50000, 0, 'Bury Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Cheltenham', 'Software', 50000, 0, 'Cheltenham Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Kingston upon Hull, City of', 'Software', 50000, 0, 'Hull City Council', 'Not yet declared interest', 0, 50000],
-        
-              ['North Norfolk', 'Software', 50000, 0, 'North Norfolk District Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Sefton', 'Software', 50000, 0, 'Sefton Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Spelthorne', 'Software', 100000, 0, 'Spelthorne Borough Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Wealden', 'Software', 50000, 0, 'Wealden District Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Colchester', 'Software', 200000, 0, 'Colchester City Council', 'Not yet declared interest', 0, 200000],
-        
-              ['Croydon', 'Software', 100000, 0, 'London Borough of Croydon', 'Not yet declared interest', 0, 100000],
-        
-              ['Ipswich', 'Software', 50000, 0, 'Ipswich Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['East Riding of Yorkshire', 'Software', 50000, 0, 'East Riding of Yorkshire Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Lake District National Park', 'Software', 50000, 0, 'Lake District National Park Authority', 'Not yet declared interest', 0, 50000],
-        
-              ['Basingstoke and Deane', 'Software', 108000, 0, 'Basingstoke and Deane Borough Council', 'Not yet declared interest', 0, 108000],
-        
-              ['Barnsley', 'Software', 50000, 0, 'Barnsley Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Bromley', 'Software', 50000, 0, 'London Borough of Bromley', 'Not yet declared interest', 0, 50000],
-        
-              ['Coventry', 'Software', 50000, 0, 'Coventry City Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Crawley', 'Software', 50000, 0, 'Crawley Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Exeter', 'Software', 50000, 0, 'Exeter City Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Manchester', 'Software', 50000, 0, 'Manchester City Council', 'Not yet declared interest', 0, 50000],
-        
-              ['North Warwickshire', 'Software', 50000, 0, 'North Warwickshire Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Oxford', 'Software', 50000, 0, 'Oxford City Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Stafford', 'Software', 50000, 0, 'Stafford Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Tendring', 'Software', 100000, 0, 'Tendring District Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Epping Forest', 'PropTech', 523800, 0, 'Epping Forest District Council', 'Not yet declared interest', 523800, 0],
-        
-              ['Haringey', 'Both', 424000, 0, 'London Borough of Haringey', 'Not yet declared interest', 324000, 100000],
-        
-              ['Leeds', 'Software', 275000, 0, 'Leeds City Council', 'Not yet declared interest', 0, 275000],
-        
-              ['North Kesteven', 'PropTech', 435000, 0, 'North Kesteven District Council', 'Not yet declared interest', 435000, 0],
-        
-              ['Wandsworth', 'PropTech', 328000, 0, 'London Borough of Wandsworth', 'Not yet declared interest', 328000, 0],
-        
-              ['Bassetlaw', 'Software', 50000, 0, 'Bassetlaw District Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Stockport', 'Both', 140000, 0, 'Stockport Metropolitan Borough Council', 'Not yet declared interest', 90000, 50000],
-        
-              ['Watford', 'PropTech', 222975, 0, 'Watford Borough Council', 'Not yet declared interest', 222975, 0],
-        
-              ['Harborough', 'PropTech', 125000, 0, 'Harborough District Council', 'Not yet declared interest', 125000, 0],
-        
-              ['Lewes', 'PropTech', 112500, 0, 'Lewes District Council', 'Not yet declared interest', 112500, 0],
-        
-              ['Runnymede', 'PropTech', 90020, 0, 'Runnymede Borough Council', 'Not yet declared interest', 90020, 0],
-        
-              ['Sevenoaks', 'Both', 375000, 0, 'Sevenoaks District Council', 'Not yet declared interest', 225000, 150000],
-        
-              ['Wigan', 'PropTech', 85000, 0, 'Wigan Metropolitan Borough Council', 'Not yet declared interest', 85000, 0],
-        
-              ['North Devon', 'Both', 239000, 0, 'North Devon District Council', 'Not yet declared interest', 40000, 199000],
-        
-              ['Walsall', 'PropTech', 120000, 0, 'Walsall Metropolitan Borough Council', 'Not yet declared interest', 120000, 0],
-        
-              ['Dacorum', 'Both', 1359000, 0, 'Dacorum Borough Council', 'Not yet declared interest', 691000, 668000],
-        
-              ['Bolsover', 'PropTech', 478600, 0, 'Bolsover District Council', 'Not yet declared interest', 478600, 0],
-        
-              ['Bradford', 'PropTech', 436900, 0, 'City of Bradford Metropolitan District Council', 'Not yet declared interest', 436900, 0],
-        
-              ['Cornwall', 'PropTech', 575000, 0, 'Cornwall Council', 'Not yet declared interest', 575000, 0],
-        
-              ['Dorset', 'Both', 610000, 0, 'Dorset Council', 'Not yet declared interest', 95000, 515000],
-        
-              ['Nottingham', 'Both', 539000, 0, 'Nottingham City Council', 'Not yet declared interest', 375000, 164000],
-        
-              ['Teignbridge', 'PropTech', 84610, 0, 'Teignbridge District Council', 'Not yet declared interest', 84610, 0],
-        
-              ['Surrey County Council', 'PropTech', 206187, 0, 'Surrey County Council', 'Not yet declared interest', 206187, 0],
-        
-              ['Chesterfield', 'PropTech', 200000, 0, 'Chesterfield Borough Council', 'Not yet declared interest', 200000, 0],
-        
-              ['Havant', 'Both', 233000, 0, 'Havant Borough Council', 'Not yet declared interest', 183000, 50000],
-        
-              ['Harlow', 'Software', 50000, 0, 'Harlow District Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Lewisham', 'Both', 119000, 0, 'London Borough of Lewisham', 'Not yet declared interest', 69000, 50000],
-        
-              ['Newham', 'PropTech', 225000, 0, 'London Borough of Newham', 'Not yet declared interest', 225000, 0],
-        
-              ['Reigate and Banstead', 'PropTech', 47000, 0, 'Reigate and Banstead Borough Council', 'Not yet declared interest', 47000, 0],
-        
-              ['Thanet', 'Both', 134000, 0, 'Thanet District Council', 'Not yet declared interest', 84000, 50000],
-        
-              ['Cheshire West and Chester', 'PropTech', 224400, 0, 'Cheshire West and Chester Council', 'Not yet declared interest', 224400, 0],
-        
-              ['County Durham', 'PropTech', 85000, 0, 'Durham County Council', 'Not yet declared interest', 85000, 0],
-        
-              ['Lancaster', 'PropTech', 46875, 0, 'Lancaster City Council', 'Not yet declared interest', 46875, 0],
-        
-              ['Somerset', 'PropTech', 85000, 0, 'Somerset Council', 'Not yet declared interest', 85000, 0],
-        
-              ['Knowsley', 'Software', 50000, 0, 'Knowsley Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Gedling', 'Software', 50000, 0, 'Gedling Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Bexley', 'Software', 50000, 0, 'London Borough of Bexley', 'Not yet declared interest', 0, 50000],
-        
-              ['Blackpool', 'Software', 50000, 0, 'Blackpool Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Chelmsford', 'Software', 50000, 0, 'Chelmsford City Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Calderdale', 'Software', 50000, 0, 'Calderdale Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Derby', 'Software', 50000, 0, 'Derby City Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Fenland', 'Software', 50000, 0, 'Fenland District Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Halton', 'Software', 50000, 0, 'Halton Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Liverpool', 'Software', 145306, 0, 'Liverpool City Council', 'Not yet declared interest', 0, 145306],
-        
-              ['Malvern Hills', 'Software', 50000, 0, 'Malvern Hills District Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Tameside', 'Software', 50000, 0, 'Tameside Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Worcester', 'Software', 50000, 0, 'Worcester City Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Wychavon', 'Software', 50000, 0, 'Wychavon District Council', 'Not yet declared interest', 0, 50000],
-        
-              ['York', 'Software', 100000, 0, 'City of York Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Harrow', 'Software', 150000, 0, 'London Borough of Harrow', 'Not yet declared interest', 0, 150000],
-        
-              ['Westmorland and Furness', 'Software', 50000, 0, 'Westmorland and Furness Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Brighton and Hove', 'Software', 50000, 0, 'Brighton and Hove City Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Hart', 'Software', 50000, 0, 'Hart District Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Brent', 'Software', 50000, 0, 'London Borough of Brent', 'Not yet declared interest', 0, 50000],
-        
-              ['Adur', 'Software', 50000, 0, 'Adur District Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Braintree', 'Software', 50000, 0, 'Braintree District Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Cannock Chase', 'Software', 50000, 0, 'Cannock Chase District Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Dartford', 'Software', 50000, 0, 'Dartford Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Hackney', 'Software', 50000, 0, 'London Borough of Hackney', 'Not yet declared interest', 0, 50000],
-        
-              ['Herefordshire, County of', 'Software', 50000, 0, 'Herefordshire Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Hillingdon', 'Software', 50000, 0, 'London Borough of Hillingdon', 'Not yet declared interest', 0, 50000],
-        
-              ['Huntingdonshire', 'Software', 50000, 0, 'Huntingdonshire District Council', 'Not yet declared interest', 0, 50000],
-        
-              ['King’s Lynn and West Norfolk', 'Software', 50000, 0, 'Borough Council of King&#x27;s Lynn and West Norfolk', 'Not yet declared interest', 0, 50000],
-        
-              ['Maidstone', 'Software', 50000, 0, 'Maidstone Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['North Yorkshire', 'Software', 100000, 0, 'North Yorkshire Council', 'Not yet declared interest', 0, 100000],
-        
-              ['Oldham', 'Software', 50000, 0, 'Oldham Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Rotherham', 'Software', 50000, 0, 'Rotherham Metropolitan Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Swale', 'Software', 50000, 0, 'Swale Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Wiltshire', 'Software', 50000, 0, 'Wiltshire Council', 'Not yet declared interest', 0, 50000],
-        
-              ['Worthing', 'Software', 50000, 0, 'Worthing Borough Council', 'Not yet declared interest', 0, 50000],
-        
-              ['New Forest National Park', 'Software', 100000, 0, 'New Forest National Park Authority', 'Not yet declared interest', 0, 100000],
-        
-              ['Havering', 'Software', 150000, 0, 'London Borough of Havering', 'Not yet declared interest', 0, 150000],
-        
-              ['Greater Manchester Combined Authority', 'Software', 100000, 0, 'Greater Manchester Combined Authority', 'Not yet declared interest', 0, 100000],
-        
-              ['Greater London Authority', 'Software', 200000, 0, 'Greater London Authority', 'Not yet declared interest', 0, 200000],
-        
-              ['PropTech', 'Funded organisation', 5201867, 0, 'Funded for PropTech', '', 0, 0,],
-              ['Software', 'Funded organisation', 22902306, 0, 'Organisations funded for software', '', 0, 0,],
-              ['Both', 'Funded organisation', 23066907, 0, 'Funded for Software and PropTech', '', 0, 0,],
-              ['Funded organisation', null, 51171080, 0, 'All funded organisations', '', 0, 0,],
-        ]);
-
-            var options = {
-                maxDepth: 2,
-                maxPostDepth: 2,
-                headerHeight: 15,
-                showScale: false,
-                minColor: '#f5f5f6',
-                midColor: '#bcbcbd',
-                maxColor: '#27a0cc',
-                eventsConfig: {
-                  highlight: ['click'],
-                  unhighlight: ['mouseout'],
-                  rollup: ['contextmenu'],
-                  drilldown: ['dblclick'],
-                },
-                generateTooltip: showFullTooltip,
-            };
-
-            function showFullTooltip(row, size, value) {
-                var s = '<div class="tooltip">' +
-                    '<span><h2>' + data.getValue(row, 4) + '</h2>';
-
-                const bucket = data.getValue(row, 1);
-                if (bucket == 'PropTech' || bucket == 'Both') {
-                    s = s + '<p>£' + data.getValue(row, 6).toLocaleString() + ' for PropTech</p>';
-                }
-                if (bucket == 'Software' || bucket == 'Both') {
-                    s = s + '<p>£' + data.getValue(row, 7).toLocaleString() + ' for Software</p>';
-                }
-                if (bucket == 'Both') {
-                    s = s + '<p>£' + data.getValue(row, 2).toLocaleString() + ' in total.</p>';
-                }
-
-                var status = data.getValue(row, 5);
-                if (status != '') {
-                    s = s + '<p>' + status + '</p>'
-                }
-                s = s + '</div>'
-                return s;
-            }
-
-            var chart = new google.visualization.TreeMap(document.getElementById("adoption-treemap-chart"));
-            chart.draw(data, options);
-          }
-        </script>
-        <div id="adoption-treemap-chart" class="chart"></div>
+        <div class="treemap-container">
+            <svg width="1200" height="600" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+<style>
+.treemap-rect { stroke: #fff; stroke-width: 2; }
+.treemap-rect:hover { opacity: 0.8; cursor: pointer; }
+.treemap-label { fill: #0b0c0c; font-family: Arial, sans-serif; font-size: 10px; font-weight: normal; pointer-events: none; }
+.treemap-bucket-label { fill: #0b0c0c; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; pointer-events: none; }
+</style>
+<rect class="treemap-rect" x="4.00" y="4.00" width="113.99" height="65.44" fill="#f5f5f6">
+<title>Cornwall Council
+£575,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="60.99" y="36.72" text-anchor="middle" dominant-baseline="middle">Cornwall</text>
+<rect class="treemap-rect" x="4.00" y="69.44" width="113.99" height="59.61" fill="#f5f5f6">
+<title>Epping Forest District Council
+£523,800 for PropTech
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="60.99" y="99.24" text-anchor="middle" dominant-baseline="middle">Epping Forest</text>
+<rect class="treemap-rect" x="4.00" y="129.05" width="113.99" height="54.47" fill="#f5f5f6">
+<title>Bolsover District Council
+£478,600 for PropTech
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="60.99" y="156.28" text-anchor="middle" dominant-baseline="middle">Bolsover</text>
+<rect class="treemap-rect" x="4.00" y="183.52" width="58.77" height="102.64" fill="#f5f5f6">
+<title>North East Derbyshire District Council
+£465,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="62.77" y="183.52" width="55.22" height="102.64" fill="#f5f5f6">
+<title>City of Bradford Metropolitan District Council
+£436,900 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="4.00" y="286.16" width="50.19" height="112.44" fill="#f5f5f6">
+<title>North Kesteven District Council
+£435,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="54.19" y="286.16" width="63.80" height="66.69" fill="#f5f5f6">
+<title>London Borough of Wandsworth
+£328,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="54.19" y="352.85" width="63.80" height="45.75" fill="#f5f5f6">
+<title>London Borough of Newham
+£225,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="86.09" y="375.72" text-anchor="middle" dominant-baseline="middle">Newham</text>
+<rect class="treemap-rect" x="4.00" y="398.60" width="39.14" height="74.38" fill="#f5f5f6">
+<title>Cheshire West and Chester Council
+£224,400 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="43.14" y="398.60" width="38.89" height="74.38" fill="#f5f5f6">
+<title>Watford Borough Council
+£222,975 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="82.03" y="398.60" width="35.96" height="74.38" fill="#f5f5f6">
+<title>Surrey County Council
+£206,187 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="4.00" y="472.98" width="57.21" height="45.35" fill="#f5f5f6">
+<title>Chesterfield Borough Council
+£200,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="4.00" y="518.32" width="57.21" height="28.34" fill="#f5f5f6">
+<title>Harborough District Council
+£125,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="61.21" y="472.98" width="56.78" height="27.42" fill="#f5f5f6">
+<title>Walsall Metropolitan Borough Council
+£120,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="89.60" y="486.69" text-anchor="middle" dominant-baseline="middle">Walsall</text>
+<rect class="treemap-rect" x="61.21" y="500.39" width="31.54" height="46.27" fill="#f5f5f6">
+<title>Lewes District Council
+£112,500 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="92.75" y="500.39" width="25.24" height="46.27" fill="#f5f5f6">
+<title>Runnymede Borough Council
+£90,020 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="4.00" y="546.67" width="22.35" height="49.33" fill="#f5f5f6">
+<title>Wigan Metropolitan Borough Council
+£85,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="26.35" y="546.67" width="44.70" height="24.67" fill="#f5f5f6">
+<title>Durham County Council
+£85,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="26.35" y="571.33" width="44.70" height="24.67" fill="#f5f5f6">
+<title>Somerset Council
+£85,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="71.05" y="546.67" width="46.93" height="23.39" fill="#f5f5f6">
+<title>Teignbridge District Council
+£84,610 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="71.05" y="570.05" width="23.50" height="25.95" fill="#f5f5f6">
+<title>Reigate and Banstead Borough Council
+£47,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="94.55" y="570.05" width="23.44" height="25.95" fill="#f5f5f6">
+<title>Lancaster City Council
+£46,875 for PropTech
+Not yet declared interest</title>
+</rect>
+<text class="treemap-bucket-label" x="60.99" y="15.00" text-anchor="middle">PropTech</text>
+<rect class="treemap-rect" x="125.99" y="4.00" width="372.03" height="207.70" fill="#27a0cc">
+<title>Buckinghamshire Council
+£5,650,000 for Software
+Have adopted PlanX</title>
+</rect>
+<text class="treemap-label" x="312.00" y="107.85" text-anchor="middle" dominant-baseline="middle">Buckinghamshire</text>
+<rect class="treemap-rect" x="125.99" y="211.70" width="307.49" height="180.13" fill="#27a0cc">
+<title>London Borough of Camden
+£4,050,000 for Software
+Have adopted PlanX</title>
+</rect>
+<text class="treemap-label" x="279.73" y="301.76" text-anchor="middle" dominant-baseline="middle">Camden</text>
+<rect class="treemap-rect" x="433.48" y="211.70" width="64.54" height="180.13" fill="#27a0cc">
+<title>Medway Council
+£850,000 for Software
+Have adopted PlanX</title>
+</rect>
+<text class="treemap-label" x="465.75" y="301.76" text-anchor="middle" dominant-baseline="middle">Medway</text>
+<rect class="treemap-rect" x="125.99" y="391.83" width="125.11" height="66.46" fill="#27a0cc">
+<title>Doncaster Metropolitan Borough Council
+£608,000 for Software
+Have adopted PlanX</title>
+</rect>
+<text class="treemap-label" x="188.54" y="425.06" text-anchor="middle" dominant-baseline="middle">Doncaster</text>
+<rect class="treemap-rect" x="251.09" y="391.83" width="123.46" height="66.46" fill="#27a0cc">
+<title>London Borough of Barnet
+£600,000 for Software
+Have adopted PlanX</title>
+</rect>
+<text class="treemap-label" x="312.82" y="425.06" text-anchor="middle" dominant-baseline="middle">Barnet</text>
+<rect class="treemap-rect" x="374.55" y="391.83" width="123.46" height="66.46" fill="#27a0cc">
+<title>Tewkesbury Borough Council
+£600,000 for Software
+Have adopted PlanX</title>
+</rect>
+<text class="treemap-label" x="436.28" y="425.06" text-anchor="middle" dominant-baseline="middle">Tewkesbury</text>
+<rect class="treemap-rect" x="498.02" y="4.00" width="86.34" height="80.78" fill="#27a0cc">
+<title>Gateshead Metropolitan Borough Council
+£510,000 for Software
+Have adopted PlanX</title>
+</rect>
+<text class="treemap-label" x="541.18" y="44.39" text-anchor="middle" dominant-baseline="middle">Gateshead</text>
+<rect class="treemap-rect" x="498.02" y="84.78" width="86.34" height="80.78" fill="#27a0cc">
+<title>London Borough of Southwark
+£510,000 for Software
+Have adopted PlanX</title>
+</rect>
+<text class="treemap-label" x="541.18" y="125.18" text-anchor="middle" dominant-baseline="middle">Southwark</text>
+<rect class="treemap-rect" x="498.02" y="165.57" width="86.34" height="70.49" fill="#27a0cc">
+<title>Gloucester City Council
+£445,000 for Software
+Have adopted PlanX</title>
+</rect>
+<text class="treemap-label" x="541.18" y="200.81" text-anchor="middle" dominant-baseline="middle">Gloucester</text>
+<rect class="treemap-rect" x="498.02" y="236.06" width="86.34" height="63.36" fill="#27a0cc">
+<title>Canterbury City Council
+£400,000 for Software
+Have adopted PlanX</title>
+</rect>
+<text class="treemap-label" x="541.18" y="267.74" text-anchor="middle" dominant-baseline="middle">Canterbury</text>
+<rect class="treemap-rect" x="498.02" y="299.42" width="86.34" height="55.92" fill="#27a0cc">
+<title>West Berkshire Council
+£353,000 for Software
+Have adopted PlanX</title>
+</rect>
+<rect class="treemap-rect" x="498.02" y="355.33" width="86.34" height="55.44" fill="#f5f5f6">
+<title>Royal Borough of Kingston upon Thames
+£350,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="498.02" y="410.77" width="86.34" height="47.52" fill="#27a0cc">
+<title>St Albans City and District Council
+£300,000 for Software
+Have adopted PlanX</title>
+</rect>
+<text class="treemap-label" x="541.18" y="434.53" text-anchor="middle" dominant-baseline="middle">St Albans</text>
+<rect class="treemap-rect" x="125.99" y="458.29" width="55.38" height="67.92" fill="#f5f5f6">
+<title>Leeds City Council
+£275,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="153.68" y="492.25" text-anchor="middle" dominant-baseline="middle">Leeds</text>
+<rect class="treemap-rect" x="181.36" y="458.29" width="50.34" height="67.92" fill="#f5f5f6">
+<title>Great Yarmouth Borough Council
+£250,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="231.70" y="458.29" width="49.94" height="67.92" fill="#f5f5f6">
+<title>North Somerset Council
+£248,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="281.64" y="458.29" width="40.27" height="67.92" fill="#f5f5f6">
+<title>Colchester City Council
+£200,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="321.91" y="458.29" width="40.27" height="67.92" fill="#f5f5f6">
+<title>Greater London Authority
+£200,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="362.19" y="458.29" width="60.41" height="33.96" fill="#f5f5f6">
+<title>Dover District Council
+£150,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="392.39" y="475.27" text-anchor="middle" dominant-baseline="middle">Dover</text>
+<rect class="treemap-rect" x="362.19" y="492.25" width="60.41" height="33.96" fill="#f5f5f6">
+<title>London Borough of Harrow
+£150,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="392.39" y="509.23" text-anchor="middle" dominant-baseline="middle">Harrow</text>
+<rect class="treemap-rect" x="422.60" y="458.29" width="30.20" height="67.92" fill="#f5f5f6">
+<title>London Borough of Havering
+£150,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="452.80" y="458.29" width="51.01" height="38.96" fill="#f5f5f6">
+<title>Liverpool City Council
+£145,306 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="452.80" y="497.25" width="51.01" height="28.96" fill="#f5f5f6">
+<title>Basingstoke and Deane Borough Council
+£108,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="503.81" y="458.29" width="40.27" height="33.96" fill="#f5f5f6">
+<title>Peterborough City Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="503.81" y="492.25" width="40.27" height="33.96" fill="#f5f5f6">
+<title>Torbay Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="544.08" y="458.29" width="40.27" height="33.96" fill="#f5f5f6">
+<title>Bristol City Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="544.08" y="492.25" width="40.27" height="33.96" fill="#f5f5f6">
+<title>Sandwell Metropolitan Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="4.00" width="23.57" height="58.02" fill="#f5f5f6">
+<title>Rossendale Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="4.00" width="47.14" height="29.01" fill="#f5f5f6">
+<title>South Staffordshire Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="33.01" width="47.14" height="29.01" fill="#f5f5f6">
+<title>South Norfolk District Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="62.02" width="23.57" height="58.02" fill="#f5f5f6">
+<title>Castle Point Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="62.02" width="47.14" height="29.01" fill="#f5f5f6">
+<title>East Cambridgeshire District Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="91.03" width="47.14" height="29.01" fill="#f5f5f6">
+<title>South Gloucestershire Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="120.05" width="23.57" height="58.02" fill="#f5f5f6">
+<title>New Forest District Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="120.05" width="47.14" height="29.01" fill="#f5f5f6">
+<title>Rochdale Metropolitan Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="149.06" width="47.14" height="29.01" fill="#f5f5f6">
+<title>City of Westminster
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="178.07" width="35.36" height="38.68" fill="#f5f5f6">
+<title>Horsham District Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="619.71" y="178.07" width="35.36" height="38.68" fill="#f5f5f6">
+<title>City of London Corporation
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="216.75" width="35.36" height="38.68" fill="#f5f5f6">
+<title>London Borough of Enfield
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="619.71" y="216.75" width="35.36" height="38.68" fill="#f5f5f6">
+<title>Rother District Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="255.43" width="23.57" height="58.02" fill="#f5f5f6">
+<title>Ashford Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="255.43" width="47.14" height="29.01" fill="#f5f5f6">
+<title>Trafford Metropolitan Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="284.44" width="47.14" height="29.01" fill="#f5f5f6">
+<title>Northumberland County Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="313.46" width="35.36" height="38.68" fill="#f5f5f6">
+<title>Bolton Metropolitan Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="619.71" y="313.46" width="35.36" height="38.68" fill="#f5f5f6">
+<title>Surrey Heath Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="352.14" width="35.36" height="38.68" fill="#f5f5f6">
+<title>Waverley Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="619.71" y="352.14" width="35.36" height="38.68" fill="#f5f5f6">
+<title>Milton Keynes City Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="390.82" width="23.57" height="58.02" fill="#f5f5f6">
+<title>Spelthorne Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="390.82" width="47.14" height="29.01" fill="#f5f5f6">
+<title>London Borough of Croydon
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="419.83" width="47.14" height="29.01" fill="#f5f5f6">
+<title>Tendring District Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="448.84" width="35.36" height="38.68" fill="#f5f5f6">
+<title>City of York Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="602.03" y="468.18" text-anchor="middle" dominant-baseline="middle">York</text>
+<rect class="treemap-rect" x="619.71" y="448.84" width="35.36" height="38.68" fill="#f5f5f6">
+<title>North Yorkshire Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="487.53" width="35.36" height="38.68" fill="#f5f5f6">
+<title>New Forest National Park Authority
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="619.71" y="487.53" width="35.36" height="38.68" fill="#f5f5f6">
+<title>Greater Manchester Combined Authority
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="125.99" y="526.21" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Forest of Dean District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="145.58" y="526.21" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Uttlesford District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="165.18" y="526.21" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Bury Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="125.99" y="561.10" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Cheltenham Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="145.58" y="561.10" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Hull City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="165.18" y="561.10" width="19.60" height="34.90" fill="#f5f5f6">
+<title>North Norfolk District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="184.77" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Sefton Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="207.64" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Wealden District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="230.50" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Ipswich Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="184.77" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>East Riding of Yorkshire Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="184.77" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Lake District National Park Authority
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="219.07" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Barnsley Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="219.07" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>London Borough of Bromley
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="253.36" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Coventry City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="276.22" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Crawley Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="299.08" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Exeter City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="253.36" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Manchester City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="253.36" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>North Warwickshire Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="287.65" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Oxford City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="287.65" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Stafford Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="321.94" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Bassetlaw District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="344.80" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Harlow District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="367.66" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Knowsley Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="321.94" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Gedling Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="321.94" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>London Borough of Bexley
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="356.23" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Blackpool Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="356.23" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Chelmsford City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="390.53" y="526.21" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Calderdale Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="410.12" y="526.21" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Derby City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="429.72" y="526.21" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Fenland District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="390.53" y="561.10" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Halton Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="410.12" y="561.10" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Malvern Hills District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="429.72" y="561.10" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Tameside Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="449.31" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Worcester City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="472.17" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Wychavon District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="495.03" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Westmorland and Furness Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="449.31" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Brighton and Hove City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="449.31" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Hart District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="483.60" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>London Borough of Brent
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="483.60" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Adur District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="517.90" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Braintree District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="540.76" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Cannock Chase District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="563.62" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Dartford Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="517.90" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>London Borough of Hackney
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="517.90" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Herefordshire Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="552.19" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>London Borough of Hillingdon
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="552.19" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Huntingdonshire District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="586.48" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Borough Council of King&amp;#x27;s Lynn and West Norfolk
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="609.34" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Maidstone Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="632.20" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Oldham Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="586.48" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Rotherham Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="586.48" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Swale Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="620.77" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Wiltshire Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="620.77" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Worthing Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-bucket-label" x="390.53" y="15.00" text-anchor="middle">Software</text>
+<rect class="treemap-rect" x="663.06" y="4.00" width="302.15" height="278.11" fill="#27a0cc">
+<title>London Borough of Lambeth
+£168,564 for PropTech
+£5,975,000 for Software
+£6,143,564 in total
+Have adopted PlanX</title>
+</rect>
+<text class="treemap-label" x="814.14" y="143.05" text-anchor="middle" dominant-baseline="middle">Lambeth</text>
+<rect class="treemap-rect" x="663.06" y="282.11" width="302.15" height="71.56" fill="#27a0cc">
+<title>Newcastle City Council
+£544,897 for PropTech
+£1,036,000 for Software
+£1,580,897 in total
+Have adopted PlanX</title>
+</rect>
+<text class="treemap-label" x="814.14" y="317.89" text-anchor="middle" dominant-baseline="middle">Newcastle upon Tyne</text>
+<rect class="treemap-rect" x="965.21" y="4.00" width="99.31" height="187.16" fill="#f5f5f6">
+<title>Dacorum Borough Council
+£691,000 for PropTech
+£668,000 for Software
+£1,359,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="1014.87" y="97.58" text-anchor="middle" dominant-baseline="middle">Dacorum</text>
+<rect class="treemap-rect" x="965.21" y="191.16" width="99.31" height="162.51" fill="#f5f5f6">
+<title>South Cambridgeshire District Council
+£1,080,000 for PropTech
+£100,000 for Software
+£1,180,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="663.06" y="353.67" width="101.43" height="134.33" fill="#f5f5f6">
+<title>Plymouth City Council
+£896,200 for PropTech
+£100,000 for Software
+£996,200 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="713.78" y="420.84" text-anchor="middle" dominant-baseline="middle">Plymouth</text>
+<rect class="treemap-rect" x="764.49" y="353.67" width="79.42" height="134.33" fill="#f5f5f6">
+<title>Southampton City Council
+£730,000 for PropTech
+£50,000 for Software
+£780,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="804.20" y="420.84" text-anchor="middle" dominant-baseline="middle">Southampton</text>
+<rect class="treemap-rect" x="843.91" y="353.67" width="78.91" height="134.33" fill="#27a0cc">
+<title>Epsom and Ewell Borough Council
+£375,000 for PropTech
+£400,000 for Software
+£775,000 in total
+Have adopted PlanX</title>
+</rect>
+<rect class="treemap-rect" x="922.82" y="353.67" width="72.85" height="134.33" fill="#27a0cc">
+<title>Birmingham City Council
+£315,500 for PropTech
+£400,000 for Software
+£715,500 in total
+Have adopted PlanX</title>
+</rect>
+<text class="treemap-label" x="959.25" y="420.84" text-anchor="middle" dominant-baseline="middle">Birmingham</text>
+<rect class="treemap-rect" x="995.67" y="353.67" width="68.85" height="134.33" fill="#f5f5f6">
+<title>Wirral Borough Council
+£500,000 for PropTech
+£176,225 for Software
+£676,225 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="1030.10" y="420.84" text-anchor="middle" dominant-baseline="middle">Wirral</text>
+<rect class="treemap-rect" x="1064.52" y="4.00" width="67.02" height="130.62" fill="#f5f5f6">
+<title>London Borough of Hounslow
+£315,000 for PropTech
+£325,000 for Software
+£640,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="1098.03" y="69.31" text-anchor="middle" dominant-baseline="middle">Hounslow</text>
+<rect class="treemap-rect" x="1131.54" y="4.00" width="64.46" height="130.62" fill="#f5f5f6">
+<title>London Borough of Redbridge
+£125,000 for PropTech
+£490,600 for Software
+£615,600 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="1163.77" y="69.31" text-anchor="middle" dominant-baseline="middle">Redbridge</text>
+<rect class="treemap-rect" x="1064.52" y="134.62" width="66.71" height="125.07" fill="#f5f5f6">
+<title>Dorset Council
+£95,000 for PropTech
+£515,000 for Software
+£610,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="1097.88" y="197.15" text-anchor="middle" dominant-baseline="middle">Dorset</text>
+<rect class="treemap-rect" x="1131.23" y="134.62" width="64.77" height="125.07" fill="#f5f5f6">
+<title>Salford City Council
+£77,213 for PropTech
+£515,000 for Software
+£592,213 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="1163.62" y="197.15" text-anchor="middle" dominant-baseline="middle">Salford</text>
+<rect class="treemap-rect" x="1064.52" y="259.69" width="71.04" height="103.77" fill="#f5f5f6">
+<title>Nottingham City Council
+£375,000 for PropTech
+£164,000 for Software
+£539,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="1100.05" y="311.57" text-anchor="middle" dominant-baseline="middle">Nottingham</text>
+<rect class="treemap-rect" x="1135.57" y="259.69" width="60.43" height="103.77" fill="#f5f5f6">
+<title>London Borough of Waltham Forest
+£168,500 for PropTech
+£290,000 for Software
+£458,500 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1064.52" y="363.46" width="46.56" height="124.54" fill="#f5f5f6">
+<title>London Borough of Haringey
+£324,000 for PropTech
+£100,000 for Software
+£424,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1111.09" y="363.46" width="84.91" height="62.82" fill="#f5f5f6">
+<title>North Lincolnshire Council
+£100,000 for PropTech
+£290,000 for Software
+£390,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1111.09" y="426.28" width="84.91" height="61.72" fill="#f5f5f6">
+<title>Cotswold District Council
+£333,193 for PropTech
+£50,000 for Software
+£383,193 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="1153.54" y="457.14" text-anchor="middle" dominant-baseline="middle">Cotswold</text>
+<rect class="treemap-rect" x="663.06" y="488.00" width="93.66" height="54.76" fill="#f5f5f6">
+<title>Sevenoaks District Council
+£225,000 for PropTech
+£150,000 for Software
+£375,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="709.89" y="515.39" text-anchor="middle" dominant-baseline="middle">Sevenoaks</text>
+<rect class="treemap-rect" x="663.06" y="542.77" width="93.66" height="53.23" fill="#f5f5f6">
+<title>West Oxfordshire District Council
+£314,500 for PropTech
+£50,000 for Software
+£364,500 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="756.72" y="488.00" width="80.40" height="56.45" fill="#f5f5f6">
+<title>Basildon Borough Council
+£231,800 for PropTech
+£100,000 for Software
+£331,800 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="796.92" y="516.23" text-anchor="middle" dominant-baseline="middle">Basildon</text>
+<rect class="treemap-rect" x="756.72" y="544.45" width="80.40" height="51.55" fill="#f5f5f6">
+<title>Royal Borough of Kensington and Chelsea
+£203,000 for PropTech
+£100,000 for Software
+£303,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="837.12" y="488.00" width="71.18" height="54.77" fill="#f5f5f6">
+<title>Central Bedfordshire Council
+£185,000 for PropTech
+£100,000 for Software
+£285,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="837.12" y="542.77" width="71.18" height="53.23" fill="#f5f5f6">
+<title>Tandridge District Council
+£177,000 for PropTech
+£100,000 for Software
+£277,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="872.70" y="569.39" text-anchor="middle" dominant-baseline="middle">Tandridge</text>
+<rect class="treemap-rect" x="908.29" y="488.00" width="94.37" height="39.59" fill="#f5f5f6">
+<title>East Hertfordshire District Council
+£173,152 for PropTech
+£100,000 for Software
+£273,152 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="908.29" y="527.59" width="47.79" height="68.41" fill="#f5f5f6">
+<title>North Devon District Council
+£40,000 for PropTech
+£199,000 for Software
+£239,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="956.08" y="527.59" width="46.59" height="68.41" fill="#f5f5f6">
+<title>Havant Borough Council
+£183,000 for PropTech
+£50,000 for Software
+£233,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" x="979.37" y="561.80" text-anchor="middle" dominant-baseline="middle">Havant</text>
+<rect class="treemap-rect" x="1002.66" y="488.00" width="48.92" height="55.92" fill="#f5f5f6">
+<title>London Borough of Barking and Dagenham
+£100,000 for PropTech
+£100,000 for Software
+£200,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1002.66" y="543.92" width="48.92" height="52.08" fill="#f5f5f6">
+<title>Leicester City Council
+£86,250 for PropTech
+£100,000 for Software
+£186,250 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1051.58" y="488.00" width="63.39" height="39.92" fill="#f5f5f6">
+<title>London Borough of Tower Hamlets
+£85,000 for PropTech
+£100,000 for Software
+£185,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1051.58" y="527.92" width="63.39" height="37.76" fill="#f5f5f6">
+<title>Stevenage Borough Council
+£125,000 for PropTech
+£50,000 for Software
+£175,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1051.58" y="565.68" width="63.39" height="30.32" fill="#f5f5f6">
+<title>East Hampshire District Council
+£40,500 for PropTech
+£100,000 for Software
+£140,500 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1114.97" y="488.00" width="41.40" height="46.25" fill="#f5f5f6">
+<title>Stockport Metropolitan Borough Council
+£90,000 for PropTech
+£50,000 for Software
+£140,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1156.37" y="488.00" width="39.63" height="46.25" fill="#f5f5f6">
+<title>Thanet District Council
+£84,000 for PropTech
+£50,000 for Software
+£134,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1114.97" y="534.25" width="28.80" height="61.75" fill="#f5f5f6">
+<title>North Tyneside Council
+£80,000 for PropTech
+£50,000 for Software
+£130,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1143.77" y="534.25" width="52.23" height="31.16" fill="#f5f5f6">
+<title>London Borough of Lewisham
+£69,000 for PropTech
+£50,000 for Software
+£119,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1143.77" y="565.41" width="52.23" height="30.59" fill="#f5f5f6">
+<title>Stoke-on-Trent City Council
+£66,813 for PropTech
+£50,000 for Software
+£116,813 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-bucket-label" x="929.53" y="15.00" text-anchor="middle">Both</text>
+</svg>
+        </div>
         
 
         <h2 class="govuk-heading-l">Adoptions (16)</h2>

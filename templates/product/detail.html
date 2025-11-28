@@ -80,10 +80,23 @@
     padding:10px;
     border-style:solid;
 }
+
+.treemap-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 2em 0;
+}
+
+.treemap-container svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
 </style>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>google.charts.load('current', {'packages':['corechart','bar','treemap','timeline']});</script>
+<script>google.charts.load('current', {'packages':['corechart','bar']});</script>
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
@@ -167,76 +180,12 @@
         <p class="govuk-body">Timeline showing when each LPA adopted {{ product.name }} (live status only).</p>
         {% endif %}
 
-        {% if funded_orgs %}
+        {% if treemap_svg %}
         <h2 class="govuk-heading-l">Funding and {{ product.name }} adoption</h2>
 
-        <script type="text/javascript">
-          google.charts.setOnLoadCallback(draw_adoption_treemap)
-          function draw_adoption_treemap() {
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Area name');
-            data.addColumn('string', 'Bucket');
-            data.addColumn('number', 'Amount');
-            data.addColumn('number', 'Color');
-            data.addColumn('string', 'Name');
-            data.addColumn('string', 'Data status');
-            data.addColumn('number', 'PropTech');
-            data.addColumn('number', 'Software');
-            data.addRows([
-        {% for org in funded_orgs %}
-              ['{{ org.area_name }}', '{{ org.bucket }}', {{ org.amount }}, {{ org.color }}, '{{ org.name }}', '{{ org.status }}', {{ org.proptech_amount }}, {{ org.software_amount }}],
-        {% endfor %}
-              ['PropTech', 'Funded organisation', {{ totals.proptech }}, 0, 'Funded for PropTech', '', 0, 0,],
-              ['Software', 'Funded organisation', {{ totals.software }}, 0, 'Organisations funded for software', '', 0, 0,],
-              ['Both', 'Funded organisation', {{ totals.both }}, 0, 'Funded for Software and PropTech', '', 0, 0,],
-              ['Funded organisation', null, {{ totals.all }}, 0, 'All funded organisations', '', 0, 0,],
-        ]);
-
-            var options = {
-                maxDepth: 2,
-                maxPostDepth: 2,
-                headerHeight: 15,
-                showScale: false,
-                minColor: '#f5f5f6',
-                midColor: '#bcbcbd',
-                maxColor: '#27a0cc',
-                eventsConfig: {
-                  highlight: ['click'],
-                  unhighlight: ['mouseout'],
-                  rollup: ['contextmenu'],
-                  drilldown: ['dblclick'],
-                },
-                generateTooltip: showFullTooltip,
-            };
-
-            function showFullTooltip(row, size, value) {
-                var s = '<div class="tooltip">' +
-                    '<span><h2>' + data.getValue(row, 4) + '</h2>';
-
-                const bucket = data.getValue(row, 1);
-                if (bucket == 'PropTech' || bucket == 'Both') {
-                    s = s + '<p>£' + data.getValue(row, 6).toLocaleString() + ' for PropTech</p>';
-                }
-                if (bucket == 'Software' || bucket == 'Both') {
-                    s = s + '<p>£' + data.getValue(row, 7).toLocaleString() + ' for Software</p>';
-                }
-                if (bucket == 'Both') {
-                    s = s + '<p>£' + data.getValue(row, 2).toLocaleString() + ' in total.</p>';
-                }
-
-                var status = data.getValue(row, 5);
-                if (status != '') {
-                    s = s + '<p>' + status + '</p>'
-                }
-                s = s + '</div>'
-                return s;
-            }
-
-            var chart = new google.visualization.TreeMap(document.getElementById("adoption-treemap-chart"));
-            chart.draw(data, options);
-          }
-        </script>
-        <div id="adoption-treemap-chart" class="chart"></div>
+        <div class="treemap-container">
+            {{ treemap_svg|safe }}
+        </div>
         {% endif %}
 
         <h2 class="govuk-heading-l">Adoptions ({{ adoptions|length }})</h2>

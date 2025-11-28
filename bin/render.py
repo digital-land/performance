@@ -638,6 +638,11 @@ def render_products(env, conn):
             {'text': product['name']}
         ]
 
+        # Generate treemap SVG if there are funded organisations
+        treemap_svg = ""
+        if funded_orgs:
+            treemap_svg = generate_treemap_svg(funded_orgs, totals)
+
         template = env.get_template("product/detail.html")
         render(f"product/{product_slug}/index.html", template,
                product=product,
@@ -648,7 +653,8 @@ def render_products(env, conn):
                funded_orgs=funded_orgs,
                totals=totals,
                product_slug=product_slug,
-               breadcrumbs=breadcrumbs)
+               breadcrumbs=breadcrumbs,
+               treemap_svg=treemap_svg)
 
 
 def render_product_index(env, conn):
@@ -884,6 +890,222 @@ def render_funds(env, conn):
 def radius(amount):
     """Calculate circle radius for award amount."""
     return sqrt(float(amount) / pi) / 25
+
+
+def generate_treemap_svg(funded_orgs, totals, width=1200, height=600):
+    """Generate a treemap SVG from hierarchical data.
+
+    Args:
+        funded_orgs: List of organisation dictionaries with bucket, amount, color, etc.
+        totals: Dictionary with proptech, software, both, all totals
+        width: SVG width in pixels
+        height: SVG height in pixels
+
+    Returns:
+        SVG string
+    """
+    # Group organisations by bucket
+    buckets = {
+        'PropTech': [],
+        'Software': [],
+        'Both': []
+    }
+
+    for org in funded_orgs:
+        bucket = org['bucket']
+        if bucket in buckets:
+            buckets[bucket].append(org)
+
+    # Calculate bucket sizes
+    bucket_sizes = {
+        'PropTech': totals.get('proptech', 0),
+        'Software': totals.get('software', 0),
+        'Both': totals.get('both', 0)
+    }
+
+    total = totals.get('all', 1)
+    if total == 0:
+        total = 1
+
+    # Start SVG
+    svg_parts = [f'<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" xmlns="http://www.w3.org/2000/svg">']
+    svg_parts.append('<style>')
+    svg_parts.append('.treemap-rect { stroke: #fff; stroke-width: 2; }')
+    svg_parts.append('.treemap-rect:hover { opacity: 0.8; cursor: pointer; }')
+    svg_parts.append('.treemap-label { fill: #0b0c0c; font-family: Arial, sans-serif; font-size: 10px; font-weight: normal; pointer-events: none; }')
+    svg_parts.append('.treemap-bucket-label { fill: #0b0c0c; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; pointer-events: none; }')
+    svg_parts.append('</style>')
+
+    # Layout buckets horizontally
+    x_pos = 0
+    padding = 4
+
+    for bucket_name in ['PropTech', 'Software', 'Both']:
+        bucket_value = bucket_sizes[bucket_name]
+        if bucket_value == 0:
+            continue
+
+        bucket_width = (bucket_value / total) * width
+        orgs = buckets[bucket_name]
+
+        if orgs:
+            # Create squarified treemap for this bucket
+            rects = squarify_layout(orgs, x_pos + padding, padding,
+                                   bucket_width - 2*padding, height - 2*padding)
+
+            # Draw rectangles
+            for rect in rects:
+                org = rect['data']
+
+                # Determine color based on adoption status
+                if org['color'] > 0:
+                    fill_color = '#27a0cc'  # Blue for adopted
+                else:
+                    fill_color = '#f5f5f6'  # Grey for not adopted
+
+                # Create tooltip text
+                tooltip_lines = [org['name']]
+                if org['bucket'] == 'PropTech' or org['bucket'] == 'Both':
+                    tooltip_lines.append(f"£{org['proptech_amount']:,} for PropTech")
+                if org['bucket'] == 'Software' or org['bucket'] == 'Both':
+                    tooltip_lines.append(f"£{org['software_amount']:,} for Software")
+                if org['bucket'] == 'Both':
+                    tooltip_lines.append(f"£{org['amount']:,} in total")
+                if org['status']:
+                    tooltip_lines.append(org['status'])
+
+                tooltip_text = '\n'.join(tooltip_lines)
+
+                svg_parts.append(f'<rect class="treemap-rect" x="{rect["x"]:.2f}" y="{rect["y"]:.2f}" '
+                               f'width="{rect["width"]:.2f}" height="{rect["height"]:.2f}" '
+                               f'fill="{fill_color}">')
+                svg_parts.append(f'<title>{escape(tooltip_text)}</title>')
+                svg_parts.append('</rect>')
+
+                # Add text label only if rectangle is large enough
+                # Estimate: ~6px per character width, need margin
+                label = org['area_name']
+                estimated_text_width = len(label) * 6
+                if rect['width'] > estimated_text_width + 10 and rect['height'] > 25:
+                    text_x = rect['x'] + rect['width'] / 2
+                    text_y = rect['y'] + rect['height'] / 2
+                    svg_parts.append(f'<text class="treemap-label" x="{text_x:.2f}" y="{text_y:.2f}" '
+                                   f'text-anchor="middle" dominant-baseline="middle">'
+                                   f'{escape(label)}</text>')
+
+        # Add bucket label at top
+        label_x = x_pos + bucket_width / 2
+        label_y = 15
+        svg_parts.append(f'<text class="treemap-bucket-label" x="{label_x:.2f}" y="{label_y:.2f}" '
+                       f'text-anchor="middle">{escape(bucket_name)}</text>')
+
+        x_pos += bucket_width
+
+    svg_parts.append('</svg>')
+    return '\n'.join(svg_parts)
+
+
+def squarify_layout(items, x, y, width, height):
+    """Create a squarified treemap layout.
+
+    Args:
+        items: List of items with 'amount' field
+        x, y: Top-left corner position
+        width, height: Available space
+
+    Returns:
+        List of rectangles with x, y, width, height, data
+    """
+    if not items:
+        return []
+
+    total = sum(item['amount'] for item in items)
+    if total == 0:
+        return []
+
+    # Sort items by size (largest first) for better squarification
+    sorted_items = sorted(items, key=lambda i: i['amount'], reverse=True)
+
+    rectangles = []
+
+    def layout_row(row_items, x, y, width, height):
+        """Layout a row of items."""
+        row_total = sum(item['amount'] for item in row_items)
+        if row_total == 0:
+            return []
+
+        rects = []
+        if width >= height:
+            # Horizontal layout
+            current_x = x
+            for item in row_items:
+                item_width = (item['amount'] / row_total) * width
+                rects.append({
+                    'x': current_x,
+                    'y': y,
+                    'width': item_width,
+                    'height': height,
+                    'data': item
+                })
+                current_x += item_width
+        else:
+            # Vertical layout
+            current_y = y
+            for item in row_items:
+                item_height = (item['amount'] / row_total) * height
+                rects.append({
+                    'x': x,
+                    'y': current_y,
+                    'width': width,
+                    'height': item_height,
+                    'data': item
+                })
+                current_y += item_height
+
+        return rects
+
+    # Simple squarification: divide space recursively
+    def squarify_recursive(items, x, y, width, height):
+        if not items:
+            return []
+
+        if len(items) == 1:
+            return [{
+                'x': x,
+                'y': y,
+                'width': width,
+                'height': height,
+                'data': items[0]
+            }]
+
+        # Split items to achieve better aspect ratios
+        mid = len(items) // 2
+        first_half = items[:mid]
+        second_half = items[mid:]
+
+        first_total = sum(item['amount'] for item in first_half)
+        second_total = sum(item['amount'] for item in second_half)
+        total = first_total + second_total
+
+        if total == 0:
+            return []
+
+        rects = []
+
+        if width >= height:
+            # Split horizontally
+            first_width = (first_total / total) * width
+            rects.extend(squarify_recursive(first_half, x, y, first_width, height))
+            rects.extend(squarify_recursive(second_half, x + first_width, y, width - first_width, height))
+        else:
+            # Split vertically
+            first_height = (first_total / total) * height
+            rects.extend(squarify_recursive(first_half, x, y, width, first_height))
+            rects.extend(squarify_recursive(second_half, x, y + first_height, width, height - first_height))
+
+        return rects
+
+    return squarify_recursive(sorted_items, x, y, width, height)
 
 
 def process_points_svg(conn, filter_type=None, filter_value=None):
