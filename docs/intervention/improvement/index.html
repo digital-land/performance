@@ -1,0 +1,2375 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="govuk-template">
+  <head>
+    <meta charset="utf-8">
+    <title>Improvement | Planning Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0c0c">
+    <link rel="shortcut icon" sizes="48x48" href="https://www.planning.data.gov.uk//static/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" sizes="32x32" href="https://www.planning.data.gov.uk//static/images/favicon-32x32.png" type="image/png">
+    <link rel="shortcut icon" sizes="16x16" href="https://www.planning.data.gov.uk//static/images/favicon-16x16.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://www.planning.data.gov.uk//static/images/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://www.planning.data.gov.uk//static/stylesheets/application.css">
+    <link rel="stylesheet" href="https://www.planning.data.gov.uk//static/stylesheets/vendor/accessible-autocomplete.css">
+  </head>
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+    <a href="#main-content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+    <script>
+      // Wait for DOM content to be loaded and dptp to be initialized
+      document.addEventListener('DOMContentLoaded', function() {
+        // Check if dptp is available
+        if (window.dptp && window.dptp.cookies) {
+          window.acceptCookies = window.dptp.cookies.acceptCookies;
+          window.hideCookieBanner = window.dptp.cookies.hideCookieBanner;
+          window.hideCookieConfirmation = window.dptp.cookies.hideCookieConfirmation;
+        } else {
+          console.error('Cookie functions not available');
+        }
+      });
+    </script>
+    <div class="govuk-cookie-banner" data-nosnippet role="region" aria-label="Cookies on planning.data.gov.uk/"
+         id="cookie-banner" aria-label="Cookies on planning.data.gov.uk" style="display: none" aria-hidden="true">
+    <div class="govuk-cookie-banner__message govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h2 class="govuk-cookie-banner__heading govuk-heading-m">
+          Cookies on planning.data.gov.uk
+        </h2>
+        <div class="govuk-cookie-banner__content">
+          <p class="govuk-body">We use some essential cookies to make this service work.</p>
+          <p class="govuk-body">We'd also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
+        </div>
+      </div>
+    </div>
+    <div class="govuk-button-group">
+      <button value="accept" type="button" name="cookies" class="govuk-button" data-module="govuk-button"
+         onclick="acceptCookies({ essential: true, settings: false, usage: true, campaigns: false });">
+        Accept analytics cookies
+      </button>
+      <button value="reject" type="button" name="cookies" class="govuk-button" data-module="govuk-button"
+         onclick="acceptCookies({ essential: true, settings: false, usage: false, campaigns: false });">
+        Reject analytics cookies
+      </button>
+      <a class="govuk-link" href="cookies">Customise cookie preferences</a>
+    </div>
+  </div>
+</div>
+<div class="govuk-cookie-banner" data-nosnippet role="region" aria-label="Cookies on planning.data.gov.uk"
+     id="cookie-confirmation" style="display: none" aria-hidden="true">
+  
+  <div class="govuk-cookie-banner__message govuk-width-container">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        
+        <div class="govuk-cookie-banner__content">
+          
+          <p class="govuk-notification-banner__heading">
+              You have accepted additional cookies. You can <a class="govuk-notification-banner__link" href="/cookies">change your cookie settings</a> at any time.
+            </p>
+          
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="govuk-button-group">
+      <a href="#" role="button" draggable="false" class="govuk-button" data-module="govuk-button"
+         onclick="hideCookieConfirmation();">
+        Hide cookie message
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-width-container app-header__container">
+    <div class="govuk-header__logo app-header__logo">
+      <a href="https://www.planning.data.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+          <span class="app-header__logotype">Planning Data</span>
+      </a>
+          <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          Performance
+        </span>
+      </a>
+    </div>
+  </div>
+</header>
+
+
+<div class="govuk-width-container">
+    <main class="govuk-main-wrapper govspeak govuk-body" id="main-content" role="main">
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-xl">Intervention</span>
+        <h1 class="govuk-heading-xl">Improvement</h1>
+
+        
+        <p class="govuk-body-l">Making digital service improvements</p>
+        
+
+        <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Awards</dt>
+                <dd class="govuk-summary-list__value">113</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Total funding</dt>
+                <dd class="govuk-summary-list__value">£7,800,000</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Organisations</dt>
+                <dd class="govuk-summary-list__value">113</dd>
+            </div>
+        </dl>
+
+        <h2 class="govuk-heading-m">Awards (113)</h2>
+
+        <table id="awards-table" class="govuk-table sortable">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Date</th>
+                    <th scope="col" class="govuk-table__header">Organisation</th>
+                    <th scope="col" class="govuk-table__header">Fund</th>
+                    <th scope="col" class="govuk-table__header">Amount</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:ASF/">Ashford Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:BAI/">Basildon Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:BDG/">London Borough of Barking and Dagenham</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:BOL/">Bolton Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:BST/">Bristol City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:CAS/">Castle Point Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:CBF/">Central Bedfordshire Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:CRY/">London Borough of Croydon</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:ECA/">East Cambridgeshire District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:EHA/">East Hampshire District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:EHE/">East Hertfordshire District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:ENF/">London Borough of Enfield</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:HNS/">London Borough of Hounslow</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:HOR/">Horsham District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:HRY/">London Borough of Haringey</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:KEC/">Royal Borough of Kensington and Chelsea</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:LCE/">Leicester City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:LND/">City of London Corporation</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:MIK/">Milton Keynes City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:NBL/">Northumberland County Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:NEW/">New Forest District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:NYUA/">North Yorkshire Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:PLY/">Plymouth City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:PTE/">Peterborough City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:RCH/">Rochdale Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:ROH/">Rother District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:ROS/">Rossendale Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:SAW/">Sandwell Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:SCA/">South Cambridgeshire District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:SGC/">South Gloucestershire Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:SNO/">South Norfolk District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:SPE/">Spelthorne Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:SST/">South Staffordshire Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:SUR/">Surrey Heath Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:TAN/">Tandridge District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:TEN/">Tendring District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:TOB/">Torbay Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:TRF/">Trafford Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:TWH/">London Borough of Tower Hamlets</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:WAE/">Waverley Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:WSM/">City of Westminster</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:YOR/">City of York Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2024-02-01</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/national-park-authority:Q72617158/">New Forest National Park Authority</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-2/">Digital Planning Improvement Fund Round 2</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="100000">
+                        
+                        £100,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:NWA/">North Warwickshire Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:EXE/">Exeter City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:OXO/">Oxford City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:ADU/">Adur District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:BAE/">Bassetlaw District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:MAI/">Maidstone Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:FOE/">Forest of Dean District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:STE/">Stoke-on-Trent City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:ERY/">East Riding of Yorkshire Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:HUN/">Huntingdonshire District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:TAM/">Tameside Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:BUR/">Bury Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:OLD/">Oldham Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:CLD/">Calderdale Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/national-park-authority:Q27159704/">Lake District National Park Authority</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:NTY/">North Tyneside Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:UTT/">Uttlesford District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:STH/">Southampton City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:WOX/">West Oxfordshire District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:COL/">Colchester City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:HAA/">Havant Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:CRW/">Crawley Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:BAN/">Basingstoke and Deane Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:WOT/">Worthing Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:CHT/">Cheltenham Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:COV/">Coventry City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:MAN/">Manchester City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:HIL/">London Borough of Hillingdon</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:COT/">Cotswold District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:HAT/">Hart District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:NNO/">North Norfolk District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:STA/">Stafford Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:BNS/">Barnsley Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:CAN/">Cannock Chase District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:THA/">Thanet District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:KHL/">Hull City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-02-28</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:STV/">Stevenage Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-03-14</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:HAL/">Halton Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-03-14</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:KWL/">Knowsley Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-03-14</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:LDS/">Leeds City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-03-14</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:BRY/">London Borough of Bromley</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-03-14</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:SKP/">Stockport Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-03-14</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:LEW/">London Borough of Lewisham</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-03-14</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:SFT/">Sefton Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-03-14</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:IPS/">Ipswich Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-03-14</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:WEA/">Wealden District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-3/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:BPL/">Blackpool Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:BRA/">Braintree District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:BNH/">Brighton and Hove City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:CHL/">Chelmsford City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:HEF/">Herefordshire Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:DAR/">Dartford Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:DER/">Derby City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:FEN/">Fenland District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:GED/">Gedling Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:HAR/">Harlow District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:KIN/">Borough Council of King's Lynn and West Norfolk</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:KTT/">Royal Borough of Kingston upon Thames</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:BEX/">London Borough of Bexley</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:BEN/">London Borough of Brent</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:HCK/">London Borough of Hackney</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:MAV/">Malvern Hills District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:NDE/">North Devon District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:NGM/">Nottingham City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:ROT/">Rotherham Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:SWL/">Swale Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:WFUA/">Westmorland and Furness Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:WIL/">Wiltshire Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:WOC/">Worcester City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">2025-09-23</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/local-authority:WYC/">Wychavon District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/odp-round-4/">ODP Digital Planning Improvement Funding</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="50000">
+                        
+                        £50,000
+                        
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+        
+        <h2 class="govuk-heading-m">Organisations (113)</h2>
+
+        <ul class="govuk-list">
+            
+            <li>
+                <a href="/organisation/local-authority:ADU/" class="govuk-link">Adur District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:ASF/" class="govuk-link">Ashford Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:BNS/" class="govuk-link">Barnsley Metropolitan Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:BAI/" class="govuk-link">Basildon Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:BAN/" class="govuk-link">Basingstoke and Deane Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:BAE/" class="govuk-link">Bassetlaw District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:BPL/" class="govuk-link">Blackpool Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:BOL/" class="govuk-link">Bolton Metropolitan Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:KIN/" class="govuk-link">Borough Council of King's Lynn and West Norfolk</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:BRA/" class="govuk-link">Braintree District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:BNH/" class="govuk-link">Brighton and Hove City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:BST/" class="govuk-link">Bristol City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:BUR/" class="govuk-link">Bury Metropolitan Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:CLD/" class="govuk-link">Calderdale Metropolitan Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:CAN/" class="govuk-link">Cannock Chase District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:CAS/" class="govuk-link">Castle Point Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:CBF/" class="govuk-link">Central Bedfordshire Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:CHL/" class="govuk-link">Chelmsford City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:CHT/" class="govuk-link">Cheltenham Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:LND/" class="govuk-link">City of London Corporation</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:WSM/" class="govuk-link">City of Westminster</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:YOR/" class="govuk-link">City of York Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:COL/" class="govuk-link">Colchester City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:COT/" class="govuk-link">Cotswold District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:COV/" class="govuk-link">Coventry City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:CRW/" class="govuk-link">Crawley Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:DAR/" class="govuk-link">Dartford Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:DER/" class="govuk-link">Derby City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:ECA/" class="govuk-link">East Cambridgeshire District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:EHA/" class="govuk-link">East Hampshire District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:EHE/" class="govuk-link">East Hertfordshire District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:ERY/" class="govuk-link">East Riding of Yorkshire Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:EXE/" class="govuk-link">Exeter City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:FEN/" class="govuk-link">Fenland District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:FOE/" class="govuk-link">Forest of Dean District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:GED/" class="govuk-link">Gedling Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:HAL/" class="govuk-link">Halton Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:HAR/" class="govuk-link">Harlow District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:HAT/" class="govuk-link">Hart District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:HAA/" class="govuk-link">Havant Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:HEF/" class="govuk-link">Herefordshire Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:HOR/" class="govuk-link">Horsham District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:KHL/" class="govuk-link">Hull City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:HUN/" class="govuk-link">Huntingdonshire District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:IPS/" class="govuk-link">Ipswich Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:KWL/" class="govuk-link">Knowsley Metropolitan Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/national-park-authority:Q27159704/" class="govuk-link">Lake District National Park Authority</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:LDS/" class="govuk-link">Leeds City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:LCE/" class="govuk-link">Leicester City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:BDG/" class="govuk-link">London Borough of Barking and Dagenham</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:BEX/" class="govuk-link">London Borough of Bexley</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:BEN/" class="govuk-link">London Borough of Brent</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:BRY/" class="govuk-link">London Borough of Bromley</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:CRY/" class="govuk-link">London Borough of Croydon</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:ENF/" class="govuk-link">London Borough of Enfield</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:HCK/" class="govuk-link">London Borough of Hackney</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:HRY/" class="govuk-link">London Borough of Haringey</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:HIL/" class="govuk-link">London Borough of Hillingdon</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:HNS/" class="govuk-link">London Borough of Hounslow</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:LEW/" class="govuk-link">London Borough of Lewisham</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:TWH/" class="govuk-link">London Borough of Tower Hamlets</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:MAI/" class="govuk-link">Maidstone Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:MAV/" class="govuk-link">Malvern Hills District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:MAN/" class="govuk-link">Manchester City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:MIK/" class="govuk-link">Milton Keynes City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:NEW/" class="govuk-link">New Forest District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/national-park-authority:Q72617158/" class="govuk-link">New Forest National Park Authority</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:NDE/" class="govuk-link">North Devon District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:NNO/" class="govuk-link">North Norfolk District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:NTY/" class="govuk-link">North Tyneside Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:NWA/" class="govuk-link">North Warwickshire Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:NYUA/" class="govuk-link">North Yorkshire Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:NBL/" class="govuk-link">Northumberland County Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:NGM/" class="govuk-link">Nottingham City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:OLD/" class="govuk-link">Oldham Metropolitan Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:OXO/" class="govuk-link">Oxford City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:PTE/" class="govuk-link">Peterborough City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:PLY/" class="govuk-link">Plymouth City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:RCH/" class="govuk-link">Rochdale Metropolitan Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:ROS/" class="govuk-link">Rossendale Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:ROH/" class="govuk-link">Rother District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:ROT/" class="govuk-link">Rotherham Metropolitan Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:KEC/" class="govuk-link">Royal Borough of Kensington and Chelsea</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:KTT/" class="govuk-link">Royal Borough of Kingston upon Thames</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:SAW/" class="govuk-link">Sandwell Metropolitan Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:SFT/" class="govuk-link">Sefton Metropolitan Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:SCA/" class="govuk-link">South Cambridgeshire District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:SGC/" class="govuk-link">South Gloucestershire Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:SNO/" class="govuk-link">South Norfolk District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:SST/" class="govuk-link">South Staffordshire Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:STH/" class="govuk-link">Southampton City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:SPE/" class="govuk-link">Spelthorne Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:STA/" class="govuk-link">Stafford Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:STV/" class="govuk-link">Stevenage Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:SKP/" class="govuk-link">Stockport Metropolitan Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:STE/" class="govuk-link">Stoke-on-Trent City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:SUR/" class="govuk-link">Surrey Heath Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:SWL/" class="govuk-link">Swale Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:TAM/" class="govuk-link">Tameside Metropolitan Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:TAN/" class="govuk-link">Tandridge District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:TEN/" class="govuk-link">Tendring District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:THA/" class="govuk-link">Thanet District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:TOB/" class="govuk-link">Torbay Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:TRF/" class="govuk-link">Trafford Metropolitan Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:UTT/" class="govuk-link">Uttlesford District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:WAE/" class="govuk-link">Waverley Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:WEA/" class="govuk-link">Wealden District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:WOX/" class="govuk-link">West Oxfordshire District Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:WFUA/" class="govuk-link">Westmorland and Furness Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:WIL/" class="govuk-link">Wiltshire Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:WOC/" class="govuk-link">Worcester City Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:WOT/" class="govuk-link">Worthing Borough Council</a>
+            </li>
+            
+            <li>
+                <a href="/organisation/local-authority:WYC/" class="govuk-link">Wychavon District Council</a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js" integrity="sha512-F/gIMdDfda6OD2rnzt/Iyp2V9JLHlFQ+EUyixDg9+rkwjqgW1snpkpx7FD5FV1+gG2fmFj7I3r6ReQDUidHelA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js" integrity="sha512-dRD755QRxlybm0h3LXXIGrFcjNakuxW3reZqnPtUkMv6YsSWoJf+slPjY5v4lZvx2ss+wBZQFegepmA7a2W9eA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+new Tablesort(document.getElementById('awards-table'));
+</script>
+
+
+    </main>
+</div>
+    
+<footer class="govuk-footer">
+  <div class="govuk-width-container">
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+          <h2 class="govuk-visually-hidden">Admin links</h2>
+          <ul class="govuk-footer__inline-list">
+
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies">
+                Cookies
+              </a>
+            </li>
+            
+          </ul>
+        <div class="govuk-footer__meta-custom">
+            The <a class="govuk-footer__link" href="https://github.com/digital-land/performance/">software</a> and <a class="govuk-footer__link" href="https://github.com/digital-land/performance/">data</a> used to build these pages is <a class="govuk-footer__link" href="https://github.com/digital-land/performance/blob/master/LICENSE">open source</a>.
+        </div>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          class="govuk-footer__licence-logo"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 483.2 195.7"
+          height="17"
+          width="41">
+          <path
+            fill="currentColor"
+            d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145" />
+        </svg>
+        <span class="govuk-footer__licence-description">
+          All content is available under the
+          <a
+            class="govuk-footer__link"
+            href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+            rel="license">Open Government Licence v3.0</a>, except where otherwise stated
+        </span>
+      </div>
+      <div class="govuk-footer__meta-item">
+        <a class="govuk-footer__link govuk-footer__copyright-logo"
+          href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/">
+          © Crown copyright
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+    <script src="https://www.planning.data.gov.uk//static/javascripts/digital-land-cookies.js"></script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <script src="https://www.planning.data.gov.uk//static/javascripts/govuk/govuk-frontend.js"></script>
+    <script>
+      // initiate all GOVUK components
+      window.GOVUKFrontend.initAll();
+    </script>
+    <script src="https://www.planning.data.gov.uk//static/javascripts/digital-land-frontend.js"></script>
+    <script>window.DLFrontend.initAll();</script>
+  </body>
+</html>

@@ -1,0 +1,216 @@
+{% extends "base.html" %}
+{% set title = "Digital Planning Programme" %}
+
+{% block content %}
+<style>
+/* Tables */
+table {
+  border-spacing: 0;
+  border: 1px solid #ddd;
+}
+table.sortable {
+  width: 100%;
+}
+thead {
+  position: sticky;
+  top: 1px;
+  background: #fff;
+}
+th, td {
+  border: 1px solid #ddd;
+}
+th.date {
+    min-width: 5.5em;
+}
+td.dot {
+  valign: center;
+  text-align: center;
+  font-family: monospace;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.amount { text-align: right }
+.number { text-align: right }
+
+/* Maps */
+.shapes svg {
+ width: 100%;
+ fill: 	#0b0c0c;
+ padding: 2.5em;
+}
+
+#membership-map {
+ width: 640px;
+ resize: both;
+ padding: 2.5em;
+}
+
+.map {
+ width: 640px;
+ resize: both;
+}
+
+.points svg {
+ width: 100%;
+ fill: 	#0b0c0c;
+ padding: 2.5em;
+}
+
+.shapes svg path {
+  fill:none;
+  stroke:#000;
+  stroke-width:0.5px;
+}
+
+svg path {
+  fill:none;
+  stroke:#000;
+  stroke-width:0.5px;
+}
+
+svg circle {
+  fill:red;
+  opacity: 0.125;
+}
+
+.stacked-chart {
+  display: flex;
+  width: 99%;
+  margin: 1em 0;
+}
+
+.stacked-chart .bar {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 2em;
+  text-indent: 1em;
+  color: #ffffff;
+}
+
+ul.key {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.key-item {
+   border-left: 16px solid;
+   margin-bottom: 5px;
+   padding-left: 5px;
+}
+
+{% for item in legends %}
+.stacked-chart .bar.{{ item.reference }} { background-color: {{ item.colour }}; color: #000 }
+.key-item.{{ item.reference }} { border-color: {{ item.colour }}; }
+svg path.{{ item.reference }} { fill: {{ item.colour }}; stroke: #000; stroke-width: 0.5px }
+{% endfor %}
+svg path:hover { opacity: 0.5 }
+
+/* sortable table */
+th[role=columnheader]:not(.no-sort) {
+	cursor: pointer;
+}
+
+th[role=columnheader]:not(.no-sort):after {
+	content: '';
+	float: right;
+	margin-top: 7px;
+	border-width: 0 4px 4px;
+	border-style: solid;
+	border-color: #404040 transparent;
+	visibility: hidden;
+	opacity: 0;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+th[aria-sort=ascending]:not(.no-sort):after {
+	border-bottom: none;
+	border-width: 4px 4px 0;
+}
+
+th[aria-sort]:not(.no-sort):after {
+	visibility: visible;
+	opacity: 0.4;
+}
+
+th[role=columnheader]:not(.no-sort):hover:after {
+	visibility: visible;
+	opacity: 1;
+}
+</style>
+
+<h1 id='Funding'>Digital Planning Programme</h1>
+<p>Local planning authorities awarded funding related to digital planning.</p>
+
+<div id="membership-map" class="shapes map">
+{{ shapes_svg|safe }}
+</div>
+
+<div class="stacked-chart">
+{% for item in legends %}
+{% if counts[item.reference] > 0 %}
+<div class="bar {{ item.reference }}" style="width:{{ (100 * counts[item.reference] / total)|round(2) }}%;">{{ counts[item.reference] }}</div>
+{% endif %}
+{% endfor %}
+</div>
+
+<ul class="key">
+{% for item in legends %}
+{% if counts[item.reference] > 0 %}
+<li class="key-item {{ item.reference }}">
+    {{ item.description }} ({% for intervention in item.interventions %}<a href="/intervention/{{ intervention.slug }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}) ({{ counts[item.reference] }})
+</li>
+{% endif %}
+{% endfor %}
+</ul>
+
+<h1 id='awards'>Awards</h1>
+
+<div class="points map">
+{{ points_svg|safe }}
+</div>
+
+<table id='awards-table' class='sortable'>
+<thead>
+    <th scope="col" align="right">#</th>
+    <th scope="col" align="left" class="date">Date</th>
+    <th scope="col" align="left">Organisation</th>
+    <th scope="col" align="left">Fund</th>
+    <th scope="col" align="left">Intervention</th>
+    <th scope="col" align="right">Amount</th>
+    <th scope="col" align="left">Partners</th>
+</thead>
+<tbody>
+{% for award in awards %}
+<tr>
+<td>{{ award.award }}</td>
+<td>{{ award.start_date }}</td>
+<td><a href="/organisation/{{ award.organisation }}/">{{ award.org_name }}</a></td>
+<td><a href="/fund/{{ award.fund }}/">{{ award.fund_name }}</a></td>
+<td><a href="/intervention/{{ award.intervention }}/">{{ award.intervention_name }}</a></td>
+<td class="amount" data-sort="{{ award.amount }}">{{ award.amount_display }}</td>
+<td>{{ award.partners|safe }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+
+<h1>Data sources</h1>
+<ul>
+  <li><a href="https://www.planning.data.gov.uk/organisation/">Organisations</a> (<a href="https://files.planning.data.gov.uk/organisation-collection/dataset/organisation.csv">CSV</a>)
+  <li>Funding awards (<a href="https://github.com/digital-land/specification/blob/main/content/award.csv">CSV</a>)
+  <li><a href="https://github.com/digital-land/performance/">Open source code</a></li>
+</ul>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js" integrity="sha512-F/gIMdDfda6OD2rnzt/Iyp2V9JLHlFQ+EUyixDg9+rkwjqgW1snpkpx7FD5FV1+gG2fmFj7I3r6ReQDUidHelA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js" integrity="sha512-dRD755QRxlybm0h3LXXIGrFcjNakuxW3reZqnPtUkMv6YsSWoJf+slPjY5v4lZvx2ss+wBZQFegepmA7a2W9eA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+new Tablesort(document.getElementById('awards-table'));
+</script>
+
+{% endblock content %}

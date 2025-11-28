@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% set title = product.name %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-xl">Product</span>
+        <h1 class="govuk-heading-xl">{{ product.name }}</h1>
+
+        {% if product.description %}
+        <p class="govuk-body">{{ product.description }}</p>
+        {% endif %}
+
+        <h2 class="govuk-heading-m">Adoptions ({{ adoptions|length }})</h2>
+
+        <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Organisation</th>
+                    <th scope="col" class="govuk-table__header">Status</th>
+                    <th scope="col" class="govuk-table__header">Start date</th>
+                    <th scope="col" class="govuk-table__header">Documentation</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                {% for adoption in adoptions %}
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/{{ adoption.organisation }}/">{{ adoption.org_name }}</a>
+                    </td>
+                    <td class="govuk-table__cell">{{ adoption.adoption_status }}</td>
+                    <td class="govuk-table__cell">{{ adoption.start_date }}</td>
+                    <td class="govuk-table__cell">
+                        {% if adoption.documentation_url %}
+                        <a href="{{ adoption.documentation_url }}">View</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

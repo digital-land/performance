@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% set title = "Funds" %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">Funds</h1>
+
+        <p class="govuk-body">Funding programmes in the Digital Planning Programme.</p>
+
+        <table id="funds-table" class="govuk-table sortable">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Date</th>
+                    <th scope="col" class="govuk-table__header">Fund</th>
+                    <th scope="col" class="govuk-table__header">Interventions</th>
+                    <th scope="col" class="govuk-table__header">Awards</th>
+                    <th scope="col" class="govuk-table__header">Total funding</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                {% for fund in funds %}
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">{{ fund.start_date }}</td>
+                    <td class="govuk-table__cell">
+                        <a href="/fund/{{ fund.fund }}/" class="govuk-link">{{ fund.name }}</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        {% for intervention in fund.interventions %}
+                        <a href="/intervention/{{ intervention.intervention }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ fund.award_count }}</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="{{ fund.total_amount }}">
+                        {% if fund.total_amount > 0 %}
+                        £{{ "{:,}".format(fund.total_amount) }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js" integrity="sha512-F/gIMdDfda6OD2rnzt/Iyp2V9JLHlFQ+EUyixDg9+rkwjqgW1snpkpx7FD5FV1+gG2fmFj7I3r6ReQDUidHelA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js" integrity="sha512-dRD755QRxlybm0h3LXXIGrFcjNakuxW3reZqnPtUkMv6YsSWoJf+slPjY5v4lZvx2ss+wBZQFegepmA7a2W9eA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+new Tablesort(document.getElementById('funds-table'));
+</script>
+
+{% endblock content %}

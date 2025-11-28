@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% set title = project.name %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-xl">Project</span>
+        <h1 class="govuk-heading-xl">{{ project.name }}</h1>
+
+        {% if project.description %}
+        <p class="govuk-body">{{ project.description }}</p>
+        {% endif %}
+
+        <h2 class="govuk-heading-m">Organisations ({{ organisations|length }})</h2>
+
+        <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Organisation</th>
+                    <th scope="col" class="govuk-table__header">Role</th>
+                    <th scope="col" class="govuk-table__header">Funding</th>
+                    <th scope="col" class="govuk-table__header">Adoption status</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                {% for org in organisations %}
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/{{ org.organisation }}/">{{ org.name }}</a>
+                    </td>
+                    <td class="govuk-table__cell">{{ org.role }}</td>
+                    <td class="govuk-table__cell">
+                        {% if org.amount > 0 %}
+                        £{{ "{:,}".format(org.amount) }}
+                        {% endif %}
+                    </td>
+                    <td class="govuk-table__cell">{{ org.adoption_status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}

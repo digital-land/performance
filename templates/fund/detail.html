@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% set title = fund.name %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-xl">Fund</span>
+        <h1 class="govuk-heading-xl">{{ fund.name }}</h1>
+
+        {% if fund.description %}
+        <p class="govuk-body-l">{{ fund.description }}</p>
+        {% endif %}
+
+        <dl class="govuk-summary-list">
+            {% if fund.start_date %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Start date</dt>
+                <dd class="govuk-summary-list__value">{{ fund.start_date }}</dd>
+            </div>
+            {% endif %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Awards</dt>
+                <dd class="govuk-summary-list__value">{{ awards|length }}</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Total funding</dt>
+                <dd class="govuk-summary-list__value">£{{ "{:,}".format(total_amount) }}</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Organisations</dt>
+                <dd class="govuk-summary-list__value">{{ organisations|length }}</dd>
+            </div>
+        </dl>
+
+        <h2 class="govuk-heading-m">Awards ({{ awards|length }})</h2>
+
+        <table id="awards-table" class="govuk-table sortable">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Date</th>
+                    <th scope="col" class="govuk-table__header">Organisation</th>
+                    <th scope="col" class="govuk-table__header">Intervention</th>
+                    <th scope="col" class="govuk-table__header">Amount</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                {% for award in awards %}
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">{{ award.start_date }}</td>
+                    <td class="govuk-table__cell">
+                        <a href="/organisation/{{ award.organisation }}/">{{ award.org_name }}</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        <a href="/intervention/{{ award.intervention }}/">{{ award.intervention_name }}</a>
+                    </td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="{{ award.amount }}">
+                        {% if award.amount > 0 %}
+                        £{{ "{:,}".format(award.amount) }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% if organisations %}
+        <h2 class="govuk-heading-m">Organisations ({{ organisations|length }})</h2>
+
+        <ul class="govuk-list">
+            {% for org in organisations %}
+            <li>
+                <a href="/organisation/{{ org.organisation }}/" class="govuk-link">{{ org.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js" integrity="sha512-F/gIMdDfda6OD2rnzt/Iyp2V9JLHlFQ+EUyixDg9+rkwjqgW1snpkpx7FD5FV1+gG2fmFj7I3r6ReQDUidHelA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/sorts/tablesort.number.min.js" integrity="sha512-dRD755QRxlybm0h3LXXIGrFcjNakuxW3reZqnPtUkMv6YsSWoJf+slPjY5v4lZvx2ss+wBZQFegepmA7a2W9eA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+new Tablesort(document.getElementById('awards-table'));
+</script>
+
+{% endblock content %}
