@@ -106,6 +106,50 @@
         {% if product.description %}
         <p class="govuk-body">{{ product.description }}</p>
         {% endif %}
+
+        <table class="govuk-table">
+            <caption class="govuk-table__caption govuk-table__caption--m">Adoption summary</caption>
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Stage</th>
+                    <th scope="col" class="govuk-table__header govuk-table__header--numeric">Organisations</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">LPA</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.lpa }}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">ODP member</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.odp }}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Awarded funding</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.funded }}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Funded for Software</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.software }}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Providing some data</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.providing }}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Data ready for {{ product.name }}</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.data_ready }}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Preparing to launch {{ product.name }}</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.interested_or_adopting }}</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Live with {{ product.name }}</td>
+                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.live }}</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
