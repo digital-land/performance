@@ -1,4 +1,5 @@
 {% set base_url = base_url or "https://www.planning.data.gov.uk/" %}
+{% set path_prefix = path_prefix or "" %}
 {% set github_organisation = github_organisation or "digital-land" %}
 {% set github_repository = "performance" %}
 {% set github_url = "https://github.com/" + github_organisation + "/" + github_repository %}
@@ -72,7 +73,7 @@
         <div class="govuk-cookie-banner__content">
           
           <p class="govuk-notification-banner__heading">
-              You have accepted additional cookies. You can <a class="govuk-notification-banner__link" href="/cookies">change your cookie settings</a> at any time.
+              You have accepted additional cookies. You can <a class="govuk-notification-banner__link" href="{{ path_prefix }}/cookies">change your cookie settings</a> at any time.
             </p>
           
         </div>
@@ -98,7 +99,7 @@
     <div class="govuk-breadcrumbs">
       <ol class="govuk-breadcrumbs__list">
         <li class="govuk-breadcrumbs__list-item">
-          <a class="govuk-breadcrumbs__link" href="/">Home</a>
+          <a class="govuk-breadcrumbs__link" href="{{ path_prefix }}/">Home</a>
         </li>
         {% for crumb in breadcrumbs %}
         {% if crumb.url %}
@@ -128,7 +129,7 @@
           <ul class="govuk-footer__inline-list">
 
             <li class="govuk-footer__inline-list-item">
-              <a class="govuk-footer__link" href="/cookies">
+              <a class="govuk-footer__link" href="{{ path_prefix }}/cookies">
                 Cookies
               </a>
             </li>

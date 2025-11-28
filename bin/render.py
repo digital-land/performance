@@ -15,6 +15,13 @@ from jinja2 import Environment, FileSystemLoader
 from html import escape
 
 DATABASE_PATH = "dataset/performance.sqlite3"
+PATH_PREFIX = os.environ.get('PATH_PREFIX', '')
+
+
+def url(path):
+    """Prepend path prefix to URL."""
+    return f"{PATH_PREFIX}{path}"
+
 
 # Award page legends
 AWARD_LEGENDS = [
@@ -406,7 +413,7 @@ def render_organisations(env, conn):
         quality = [dict(row) for row in cursor.fetchall()]
 
         breadcrumbs = [
-            {'text': 'Organisations', 'url': '/organisation/'},
+            {'text': 'Organisations', 'url': url('/organisation/')},
             {'text': org['name']}
         ]
 
@@ -478,7 +485,7 @@ def render_projects(env, conn):
         points_svg = process_points_svg(conn, filter_type='project', filter_value=project_id)
 
         breadcrumbs = [
-            {'text': 'Projects', 'url': '/project/'},
+            {'text': 'Projects', 'url': url('/project/')},
             {'text': project['name']}
         ]
 
@@ -652,7 +659,7 @@ def render_products(env, conn):
             totals['all'] += amount
 
         breadcrumbs = [
-            {'text': 'Products', 'url': '/product/'},
+            {'text': 'Products', 'url': url('/product/')},
             {'text': product['name']}
         ]
 
@@ -796,7 +803,7 @@ def render_interventions(env, conn):
         points_svg = process_points_svg(conn, filter_type='intervention', filter_value=intervention_id)
 
         breadcrumbs = [
-            {'text': 'Interventions', 'url': '/intervention/'},
+            {'text': 'Interventions', 'url': url('/intervention/')},
             {'text': intervention['name']}
         ]
 
@@ -890,7 +897,7 @@ def render_funds(env, conn):
         points_svg = process_points_svg(conn, filter_type='fund', filter_value=fund_id)
 
         breadcrumbs = [
-            {'text': 'Funds', 'url': '/fund/'},
+            {'text': 'Funds', 'url': url('/fund/')},
             {'text': fund['name']}
         ]
 
@@ -1501,6 +1508,9 @@ def main():
     env.filters['urlencode'] = lambda s: quote(str(s), safe='')
     env.filters['slugify'] = lambda s: str(s).replace('/', '-')
     env.filters['govuk_date'] = lambda s: format_govuk_date(s)
+
+    # Add global variables
+    env.globals['path_prefix'] = PATH_PREFIX
 
     try:
         print("Rendering pages...", file=sys.stderr)

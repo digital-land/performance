@@ -93,7 +93,7 @@ li.key-item {
         {% for item in legends %}
         {% if counts[item.reference] > 0 %}
         <li class="key-item {{ item.reference }}">
-            {{ item.description }} ({% for intervention in item.interventions %}<a href="/intervention/{{ intervention.slug }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}) ({{ counts[item.reference] }})
+            {{ item.description }} ({% for intervention in item.interventions %}<a href="{{ path_prefix }}/intervention/{{ intervention.slug }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}{% endfor %}) ({{ counts[item.reference] }})
         </li>
         {% endif %}
         {% endfor %}
@@ -118,11 +118,11 @@ li.key-item {
                 {% for org in organisations %}
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">
-                        <a href="/organisation/{{ org.organisation }}/">{{ org.name }}</a>
+                        <a href="{{ path_prefix }}/organisation/{{ org.organisation }}/">{{ org.name }}</a>
                     </td>
                     <td class="govuk-table__cell">
                         {% for intervention in org.interventions %}
-                        <a href="/intervention/{{ intervention.intervention }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}
+                        <a href="{{ path_prefix }}/intervention/{{ intervention.intervention }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}
                         {% endfor %}
                     </td>
                     <td class="govuk-table__cell">

@@ -157,7 +157,7 @@
             </div>
 
             <div class="adoption-bar-row">
-                <div class="adoption-bar-label"><a href="/award/">Awarded funding</a></div>
+                <div class="adoption-bar-label"><a href="{{ path_prefix }}/award/">Awarded funding</a></div>
                 <div class="adoption-bar-container">
                     <div class="adoption-bar" style="width: {{ (counts.funded / max_count * 100)|round(1) }}%;">
                         <span class="adoption-bar-count">{{ counts.funded }}</span>
@@ -271,7 +271,7 @@
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">{{ adoption.start_date|govuk_date }}</td>
                     <td class="govuk-table__cell">
-                        <a href="/organisation/{{ adoption.organisation }}/">{{ adoption.org_name }}</a>
+                        <a href="{{ path_prefix }}/organisation/{{ adoption.organisation }}/">{{ adoption.org_name }}</a>
                     </td>
                     <td class="govuk-table__cell">
                         {% if adoption.documentation_url %}<a href="{{ adoption.documentation_url }}">
