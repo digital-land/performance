@@ -9,11 +9,6 @@
   min-height: 450px;
 }
 
-.funnel-chart {
-  width: 100%;
-  height: 500px;
-}
-
 .timeline-container {
   width: 100%;
   margin: 2em 0;
@@ -70,7 +65,7 @@
 
 .timeline-bar {
   height: 100%;
-  background-color: #27a0cc;
+  background-color: #12436d;
   position: absolute;
   top: 0;
 }
@@ -93,10 +88,49 @@
   max-width: 100%;
   height: auto;
 }
-</style>
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script>google.charts.load('current', {'packages':['corechart','bar']});</script>
+.adoption-bar-chart {
+  margin: 2em 0;
+}
+
+.adoption-bar-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.adoption-bar-label {
+  width: 280px;
+  flex-shrink: 0;
+  padding-right: 1em;
+  font-size: 16px;
+  font-family: "GDS Transport", arial, sans-serif;
+}
+
+.adoption-bar-container {
+  flex: 1;
+  position: relative;
+  height: 40px;
+  background-color: #f3f2f1;
+}
+
+.adoption-bar {
+  height: 100%;
+  background-color: #12436d;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  transition: width 0.3s ease;
+}
+
+.adoption-bar-count {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 19px;
+  white-space: nowrap;
+}
+</style>
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
@@ -107,93 +141,101 @@
         <p class="govuk-body">{{ product.description }}</p>
         {% endif %}
 
-        <table class="govuk-table">
-            <caption class="govuk-table__caption govuk-table__caption--m">Adoption summary</caption>
-            <thead class="govuk-table__head">
-                <tr class="govuk-table__row">
-                    <th scope="col" class="govuk-table__header">Stage</th>
-                    <th scope="col" class="govuk-table__header govuk-table__header--numeric">Organisations</th>
-                </tr>
-            </thead>
-            <tbody class="govuk-table__body">
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">LPA</td>
-                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.lpa }}</td>
-                </tr>
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">ODP member</td>
-                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.odp }}</td>
-                </tr>
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">Awarded funding</td>
-                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.funded }}</td>
-                </tr>
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">Funded for Software</td>
-                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.software }}</td>
-                </tr>
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">Providing some data</td>
-                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.providing }}</td>
-                </tr>
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">Data ready for {{ product.name }}</td>
-                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.data_ready }}</td>
-                </tr>
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">Preparing to launch {{ product.name }}</td>
-                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.interested_or_adopting }}</td>
-                </tr>
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">Live with {{ product.name }}</td>
-                    <td class="govuk-table__cell govuk-table__cell--numeric">{{ counts.live }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
         <h2 class="govuk-heading-l" id="funnel">Adoption funnel</h2>
         <p class="govuk-body">Organisations potentially able to adopt {{ product.name }}.</p>
 
-        <script type="text/javascript">
-          google.charts.setOnLoadCallback(draw_adoption)
-          function draw_adoption() {
-            var data = google.visualization.arrayToDataTable([
-              ['Status', 'Count'],
-              ['LPA', {{ counts.lpa }}],
-              ['ODP member', {{ counts.odp }}],
-              ['Awarded funding', {{ counts.funded }}],
-              ['Funded for Software', {{ counts.software }}],
-              ['Providing some data', {{ counts.providing }}],
-              ['Data ready for {{ product.name }}', {{ counts.data_ready }}],
-              ['Preparing to launch {{ product.name }}', {{ counts.interested_or_adopting }}],
-              ['Live with {{ product.name }}', {{ counts.live }}],
-            ]);
+        <div class="adoption-bar-chart">
+            {% set max_count = counts.lpa %}
 
-            var options = {
-              title: "Number of organisations",
-              bars: 'vertical',
-              colors: ['#27a0cc'],
-              legend: { position: "none" },
-              vAxis: { gridlines: { count:0 }},
-              chartArea: { width: '90%', height: '70%' }
-            };
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">LPA</div>
+                <div class="adoption-bar-container">
+                    <div class="adoption-bar" style="width: {{ (counts.lpa / max_count * 100)|round(1) }}%;">
+                        <span class="adoption-bar-count">{{ counts.lpa }}</span>
+                    </div>
+                </div>
+            </div>
 
-            var view = new google.visualization.DataView(data);
-            view.setColumns([0,
-                           { calc: "stringify",
-                             sourceColumn: 1,
-                             type: "string",
-                             role: "annotation"
-                             }, 1]);
-            var chart = new google.visualization.ColumnChart(document.getElementById("adoption-chart"));
-            chart.draw(view, options);
-          }
-        </script>
-        <div id="adoption-chart" class="funnel-chart"></div>
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">Active LPA</div>
+                <div class="adoption-bar-container">
+                    <div class="adoption-bar" style="width: {{ (counts.active_lpa / max_count * 100)|round(1) }}%;">
+                        <span class="adoption-bar-count">{{ counts.active_lpa }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">ODP member</div>
+                <div class="adoption-bar-container">
+                    <div class="adoption-bar" style="width: {{ (counts.odp / max_count * 100)|round(1) }}%;">
+                        <span class="adoption-bar-count">{{ counts.odp }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">Awarded funding</div>
+                <div class="adoption-bar-container">
+                    <div class="adoption-bar" style="width: {{ (counts.funded / max_count * 100)|round(1) }}%;">
+                        <span class="adoption-bar-count">{{ counts.funded }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">Funded for Software</div>
+                <div class="adoption-bar-container">
+                    <div class="adoption-bar" style="width: {{ (counts.software / max_count * 100)|round(1) }}%;">
+                        <span class="adoption-bar-count">{{ counts.software }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">Providing some data</div>
+                <div class="adoption-bar-container">
+                    {% if counts.providing > 0 %}
+                    <div class="adoption-bar" style="width: {{ (counts.providing / max_count * 100)|round(1) }}%;">
+                        <span class="adoption-bar-count">{{ counts.providing }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">Data ready for {{ product.name }}</div>
+                <div class="adoption-bar-container">
+                    {% if counts.data_ready > 0 %}
+                    <div class="adoption-bar" style="width: {{ (counts.data_ready / max_count * 100)|round(1) }}%;">
+                        <span class="adoption-bar-count">{{ counts.data_ready }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">Preparing to launch {{ product.name }}</div>
+                <div class="adoption-bar-container">
+                    {% if counts.interested_or_adopting > 0 %}
+                    <div class="adoption-bar" style="width: {{ (counts.interested_or_adopting / max_count * 100)|round(1) }}%;">
+                        <span class="adoption-bar-count">{{ counts.interested_or_adopting }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">Live with {{ product.name }}</div>
+                <div class="adoption-bar-container">
+                    {% if counts.live > 0 %}
+                    <div class="adoption-bar" style="width: {{ (counts.live / max_count * 100)|round(1) }}%;">
+                        <span class="adoption-bar-count">{{ counts.live }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -232,7 +274,7 @@
         </div>
         {% endif %}
 
-        <h2 class="govuk-heading-l" id="organisations">Organisations ({{ adoptions|length }})</h2>
+        <h2 class="govuk-heading-l" id="organisations">Organisations</h2>
 
         <table class="govuk-table">
             <thead class="govuk-table__head">

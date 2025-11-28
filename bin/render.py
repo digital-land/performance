@@ -526,6 +526,13 @@ def render_products(env, conn):
         cursor.execute("SELECT COUNT(*) FROM organisations WHERE role = 'local-planning-authority'")
         counts['lpa'] = cursor.fetchone()[0]
 
+        cursor.execute("""
+            SELECT COUNT(*) FROM organisations
+            WHERE role = 'local-planning-authority'
+            AND (end_date IS NULL OR end_date = '' OR end_date > date('now'))
+        """)
+        counts['active_lpa'] = cursor.fetchone()[0]
+
         cursor.execute("SELECT COUNT(DISTINCT organisation) FROM project_organisations WHERE project = 'open-digital-planning'")
         counts['odp'] = cursor.fetchone()[0]
 
@@ -943,7 +950,7 @@ def generate_treemap_svg(funded_orgs, totals, width=1200, height=600):
     svg_parts.append('<style>')
     svg_parts.append('.treemap-rect { stroke: #fff; stroke-width: 2; }')
     svg_parts.append('.treemap-rect:hover { opacity: 0.8; cursor: pointer; }')
-    svg_parts.append('.treemap-label { fill: #0b0c0c; font-family: Arial, sans-serif; font-size: 10px; font-weight: normal; pointer-events: none; }')
+    svg_parts.append('.treemap-label { font-family: Arial, sans-serif; font-size: 10px; font-weight: normal; pointer-events: none; }')
     svg_parts.append('.treemap-bucket-label { fill: #0b0c0c; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; pointer-events: none; }')
     svg_parts.append('</style>')
 
@@ -970,7 +977,7 @@ def generate_treemap_svg(funded_orgs, totals, width=1200, height=600):
 
                 # Determine color based on adoption status
                 if org['color'] > 0:
-                    fill_color = '#27a0cc'  # Blue for adopted
+                    fill_color = '#12436d'  # Blue for adopted
                 else:
                     fill_color = '#f5f5f6'  # Grey for not adopted
 
@@ -1000,7 +1007,9 @@ def generate_treemap_svg(funded_orgs, totals, width=1200, height=600):
                 if rect['width'] > estimated_text_width + 10 and rect['height'] > 25:
                     text_x = rect['x'] + rect['width'] / 2
                     text_y = rect['y'] + rect['height'] / 2
-                    svg_parts.append(f'<text class="treemap-label" x="{text_x:.2f}" y="{text_y:.2f}" '
+                    # Use white text on dark background, dark text on light background
+                    text_color = '#ffffff' if fill_color == '#12436d' else '#0b0c0c'
+                    svg_parts.append(f'<text class="treemap-label" fill="{text_color}" x="{text_x:.2f}" y="{text_y:.2f}" '
                                    f'text-anchor="middle" dominant-baseline="middle">'
                                    f'{escape(label)}</text>')
 
