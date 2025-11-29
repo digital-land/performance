@@ -1091,6 +1091,10 @@ def render_fund_index(env, conn):
     # Number of funds
     summary["fund_count"] = len(funds)
 
+    # Number of awards
+    cursor.execute("SELECT COUNT(*) as count FROM awards")
+    summary["award_count"] = cursor.fetchone()["count"]
+
     # Total amount awarded
     cursor.execute("SELECT COALESCE(SUM(amount), 0) as total FROM awards")
     summary["total_amount"] = cursor.fetchone()["total"]

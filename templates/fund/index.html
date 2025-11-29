@@ -14,6 +14,10 @@
                 <dd class="govuk-summary-list__value">{{ summary.fund_count }}</dd>
             </div>
             <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Awards</dt>
+                <dd class="govuk-summary-list__value">{{ summary.award_count }}</dd>
+            </div>
+            <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">Total funding awarded</dt>
                 <dd class="govuk-summary-list__value">£{{ "{:,}".format(summary.total_amount) }}</dd>
             </div>
