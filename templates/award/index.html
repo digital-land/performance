@@ -187,26 +187,28 @@ th[role=columnheader]:not(.no-sort):hover:after {
 
 <h1 id='awards'>Awards</h1>
 
-<table id='awards-table' class='sortable'>
-<thead>
-    <th scope="col" align="right">#</th>
-    <th scope="col" align="left" class="date">Date</th>
-    <th scope="col" align="left">Organisation</th>
-    <th scope="col" align="left">Fund</th>
-    <th scope="col" align="left">Intervention</th>
-    <th scope="col" align="right">Amount</th>
-    <th scope="col" align="left">Partners</th>
+<table id='awards-table' class='govuk-table sortable'>
+<thead class='govuk-table__head'>
+    <tr class='govuk-table__row'>
+        <th scope="col" class="govuk-table__header govuk-table__header--numeric">#</th>
+        <th scope="col" class="govuk-table__header">Date</th>
+        <th scope="col" class="govuk-table__header">Organisation</th>
+        <th scope="col" class="govuk-table__header">Fund</th>
+        <th scope="col" class="govuk-table__header">Intervention</th>
+        <th scope="col" class="govuk-table__header govuk-table__header--numeric">Amount</th>
+        <th scope="col" class="govuk-table__header">Partners</th>
+    </tr>
 </thead>
-<tbody>
+<tbody class='govuk-table__body'>
 {% for award in awards %}
-<tr>
-<td>{{ award.award }}</td>
-<td>{{ award.start_date|govuk_date }}</td>
-<td><a href="../organisation/{{ award.organisation }}/">{{ award.org_name }}</a></td>
-<td><a href="../fund/{{ award.fund }}/">{{ award.fund_name }}</a></td>
-<td><a href="../intervention/{{ award.intervention }}/">{{ award.intervention_name }}</a></td>
-<td class="amount" data-sort="{{ award.amount }}">{{ award.amount_display }}</td>
-<td>{{ award.partners|safe }}</td>
+<tr class='govuk-table__row'>
+<td class='govuk-table__cell govuk-table__cell--numeric'>{{ award.award }}</td>
+<td class='govuk-table__cell'>{{ award.start_date|govuk_date }}</td>
+<td class='govuk-table__cell'><a href="../organisation/{{ award.organisation }}/" class="govuk-link">{{ award.org_name }}</a></td>
+<td class='govuk-table__cell'><a href="../fund/{{ award.fund }}/" class="govuk-link">{{ award.fund_name }}</a></td>
+<td class='govuk-table__cell'><a href="../intervention/{{ award.intervention }}/" class="govuk-link">{{ award.intervention_name }}</a></td>
+<td class='govuk-table__cell govuk-table__cell--numeric' data-sort="{{ award.amount }}">{{ award.amount_display }}</td>
+<td class='govuk-table__cell'>{{ award.partners|safe }}</td>
 </tr>
 {% endfor %}
 </tbody>
