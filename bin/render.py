@@ -15,7 +15,7 @@ from jinja2 import Environment, FileSystemLoader
 from html import escape
 
 DATABASE_PATH = "dataset/performance.sqlite3"
-BASE_PATH="/performance"
+BASE_PATH = "/performance"
 
 # Award page legends
 AWARD_LEGENDS = [
@@ -27,7 +27,7 @@ AWARD_LEGENDS = [
         "interventions": [
             {"slug": "software", "name": "software"},
             {"slug": "integration", "name": "integration"},
-            {"slug": "improvement", "name": "improvement"}
+            {"slug": "improvement", "name": "improvement"},
         ],
     },
     {
@@ -40,7 +40,7 @@ AWARD_LEGENDS = [
             {"slug": "integration", "name": "integration"},
             {"slug": "improvement", "name": "improvement"},
             {"slug": "engagement", "name": "engagement"},
-            {"slug": "innovation", "name": "innovation"}
+            {"slug": "innovation", "name": "innovation"},
         ],
     },
     {
@@ -52,7 +52,7 @@ AWARD_LEGENDS = [
             {"slug": "software", "name": "software"},
             {"slug": "integration", "name": "integration"},
             {"slug": "improvement", "name": "improvement"},
-            {"slug": "plan-making", "name": "plan-making"}
+            {"slug": "plan-making", "name": "plan-making"},
         ],
     },
     {
@@ -66,7 +66,7 @@ AWARD_LEGENDS = [
             {"slug": "improvement", "name": "improvement"},
             {"slug": "engagement", "name": "engagement"},
             {"slug": "innovation", "name": "innovation"},
-            {"slug": "plan-making", "name": "plan-making"}
+            {"slug": "plan-making", "name": "plan-making"},
         ],
     },
     {
@@ -76,7 +76,7 @@ AWARD_LEGENDS = [
         "description": "Funded for PropTech",
         "interventions": [
             {"slug": "engagement", "name": "engagement"},
-            {"slug": "innovation", "name": "innovation"}
+            {"slug": "innovation", "name": "innovation"},
         ],
     },
     {
@@ -87,7 +87,7 @@ AWARD_LEGENDS = [
         "interventions": [
             {"slug": "engagement", "name": "engagement"},
             {"slug": "innovation", "name": "innovation"},
-            {"slug": "plan-making", "name": "plan-making"}
+            {"slug": "plan-making", "name": "plan-making"},
         ],
     },
     {
@@ -95,9 +95,7 @@ AWARD_LEGENDS = [
         "name": "Plan-making",
         "colour": "#eee",
         "description": "Funded for Plan-making",
-        "interventions": [
-            {"slug": "plan-making", "name": "plan-making"}
-        ],
+        "interventions": [{"slug": "plan-making", "name": "plan-making"}],
     },
 ]
 
@@ -171,38 +169,52 @@ def render_adoption_planx(env, conn):
 
     # Get counts for the chart
     counts = {}
-    cursor.execute("SELECT COUNT(*) FROM organisations WHERE role = 'local-planning-authority'")
-    counts['lpa'] = cursor.fetchone()[0]
+    cursor.execute(
+        "SELECT COUNT(*) FROM organisations WHERE role = 'local-planning-authority'"
+    )
+    counts["lpa"] = cursor.fetchone()[0]
 
-    cursor.execute("SELECT COUNT(DISTINCT organisation) FROM project_organisations WHERE project = 'open-digital-planning'")
-    counts['odp'] = cursor.fetchone()[0]
+    cursor.execute(
+        "SELECT COUNT(DISTINCT organisation) FROM project_organisations WHERE project = 'open-digital-planning'"
+    )
+    counts["odp"] = cursor.fetchone()[0]
 
-    cursor.execute("SELECT COUNT(DISTINCT organisation) FROM organisations WHERE amount > 0")
-    counts['funded'] = cursor.fetchone()[0]
+    cursor.execute(
+        "SELECT COUNT(DISTINCT organisation) FROM organisations WHERE amount > 0"
+    )
+    counts["funded"] = cursor.fetchone()[0]
 
-    cursor.execute("SELECT COUNT(DISTINCT organisation) FROM organisations WHERE software_amount > 0")
-    counts['software'] = cursor.fetchone()[0]
+    cursor.execute(
+        "SELECT COUNT(DISTINCT organisation) FROM organisations WHERE software_amount > 0"
+    )
+    counts["software"] = cursor.fetchone()[0]
 
-    cursor.execute("SELECT COUNT(DISTINCT organisation) FROM organisations WHERE data_score >= 4 AND data_score < 100")
-    counts['providing'] = cursor.fetchone()[0]
+    cursor.execute(
+        "SELECT COUNT(DISTINCT organisation) FROM organisations WHERE data_score >= 4 AND data_score < 100"
+    )
+    counts["providing"] = cursor.fetchone()[0]
 
     cursor.execute("SELECT COUNT(*) FROM organisations WHERE data_ready = 1")
-    counts['data_ready'] = cursor.fetchone()[0]
+    counts["data_ready"] = cursor.fetchone()[0]
 
-    cursor.execute("SELECT COUNT(*) FROM organisations WHERE adoption_status IN ('interested', 'adopting')")
-    counts['interested_or_adopting'] = cursor.fetchone()[0]
+    cursor.execute(
+        "SELECT COUNT(*) FROM organisations WHERE adoption_status IN ('interested', 'adopting')"
+    )
+    counts["interested_or_adopting"] = cursor.fetchone()[0]
 
     cursor.execute("SELECT COUNT(*) FROM organisations WHERE adoption_status = 'live'")
-    counts['live'] = cursor.fetchone()[0]
+    counts["live"] = cursor.fetchone()[0]
 
     # Get timeline data (PlanX adoptions only)
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT a.start_date, o.area_name
         FROM adoptions a
         JOIN organisations o ON a.organisation = o.organisation
         WHERE a.product = 'planx' AND a.adoption_status = 'live'
         ORDER BY a.start_date, o.area_name
-    """)
+    """
+    )
 
     timeline_data = []
     timeline_years = []
@@ -222,8 +234,10 @@ def render_adoption_planx(env, conn):
 
         # Calculate bar positions and widths
         for row in rows:
-            date_parts = row['start_date'].split('-')
-            adoption_date = datetime(int(date_parts[0]), int(date_parts[1]), int(date_parts[2]))
+            date_parts = row["start_date"].split("-")
+            adoption_date = datetime(
+                int(date_parts[0]), int(date_parts[1]), int(date_parts[2])
+            )
 
             # Calculate offset from start of timeline to adoption date
             offset_days = (adoption_date - start_date).days
@@ -233,128 +247,146 @@ def render_adoption_planx(env, conn):
             duration_days = (today - adoption_date).days
             width_percent = (duration_days / total_days) * 100
 
-            timeline_data.append({
-                'area_name': escape(row['area_name']),
-                'offset_percent': round(offset_percent, 2),
-                'width_percent': round(width_percent, 2)
-            })
+            timeline_data.append(
+                {
+                    "area_name": escape(row["area_name"]),
+                    "offset_percent": round(offset_percent, 2),
+                    "width_percent": round(width_percent, 2),
+                }
+            )
 
     # Get funded organisations for treemap
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT organisation, area_name, bucket, amount, proptech_amount, software_amount,
                adoption_status, name
         FROM organisations
         WHERE amount > 0 AND bucket != ''
         ORDER BY score DESC
-    """)
+    """
+    )
 
     funded_orgs = []
-    totals = {'proptech': 0, 'software': 0, 'both': 0, 'all': 0}
+    totals = {"proptech": 0, "software": 0, "both": 0, "all": 0}
 
     for row in cursor.fetchall():
-        bucket = row['bucket']
-        amount = row['amount']
+        bucket = row["bucket"]
+        amount = row["amount"]
 
         color = 0
         status = "Not yet declared interest"
-        if row['adoption_status'] == 'interested':
+        if row["adoption_status"] == "interested":
             color = 0.5
             status = "Have expressed interest in adopting PlanX"
-        elif row['adoption_status'] == 'adopting':
+        elif row["adoption_status"] == "adopting":
             color = 0.5
             status = "Adopting PlanX"
-        elif row['adoption_status'] == 'live':
+        elif row["adoption_status"] == "live":
             color = 0.5
             status = "Have adopted PlanX"
 
-        funded_orgs.append({
-            'area_name': escape(row['area_name']),
-            'bucket': bucket,
-            'amount': amount,
-            'color': color,
-            'name': escape(row['name']),
-            'status': status,
-            'proptech_amount': row['proptech_amount'],
-            'software_amount': row['software_amount']
-        })
+        funded_orgs.append(
+            {
+                "area_name": escape(row["area_name"]),
+                "bucket": bucket,
+                "amount": amount,
+                "color": color,
+                "name": escape(row["name"]),
+                "status": status,
+                "proptech_amount": row["proptech_amount"],
+                "software_amount": row["software_amount"],
+            }
+        )
 
         totals[bucket.lower()] += amount
-        totals['all'] += amount
+        totals["all"] += amount
 
     # Get all organisations for table
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT o.*,
                (SELECT COUNT(*) FROM project_organisations po WHERE po.organisation = o.organisation AND po.project = 'localgov-drupal') as drupal,
                (SELECT COUNT(*) FROM project_organisations po WHERE po.organisation = o.organisation AND po.project = 'local-land-charges') as llc,
                (SELECT COUNT(*) FROM project_organisations po WHERE po.organisation = o.organisation AND po.project = 'open-digital-planning') as odp
         FROM organisations o
         ORDER BY o.score DESC
-    """)
+    """
+    )
 
     all_orgs = []
     for row in cursor.fetchall():
         org = dict(row)
 
         # Format amounts
-        org['proptech_display'] = f"£{org['proptech_amount']:,}" if org['proptech_amount'] else ""
-        org['software_display'] = f"£{org['software_amount']:,}" if org['software_amount'] else ""
-        org['amount_display'] = f"£{org['amount']:,}" if org['amount'] else ""
+        org["proptech_display"] = (
+            f"£{org['proptech_amount']:,}" if org["proptech_amount"] else ""
+        )
+        org["software_display"] = (
+            f"£{org['software_amount']:,}" if org["software_amount"] else ""
+        )
+        org["amount_display"] = f"£{org['amount']:,}" if org["amount"] else ""
 
         # Format project indicators
-        org['projects'] = {
-            'localgov-drupal': '●' if org['drupal'] else '',
-            'local-land-charges': '●' if org['llc'] else '',
-            'open-digital-planning': '●' if org['odp'] else ''
+        org["projects"] = {
+            "localgov-drupal": "●" if org["drupal"] else "",
+            "local-land-charges": "●" if org["llc"] else "",
+            "open-digital-planning": "●" if org["odp"] else "",
         }
 
         # Format LPA indicator
-        org['is_lpa'] = '●' if org['role'] == 'local-planning-authority' else ''
+        org["is_lpa"] = "●" if org["role"] == "local-planning-authority" else ""
 
         # Get quality data for this organisation
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT dataset, status
             FROM quality
             WHERE organisation = ?
-        """, (org['organisation'],))
+        """,
+            (org["organisation"],),
+        )
 
         quality_data = {}
         for q_row in cursor.fetchall():
-            status = q_row['status']
-            if status in ['', 'none']:
-                quality_data[q_row['dataset']] = {
-                    'status': '',
-                    'score': 0,
-                    'display': ''
+            status = q_row["status"]
+            if status in ["", "none"]:
+                quality_data[q_row["dataset"]] = {
+                    "status": "",
+                    "score": 0,
+                    "display": "",
                 }
             else:
-                quality_data[q_row['dataset']] = {
-                    'status': status,
-                    'score': quality_scores.get(status, 0),
-                    'display': '█'
+                quality_data[q_row["dataset"]] = {
+                    "status": status,
+                    "score": quality_scores.get(status, 0),
+                    "display": "█",
                 }
 
         # Fill in missing datasets
         for dataset in odp_datasets:
             if dataset not in quality_data:
-                quality_data[dataset] = {'status': '', 'score': 0, 'display': ''}
+                quality_data[dataset] = {"status": "", "score": 0, "display": ""}
 
-        org['quality'] = quality_data
-        org['data_ready_display'] = '●' if org['data_ready'] else ''
+        org["quality"] = quality_data
+        org["data_ready_display"] = "●" if org["data_ready"] else ""
 
         all_orgs.append(org)
 
     # Prepare datasets list
-    datasets = [{'key': k, 'name': k, 'abbr': v} for k, v in odp_datasets.items()]
+    datasets = [{"key": k, "name": k, "abbr": v} for k, v in odp_datasets.items()]
 
     template = env.get_template("product/planx.html")
-    render("product/planx/index.html", template,
-           counts=counts,
-           timeline_data=timeline_data,
-           timeline_years=timeline_years,
-           funded_orgs=funded_orgs,
-           totals=totals,
-           all_orgs=all_orgs,
-           datasets=datasets)
+    render(
+        "product/planx/index.html",
+        template,
+        counts=counts,
+        timeline_data=timeline_data,
+        timeline_years=timeline_years,
+        funded_orgs=funded_orgs,
+        totals=totals,
+        all_orgs=all_orgs,
+        datasets=datasets,
+    )
 
 
 def render_organisation_index(env, conn):
@@ -362,7 +394,8 @@ def render_organisation_index(env, conn):
     cursor = conn.cursor()
 
     # Get all organisations with award counts and interventions
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT o.organisation, o.name, o.role, o.end_date,
                COUNT(DISTINCT a.award) as award_count,
                SUM(a.amount) as total_amount,
@@ -371,36 +404,47 @@ def render_organisation_index(env, conn):
         LEFT JOIN awards a ON o.organisation = a.organisation
         GROUP BY o.organisation
         ORDER BY o.name
-    """)
+    """
+    )
 
     all_orgs = [dict(row) for row in cursor.fetchall()]
 
     # Add dissolved flag and get interventions
     from datetime import date
+
     today = date.today().isoformat()
     for org in all_orgs:
-        org['is_dissolved'] = bool(org['end_date'] and org['end_date'] != '' and org['end_date'] < today)
+        org["is_dissolved"] = bool(
+            org["end_date"] and org["end_date"] != "" and org["end_date"] < today
+        )
 
         # Get interventions for this organisation
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT DISTINCT i.intervention, i.name
             FROM awards a
             JOIN interventions i ON a.intervention = i.intervention
             WHERE a.organisation = ?
             ORDER BY i.name
-        """, (org['organisation'],))
-        org['interventions'] = [dict(row) for row in cursor.fetchall()]
+        """,
+            (org["organisation"],),
+        )
+        org["interventions"] = [dict(row) for row in cursor.fetchall()]
 
     # Split into LPAs and other organisations
-    lpas = [org for org in all_orgs if org['role'] == 'local-planning-authority']
-    other_orgs = [org for org in all_orgs if org['role'] != 'local-planning-authority']
+    lpas = [org for org in all_orgs if org["role"] == "local-planning-authority"]
+    other_orgs = [org for org in all_orgs if org["role"] != "local-planning-authority"]
 
-    breadcrumbs = [
-        {'text': 'Organisations'}
-    ]
+    breadcrumbs = [{"text": "Organisations"}]
 
     template = env.get_template("organisation/index.html")
-    render("organisation/index.html", template, lpas=lpas, other_orgs=other_orgs, breadcrumbs=breadcrumbs)
+    render(
+        "organisation/index.html",
+        template,
+        lpas=lpas,
+        other_orgs=other_orgs,
+        breadcrumbs=breadcrumbs,
+    )
 
 
 def render_organisations(env, conn):
@@ -412,28 +456,35 @@ def render_organisations(env, conn):
 
     for org_row in organisations:
         org = dict(org_row)
-        organisation_id = org['organisation']
+        organisation_id = org["organisation"]
 
         # Get projects
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT p.project, p.name
             FROM project_organisations po
             JOIN projects p ON po.project = p.project
             WHERE po.organisation = ?
-        """, (organisation_id,))
+        """,
+            (organisation_id,),
+        )
         projects = [dict(row) for row in cursor.fetchall()]
 
         # Get adoptions
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT *
             FROM adoptions
             WHERE organisation = ?
             ORDER BY start_date ASC
-        """, (organisation_id,))
+        """,
+            (organisation_id,),
+        )
         adoptions = [dict(row) for row in cursor.fetchall()]
 
         # Get awards
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT a.award, a.start_date, a.fund, a.intervention, a.amount,
                    i.name as intervention_name, f.name as fund_name
             FROM awards a
@@ -441,35 +492,49 @@ def render_organisations(env, conn):
             JOIN funds f ON a.fund = f.fund
             WHERE a.organisation = ?
             ORDER BY a.start_date ASC
-        """, (organisation_id,))
+        """,
+            (organisation_id,),
+        )
         awards = [dict(row) for row in cursor.fetchall()]
 
         # Get quality data
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT dataset, status
             FROM quality
             WHERE organisation = ? AND status != ''
-        """, (organisation_id,))
+        """,
+            (organisation_id,),
+        )
         quality = [dict(row) for row in cursor.fetchall()]
 
         # Get partner organisations - partnerships are bidirectional
         # 1. Get awards where this org is the main recipient (has partners in organisations_list)
         # 2. Get awards where this org is in the organisations_list (partner to another org)
 
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT award, organisation, organisations_list
             FROM awards
             WHERE organisation = ? OR organisations_list LIKE ?
-        """, (organisation_id, f'%{organisation_id}%'))
+        """,
+            (organisation_id, f"%{organisation_id}%"),
+        )
         award_rows = cursor.fetchall()
 
         # Parse partner organisations from awards
         partner_counts = {}
         for row in award_rows:
             # Collect all organisations in this award
-            all_orgs = [row['organisation']]
-            if row['organisations_list']:
-                all_orgs.extend([org.strip() for org in row['organisations_list'].split(';') if org.strip()])
+            all_orgs = [row["organisation"]]
+            if row["organisations_list"]:
+                all_orgs.extend(
+                    [
+                        org.strip()
+                        for org in row["organisations_list"].split(";")
+                        if org.strip()
+                    ]
+                )
 
             # Add each org (except ourselves) as a partner
             for org_id in all_orgs:
@@ -479,32 +544,53 @@ def render_organisations(env, conn):
         # Get partner organisation details
         partners = []
         for partner_id, count in partner_counts.items():
-            cursor.execute("SELECT organisation, name FROM organisations WHERE organisation = ?", (partner_id,))
+            cursor.execute(
+                "SELECT organisation, name FROM organisations WHERE organisation = ?",
+                (partner_id,),
+            )
             partner_row = cursor.fetchone()
             if partner_row:
-                partners.append({
-                    'organisation': partner_row['organisation'],
-                    'name': partner_row['name'],
-                    'shared_count': count
-                })
+                partners.append(
+                    {
+                        "organisation": partner_row["organisation"],
+                        "name": partner_row["name"],
+                        "shared_count": count,
+                    }
+                )
 
         # Sort by count descending, then by name
-        partners.sort(key=lambda x: (-x['shared_count'], x['name']))
+        partners.sort(key=lambda x: (-x["shared_count"], x["name"]))
+
+        # Generate maps for this organisation if it has awards
+        shapes_svg = ""
+        points_svg = ""
+        if awards:
+            shapes_svg = process_shapes_svg(
+                conn, filter_type="organisation", filter_value=organisation_id
+            )
+            points_svg = process_points_svg(
+                conn, filter_type="organisation", filter_value=organisation_id
+            )
 
         breadcrumbs = [
-            {'text': 'Organisations', 'url': f'{BASE_PATH}/organisation/'},
-            {'text': org['name']}
+            {"text": "Organisations", "url": f"{BASE_PATH}/organisation/"},
+            {"text": org["name"]},
         ]
 
         template = env.get_template("organisation/detail.html")
-        render(f"organisation/{organisation_id}/index.html", template,
-               organisation=org,
-               projects=projects,
-               adoptions=adoptions,
-               awards=awards,
-               quality=quality,
-               partners=partners,
-               breadcrumbs=breadcrumbs)
+        render(
+            f"organisation/{organisation_id}/index.html",
+            template,
+            organisation=org,
+            projects=projects,
+            adoptions=adoptions,
+            awards=awards,
+            quality=quality,
+            partners=partners,
+            shapes_svg=shapes_svg,
+            points_svg=points_svg,
+            breadcrumbs=breadcrumbs,
+        )
 
 
 def render_projects(env, conn):
@@ -516,38 +602,44 @@ def render_projects(env, conn):
 
     for proj_row in projects:
         project = dict(proj_row)
-        project_id = project['project']
+        project_id = project["project"]
 
         # Get organisations in this project
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT o.*
             FROM organisations o
             JOIN project_organisations po ON o.organisation = po.organisation
             WHERE po.project = ?
             ORDER BY o.score DESC
-        """, (project_id,))
+        """,
+            (project_id,),
+        )
         organisations = [dict(row) for row in cursor.fetchall()]
 
         # Get interventions for each organisation and calculate buckets
-        counts = {legend['reference']: 0 for legend in AWARD_LEGENDS}
+        counts = {legend["reference"]: 0 for legend in AWARD_LEGENDS}
         total = 0
 
         for org in organisations:
             # Get interventions for this organisation
-            cursor.execute("""
+            cursor.execute(
+                """
                 SELECT DISTINCT i.intervention, i.name
                 FROM awards a
                 JOIN interventions i ON a.intervention = i.intervention
                 JOIN project_organisations po ON a.organisation = po.organisation
                 WHERE a.organisation = ? AND po.project = ?
                 ORDER BY i.name
-            """, (org['organisation'], project_id))
+            """,
+                (org["organisation"], project_id),
+            )
             interventions = [dict(row) for row in cursor.fetchall()]
-            org['interventions'] = interventions
+            org["interventions"] = interventions
 
             # Calculate bucket if organisation has awards
             if interventions:
-                intervention_ids = set(i['intervention'] for i in interventions)
+                intervention_ids = set(i["intervention"] for i in interventions)
                 buckets = set()
                 if intervention_ids & set(["innovation", "engagement"]):
                     buckets.add("PropTech")
@@ -561,24 +653,31 @@ def render_projects(env, conn):
                     total += 1
 
         # Generate maps for this project
-        shapes_svg = process_shapes_svg(conn, filter_type='project', filter_value=project_id)
-        points_svg = process_points_svg(conn, filter_type='project', filter_value=project_id)
+        shapes_svg = process_shapes_svg(
+            conn, filter_type="project", filter_value=project_id
+        )
+        points_svg = process_points_svg(
+            conn, filter_type="project", filter_value=project_id
+        )
 
         breadcrumbs = [
-            {'text': 'Projects', 'url': f'{BASE_PATH}/project/'},
-            {'text': project['name']}
+            {"text": "Projects", "url": f"{BASE_PATH}/project/"},
+            {"text": project["name"]},
         ]
 
         template = env.get_template("project/detail.html")
-        render(f"project/{project_id}/index.html", template,
-               project=project,
-               organisations=organisations,
-               shapes_svg=shapes_svg,
-               points_svg=points_svg,
-               legends=AWARD_LEGENDS,
-               counts=counts,
-               total=total,
-               breadcrumbs=breadcrumbs)
+        render(
+            f"project/{project_id}/index.html",
+            template,
+            project=project,
+            organisations=organisations,
+            shapes_svg=shapes_svg,
+            points_svg=points_svg,
+            legends=AWARD_LEGENDS,
+            counts=counts,
+            total=total,
+            breadcrumbs=breadcrumbs,
+        )
 
 
 def render_products(env, conn):
@@ -593,72 +692,96 @@ def render_products(env, conn):
 
     for prod_row in products:
         product = dict(prod_row)
-        product_id = product['product']
+        product_id = product["product"]
 
         # Create filesystem-safe slug (replace / with -)
-        product_slug = product_id.replace('/', '-')
+        product_slug = product_id.replace("/", "-")
 
         # Get adoptions for this product
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT a.*, o.name as org_name, o.area_name
             FROM adoptions a
             JOIN organisations o ON a.organisation = o.organisation
             WHERE a.product = ?
             ORDER BY a.start_date ASC
-        """, (product_id,))
+        """,
+            (product_id,),
+        )
         adoptions = [dict(row) for row in cursor.fetchall()]
 
         # Calculate funnel counts
         counts = {}
-        cursor.execute("SELECT COUNT(*) FROM organisations WHERE role = 'local-planning-authority'")
-        counts['lpa'] = cursor.fetchone()[0]
+        cursor.execute(
+            "SELECT COUNT(*) FROM organisations WHERE role = 'local-planning-authority'"
+        )
+        counts["lpa"] = cursor.fetchone()[0]
 
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT COUNT(*) FROM organisations
             WHERE role = 'local-planning-authority'
             AND (end_date IS NULL OR end_date = '' OR end_date > date('now'))
-        """)
-        counts['active_lpa'] = cursor.fetchone()[0]
+        """
+        )
+        counts["active_lpa"] = cursor.fetchone()[0]
 
-        cursor.execute("SELECT COUNT(DISTINCT organisation) FROM project_organisations WHERE project = 'open-digital-planning'")
-        counts['odp'] = cursor.fetchone()[0]
+        cursor.execute(
+            "SELECT COUNT(DISTINCT organisation) FROM project_organisations WHERE project = 'open-digital-planning'"
+        )
+        counts["odp"] = cursor.fetchone()[0]
 
-        cursor.execute("SELECT COUNT(DISTINCT organisation) FROM organisations WHERE amount > 0")
-        counts['funded'] = cursor.fetchone()[0]
+        cursor.execute(
+            "SELECT COUNT(DISTINCT organisation) FROM organisations WHERE amount > 0"
+        )
+        counts["funded"] = cursor.fetchone()[0]
 
-        cursor.execute("SELECT COUNT(DISTINCT organisation) FROM organisations WHERE software_amount > 0")
-        counts['software'] = cursor.fetchone()[0]
+        cursor.execute(
+            "SELECT COUNT(DISTINCT organisation) FROM organisations WHERE software_amount > 0"
+        )
+        counts["software"] = cursor.fetchone()[0]
 
-        cursor.execute("SELECT COUNT(DISTINCT organisation) FROM organisations WHERE data_score >= 4 AND data_score < 100")
-        counts['providing'] = cursor.fetchone()[0]
+        cursor.execute(
+            "SELECT COUNT(DISTINCT organisation) FROM organisations WHERE data_score >= 4 AND data_score < 100"
+        )
+        counts["providing"] = cursor.fetchone()[0]
 
         cursor.execute("SELECT COUNT(*) FROM organisations WHERE data_ready = 1")
-        counts['data_ready'] = cursor.fetchone()[0]
+        counts["data_ready"] = cursor.fetchone()[0]
 
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT COUNT(DISTINCT o.organisation)
             FROM organisations o
             JOIN adoptions a ON o.organisation = a.organisation
             WHERE a.product = ? AND a.adoption_status IN ('interested', 'adopting')
-        """, (product_id,))
-        counts['interested_or_adopting'] = cursor.fetchone()[0]
+        """,
+            (product_id,),
+        )
+        counts["interested_or_adopting"] = cursor.fetchone()[0]
 
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT COUNT(DISTINCT o.organisation)
             FROM organisations o
             JOIN adoptions a ON o.organisation = a.organisation
             WHERE a.product = ? AND a.adoption_status = 'live'
-        """, (product_id,))
-        counts['live'] = cursor.fetchone()[0]
+        """,
+            (product_id,),
+        )
+        counts["live"] = cursor.fetchone()[0]
 
         # Get timeline data (live adoptions only)
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT a.start_date, o.area_name
             FROM adoptions a
             JOIN organisations o ON a.organisation = o.organisation
             WHERE a.product = ? AND a.adoption_status = 'live'
             ORDER BY a.start_date, o.area_name
-        """, (product_id,))
+        """,
+            (product_id,),
+        )
 
         timeline_data = []
         timeline_years = []
@@ -677,8 +800,10 @@ def render_products(env, conn):
 
             # Calculate bar positions and widths
             for row in rows:
-                date_parts = row['start_date'].split('-')
-                adoption_date = datetime(int(date_parts[0]), int(date_parts[1]), int(date_parts[2]))
+                date_parts = row["start_date"].split("-")
+                adoption_date = datetime(
+                    int(date_parts[0]), int(date_parts[1]), int(date_parts[2])
+                )
 
                 # Calculate offset from start of timeline to adoption date
                 offset_days = (adoption_date - start_date).days
@@ -688,59 +813,66 @@ def render_products(env, conn):
                 duration_days = (today - adoption_date).days
                 width_percent = (duration_days / total_days) * 100
 
-                timeline_data.append({
-                    'area_name': escape(row['area_name']),
-                    'offset_percent': round(offset_percent, 2),
-                    'width_percent': round(width_percent, 2)
-                })
+                timeline_data.append(
+                    {
+                        "area_name": escape(row["area_name"]),
+                        "offset_percent": round(offset_percent, 2),
+                        "width_percent": round(width_percent, 2),
+                    }
+                )
 
         # Get all funded organisations and check if they've adopted this product
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT DISTINCT o.organisation, o.area_name, o.bucket, o.amount,
                    o.proptech_amount, o.software_amount, o.name, a.adoption_status
             FROM organisations o
             LEFT JOIN adoptions a ON o.organisation = a.organisation AND a.product = ?
             WHERE o.amount > 0 AND o.bucket != ''
             ORDER BY o.score DESC
-        """, (product_id,))
+        """,
+            (product_id,),
+        )
 
         funded_orgs = []
-        totals = {'proptech': 0, 'software': 0, 'both': 0, 'all': 0}
+        totals = {"proptech": 0, "software": 0, "both": 0, "all": 0}
 
         for row in cursor.fetchall():
-            bucket = row['bucket']
-            amount = row['amount']
+            bucket = row["bucket"]
+            amount = row["amount"]
 
             # Color blue only if they have adopted this specific product
             color = 0
             status = "Not yet declared interest"
-            if row['adoption_status'] == 'interested':
+            if row["adoption_status"] == "interested":
                 color = 0.5
                 status = f"Have expressed interest in adopting {product['name']}"
-            elif row['adoption_status'] == 'adopting':
+            elif row["adoption_status"] == "adopting":
                 color = 0.5
                 status = f"Adopting {product['name']}"
-            elif row['adoption_status'] == 'live':
+            elif row["adoption_status"] == "live":
                 color = 0.5
                 status = f"Have adopted {product['name']}"
 
-            funded_orgs.append({
-                'area_name': escape(row['area_name']),
-                'bucket': bucket,
-                'amount': amount,
-                'color': color,
-                'name': escape(row['name']),
-                'status': status,
-                'proptech_amount': row['proptech_amount'],
-                'software_amount': row['software_amount']
-            })
+            funded_orgs.append(
+                {
+                    "area_name": escape(row["area_name"]),
+                    "bucket": bucket,
+                    "amount": amount,
+                    "color": color,
+                    "name": escape(row["name"]),
+                    "status": status,
+                    "proptech_amount": row["proptech_amount"],
+                    "software_amount": row["software_amount"],
+                }
+            )
 
             totals[bucket.lower()] += amount
-            totals['all'] += amount
+            totals["all"] += amount
 
         breadcrumbs = [
-            {'text': 'Products', 'url': f'{BASE_PATH}/product/'},
-            {'text': product['name']}
+            {"text": "Products", "url": f"{BASE_PATH}/product/"},
+            {"text": product["name"]},
         ]
 
         # Generate treemap SVG if there are funded organisations
@@ -749,17 +881,20 @@ def render_products(env, conn):
             treemap_svg = generate_treemap_svg(funded_orgs, totals)
 
         template = env.get_template("product/detail.html")
-        render(f"product/{product_slug}/index.html", template,
-               product=product,
-               adoptions=adoptions,
-               counts=counts,
-               timeline_data=timeline_data,
-               timeline_years=timeline_years,
-               funded_orgs=funded_orgs,
-               totals=totals,
-               product_slug=product_slug,
-               breadcrumbs=breadcrumbs,
-               treemap_svg=treemap_svg)
+        render(
+            f"product/{product_slug}/index.html",
+            template,
+            product=product,
+            adoptions=adoptions,
+            counts=counts,
+            timeline_data=timeline_data,
+            timeline_years=timeline_years,
+            funded_orgs=funded_orgs,
+            totals=totals,
+            product_slug=product_slug,
+            breadcrumbs=breadcrumbs,
+            treemap_svg=treemap_svg,
+        )
 
 
 def render_product_index(env, conn):
@@ -767,25 +902,25 @@ def render_product_index(env, conn):
     cursor = conn.cursor()
 
     # Get all products with adoption counts
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT p.product, p.name, p.description,
                COUNT(a.organisation) as adoption_count
         FROM products p
         LEFT JOIN adoptions a ON p.product = a.product
         GROUP BY p.product
         ORDER BY p.name
-    """)
+    """
+    )
 
     products = []
     for row in cursor.fetchall():
         prod = dict(row)
         # Add slug for URL
-        prod['slug'] = prod['product'].replace('/', '-')
+        prod["slug"] = prod["product"].replace("/", "-")
         products.append(prod)
 
-    breadcrumbs = [
-        {'text': 'Products'}
-    ]
+    breadcrumbs = [{"text": "Products"}]
 
     template = env.get_template("product/index.html")
     render("product/index.html", template, products=products, breadcrumbs=breadcrumbs)
@@ -796,20 +931,20 @@ def render_project_index(env, conn):
     cursor = conn.cursor()
 
     # Get all projects with organisation counts
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT p.project, p.name, p.description,
                COUNT(po.organisation) as org_count
         FROM projects p
         LEFT JOIN project_organisations po ON p.project = po.project
         GROUP BY p.project
         ORDER BY p.name
-    """)
+    """
+    )
 
     projects = [dict(row) for row in cursor.fetchall()]
 
-    breadcrumbs = [
-        {'text': 'Projects'}
-    ]
+    breadcrumbs = [{"text": "Projects"}]
 
     template = env.get_template("project/index.html")
     render("project/index.html", template, projects=projects, breadcrumbs=breadcrumbs)
@@ -820,7 +955,8 @@ def render_intervention_index(env, conn):
     cursor = conn.cursor()
 
     # Get all interventions with award counts, organisation counts and totals
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT i.intervention, i.name, i.description,
                COUNT(a.award) as award_count,
                COUNT(DISTINCT a.organisation) as organisation_count,
@@ -829,16 +965,20 @@ def render_intervention_index(env, conn):
         LEFT JOIN awards a ON i.intervention = a.intervention
         GROUP BY i.intervention
         ORDER BY i.name
-    """)
+    """
+    )
 
     interventions = [dict(row) for row in cursor.fetchall()]
 
-    breadcrumbs = [
-        {'text': 'Interventions'}
-    ]
+    breadcrumbs = [{"text": "Interventions"}]
 
     template = env.get_template("intervention/index.html")
-    render("intervention/index.html", template, interventions=interventions, breadcrumbs=breadcrumbs)
+    render(
+        "intervention/index.html",
+        template,
+        interventions=interventions,
+        breadcrumbs=breadcrumbs,
+    )
 
 
 def render_interventions(env, conn):
@@ -850,10 +990,11 @@ def render_interventions(env, conn):
 
     for int_row in interventions:
         intervention = dict(int_row)
-        intervention_id = intervention['intervention']
+        intervention_id = intervention["intervention"]
 
         # Get awards for this intervention
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT a.award, a.start_date, a.organisation, a.fund, a.amount,
                    o.name as org_name,
                    f.name as fund_name
@@ -862,40 +1003,52 @@ def render_interventions(env, conn):
             JOIN funds f ON a.fund = f.fund
             WHERE a.intervention = ?
             ORDER BY a.start_date ASC
-        """, (intervention_id,))
+        """,
+            (intervention_id,),
+        )
         awards = [dict(row) for row in cursor.fetchall()]
 
         # Calculate total amount
-        total_amount = sum(award['amount'] for award in awards)
+        total_amount = sum(award["amount"] for award in awards)
 
         # Get unique organisations
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT DISTINCT o.organisation, o.name
             FROM awards a
             JOIN organisations o ON a.organisation = o.organisation
             WHERE a.intervention = ?
             ORDER BY o.name
-        """, (intervention_id,))
+        """,
+            (intervention_id,),
+        )
         organisations = [dict(row) for row in cursor.fetchall()]
 
         # Generate maps for this intervention
-        shapes_svg = process_shapes_svg(conn, filter_type='intervention', filter_value=intervention_id)
-        points_svg = process_points_svg(conn, filter_type='intervention', filter_value=intervention_id)
+        shapes_svg = process_shapes_svg(
+            conn, filter_type="intervention", filter_value=intervention_id
+        )
+        points_svg = process_points_svg(
+            conn, filter_type="intervention", filter_value=intervention_id
+        )
 
         breadcrumbs = [
-            {'text': 'Interventions', 'url': 'intervention/'},
-            {'text': intervention['name']}
+            {"text": "Interventions", "url": "intervention/"},
+            {"text": intervention["name"]},
         ]
 
         template = env.get_template("intervention/detail.html")
-        render(f"intervention/{intervention_id}/index.html", template,
-               intervention=intervention,
-               awards=awards,
-               total_amount=total_amount,
-               organisations=organisations,
-               shapes_svg=shapes_svg,
-               points_svg=points_svg,
-               breadcrumbs=breadcrumbs)
+        render(
+            f"intervention/{intervention_id}/index.html",
+            template,
+            intervention=intervention,
+            awards=awards,
+            total_amount=total_amount,
+            organisations=organisations,
+            shapes_svg=shapes_svg,
+            points_svg=points_svg,
+            breadcrumbs=breadcrumbs,
+        )
 
 
 def render_fund_index(env, conn):
@@ -903,7 +1056,8 @@ def render_fund_index(env, conn):
     cursor = conn.cursor()
 
     # Get all funds with award counts and totals
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT f.fund, f.name, f.description, f.start_date,
                COUNT(a.award) as award_count,
                COALESCE(SUM(a.amount), 0) as total_amount
@@ -911,25 +1065,27 @@ def render_fund_index(env, conn):
         LEFT JOIN awards a ON f.fund = a.fund
         GROUP BY f.fund
         ORDER BY f.start_date ASC
-    """)
+    """
+    )
 
     funds = [dict(row) for row in cursor.fetchall()]
 
     # Get interventions for each fund
     for fund in funds:
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT DISTINCT i.intervention, i.name
             FROM awards a
             JOIN interventions i ON a.intervention = i.intervention
             WHERE a.fund = ?
             ORDER BY i.name
-        """, (fund['fund'],))
+        """,
+            (fund["fund"],),
+        )
         interventions = cursor.fetchall()
-        fund['interventions'] = [dict(row) for row in interventions]
+        fund["interventions"] = [dict(row) for row in interventions]
 
-    breadcrumbs = [
-        {'text': 'Funds'}
-    ]
+    breadcrumbs = [{"text": "Funds"}]
 
     template = env.get_template("fund/index.html")
     render("fund/index.html", template, funds=funds, breadcrumbs=breadcrumbs)
@@ -944,10 +1100,11 @@ def render_funds(env, conn):
 
     for fund_row in funds:
         fund = dict(fund_row)
-        fund_id = fund['fund']
+        fund_id = fund["fund"]
 
         # Get awards for this fund
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT a.award, a.start_date, a.organisation, a.intervention, a.amount,
                    o.name as org_name,
                    i.name as intervention_name
@@ -956,40 +1113,45 @@ def render_funds(env, conn):
             JOIN interventions i ON a.intervention = i.intervention
             WHERE a.fund = ?
             ORDER BY a.start_date ASC
-        """, (fund_id,))
+        """,
+            (fund_id,),
+        )
         awards = [dict(row) for row in cursor.fetchall()]
 
         # Calculate total amount
-        total_amount = sum(award['amount'] for award in awards)
+        total_amount = sum(award["amount"] for award in awards)
 
         # Get unique organisations
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT DISTINCT o.organisation, o.name
             FROM awards a
             JOIN organisations o ON a.organisation = o.organisation
             WHERE a.fund = ?
             ORDER BY o.name
-        """, (fund_id,))
+        """,
+            (fund_id,),
+        )
         organisations = [dict(row) for row in cursor.fetchall()]
 
         # Generate maps for this fund
-        shapes_svg = process_shapes_svg(conn, filter_type='fund', filter_value=fund_id)
-        points_svg = process_points_svg(conn, filter_type='fund', filter_value=fund_id)
+        shapes_svg = process_shapes_svg(conn, filter_type="fund", filter_value=fund_id)
+        points_svg = process_points_svg(conn, filter_type="fund", filter_value=fund_id)
 
-        breadcrumbs = [
-            {'text': 'Funds', 'url': 'fund/'},
-            {'text': fund['name']}
-        ]
+        breadcrumbs = [{"text": "Funds", "url": "fund/"}, {"text": fund["name"]}]
 
         template = env.get_template("fund/detail.html")
-        render(f"fund/{fund_id}/index.html", template,
-               fund=fund,
-               awards=awards,
-               total_amount=total_amount,
-               organisations=organisations,
-               shapes_svg=shapes_svg,
-               points_svg=points_svg,
-               breadcrumbs=breadcrumbs)
+        render(
+            f"fund/{fund_id}/index.html",
+            template,
+            fund=fund,
+            awards=awards,
+            total_amount=total_amount,
+            organisations=organisations,
+            shapes_svg=shapes_svg,
+            points_svg=points_svg,
+            breadcrumbs=breadcrumbs,
+        )
 
 
 def radius(amount):
@@ -1010,42 +1172,44 @@ def generate_treemap_svg(funded_orgs, totals, width=1200, height=600):
         SVG string
     """
     # Group organisations by bucket
-    buckets = {
-        'PropTech': [],
-        'Software': [],
-        'Both': []
-    }
+    buckets = {"PropTech": [], "Software": [], "Both": []}
 
     for org in funded_orgs:
-        bucket = org['bucket']
+        bucket = org["bucket"]
         if bucket in buckets:
             buckets[bucket].append(org)
 
     # Calculate bucket sizes
     bucket_sizes = {
-        'PropTech': totals.get('proptech', 0),
-        'Software': totals.get('software', 0),
-        'Both': totals.get('both', 0)
+        "PropTech": totals.get("proptech", 0),
+        "Software": totals.get("software", 0),
+        "Both": totals.get("both", 0),
     }
 
-    total = totals.get('all', 1)
+    total = totals.get("all", 1)
     if total == 0:
         total = 1
 
     # Start SVG
-    svg_parts = [f'<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" xmlns="http://www.w3.org/2000/svg">']
-    svg_parts.append('<style>')
-    svg_parts.append('.treemap-rect { stroke: #fff; stroke-width: 2; }')
-    svg_parts.append('.treemap-rect:hover { opacity: 0.8; cursor: pointer; }')
-    svg_parts.append('.treemap-label { font-family: Arial, sans-serif; font-size: 10px; font-weight: normal; pointer-events: none; }')
-    svg_parts.append('.treemap-bucket-label { fill: #0b0c0c; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; pointer-events: none; }')
-    svg_parts.append('</style>')
+    svg_parts = [
+        f'<svg width="{width}" height="{height}" viewBox="0 0 {width} {height}" xmlns="http://www.w3.org/2000/svg">'
+    ]
+    svg_parts.append("<style>")
+    svg_parts.append(".treemap-rect { stroke: #fff; stroke-width: 2; }")
+    svg_parts.append(".treemap-rect:hover { opacity: 0.8; cursor: pointer; }")
+    svg_parts.append(
+        ".treemap-label { font-family: Arial, sans-serif; font-size: 10px; font-weight: normal; pointer-events: none; }"
+    )
+    svg_parts.append(
+        ".treemap-bucket-label { fill: #0b0c0c; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; pointer-events: none; }"
+    )
+    svg_parts.append("</style>")
 
     # Layout buckets horizontally
     x_pos = 0
     padding = 4
 
-    for bucket_name in ['PropTech', 'Software', 'Both']:
+    for bucket_name in ["PropTech", "Software", "Both"]:
         bucket_value = bucket_sizes[bucket_name]
         if bucket_value == 0:
             continue
@@ -1055,61 +1219,72 @@ def generate_treemap_svg(funded_orgs, totals, width=1200, height=600):
 
         if orgs:
             # Create squarified treemap for this bucket
-            rects = squarify_layout(orgs, x_pos + padding, padding,
-                                   bucket_width - 2*padding, height - 2*padding)
+            rects = squarify_layout(
+                orgs,
+                x_pos + padding,
+                padding,
+                bucket_width - 2 * padding,
+                height - 2 * padding,
+            )
 
             # Draw rectangles
             for rect in rects:
-                org = rect['data']
+                org = rect["data"]
 
                 # Determine color based on adoption status
-                if org['color'] > 0:
-                    fill_color = '#12436d'  # Blue for adopted
+                if org["color"] > 0:
+                    fill_color = "#12436d"  # Blue for adopted
                 else:
-                    fill_color = '#f5f5f6'  # Grey for not adopted
+                    fill_color = "#f5f5f6"  # Grey for not adopted
 
                 # Create tooltip text
-                tooltip_lines = [org['name']]
-                if org['bucket'] == 'PropTech' or org['bucket'] == 'Both':
+                tooltip_lines = [org["name"]]
+                if org["bucket"] == "PropTech" or org["bucket"] == "Both":
                     tooltip_lines.append(f"£{org['proptech_amount']:,} for PropTech")
-                if org['bucket'] == 'Software' or org['bucket'] == 'Both':
+                if org["bucket"] == "Software" or org["bucket"] == "Both":
                     tooltip_lines.append(f"£{org['software_amount']:,} for Software")
-                if org['bucket'] == 'Both':
+                if org["bucket"] == "Both":
                     tooltip_lines.append(f"£{org['amount']:,} in total")
-                if org['status']:
-                    tooltip_lines.append(org['status'])
+                if org["status"]:
+                    tooltip_lines.append(org["status"])
 
-                tooltip_text = '\n'.join(tooltip_lines)
+                tooltip_text = "\n".join(tooltip_lines)
 
-                svg_parts.append(f'<rect class="treemap-rect" x="{rect["x"]:.2f}" y="{rect["y"]:.2f}" '
-                               f'width="{rect["width"]:.2f}" height="{rect["height"]:.2f}" '
-                               f'fill="{fill_color}">')
-                svg_parts.append(f'<title>{escape(tooltip_text)}</title>')
-                svg_parts.append('</rect>')
+                svg_parts.append(
+                    f'<rect class="treemap-rect" x="{rect["x"]:.2f}" y="{rect["y"]:.2f}" '
+                    f'width="{rect["width"]:.2f}" height="{rect["height"]:.2f}" '
+                    f'fill="{fill_color}">'
+                )
+                svg_parts.append(f"<title>{escape(tooltip_text)}</title>")
+                svg_parts.append("</rect>")
 
                 # Add text label only if rectangle is large enough
                 # Estimate: ~6px per character width, need margin
-                label = org['area_name']
+                label = org["area_name"]
                 estimated_text_width = len(label) * 6
-                if rect['width'] > estimated_text_width + 10 and rect['height'] > 25:
-                    text_x = rect['x'] + rect['width'] / 2
-                    text_y = rect['y'] + rect['height'] / 2
+                if rect["width"] > estimated_text_width + 10 and rect["height"] > 25:
+                    text_x = rect["x"] + rect["width"] / 2
+                    text_y = rect["y"] + rect["height"] / 2
                     # Use white text on dark background, dark text on light background
-                    text_color = '#ffffff' if fill_color == '#12436d' else '#0b0c0c'
-                    svg_parts.append(f'<text class="treemap-label" fill="{text_color}" x="{text_x:.2f}" y="{text_y:.2f}" '
-                                   f'text-anchor="middle" dominant-baseline="middle">'
-                                   f'{escape(label)}</text>')
+                    text_color = "#ffffff" if fill_color == "#12436d" else "#0b0c0c"
+                    svg_parts.append(
+                        f'<text class="treemap-label" fill="{text_color}" x="{text_x:.2f}" y="{text_y:.2f}" '
+                        f'text-anchor="middle" dominant-baseline="middle">'
+                        f"{escape(label)}</text>"
+                    )
 
         # Add bucket label at top
         label_x = x_pos + bucket_width / 2
         label_y = 15
-        svg_parts.append(f'<text class="treemap-bucket-label" x="{label_x:.2f}" y="{label_y:.2f}" '
-                       f'text-anchor="middle">{escape(bucket_name)}</text>')
+        svg_parts.append(
+            f'<text class="treemap-bucket-label" x="{label_x:.2f}" y="{label_y:.2f}" '
+            f'text-anchor="middle">{escape(bucket_name)}</text>'
+        )
 
         x_pos += bucket_width
 
-    svg_parts.append('</svg>')
-    return '\n'.join(svg_parts)
+    svg_parts.append("</svg>")
+    return "\n".join(svg_parts)
 
 
 def squarify_layout(items, x, y, width, height):
@@ -1126,18 +1301,18 @@ def squarify_layout(items, x, y, width, height):
     if not items:
         return []
 
-    total = sum(item['amount'] for item in items)
+    total = sum(item["amount"] for item in items)
     if total == 0:
         return []
 
     # Sort items by size (largest first) for better squarification
-    sorted_items = sorted(items, key=lambda i: i['amount'], reverse=True)
+    sorted_items = sorted(items, key=lambda i: i["amount"], reverse=True)
 
     rectangles = []
 
     def layout_row(row_items, x, y, width, height):
         """Layout a row of items."""
-        row_total = sum(item['amount'] for item in row_items)
+        row_total = sum(item["amount"] for item in row_items)
         if row_total == 0:
             return []
 
@@ -1146,27 +1321,31 @@ def squarify_layout(items, x, y, width, height):
             # Horizontal layout
             current_x = x
             for item in row_items:
-                item_width = (item['amount'] / row_total) * width
-                rects.append({
-                    'x': current_x,
-                    'y': y,
-                    'width': item_width,
-                    'height': height,
-                    'data': item
-                })
+                item_width = (item["amount"] / row_total) * width
+                rects.append(
+                    {
+                        "x": current_x,
+                        "y": y,
+                        "width": item_width,
+                        "height": height,
+                        "data": item,
+                    }
+                )
                 current_x += item_width
         else:
             # Vertical layout
             current_y = y
             for item in row_items:
-                item_height = (item['amount'] / row_total) * height
-                rects.append({
-                    'x': x,
-                    'y': current_y,
-                    'width': width,
-                    'height': item_height,
-                    'data': item
-                })
+                item_height = (item["amount"] / row_total) * height
+                rects.append(
+                    {
+                        "x": x,
+                        "y": current_y,
+                        "width": width,
+                        "height": item_height,
+                        "data": item,
+                    }
+                )
                 current_y += item_height
 
         return rects
@@ -1177,21 +1356,17 @@ def squarify_layout(items, x, y, width, height):
             return []
 
         if len(items) == 1:
-            return [{
-                'x': x,
-                'y': y,
-                'width': width,
-                'height': height,
-                'data': items[0]
-            }]
+            return [
+                {"x": x, "y": y, "width": width, "height": height, "data": items[0]}
+            ]
 
         # Split items to achieve better aspect ratios
         mid = len(items) // 2
         first_half = items[:mid]
         second_half = items[mid:]
 
-        first_total = sum(item['amount'] for item in first_half)
-        second_total = sum(item['amount'] for item in second_half)
+        first_total = sum(item["amount"] for item in first_half)
+        second_total = sum(item["amount"] for item in second_half)
         total = first_total + second_total
 
         if total == 0:
@@ -1203,12 +1378,20 @@ def squarify_layout(items, x, y, width, height):
             # Split horizontally
             first_width = (first_total / total) * width
             rects.extend(squarify_recursive(first_half, x, y, first_width, height))
-            rects.extend(squarify_recursive(second_half, x + first_width, y, width - first_width, height))
+            rects.extend(
+                squarify_recursive(
+                    second_half, x + first_width, y, width - first_width, height
+                )
+            )
         else:
             # Split vertically
             first_height = (first_total / total) * height
             rects.extend(squarify_recursive(first_half, x, y, width, first_height))
-            rects.extend(squarify_recursive(second_half, x, y + first_height, width, height - first_height))
+            rects.extend(
+                squarify_recursive(
+                    second_half, x, y + first_height, width, height - first_height
+                )
+            )
 
         return rects
 
@@ -1220,44 +1403,66 @@ def process_points_svg(conn, filter_type=None, filter_value=None):
 
     Args:
         conn: Database connection
-        filter_type: Optional filter type ('fund', 'intervention', 'project')
+        filter_type: Optional filter type ('fund', 'intervention', 'project', 'organisation')
         filter_value: Optional filter value (e.g., fund ID)
     """
     cursor = conn.cursor()
 
     # Get awards with organisation data, optionally filtered
-    if filter_type == 'fund':
-        cursor.execute("""
+    if filter_type == "fund":
+        cursor.execute(
+            """
             SELECT a.award, a.intervention, a.amount, a.organisation,
                    o.local_planning_authority, o.entity
             FROM awards a
             JOIN organisations o ON a.organisation = o.organisation
             WHERE a.fund = ?
-        """, (filter_value,))
-    elif filter_type == 'intervention':
-        cursor.execute("""
+        """,
+            (filter_value,),
+        )
+    elif filter_type == "intervention":
+        cursor.execute(
+            """
             SELECT a.award, a.intervention, a.amount, a.organisation,
                    o.local_planning_authority, o.entity
             FROM awards a
             JOIN organisations o ON a.organisation = o.organisation
             WHERE a.intervention = ?
-        """, (filter_value,))
-    elif filter_type == 'project':
-        cursor.execute("""
+        """,
+            (filter_value,),
+        )
+    elif filter_type == "project":
+        cursor.execute(
+            """
             SELECT a.award, a.intervention, a.amount, a.organisation,
                    o.local_planning_authority, o.entity
             FROM awards a
             JOIN organisations o ON a.organisation = o.organisation
             JOIN project_organisations po ON a.organisation = po.organisation
             WHERE po.project = ?
-        """, (filter_value,))
-    else:
-        cursor.execute("""
+        """,
+            (filter_value,),
+        )
+    elif filter_type == "organisation":
+        cursor.execute(
+            """
             SELECT a.award, a.intervention, a.amount, a.organisation,
                    o.local_planning_authority, o.entity
             FROM awards a
             JOIN organisations o ON a.organisation = o.organisation
-        """)
+            WHERE a.organisation = ?
+        """,
+            (filter_value,),
+        )
+    else:
+        cursor.execute(
+            """
+            SELECT a.award, a.intervention, a.amount, a.organisation,
+                   o.local_planning_authority, o.entity
+            FROM awards a
+            JOIN organisations o ON a.organisation = o.organisation
+        """
+        )
 
     awards_data = cursor.fetchall()
 
@@ -1278,29 +1483,31 @@ def process_points_svg(conn, filter_type=None, filter_value=None):
                     circles[area] = line
 
     # Get organisations to map LPA to areas
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT organisation, local_planning_authority, entity
         FROM organisations
         WHERE local_planning_authority != ''
-    """)
+    """
+    )
     org_areas = {}
     for row in cursor.fetchall():
-        org_areas[row['organisation']] = {
-            'lpa': row['local_planning_authority'],
-            'entity': row['entity']
+        org_areas[row["organisation"]] = {
+            "lpa": row["local_planning_authority"],
+            "entity": row["entity"],
         }
 
     # Build award circles
     award_circles = []
     for award_row in awards_data:
-        org = award_row['organisation']
-        intervention = award_row['intervention']
-        amount = award_row['amount']
+        org = award_row["organisation"]
+        intervention = award_row["intervention"]
+        amount = award_row["amount"]
 
         if org not in org_areas:
             continue
 
-        lpa = org_areas[org]['lpa']
+        lpa = org_areas[org]["lpa"]
         if lpa in circles:
             line = circles[lpa]
             r = radius(amount)
@@ -1330,11 +1537,17 @@ def process_points_svg(conn, filter_type=None, filter_value=None):
                     y100k = 100 - r100k
                     y500k = 100 - r500k
                     y1m = 100 - r1m
-                    output.append(f'<circle cx="50" cy="{y1m}" r="{r1m}" /><text x="75" y="62.5" class="key" style="font-size: 11px">£1m</text>\n')
-                    output.append(f'<circle cx="50" cy="{y500k}" r="{r500k}" /><text x="75" y="81" class="key" style="font-size: 11px">£500k</text>\n')
-                    output.append(f'<circle cx="50" cy="{y100k}" r="{r100k}" /><text x="75" y="100" class="key" style="font-size: 11px">£100k</text>\n')
+                    output.append(
+                        f'<circle cx="50" cy="{y1m}" r="{r1m}" /><text x="75" y="62.5" class="key" style="font-size: 11px">£1m</text>\n'
+                    )
+                    output.append(
+                        f'<circle cx="50" cy="{y500k}" r="{r500k}" /><text x="75" y="81" class="key" style="font-size: 11px">£500k</text>\n'
+                    )
+                    output.append(
+                        f'<circle cx="50" cy="{y100k}" r="{r100k}" /><text x="75" y="100" class="key" style="font-size: 11px">£100k</text>\n'
+                    )
 
-    return ''.join(output)
+    return "".join(output)
 
 
 def process_shapes_svg(conn, filter_type=None, filter_value=None):
@@ -1342,83 +1555,125 @@ def process_shapes_svg(conn, filter_type=None, filter_value=None):
 
     Args:
         conn: Database connection
-        filter_type: Optional filter type ('fund', 'intervention', 'project')
+        filter_type: Optional filter type ('fund', 'intervention', 'project', 'organisation')
         filter_value: Optional filter value (e.g., fund ID)
     """
     cursor = conn.cursor()
 
     # Get funded organisations with their classifications, optionally filtered
-    if filter_type == 'fund':
-        cursor.execute("""
+    if filter_type == "fund":
+        cursor.execute(
+            """
             SELECT a.organisation, o.local_planning_authority, o.name
             FROM awards a
             JOIN organisations o ON a.organisation = o.organisation
             WHERE o.local_planning_authority != '' AND a.fund = ?
             GROUP BY a.organisation
-        """, (filter_value,))
-    elif filter_type == 'intervention':
-        cursor.execute("""
+        """,
+            (filter_value,),
+        )
+    elif filter_type == "intervention":
+        cursor.execute(
+            """
             SELECT a.organisation, o.local_planning_authority, o.name
             FROM awards a
             JOIN organisations o ON a.organisation = o.organisation
             WHERE o.local_planning_authority != '' AND a.intervention = ?
             GROUP BY a.organisation
-        """, (filter_value,))
-    elif filter_type == 'project':
-        cursor.execute("""
+        """,
+            (filter_value,),
+        )
+    elif filter_type == "project":
+        cursor.execute(
+            """
             SELECT DISTINCT a.organisation, o.local_planning_authority, o.name
             FROM awards a
             JOIN organisations o ON a.organisation = o.organisation
             JOIN project_organisations po ON a.organisation = po.organisation
             WHERE o.local_planning_authority != '' AND po.project = ?
-        """, (filter_value,))
+        """,
+            (filter_value,),
+        )
+    elif filter_type == "organisation":
+        cursor.execute(
+            """
+            SELECT a.organisation, o.local_planning_authority, o.name
+            FROM awards a
+            JOIN organisations o ON a.organisation = o.organisation
+            WHERE o.local_planning_authority != '' AND a.organisation = ?
+            GROUP BY a.organisation
+        """,
+            (filter_value,),
+        )
     else:
-        cursor.execute("""
+        cursor.execute(
+            """
             SELECT a.organisation, o.local_planning_authority, o.name
             FROM awards a
             JOIN organisations o ON a.organisation = o.organisation
             WHERE o.local_planning_authority != ''
             GROUP BY a.organisation
-        """)
+        """
+        )
 
     lpa_orgs = {}
     for row in cursor.fetchall():
-        lpa_orgs[row['local_planning_authority']] = {
-            'organisation': row['organisation'],
-            'name': row['name']
+        lpa_orgs[row["local_planning_authority"]] = {
+            "organisation": row["organisation"],
+            "name": row["name"],
         }
 
     # Get interventions per organisation to calculate bucket
-    if filter_type == 'fund':
-        cursor.execute("""
+    if filter_type == "fund":
+        cursor.execute(
+            """
             SELECT organisation, intervention
             FROM awards
             WHERE fund = ?
-        """, (filter_value,))
-    elif filter_type == 'intervention':
-        cursor.execute("""
+        """,
+            (filter_value,),
+        )
+    elif filter_type == "intervention":
+        cursor.execute(
+            """
             SELECT organisation, intervention
             FROM awards
             WHERE intervention = ?
-        """, (filter_value,))
-    elif filter_type == 'project':
-        cursor.execute("""
+        """,
+            (filter_value,),
+        )
+    elif filter_type == "project":
+        cursor.execute(
+            """
             SELECT a.organisation, a.intervention
             FROM awards a
             JOIN project_organisations po ON a.organisation = po.organisation
             WHERE po.project = ?
-        """, (filter_value,))
-    else:
-        cursor.execute("""
+        """,
+            (filter_value,),
+        )
+    elif filter_type == "organisation":
+        cursor.execute(
+            """
             SELECT organisation, intervention
             FROM awards
-        """)
+            WHERE organisation = ?
+        """,
+            (filter_value,),
+        )
+    else:
+        cursor.execute(
+            """
+            SELECT organisation, intervention
+            FROM awards
+        """
+        )
 
     org_interventions = {}
     for row in cursor.fetchall():
-        org = row['organisation']
+        org = row["organisation"]
         org_interventions.setdefault(org, set())
-        org_interventions[org].add(row['intervention'])
+        org_interventions[org].add(row["intervention"])
 
     # Calculate bucket for each organisation
     org_buckets = {}
@@ -1461,22 +1716,26 @@ def process_shapes_svg(conn, filter_type=None, filter_value=None):
                     current_name = ""
                 else:
                     found.add(lpa)
-                    organisation = lpa_orgs[lpa]['organisation']
-                    current_name = lpa_orgs[lpa]['name']
+                    organisation = lpa_orgs[lpa]["organisation"]
+                    current_name = lpa_orgs[lpa]["name"]
                     current_class = org_buckets.get(organisation, "")
                     current_lpa = lpa
 
             if 'class="local-planning-authority"' in line:
-                org_link = f"/organisation/{lpa_orgs[current_lpa]['organisation']}/" if current_lpa and current_lpa in lpa_orgs else "#"
+                org_link = (
+                    f"/organisation/{lpa_orgs[current_lpa]['organisation']}/"
+                    if current_lpa and current_lpa in lpa_orgs
+                    else "#"
+                )
                 line = line.replace("<path", f'<a href="{BASE_PATH}{org_link}"><path')
                 line = line.replace(
                     'class="local-planning-authority"/>',
-                    f'class="local-planning-authority {current_class}"><title>{current_name}</title></path></a>'
+                    f'class="local-planning-authority {current_class}"><title>{current_name}</title></path></a>',
                 )
 
             output.append(line)
 
-    return ''.join(output)
+    return "".join(output)
 
 
 def render_awards(env, conn):
@@ -1484,7 +1743,8 @@ def render_awards(env, conn):
     cursor = conn.cursor()
 
     # Get all awards with organisation names
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT a.award, a.start_date, a.organisation, a.intervention, a.fund,
                a.amount, a.organisations_list, a.notes,
                o.name as org_name,
@@ -1495,48 +1755,63 @@ def render_awards(env, conn):
         JOIN interventions i ON a.intervention = i.intervention
         JOIN funds f ON a.fund = f.fund
         ORDER BY a.start_date ASC
-    """)
+    """
+    )
 
     awards = []
     for row in cursor.fetchall():
         # Format partners
         partners_html = ""
-        if row['organisations_list']:
-            partner_orgs = [p for p in row['organisations_list'].split(";") if p]
-            cursor.execute("""
+        if row["organisations_list"]:
+            partner_orgs = [p for p in row["organisations_list"].split(";") if p]
+            cursor.execute(
+                """
                 SELECT organisation, name FROM organisations WHERE organisation IN ({})
-            """.format(','.join(['?'] * len(partner_orgs))), partner_orgs)
-            partners_html = ", ".join([f'<a href="{BASE_PATH}organisation/{r["organisation"]}/">{escape(r["name"])}</a>' for r in cursor.fetchall()])
+            """.format(
+                    ",".join(["?"] * len(partner_orgs))
+                ),
+                partner_orgs,
+            )
+            partners_html = ", ".join(
+                [
+                    f'<a href="{BASE_PATH}organisation/{r["organisation"]}/">{escape(r["name"])}</a>'
+                    for r in cursor.fetchall()
+                ]
+            )
 
-        awards.append({
-            'award': row['award'],
-            'start_date': row['start_date'],
-            'organisation': row['organisation'],
-            'org_name': escape(row['org_name']),
-            'fund': row['fund'],
-            'fund_name': row['fund_name'],
-            'intervention': row['intervention'],
-            'intervention_name': row['intervention_name'],
-            'amount': row['amount'],
-            'amount_display': f"£{row['amount']:,}" if row['amount'] else "",
-            'partners': partners_html,
-            'notes': row['notes']
-        })
+        awards.append(
+            {
+                "award": row["award"],
+                "start_date": row["start_date"],
+                "organisation": row["organisation"],
+                "org_name": escape(row["org_name"]),
+                "fund": row["fund"],
+                "fund_name": row["fund_name"],
+                "intervention": row["intervention"],
+                "intervention_name": row["intervention_name"],
+                "amount": row["amount"],
+                "amount_display": f"£{row['amount']:,}" if row["amount"] else "",
+                "partners": partners_html,
+                "notes": row["notes"],
+            }
+        )
 
     # Calculate counts for stacked chart
-    counts = {item['reference']: 0 for item in AWARD_LEGENDS}
+    counts = {item["reference"]: 0 for item in AWARD_LEGENDS}
 
     # Get organisation buckets
-    cursor.execute("""
+    cursor.execute(
+        """
         SELECT organisation, intervention
         FROM awards
-    """)
+    """
+    )
 
     org_interventions = {}
     for row in cursor.fetchall():
-        org = row['organisation']
+        org = row["organisation"]
         org_interventions.setdefault(org, set())
-        org_interventions[org].add(row['intervention'])
+        org_interventions[org].add(row["intervention"])
 
     for org, interventions in org_interventions.items():
         buckets = set()
@@ -1555,22 +1830,25 @@ def render_awards(env, conn):
     points_svg = process_points_svg(conn)
 
     # Get total LPA count
-    cursor.execute("SELECT COUNT(*) FROM organisations WHERE role = 'local-planning-authority'")
+    cursor.execute(
+        "SELECT COUNT(*) FROM organisations WHERE role = 'local-planning-authority'"
+    )
     total = cursor.fetchone()[0]
 
-    breadcrumbs = [
-        {'text': 'Awards'}
-    ]
+    breadcrumbs = [{"text": "Awards"}]
 
     template = env.get_template("award/index.html")
-    render("award/index.html", template,
-           awards=awards,
-           legends=AWARD_LEGENDS,
-           counts=counts,
-           total=total,
-           shapes_svg=shapes_svg,
-           points_svg=points_svg,
-           breadcrumbs=breadcrumbs)
+    render(
+        "award/index.html",
+        template,
+        awards=awards,
+        legends=AWARD_LEGENDS,
+        counts=counts,
+        total=total,
+        shapes_svg=shapes_svg,
+        points_svg=points_svg,
+        breadcrumbs=breadcrumbs,
+    )
 
 
 def main():
@@ -1584,9 +1862,9 @@ def main():
     env = Environment(loader=FileSystemLoader("templates/"))
 
     # Add custom filters
-    env.filters['urlencode'] = lambda s: quote(str(s), safe='')
-    env.filters['slugify'] = lambda s: str(s).replace('/', '-')
-    env.filters['govuk_date'] = lambda s: format_govuk_date(s)
+    env.filters["urlencode"] = lambda s: quote(str(s), safe="")
+    env.filters["slugify"] = lambda s: str(s).replace("/", "-")
+    env.filters["govuk_date"] = lambda s: format_govuk_date(s)
 
     try:
         print("Rendering pages...", file=sys.stderr)
@@ -1608,6 +1886,7 @@ def main():
     except Exception as e:
         print(f"Error rendering pages: {e}", file=sys.stderr)
         import traceback
+
         traceback.print_exc()
         raise
     finally:

@@ -132,6 +132,40 @@
     
     <main class="govuk-main-wrapper govspeak govuk-body" id="main-content" role="main">
 
+<style>
+.map {
+ width: 640px;
+ resize: both;
+}
+.shapes svg {
+ width: 100%;
+ fill: #0b0c0c;
+ padding: 2.5em;
+}
+.points svg {
+ width: 100%;
+ fill: #0b0c0c;
+ padding: 2.5em;
+}
+svg path {
+  fill:none;
+  stroke:#000;
+  stroke-width:0.5px;
+}
+svg circle {
+  fill:red;
+  opacity: 0.125;
+}
+svg path.Software { fill: #22d0b6; stroke: #000; stroke-width: 0.5px }
+svg path.PropTech_Software { fill: #a8bd3a; stroke: #000; stroke-width: 0.5px }
+svg path.Plan-making_Software { fill: #118c7b; stroke: #000; stroke-width: 0.5px }
+svg path.Plan-making_PropTech_Software { fill: #746cb1; stroke: #000; stroke-width: 0.5px }
+svg path.PropTech { fill: #27a0cc; stroke: #000; stroke-width: 0.5px }
+svg path.Plan-making_PropTech { fill: #206095; stroke: #000; stroke-width: 0.5px }
+svg path.Plan-making { fill: #eee; stroke: #000; stroke-width: 0.5px }
+svg path:hover { opacity: 0.5 }
+</style>
+
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
         <span class="govuk-caption-xl">Organisation</span>
@@ -176,6 +210,10 @@
             </div>
             
         </dl>
+
+        
+
+        
 
         
         <h2 class="govuk-heading-m">Projects</h2>
