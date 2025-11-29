@@ -1,0 +1,1482 @@
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="govuk-template">
+  <head>
+    <meta charset="utf-8">
+    <title>BOPS | Planning Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0c0c">
+    <link rel="shortcut icon" sizes="48x48" href="https://www.planning.data.gov.uk//static/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" sizes="32x32" href="https://www.planning.data.gov.uk//static/images/favicon-32x32.png" type="image/png">
+    <link rel="shortcut icon" sizes="16x16" href="https://www.planning.data.gov.uk//static/images/favicon-16x16.png" type="image/png">
+    <link rel="apple-touch-icon" href="https://www.planning.data.gov.uk//static/images/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://www.planning.data.gov.uk//static/stylesheets/application.css">
+    <link rel="stylesheet" href="https://www.planning.data.gov.uk//static/stylesheets/vendor/accessible-autocomplete.css">
+  </head>
+  <body class="govuk-template__body">
+    <script>document.body.className += ' js-enabled' + ('noModule' in HTMLScriptElement.prototype ? ' govuk-frontend-supported' : '');</script>
+    <a href="#main-content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+    <script>
+      // Wait for DOM content to be loaded and dptp to be initialized
+      document.addEventListener('DOMContentLoaded', function() {
+        // Check if dptp is available
+        if (window.dptp && window.dptp.cookies) {
+          window.acceptCookies = window.dptp.cookies.acceptCookies;
+          window.hideCookieBanner = window.dptp.cookies.hideCookieBanner;
+          window.hideCookieConfirmation = window.dptp.cookies.hideCookieConfirmation;
+        } else {
+          console.error('Cookie functions not available');
+        }
+      });
+    </script>
+    <div class="govuk-cookie-banner" data-nosnippet role="region" aria-label="Cookies on planning.data.gov.uk/"
+         id="cookie-banner" aria-label="Cookies on planning.data.gov.uk" style="display: none" aria-hidden="true">
+    <div class="govuk-cookie-banner__message govuk-width-container">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <h2 class="govuk-cookie-banner__heading govuk-heading-m">
+          Cookies on planning.data.gov.uk
+        </h2>
+        <div class="govuk-cookie-banner__content">
+          <p class="govuk-body">We use some essential cookies to make this service work.</p>
+          <p class="govuk-body">We'd also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
+        </div>
+      </div>
+    </div>
+    <div class="govuk-button-group">
+      <button value="accept" type="button" name="cookies" class="govuk-button" data-module="govuk-button"
+         onclick="acceptCookies({ essential: true, settings: false, usage: true, campaigns: false });">
+        Accept analytics cookies
+      </button>
+      <button value="reject" type="button" name="cookies" class="govuk-button" data-module="govuk-button"
+         onclick="acceptCookies({ essential: true, settings: false, usage: false, campaigns: false });">
+        Reject analytics cookies
+      </button>
+      <a class="govuk-link" href="/cookies">Customise cookie preferences</a>
+    </div>
+  </div>
+</div>
+<div class="govuk-cookie-banner" data-nosnippet role="region" aria-label="Cookies on planning.data.gov.uk"
+     id="cookie-confirmation" style="display: none" aria-hidden="true">
+  
+  <div class="govuk-cookie-banner__message govuk-width-container">
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        
+        <div class="govuk-cookie-banner__content">
+          
+          <p class="govuk-notification-banner__heading">
+              You have accepted additional cookies. You can <a class="govuk-notification-banner__link" href="/cookies">change your cookie settings</a> at any time.
+            </p>
+          
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="govuk-button-group">
+      <a href="#" role="button" draggable="false" class="govuk-button" data-module="govuk-button"
+         onclick="hideCookieConfirmation();">
+        Hide cookie message
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-width-container app-header__container">
+    <div class="govuk-header__logo app-header__logo">
+      <a href="https://www.planning.data.gov.uk" class="govuk-header__link govuk-header__link--homepage">
+          <span class="app-header__logotype">Planning Data</span>
+      </a>
+          <a href="/performance/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__product-name">
+          Performance
+        </span>
+      </a>
+    </div>
+  </div>
+</header>
+
+
+<div class="govuk-width-container">
+    
+    <div class="govuk-breadcrumbs">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="/">Performance</a>
+        </li>
+        
+        
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="/performance/product/">Products</a>
+        </li>
+        
+        
+        
+        <li class="govuk-breadcrumbs__list-item">
+          BOPS
+        </li>
+        
+        
+      </ol>
+    </div>
+    
+    <main class="govuk-main-wrapper govspeak govuk-body" id="main-content" role="main">
+
+<style>
+.chart {
+  width: 100%;
+  max-width: 100%;
+  min-height: 450px;
+}
+
+.timeline-container {
+  width: 100%;
+  margin: 2em 0;
+  font-size: 0.9em;
+}
+
+.timeline-header {
+  display: flex;
+  margin-bottom: 0.5em;
+  border-bottom: 2px solid #b1b4b6;
+}
+
+.timeline-labels {
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.timeline-axis {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5em;
+}
+
+.timeline-year {
+  font-weight: bold;
+  color: #0b0c0c;
+}
+
+.timeline-row {
+  display: flex;
+  margin-bottom: 0.25em;
+  min-height: 2em;
+  align-items: center;
+}
+
+.timeline-label {
+  width: 200px;
+  flex-shrink: 0;
+  padding-right: 1em;
+  font-size: 0.9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeline-track {
+  flex: 1;
+  position: relative;
+  height: 1.5em;
+  background-color: #f3f2f1;
+  border: 1px solid #b1b4b6;
+}
+
+.timeline-bar {
+  height: 100%;
+  background-color: #12436d;
+  position: absolute;
+  top: 0;
+}
+
+.tooltip {
+    background:#fff;
+    padding:10px;
+    border-style:solid;
+}
+
+.treemap-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 2em 0;
+}
+
+.treemap-container svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.adoption-bar-chart {
+  margin: 2em 0;
+}
+
+.adoption-bar-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.adoption-bar-label {
+  width: 280px;
+  flex-shrink: 0;
+  padding-right: 1em;
+  font-size: 16px;
+  font-family: "GDS Transport", arial, sans-serif;
+}
+
+.adoption-bar-container {
+  flex: 1;
+  position: relative;
+  height: 40px;
+  background-color: #f3f2f1;
+}
+
+.adoption-bar {
+  height: 100%;
+  background-color: #12436d;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  transition: width 0.3s ease;
+}
+
+.adoption-bar-count {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 19px;
+  white-space: nowrap;
+}
+</style>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <span class="govuk-caption-xl">Product</span>
+        <h1 class="govuk-heading-xl">BOPS</h1>
+
+        
+
+        <h2 class="govuk-heading-l" id="funnel">Adoption funnel</h2>
+        <p class="govuk-body">Organisations potentially able to adopt BOPS.</p>
+
+        <div class="adoption-bar-chart">
+            
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">Local Planning Authority</div>
+                <div class="adoption-bar-container">
+                    <div class="adoption-bar" style="width: 97.5%;">
+                        <span class="adoption-bar-count">310</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label"><a href=/performance/award/">Awarded funding</a></div>
+                <div class="adoption-bar-container">
+                    <div class="adoption-bar" style="width: 52.5%;">
+                        <span class="adoption-bar-count">167</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">Funded for Software</div>
+                <div class="adoption-bar-container">
+                    <div class="adoption-bar" style="width: 45.6%;">
+                        <span class="adoption-bar-count">145</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">Providing some data</div>
+                <div class="adoption-bar-container">
+                    
+                    <div class="adoption-bar" style="width: 11.6%;">
+                        <span class="adoption-bar-count">37</span>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">Data ready for BOPS</div>
+                <div class="adoption-bar-container">
+                    
+                    <div class="adoption-bar" style="width: 6.9%;">
+                        <span class="adoption-bar-count">22</span>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">Preparing to launch BOPS</div>
+                <div class="adoption-bar-container">
+                    
+                </div>
+            </div>
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label"><a href="#organisations">Have adopted BOPS</a></div>
+                <div class="adoption-bar-container">
+                    
+                    <div class="adoption-bar" style="width: 1.3%;">
+                        <span class="adoption-bar-count">4</span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        
+        <h2 class="govuk-heading-l" id="timeline">Adoption timeline</h2>
+        <p class="govuk-body">Timeline of organisations adopting BOPS.</p>
+
+        <div class="timeline-container">
+            <div class="timeline-header">
+                <div class="timeline-labels"></div>
+                <div class="timeline-axis">
+                    
+                    <div class="timeline-year">2022</div>
+                    
+                    <div class="timeline-year">2023</div>
+                    
+                    <div class="timeline-year">2024</div>
+                    
+                    <div class="timeline-year">2025</div>
+                    
+                </div>
+            </div>
+            
+            <div class="timeline-row">
+                <div class="timeline-label">Lambeth</div>
+                <div class="timeline-track">
+                    <div class="timeline-bar" style="margin-left: 14.85%; width: 85.15%;"></div>
+                </div>
+            </div>
+            
+            <div class="timeline-row">
+                <div class="timeline-label">Camden</div>
+                <div class="timeline-track">
+                    <div class="timeline-bar" style="margin-left: 48.95%; width: 51.05%;"></div>
+                </div>
+            </div>
+            
+            <div class="timeline-row">
+                <div class="timeline-label">Medway</div>
+                <div class="timeline-track">
+                    <div class="timeline-bar" style="margin-left: 70.31%; width: 29.69%;"></div>
+                </div>
+            </div>
+            
+            <div class="timeline-row">
+                <div class="timeline-label">Barnet</div>
+                <div class="timeline-track">
+                    <div class="timeline-bar" style="margin-left: 83.05%; width: 16.95%;"></div>
+                </div>
+            </div>
+            
+        </div>
+        
+
+        
+        <h2 class="govuk-heading-l">Funding and adoption</h2>
+
+        <div class="treemap-container">
+            <svg width="1200" height="600" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+<style>
+.treemap-rect { stroke: #fff; stroke-width: 2; }
+.treemap-rect:hover { opacity: 0.8; cursor: pointer; }
+.treemap-label { font-family: Arial, sans-serif; font-size: 10px; font-weight: normal; pointer-events: none; }
+.treemap-bucket-label { fill: #0b0c0c; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; pointer-events: none; }
+</style>
+<rect class="treemap-rect" x="4.00" y="4.00" width="113.99" height="65.44" fill="#f5f5f6">
+<title>Cornwall Council
+£575,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="60.99" y="36.72" text-anchor="middle" dominant-baseline="middle">Cornwall</text>
+<rect class="treemap-rect" x="4.00" y="69.44" width="113.99" height="59.61" fill="#f5f5f6">
+<title>Epping Forest District Council
+£523,800 for PropTech
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="60.99" y="99.24" text-anchor="middle" dominant-baseline="middle">Epping Forest</text>
+<rect class="treemap-rect" x="4.00" y="129.05" width="113.99" height="54.47" fill="#f5f5f6">
+<title>Bolsover District Council
+£478,600 for PropTech
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="60.99" y="156.28" text-anchor="middle" dominant-baseline="middle">Bolsover</text>
+<rect class="treemap-rect" x="4.00" y="183.52" width="58.77" height="102.64" fill="#f5f5f6">
+<title>North East Derbyshire District Council
+£465,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="62.77" y="183.52" width="55.22" height="102.64" fill="#f5f5f6">
+<title>City of Bradford Metropolitan District Council
+£436,900 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="4.00" y="286.16" width="50.19" height="112.44" fill="#f5f5f6">
+<title>North Kesteven District Council
+£435,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="54.19" y="286.16" width="63.80" height="66.69" fill="#f5f5f6">
+<title>London Borough of Wandsworth
+£328,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="54.19" y="352.85" width="63.80" height="45.75" fill="#f5f5f6">
+<title>London Borough of Newham
+£225,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="86.09" y="375.72" text-anchor="middle" dominant-baseline="middle">Newham</text>
+<rect class="treemap-rect" x="4.00" y="398.60" width="39.14" height="74.38" fill="#f5f5f6">
+<title>Cheshire West and Chester Council
+£224,400 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="43.14" y="398.60" width="38.89" height="74.38" fill="#f5f5f6">
+<title>Watford Borough Council
+£222,975 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="82.03" y="398.60" width="35.96" height="74.38" fill="#f5f5f6">
+<title>Surrey County Council
+£206,187 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="4.00" y="472.98" width="57.21" height="45.35" fill="#f5f5f6">
+<title>Chesterfield Borough Council
+£200,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="4.00" y="518.32" width="57.21" height="28.34" fill="#f5f5f6">
+<title>Harborough District Council
+£125,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="61.21" y="472.98" width="56.78" height="27.42" fill="#f5f5f6">
+<title>Walsall Metropolitan Borough Council
+£120,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="89.60" y="486.69" text-anchor="middle" dominant-baseline="middle">Walsall</text>
+<rect class="treemap-rect" x="61.21" y="500.39" width="31.54" height="46.27" fill="#f5f5f6">
+<title>Lewes District Council
+£112,500 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="92.75" y="500.39" width="25.24" height="46.27" fill="#f5f5f6">
+<title>Runnymede Borough Council
+£90,020 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="4.00" y="546.67" width="22.35" height="49.33" fill="#f5f5f6">
+<title>Wigan Metropolitan Borough Council
+£85,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="26.35" y="546.67" width="44.70" height="24.67" fill="#f5f5f6">
+<title>Durham County Council
+£85,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="26.35" y="571.33" width="44.70" height="24.67" fill="#f5f5f6">
+<title>Somerset Council
+£85,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="71.05" y="546.67" width="46.93" height="23.39" fill="#f5f5f6">
+<title>Teignbridge District Council
+£84,610 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="71.05" y="570.05" width="23.50" height="25.95" fill="#f5f5f6">
+<title>Reigate and Banstead Borough Council
+£47,000 for PropTech
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="94.55" y="570.05" width="23.44" height="25.95" fill="#f5f5f6">
+<title>Lancaster City Council
+£46,875 for PropTech
+Not yet declared interest</title>
+</rect>
+<text class="treemap-bucket-label" x="60.99" y="15.00" text-anchor="middle">PropTech</text>
+<rect class="treemap-rect" x="125.99" y="4.00" width="372.03" height="207.70" fill="#f5f5f6">
+<title>Buckinghamshire Council
+£5,650,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="312.00" y="107.85" text-anchor="middle" dominant-baseline="middle">Buckinghamshire</text>
+<rect class="treemap-rect" x="125.99" y="211.70" width="307.49" height="180.13" fill="#12436d">
+<title>London Borough of Camden
+£4,050,000 for Software
+Have adopted BOPS</title>
+</rect>
+<text class="treemap-label" fill="#ffffff" x="279.73" y="301.76" text-anchor="middle" dominant-baseline="middle">Camden</text>
+<rect class="treemap-rect" x="433.48" y="211.70" width="64.54" height="180.13" fill="#12436d">
+<title>Medway Council
+£850,000 for Software
+Have adopted BOPS</title>
+</rect>
+<text class="treemap-label" fill="#ffffff" x="465.75" y="301.76" text-anchor="middle" dominant-baseline="middle">Medway</text>
+<rect class="treemap-rect" x="125.99" y="391.83" width="125.11" height="66.46" fill="#f5f5f6">
+<title>Doncaster Metropolitan Borough Council
+£608,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="188.54" y="425.06" text-anchor="middle" dominant-baseline="middle">Doncaster</text>
+<rect class="treemap-rect" x="251.09" y="391.83" width="123.46" height="66.46" fill="#12436d">
+<title>London Borough of Barnet
+£600,000 for Software
+Have adopted BOPS</title>
+</rect>
+<text class="treemap-label" fill="#ffffff" x="312.82" y="425.06" text-anchor="middle" dominant-baseline="middle">Barnet</text>
+<rect class="treemap-rect" x="374.55" y="391.83" width="123.46" height="66.46" fill="#f5f5f6">
+<title>Tewkesbury Borough Council
+£600,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="436.28" y="425.06" text-anchor="middle" dominant-baseline="middle">Tewkesbury</text>
+<rect class="treemap-rect" x="498.02" y="4.00" width="86.34" height="80.78" fill="#f5f5f6">
+<title>Gateshead Metropolitan Borough Council
+£510,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="541.18" y="44.39" text-anchor="middle" dominant-baseline="middle">Gateshead</text>
+<rect class="treemap-rect" x="498.02" y="84.78" width="86.34" height="80.78" fill="#f5f5f6">
+<title>London Borough of Southwark
+£510,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="541.18" y="125.18" text-anchor="middle" dominant-baseline="middle">Southwark</text>
+<rect class="treemap-rect" x="498.02" y="165.57" width="86.34" height="70.49" fill="#f5f5f6">
+<title>Gloucester City Council
+£445,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="541.18" y="200.81" text-anchor="middle" dominant-baseline="middle">Gloucester</text>
+<rect class="treemap-rect" x="498.02" y="236.06" width="86.34" height="63.36" fill="#f5f5f6">
+<title>Canterbury City Council
+£400,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="541.18" y="267.74" text-anchor="middle" dominant-baseline="middle">Canterbury</text>
+<rect class="treemap-rect" x="498.02" y="299.42" width="86.34" height="55.92" fill="#f5f5f6">
+<title>West Berkshire Council
+£353,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="498.02" y="355.33" width="86.34" height="55.44" fill="#f5f5f6">
+<title>Royal Borough of Kingston upon Thames
+£350,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="498.02" y="410.77" width="86.34" height="47.52" fill="#f5f5f6">
+<title>St Albans City and District Council
+£300,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="541.18" y="434.53" text-anchor="middle" dominant-baseline="middle">St Albans</text>
+<rect class="treemap-rect" x="125.99" y="458.29" width="55.38" height="67.92" fill="#f5f5f6">
+<title>Leeds City Council
+£275,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="153.68" y="492.25" text-anchor="middle" dominant-baseline="middle">Leeds</text>
+<rect class="treemap-rect" x="181.36" y="458.29" width="50.34" height="67.92" fill="#f5f5f6">
+<title>Great Yarmouth Borough Council
+£250,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="231.70" y="458.29" width="49.94" height="67.92" fill="#f5f5f6">
+<title>North Somerset Council
+£248,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="281.64" y="458.29" width="40.27" height="67.92" fill="#f5f5f6">
+<title>Colchester City Council
+£200,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="321.91" y="458.29" width="40.27" height="67.92" fill="#f5f5f6">
+<title>Greater London Authority
+£200,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="362.19" y="458.29" width="60.41" height="33.96" fill="#f5f5f6">
+<title>Dover District Council
+£150,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="392.39" y="475.27" text-anchor="middle" dominant-baseline="middle">Dover</text>
+<rect class="treemap-rect" x="362.19" y="492.25" width="60.41" height="33.96" fill="#f5f5f6">
+<title>London Borough of Harrow
+£150,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="392.39" y="509.23" text-anchor="middle" dominant-baseline="middle">Harrow</text>
+<rect class="treemap-rect" x="422.60" y="458.29" width="30.20" height="67.92" fill="#f5f5f6">
+<title>London Borough of Havering
+£150,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="452.80" y="458.29" width="51.01" height="38.96" fill="#f5f5f6">
+<title>Liverpool City Council
+£145,306 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="452.80" y="497.25" width="51.01" height="28.96" fill="#f5f5f6">
+<title>Basingstoke and Deane Borough Council
+£108,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="503.81" y="458.29" width="40.27" height="33.96" fill="#f5f5f6">
+<title>Peterborough City Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="503.81" y="492.25" width="40.27" height="33.96" fill="#f5f5f6">
+<title>Torbay Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="544.08" y="458.29" width="40.27" height="33.96" fill="#f5f5f6">
+<title>Bristol City Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="544.08" y="492.25" width="40.27" height="33.96" fill="#f5f5f6">
+<title>Sandwell Metropolitan Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="4.00" width="23.57" height="58.02" fill="#f5f5f6">
+<title>Rossendale Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="4.00" width="47.14" height="29.01" fill="#f5f5f6">
+<title>South Staffordshire Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="33.01" width="47.14" height="29.01" fill="#f5f5f6">
+<title>South Norfolk District Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="62.02" width="23.57" height="58.02" fill="#f5f5f6">
+<title>Castle Point Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="62.02" width="47.14" height="29.01" fill="#f5f5f6">
+<title>East Cambridgeshire District Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="91.03" width="47.14" height="29.01" fill="#f5f5f6">
+<title>South Gloucestershire Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="120.05" width="23.57" height="58.02" fill="#f5f5f6">
+<title>New Forest District Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="120.05" width="47.14" height="29.01" fill="#f5f5f6">
+<title>Rochdale Metropolitan Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="149.06" width="47.14" height="29.01" fill="#f5f5f6">
+<title>City of Westminster
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="178.07" width="35.36" height="38.68" fill="#f5f5f6">
+<title>Horsham District Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="619.71" y="178.07" width="35.36" height="38.68" fill="#f5f5f6">
+<title>City of London Corporation
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="216.75" width="35.36" height="38.68" fill="#f5f5f6">
+<title>London Borough of Enfield
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="619.71" y="216.75" width="35.36" height="38.68" fill="#f5f5f6">
+<title>Rother District Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="255.43" width="23.57" height="58.02" fill="#f5f5f6">
+<title>Ashford Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="255.43" width="47.14" height="29.01" fill="#f5f5f6">
+<title>Trafford Metropolitan Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="284.44" width="47.14" height="29.01" fill="#f5f5f6">
+<title>Northumberland County Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="313.46" width="35.36" height="38.68" fill="#f5f5f6">
+<title>Bolton Metropolitan Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="619.71" y="313.46" width="35.36" height="38.68" fill="#f5f5f6">
+<title>Surrey Heath Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="352.14" width="35.36" height="38.68" fill="#f5f5f6">
+<title>Waverley Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="619.71" y="352.14" width="35.36" height="38.68" fill="#f5f5f6">
+<title>Milton Keynes City Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="390.82" width="23.57" height="58.02" fill="#f5f5f6">
+<title>Spelthorne Borough Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="390.82" width="47.14" height="29.01" fill="#f5f5f6">
+<title>London Borough of Croydon
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="607.92" y="419.83" width="47.14" height="29.01" fill="#f5f5f6">
+<title>Tendring District Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="448.84" width="35.36" height="38.68" fill="#f5f5f6">
+<title>City of York Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="602.03" y="468.18" text-anchor="middle" dominant-baseline="middle">York</text>
+<rect class="treemap-rect" x="619.71" y="448.84" width="35.36" height="38.68" fill="#f5f5f6">
+<title>North Yorkshire Council
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="584.35" y="487.53" width="35.36" height="38.68" fill="#f5f5f6">
+<title>New Forest National Park Authority
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="619.71" y="487.53" width="35.36" height="38.68" fill="#f5f5f6">
+<title>Greater Manchester Combined Authority
+£100,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="125.99" y="526.21" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Forest of Dean District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="145.58" y="526.21" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Uttlesford District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="165.18" y="526.21" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Bury Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="125.99" y="561.10" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Cheltenham Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="145.58" y="561.10" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Hull City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="165.18" y="561.10" width="19.60" height="34.90" fill="#f5f5f6">
+<title>North Norfolk District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="184.77" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Sefton Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="207.64" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Wealden District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="230.50" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Ipswich Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="184.77" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>East Riding of Yorkshire Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="184.77" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Lake District National Park Authority
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="219.07" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Barnsley Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="219.07" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>London Borough of Bromley
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="253.36" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Coventry City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="276.22" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Crawley Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="299.08" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Exeter City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="253.36" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Manchester City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="253.36" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>North Warwickshire Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="287.65" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Oxford City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="287.65" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Stafford Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="321.94" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Bassetlaw District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="344.80" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Harlow District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="367.66" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Knowsley Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="321.94" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Gedling Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="321.94" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>London Borough of Bexley
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="356.23" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Blackpool Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="356.23" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Chelmsford City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="390.53" y="526.21" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Calderdale Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="410.12" y="526.21" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Derby City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="429.72" y="526.21" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Fenland District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="390.53" y="561.10" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Halton Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="410.12" y="561.10" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Malvern Hills District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="429.72" y="561.10" width="19.60" height="34.90" fill="#f5f5f6">
+<title>Tameside Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="449.31" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Worcester City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="472.17" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Wychavon District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="495.03" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Westmorland and Furness Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="449.31" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Brighton and Hove City Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="449.31" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Hart District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="483.60" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>London Borough of Brent
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="483.60" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Adur District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="517.90" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Braintree District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="540.76" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Cannock Chase District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="563.62" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Dartford Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="517.90" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>London Borough of Hackney
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="517.90" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Herefordshire Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="552.19" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>London Borough of Hillingdon
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="552.19" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Huntingdonshire District Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="586.48" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Borough Council of King&amp;#x27;s Lynn and West Norfolk
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="609.34" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Maidstone Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="632.20" y="526.21" width="22.86" height="29.91" fill="#f5f5f6">
+<title>Oldham Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="586.48" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Rotherham Metropolitan Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="586.48" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Swale Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="620.77" y="556.12" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Wiltshire Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="620.77" y="576.06" width="34.29" height="19.94" fill="#f5f5f6">
+<title>Worthing Borough Council
+£50,000 for Software
+Not yet declared interest</title>
+</rect>
+<text class="treemap-bucket-label" x="390.53" y="15.00" text-anchor="middle">Software</text>
+<rect class="treemap-rect" x="663.06" y="4.00" width="302.15" height="278.11" fill="#12436d">
+<title>London Borough of Lambeth
+£168,564 for PropTech
+£5,975,000 for Software
+£6,143,564 in total
+Have adopted BOPS</title>
+</rect>
+<text class="treemap-label" fill="#ffffff" x="814.14" y="143.05" text-anchor="middle" dominant-baseline="middle">Lambeth</text>
+<rect class="treemap-rect" x="663.06" y="282.11" width="302.15" height="71.56" fill="#f5f5f6">
+<title>Newcastle City Council
+£544,897 for PropTech
+£1,036,000 for Software
+£1,580,897 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="814.14" y="317.89" text-anchor="middle" dominant-baseline="middle">Newcastle upon Tyne</text>
+<rect class="treemap-rect" x="965.21" y="4.00" width="99.31" height="187.16" fill="#f5f5f6">
+<title>Dacorum Borough Council
+£691,000 for PropTech
+£668,000 for Software
+£1,359,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="1014.87" y="97.58" text-anchor="middle" dominant-baseline="middle">Dacorum</text>
+<rect class="treemap-rect" x="965.21" y="191.16" width="99.31" height="162.51" fill="#f5f5f6">
+<title>South Cambridgeshire District Council
+£1,080,000 for PropTech
+£100,000 for Software
+£1,180,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="663.06" y="353.67" width="101.43" height="134.33" fill="#f5f5f6">
+<title>Plymouth City Council
+£896,200 for PropTech
+£100,000 for Software
+£996,200 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="713.78" y="420.84" text-anchor="middle" dominant-baseline="middle">Plymouth</text>
+<rect class="treemap-rect" x="764.49" y="353.67" width="79.42" height="134.33" fill="#f5f5f6">
+<title>Southampton City Council
+£730,000 for PropTech
+£50,000 for Software
+£780,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="804.20" y="420.84" text-anchor="middle" dominant-baseline="middle">Southampton</text>
+<rect class="treemap-rect" x="843.91" y="353.67" width="78.91" height="134.33" fill="#f5f5f6">
+<title>Epsom and Ewell Borough Council
+£375,000 for PropTech
+£400,000 for Software
+£775,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="922.82" y="353.67" width="72.85" height="134.33" fill="#f5f5f6">
+<title>Birmingham City Council
+£315,500 for PropTech
+£400,000 for Software
+£715,500 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="959.25" y="420.84" text-anchor="middle" dominant-baseline="middle">Birmingham</text>
+<rect class="treemap-rect" x="995.67" y="353.67" width="68.85" height="134.33" fill="#f5f5f6">
+<title>Wirral Borough Council
+£500,000 for PropTech
+£176,225 for Software
+£676,225 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="1030.10" y="420.84" text-anchor="middle" dominant-baseline="middle">Wirral</text>
+<rect class="treemap-rect" x="1064.52" y="4.00" width="67.02" height="130.62" fill="#f5f5f6">
+<title>London Borough of Hounslow
+£315,000 for PropTech
+£325,000 for Software
+£640,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="1098.03" y="69.31" text-anchor="middle" dominant-baseline="middle">Hounslow</text>
+<rect class="treemap-rect" x="1131.54" y="4.00" width="64.46" height="130.62" fill="#f5f5f6">
+<title>London Borough of Redbridge
+£125,000 for PropTech
+£490,600 for Software
+£615,600 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="1163.77" y="69.31" text-anchor="middle" dominant-baseline="middle">Redbridge</text>
+<rect class="treemap-rect" x="1064.52" y="134.62" width="66.71" height="125.07" fill="#f5f5f6">
+<title>Dorset Council
+£95,000 for PropTech
+£515,000 for Software
+£610,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="1097.88" y="197.15" text-anchor="middle" dominant-baseline="middle">Dorset</text>
+<rect class="treemap-rect" x="1131.23" y="134.62" width="64.77" height="125.07" fill="#f5f5f6">
+<title>Salford City Council
+£77,213 for PropTech
+£515,000 for Software
+£592,213 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="1163.62" y="197.15" text-anchor="middle" dominant-baseline="middle">Salford</text>
+<rect class="treemap-rect" x="1064.52" y="259.69" width="71.04" height="103.77" fill="#f5f5f6">
+<title>Nottingham City Council
+£375,000 for PropTech
+£164,000 for Software
+£539,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="1100.05" y="311.57" text-anchor="middle" dominant-baseline="middle">Nottingham</text>
+<rect class="treemap-rect" x="1135.57" y="259.69" width="60.43" height="103.77" fill="#f5f5f6">
+<title>London Borough of Waltham Forest
+£168,500 for PropTech
+£290,000 for Software
+£458,500 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1064.52" y="363.46" width="46.56" height="124.54" fill="#f5f5f6">
+<title>London Borough of Haringey
+£324,000 for PropTech
+£100,000 for Software
+£424,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1111.09" y="363.46" width="84.91" height="62.82" fill="#f5f5f6">
+<title>North Lincolnshire Council
+£100,000 for PropTech
+£290,000 for Software
+£390,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1111.09" y="426.28" width="84.91" height="61.72" fill="#f5f5f6">
+<title>Cotswold District Council
+£333,193 for PropTech
+£50,000 for Software
+£383,193 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="1153.54" y="457.14" text-anchor="middle" dominant-baseline="middle">Cotswold</text>
+<rect class="treemap-rect" x="663.06" y="488.00" width="93.66" height="54.76" fill="#f5f5f6">
+<title>Sevenoaks District Council
+£225,000 for PropTech
+£150,000 for Software
+£375,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="709.89" y="515.39" text-anchor="middle" dominant-baseline="middle">Sevenoaks</text>
+<rect class="treemap-rect" x="663.06" y="542.77" width="93.66" height="53.23" fill="#f5f5f6">
+<title>West Oxfordshire District Council
+£314,500 for PropTech
+£50,000 for Software
+£364,500 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="756.72" y="488.00" width="80.40" height="56.45" fill="#f5f5f6">
+<title>Basildon Borough Council
+£231,800 for PropTech
+£100,000 for Software
+£331,800 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="796.92" y="516.23" text-anchor="middle" dominant-baseline="middle">Basildon</text>
+<rect class="treemap-rect" x="756.72" y="544.45" width="80.40" height="51.55" fill="#f5f5f6">
+<title>Royal Borough of Kensington and Chelsea
+£203,000 for PropTech
+£100,000 for Software
+£303,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="837.12" y="488.00" width="71.18" height="54.77" fill="#f5f5f6">
+<title>Central Bedfordshire Council
+£185,000 for PropTech
+£100,000 for Software
+£285,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="837.12" y="542.77" width="71.18" height="53.23" fill="#f5f5f6">
+<title>Tandridge District Council
+£177,000 for PropTech
+£100,000 for Software
+£277,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="872.70" y="569.39" text-anchor="middle" dominant-baseline="middle">Tandridge</text>
+<rect class="treemap-rect" x="908.29" y="488.00" width="94.37" height="39.59" fill="#f5f5f6">
+<title>East Hertfordshire District Council
+£173,152 for PropTech
+£100,000 for Software
+£273,152 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="908.29" y="527.59" width="47.79" height="68.41" fill="#f5f5f6">
+<title>North Devon District Council
+£40,000 for PropTech
+£199,000 for Software
+£239,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="956.08" y="527.59" width="46.59" height="68.41" fill="#f5f5f6">
+<title>Havant Borough Council
+£183,000 for PropTech
+£50,000 for Software
+£233,000 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-label" fill="#0b0c0c" x="979.37" y="561.80" text-anchor="middle" dominant-baseline="middle">Havant</text>
+<rect class="treemap-rect" x="1002.66" y="488.00" width="48.92" height="55.92" fill="#f5f5f6">
+<title>London Borough of Barking and Dagenham
+£100,000 for PropTech
+£100,000 for Software
+£200,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1002.66" y="543.92" width="48.92" height="52.08" fill="#f5f5f6">
+<title>Leicester City Council
+£86,250 for PropTech
+£100,000 for Software
+£186,250 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1051.58" y="488.00" width="63.39" height="39.92" fill="#f5f5f6">
+<title>London Borough of Tower Hamlets
+£85,000 for PropTech
+£100,000 for Software
+£185,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1051.58" y="527.92" width="63.39" height="37.76" fill="#f5f5f6">
+<title>Stevenage Borough Council
+£125,000 for PropTech
+£50,000 for Software
+£175,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1051.58" y="565.68" width="63.39" height="30.32" fill="#f5f5f6">
+<title>East Hampshire District Council
+£40,500 for PropTech
+£100,000 for Software
+£140,500 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1114.97" y="488.00" width="41.40" height="46.25" fill="#f5f5f6">
+<title>Stockport Metropolitan Borough Council
+£90,000 for PropTech
+£50,000 for Software
+£140,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1156.37" y="488.00" width="39.63" height="46.25" fill="#f5f5f6">
+<title>Thanet District Council
+£84,000 for PropTech
+£50,000 for Software
+£134,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1114.97" y="534.25" width="28.80" height="61.75" fill="#f5f5f6">
+<title>North Tyneside Council
+£80,000 for PropTech
+£50,000 for Software
+£130,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1143.77" y="534.25" width="52.23" height="31.16" fill="#f5f5f6">
+<title>London Borough of Lewisham
+£69,000 for PropTech
+£50,000 for Software
+£119,000 in total
+Not yet declared interest</title>
+</rect>
+<rect class="treemap-rect" x="1143.77" y="565.41" width="52.23" height="30.59" fill="#f5f5f6">
+<title>Stoke-on-Trent City Council
+£66,813 for PropTech
+£50,000 for Software
+£116,813 in total
+Not yet declared interest</title>
+</rect>
+<text class="treemap-bucket-label" x="929.53" y="15.00" text-anchor="middle">Both</text>
+</svg>
+        </div>
+        
+
+        <h2 class="govuk-heading-l" id="organisations">Organisations</h2>
+
+        <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Date</th>
+                    <th scope="col" class="govuk-table__header">Organisation</th>
+                    <th scope="col" class="govuk-table__header">Status</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 August 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:LBH/">London Borough of Lambeth</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        live
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 December 2023</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:CMD/">London Borough of Camden</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        live
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 October 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:MDW/">Medway Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        live
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 April 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BNE/">London Borough of Barnet</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        live
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    </main>
+</div>
+    
+<footer class="govuk-footer">
+  <div class="govuk-width-container">
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+          <h2 class="govuk-visually-hidden">Admin links</h2>
+          <ul class="govuk-footer__inline-list">
+
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/cookies">
+                Cookies
+              </a>
+            </li>
+            
+          </ul>
+        <div class="govuk-footer__meta-custom">
+            The <a class="govuk-footer__link" href="https://github.com/digital-land/performance/">software</a> and <a class="govuk-footer__link" href="https://github.com/digital-land/performance/">data</a> used to build these pages is <a class="govuk-footer__link" href="https://github.com/digital-land/performance/blob/master/LICENSE">open source</a>.
+        </div>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          class="govuk-footer__licence-logo"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 483.2 195.7"
+          height="17"
+          width="41">
+          <path
+            fill="currentColor"
+            d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145" />
+        </svg>
+        <span class="govuk-footer__licence-description">
+          All content is available under the
+          <a
+            class="govuk-footer__link"
+            href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+            rel="license">Open Government Licence v3.0</a>, except where otherwise stated
+        </span>
+      </div>
+      <div class="govuk-footer__meta-item">
+        <a class="govuk-footer__link govuk-footer__copyright-logo"
+          href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/">
+          © Crown copyright
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+    <script src="https://www.planning.data.gov.uk//static/javascripts/digital-land-cookies.js"></script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <script src="https://www.planning.data.gov.uk//static/javascripts/govuk/govuk-frontend.js"></script>
+    <script>
+      // initiate all GOVUK components
+      window.GOVUKFrontend.initAll();
+    </script>
+    <script src="https://www.planning.data.gov.uk//static/javascripts/digital-land-frontend.js"></script>
+    <script>window.DLFrontend.initAll();</script>
+  </body>
+</html>
