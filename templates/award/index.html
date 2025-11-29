@@ -34,21 +34,31 @@ tr:nth-child(even) {
 .number { text-align: right }
 
 /* Maps */
+.maps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+@media (min-width: 1280px) {
+  .maps-container {
+    flex-direction: row;
+  }
+  .map {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.map {
+ width: 100%;
+ max-width: 640px;
+}
+
 .shapes svg {
  width: 100%;
  fill: 	#0b0c0c;
  padding: 2.5em;
-}
-
-#membership-map {
- width: 640px;
- resize: both;
- padding: 2.5em;
-}
-
-.map {
- width: 640px;
- resize: both;
 }
 
 .points svg {
@@ -147,8 +157,14 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <h1 id='Funding'>Digital Planning Programme</h1>
 <p>Local planning authorities awarded funding related to digital planning.</p>
 
-<div id="membership-map" class="shapes map">
-{{ shapes_svg|safe }}
+<div class="maps-container">
+    <div class="shapes map">
+    {{ shapes_svg|safe }}
+    </div>
+
+    <div class="points map">
+    {{ points_svg|safe }}
+    </div>
 </div>
 
 <div class="stacked-chart">
@@ -170,10 +186,6 @@ th[role=columnheader]:not(.no-sort):hover:after {
 </ul>
 
 <h1 id='awards'>Awards</h1>
-
-<div class="points map">
-{{ points_svg|safe }}
-</div>
 
 <table id='awards-table' class='sortable'>
 <thead>
