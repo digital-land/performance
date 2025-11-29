@@ -133,7 +133,7 @@ def format_govuk_date(date_str):
         return date_str
 
 
-def render(path, template, docs="docs/performance/", **kwargs):
+def render(path, template, docs="docs/", **kwargs):
     """Render a template to a file."""
     path = os.path.join(docs, path)
     directory = os.path.dirname(path)
