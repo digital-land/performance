@@ -18,16 +18,16 @@
                 <dd class="govuk-summary-list__value">{{ summary.award_count }}</dd>
             </div>
             <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">Total funding awarded</dt>
-                <dd class="govuk-summary-list__value">£{{ "{:,}".format(summary.total_amount) }}</dd>
-            </div>
-            <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">Organisations directly awarded funding</dt>
+                <dt class="govuk-summary-list__key">Directly funded organisations</dt>
                 <dd class="govuk-summary-list__value">{{ summary.direct_orgs }}</dd>
             </div>
             <div class="govuk-summary-list__row">
-                <dt class="govuk-summary-list__key">Organisations awarded funding through partnerships</dt>
+                <dt class="govuk-summary-list__key">Partner organisations</dt>
                 <dd class="govuk-summary-list__value">{{ summary.partner_orgs }}</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Total</dt>
+                <dd class="govuk-summary-list__value">£{{ "{:,}".format(summary.total_amount) }}</dd>
             </div>
         </dl>
 
