@@ -1085,10 +1085,40 @@ def render_fund_index(env, conn):
         interventions = cursor.fetchall()
         fund["interventions"] = [dict(row) for row in interventions]
 
+    # Calculate summary statistics
+    summary = {}
+
+    # Number of funds
+    summary["fund_count"] = len(funds)
+
+    # Total amount awarded
+    cursor.execute("SELECT COALESCE(SUM(amount), 0) as total FROM awards")
+    summary["total_amount"] = cursor.fetchone()["total"]
+
+    # Number of organisations directly awarded funding
+    cursor.execute(
+        "SELECT COUNT(DISTINCT organisation) as count FROM awards"
+    )
+    summary["direct_orgs"] = cursor.fetchone()["count"]
+
+    # Number of organisations awarded funding through partnerships
+    cursor.execute(
+        """
+        SELECT organisations_list FROM awards
+        WHERE organisations_list IS NOT NULL AND organisations_list != ''
+        """
+    )
+    partner_orgs = set()
+    for row in cursor.fetchall():
+        if row["organisations_list"]:
+            partners = [p.strip() for p in row["organisations_list"].split(";") if p.strip()]
+            partner_orgs.update(partners)
+    summary["partner_orgs"] = len(partner_orgs)
+
     breadcrumbs = [{"text": "Funds"}]
 
     template = env.get_template("fund/index.html")
-    render("fund/index.html", template, funds=funds, breadcrumbs=breadcrumbs)
+    render("fund/index.html", template, funds=funds, summary=summary, breadcrumbs=breadcrumbs)
 
 
 def render_funds(env, conn):

@@ -8,6 +8,25 @@
 
         <p class="govuk-body">Funding programmes in the Digital Planning Programme.</p>
 
+        <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Funds</dt>
+                <dd class="govuk-summary-list__value">{{ summary.fund_count }}</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Total funding awarded</dt>
+                <dd class="govuk-summary-list__value">£{{ "{:,}".format(summary.total_amount) }}</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Organisations directly awarded funding</dt>
+                <dd class="govuk-summary-list__value">{{ summary.direct_orgs }}</dd>
+            </div>
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Organisations awarded funding through partnerships</dt>
+                <dd class="govuk-summary-list__value">{{ summary.partner_orgs }}</dd>
+            </div>
+        </dl>
+
         <table id="funds-table" class="govuk-table sortable">
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
