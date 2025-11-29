@@ -30,7 +30,7 @@
                 {% for org in lpas %}
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">
-                        <a href="{{BASE_PATH}}/{{ org.organisation }}/" class="govuk-link">{{ org.name }}</a>
+                        <a href="{{BASE_PATH}}/organisation/{{ org.organisation }}/" class="govuk-link">{{ org.name }}</a>
                         {% if org.is_dissolved %}
                         <strong class="govuk-tag govuk-tag--dissolved">DISSOLVED</strong>
                         {% endif %}
