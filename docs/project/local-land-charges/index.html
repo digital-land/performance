@@ -133,9 +133,25 @@
     <main class="govuk-main-wrapper govspeak govuk-body" id="main-content" role="main">
 
 <style>
+.maps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+@media (min-width: 1280px) {
+  .maps-container {
+    flex-direction: row;
+  }
+  .map {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
 .map {
- width: 640px;
- resize: both;
+ width: 100%;
+ max-width: 640px;
 }
 .shapes svg {
  width: 100%;
@@ -223,8 +239,9 @@ li.key-item {
 
         
 
-        <div class="shapes map">
-        <svg xmlns="http://www.w3.org/2000/svg" baseProfile="full" viewBox="0 0 465.72 549.055">
+        <div class="maps-container">
+            <div class="shapes map">
+            <svg xmlns="http://www.w3.org/2000/svg" baseProfile="full" viewBox="0 0 465.72 549.055">
   <defs>
     <style>
       .polygon,path{fill:none;stroke:#000;stroke-width:1px;stroke-linejoin:round}
@@ -632,88 +649,10 @@ li.key-item {
   </g>
 </svg>
 
-        </div>
+            </div>
 
-        <div class="stacked-chart">
-        
-        
-        <div class="bar Software" style="width:20.21%;">19</div>
-        
-        
-        
-        <div class="bar PropTech_Software" style="width:4.26%;">4</div>
-        
-        
-        
-        <div class="bar Plan-making_Software" style="width:27.66%;">26</div>
-        
-        
-        
-        <div class="bar Plan-making_PropTech_Software" style="width:7.45%;">7</div>
-        
-        
-        
-        <div class="bar PropTech" style="width:5.32%;">5</div>
-        
-        
-        
-        <div class="bar Plan-making_PropTech" style="width:3.19%;">3</div>
-        
-        
-        
-        <div class="bar Plan-making" style="width:31.91%;">30</div>
-        
-        
-        </div>
-
-        <ul class="key">
-        
-        
-        <li class="key-item Software">
-            Funded for Software (<a href="/performance/intervention/software/">software</a>, <a href="/performance/intervention/integration/">integration</a>, <a href="/performance/intervention/improvement/">improvement</a>) (19)
-        </li>
-        
-        
-        
-        <li class="key-item PropTech_Software">
-            Funded for Software and PropTech (<a href="/performance/intervention/software/">software</a>, <a href="/performance/intervention/integration/">integration</a>, <a href="/performance/intervention/improvement/">improvement</a>, <a href="/performance/intervention/engagement/">engagement</a>, <a href="/performance/intervention/innovation/">innovation</a>) (4)
-        </li>
-        
-        
-        
-        <li class="key-item Plan-making_Software">
-            Funded for Software and Plan-making (<a href="/performance/intervention/software/">software</a>, <a href="/performance/intervention/integration/">integration</a>, <a href="/performance/intervention/improvement/">improvement</a>, <a href="/performance/intervention/plan-making/">plan-making</a>) (26)
-        </li>
-        
-        
-        
-        <li class="key-item Plan-making_PropTech_Software">
-            Funded for Software, PropTech and Plan-making (<a href="/performance/intervention/software/">software</a>, <a href="/performance/intervention/integration/">integration</a>, <a href="/performance/intervention/improvement/">improvement</a>, <a href="/performance/intervention/engagement/">engagement</a>, <a href="/performance/intervention/innovation/">innovation</a>, <a href="/performance/intervention/plan-making/">plan-making</a>) (7)
-        </li>
-        
-        
-        
-        <li class="key-item PropTech">
-            Funded for PropTech (<a href="/performance/intervention/engagement/">engagement</a>, <a href="/performance/intervention/innovation/">innovation</a>) (5)
-        </li>
-        
-        
-        
-        <li class="key-item Plan-making_PropTech">
-            Funded for PropTech and Plan-making (<a href="/performance/intervention/engagement/">engagement</a>, <a href="/performance/intervention/innovation/">innovation</a>, <a href="/performance/intervention/plan-making/">plan-making</a>) (3)
-        </li>
-        
-        
-        
-        <li class="key-item Plan-making">
-            Funded for Plan-making (<a href="/performance/intervention/plan-making/">plan-making</a>) (30)
-        </li>
-        
-        
-        </ul>
-
-        <div class="points map">
-        <svg xmlns="http://www.w3.org/2000/svg" baseProfile="full" viewBox="0 0 465.429 549.003">
+            <div class="points map">
+            <svg xmlns="http://www.w3.org/2000/svg" baseProfile="full" viewBox="0 0 465.429 549.003">
 <circle cx="50" cy="77.43241665808975" r="22.567583341910254" /><text x="75" y="62.5" class="key" style="font-size: 11px">£1m</text>
 <circle cx="50" cy="84.04230878394269" r="15.957691216057308" /><text x="75" y="81" class="key" style="font-size: 11px">£500k</text>
 <circle cx="50" cy="92.86350353538892" r="7.136496464611084" /><text x="75" y="100" class="key" style="font-size: 11px">£100k</text>
@@ -1008,7 +947,86 @@ li.key-item {
   </g>
 </svg>
 
+            </div>
         </div>
+
+        <div class="stacked-chart">
+        
+        
+        <div class="bar Software" style="width:20.21%;">19</div>
+        
+        
+        
+        <div class="bar PropTech_Software" style="width:4.26%;">4</div>
+        
+        
+        
+        <div class="bar Plan-making_Software" style="width:27.66%;">26</div>
+        
+        
+        
+        <div class="bar Plan-making_PropTech_Software" style="width:7.45%;">7</div>
+        
+        
+        
+        <div class="bar PropTech" style="width:5.32%;">5</div>
+        
+        
+        
+        <div class="bar Plan-making_PropTech" style="width:3.19%;">3</div>
+        
+        
+        
+        <div class="bar Plan-making" style="width:31.91%;">30</div>
+        
+        
+        </div>
+
+        <ul class="key">
+        
+        
+        <li class="key-item Software">
+            Funded for Software (<a href="/performance/intervention/software/">software</a>, <a href="/performance/intervention/integration/">integration</a>, <a href="/performance/intervention/improvement/">improvement</a>) (19)
+        </li>
+        
+        
+        
+        <li class="key-item PropTech_Software">
+            Funded for Software and PropTech (<a href="/performance/intervention/software/">software</a>, <a href="/performance/intervention/integration/">integration</a>, <a href="/performance/intervention/improvement/">improvement</a>, <a href="/performance/intervention/engagement/">engagement</a>, <a href="/performance/intervention/innovation/">innovation</a>) (4)
+        </li>
+        
+        
+        
+        <li class="key-item Plan-making_Software">
+            Funded for Software and Plan-making (<a href="/performance/intervention/software/">software</a>, <a href="/performance/intervention/integration/">integration</a>, <a href="/performance/intervention/improvement/">improvement</a>, <a href="/performance/intervention/plan-making/">plan-making</a>) (26)
+        </li>
+        
+        
+        
+        <li class="key-item Plan-making_PropTech_Software">
+            Funded for Software, PropTech and Plan-making (<a href="/performance/intervention/software/">software</a>, <a href="/performance/intervention/integration/">integration</a>, <a href="/performance/intervention/improvement/">improvement</a>, <a href="/performance/intervention/engagement/">engagement</a>, <a href="/performance/intervention/innovation/">innovation</a>, <a href="/performance/intervention/plan-making/">plan-making</a>) (7)
+        </li>
+        
+        
+        
+        <li class="key-item PropTech">
+            Funded for PropTech (<a href="/performance/intervention/engagement/">engagement</a>, <a href="/performance/intervention/innovation/">innovation</a>) (5)
+        </li>
+        
+        
+        
+        <li class="key-item Plan-making_PropTech">
+            Funded for PropTech and Plan-making (<a href="/performance/intervention/engagement/">engagement</a>, <a href="/performance/intervention/innovation/">innovation</a>, <a href="/performance/intervention/plan-making/">plan-making</a>) (3)
+        </li>
+        
+        
+        
+        <li class="key-item Plan-making">
+            Funded for Plan-making (<a href="/performance/intervention/plan-making/">plan-making</a>) (30)
+        </li>
+        
+        
+        </ul>
 
         <h2 class="govuk-heading-m">Organisations (130)</h2>
 

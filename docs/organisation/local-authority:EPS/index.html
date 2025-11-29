@@ -133,9 +133,25 @@
     <main class="govuk-main-wrapper govspeak govuk-body" id="main-content" role="main">
 
 <style>
+.maps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+@media (min-width: 1280px) {
+  .maps-container {
+    flex-direction: row;
+  }
+  .map {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
 .map {
- width: 640px;
- resize: both;
+ width: 100%;
+ max-width: 640px;
 }
 .shapes svg {
  width: 100%;
@@ -232,8 +248,10 @@ svg path:hover { opacity: 0.5 }
         </dl>
 
         
-        <div class="shapes map">
-        <svg xmlns="http://www.w3.org/2000/svg" baseProfile="full" viewBox="0 0 465.72 549.055">
+        <div class="maps-container">
+            
+            <div class="shapes map">
+            <svg xmlns="http://www.w3.org/2000/svg" baseProfile="full" viewBox="0 0 465.72 549.055">
   <defs>
     <style>
       .polygon,path{fill:none;stroke:#000;stroke-width:1px;stroke-linejoin:round}
@@ -641,12 +659,12 @@ svg path:hover { opacity: 0.5 }
   </g>
 </svg>
 
-        </div>
-        
+            </div>
+            
 
-        
-        <div class="points map">
-        <svg xmlns="http://www.w3.org/2000/svg" baseProfile="full" viewBox="0 0 465.429 549.003">
+            
+            <div class="points map">
+            <svg xmlns="http://www.w3.org/2000/svg" baseProfile="full" viewBox="0 0 465.429 549.003">
 <circle cx="50" cy="77.43241665808975" r="22.567583341910254" /><text x="75" y="62.5" class="key" style="font-size: 11px">£1m</text>
 <circle cx="50" cy="84.04230878394269" r="15.957691216057308" /><text x="75" y="81" class="key" style="font-size: 11px">£500k</text>
 <circle cx="50" cy="92.86350353538892" r="7.136496464611084" /><text x="75" y="100" class="key" style="font-size: 11px">£100k</text>
@@ -756,6 +774,8 @@ svg path:hover { opacity: 0.5 }
   </g>
 </svg>
 
+            </div>
+            
         </div>
         
 

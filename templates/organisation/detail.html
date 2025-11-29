@@ -3,9 +3,25 @@
 
 {% block content %}
 <style>
+.maps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+@media (min-width: 1280px) {
+  .maps-container {
+    flex-direction: row;
+  }
+  .map {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
 .map {
- width: 640px;
- resize: both;
+ width: 100%;
+ max-width: 640px;
 }
 .shapes svg {
  width: 100%;
@@ -106,15 +122,19 @@ svg path:hover { opacity: 0.5 }
             {% endif %}
         </dl>
 
-        {% if shapes_svg %}
-        <div class="shapes map">
-        {{ shapes_svg|safe }}
-        </div>
-        {% endif %}
+        {% if shapes_svg or points_svg %}
+        <div class="maps-container">
+            {% if shapes_svg %}
+            <div class="shapes map">
+            {{ shapes_svg|safe }}
+            </div>
+            {% endif %}
 
-        {% if points_svg %}
-        <div class="points map">
-        {{ points_svg|safe }}
+            {% if points_svg %}
+            <div class="points map">
+            {{ points_svg|safe }}
+            </div>
+            {% endif %}
         </div>
         {% endif %}
 

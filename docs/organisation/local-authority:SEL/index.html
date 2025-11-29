@@ -133,9 +133,25 @@
     <main class="govuk-main-wrapper govspeak govuk-body" id="main-content" role="main">
 
 <style>
+.maps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+@media (min-width: 1280px) {
+  .maps-container {
+    flex-direction: row;
+  }
+  .map {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
 .map {
- width: 640px;
- resize: both;
+ width: 100%;
+ max-width: 640px;
 }
 .shapes svg {
  width: 100%;
@@ -205,8 +221,6 @@ svg path:hover { opacity: 0.5 }
 
             
         </dl>
-
-        
 
         
 

@@ -3,9 +3,25 @@
 
 {% block content %}
 <style>
+.maps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+@media (min-width: 1280px) {
+  .maps-container {
+    flex-direction: row;
+  }
+  .map {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
 .map {
- width: 640px;
- resize: both;
+ width: 100%;
+ max-width: 640px;
 }
 .shapes svg {
  width: 100%;
@@ -77,8 +93,14 @@ li.key-item {
         <p class="govuk-body">{{ project.description }}</p>
         {% endif %}
 
-        <div class="shapes map">
-        {{ shapes_svg|safe }}
+        <div class="maps-container">
+            <div class="shapes map">
+            {{ shapes_svg|safe }}
+            </div>
+
+            <div class="points map">
+            {{ points_svg|safe }}
+            </div>
         </div>
 
         <div class="stacked-chart">
@@ -98,10 +120,6 @@ li.key-item {
         {% endif %}
         {% endfor %}
         </ul>
-
-        <div class="points map">
-        {{ points_svg|safe }}
-        </div>
 
         <h2 class="govuk-heading-m">Organisations ({{ organisations|length }})</h2>
 

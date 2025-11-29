@@ -3,9 +3,25 @@
 
 {% block content %}
 <style>
+.maps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+@media (min-width: 1280px) {
+  .maps-container {
+    flex-direction: row;
+  }
+  .map {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
 .map {
- width: 640px;
- resize: both;
+ width: 100%;
+ max-width: 640px;
 }
 .shapes svg {
  width: 100%;
@@ -61,16 +77,17 @@ svg path:hover { opacity: 0.5 }
         </dl>
 
 
-        <div class="shapes map">
-        {{ shapes_svg|safe }}
+        <div class="maps-container">
+            <div class="shapes map">
+            {{ shapes_svg|safe }}
+            </div>
+
+            <div class="points map">
+            {{ points_svg|safe }}
+            </div>
         </div>
 
         <h2 class="govuk-heading-m" id="awards">Awards</h2>
-
-        <div class="points map">
-        {{ points_svg|safe }}
-        </div>
-
 
         <table id="awards-table" class="govuk-table sortable">
             <thead class="govuk-table__head">
