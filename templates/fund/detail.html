@@ -91,10 +91,10 @@ svg path:hover { opacity: 0.5 }
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">{{ award.start_date|govuk_date }}</td>
                     <td class="govuk-table__cell">
-                        <a href="{{ path_prefix }}/organisation/{{ award.organisation }}/">{{ award.org_name }}</a>
+                        <a href="{{BASE_PATH}}/organisation/{{ award.organisation }}/">{{ award.org_name }}</a>
                     </td>
                     <td class="govuk-table__cell">
-                        <a href="{{ path_prefix }}/intervention/{{ award.intervention }}/">{{ award.intervention_name }}</a>
+                        <a href="{{BASE_PATH}}/intervention/{{ award.intervention }}/">{{ award.intervention_name }}</a>
                     </td>
                     <td class="govuk-table__cell govuk-table__cell--numeric" data-sort="{{ award.amount }}">
                         {% if award.amount > 0 %}

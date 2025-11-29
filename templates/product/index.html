@@ -6,7 +6,7 @@
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-xl">Products</h1>
 
-        <p class="govuk-body">Adoption of open source products funded by the <a href="{{ path_prefix }}/project/digital-planning/">Digital Planning Programme</a>.</p>
+        <p class="govuk-body">Adoption of open source products funded by the <a href="{{BASE_PATH}}/project/digital-planning/">Digital Planning Programme</a>.</p>
 
         <table id="products-table" class="govuk-table sortable">
             <thead class="govuk-table__head">
@@ -19,7 +19,7 @@
                 {% for product in products %}
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">
-                        <a href="{{ path_prefix }}/product/{{ product.slug }}/" class="govuk-link">{{ product.name }}</a>
+                        <a href="{{ BASE_PATH }}/product/{{ product.slug }}/" class="govuk-link">{{ product.name }}</a>
                     </td>
                     <td class="govuk-table__cell govuk-table__cell--numeric">{{ product.adoption_count }}</td>
                 </tr>

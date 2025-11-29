@@ -23,11 +23,11 @@
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">{{ fund.start_date|govuk_date }}</td>
                     <td class="govuk-table__cell">
-                        <a href="{{ path_prefix }}/fund/{{ fund.fund }}/" class="govuk-link">{{ fund.name }}</a>
+                        <a href="{{BASE_PATH}}/fund/{{ fund.fund }}/" class="govuk-link">{{ fund.name }}</a>
                     </td>
                     <td class="govuk-table__cell">
                         {% for intervention in fund.interventions %}
-                        <a href="{{ path_prefix }}/intervention/{{ intervention.intervention }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}
+                        <a href="{{BASE_PATH}}/intervention/{{ intervention.intervention }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}
                         {% endfor %}
                     </td>
                     <td class="govuk-table__cell govuk-table__cell--numeric">{{ fund.award_count }}</td>

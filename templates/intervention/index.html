@@ -21,7 +21,7 @@
                 {% for intervention in interventions %}
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">
-                        <a href="{{ path_prefix }}/intervention/{{ intervention.intervention }}/" class="govuk-link">{{ intervention.name }}</a>
+                        <a href="{{BASE_PATH}}/intervention/{{ intervention.intervention }}/" class="govuk-link">{{ intervention.name }}</a>
                     </td>
                     <td class="govuk-table__cell govuk-table__cell--numeric">{{ intervention.organisation_count }}</td>
                     <td class="govuk-table__cell govuk-table__cell--numeric">{{ intervention.award_count }}</td>

@@ -76,7 +76,7 @@
         <h2 class="govuk-heading-m">Projects</h2>
         <ul class="govuk-list govuk-list--bullet">
             {% for project in projects %}
-            <li><a href="{{ path_prefix }}/project/{{ project.project }}/">{{ project.name }}</a></li>
+            <li><a href="{{ BASE_PATH }}/project/{{ project.project }}/">{{ project.name }}</a></li>
             {% endfor %}
         </ul>
         {% endif %}
@@ -94,7 +94,7 @@
                 {% for partner in partners %}
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">
-                        <a href="{{ path_prefix }}/organisation/{{ partner.organisation }}/">{{ partner.name }}</a>
+                        <a href="{{ base_path }}/organisation/{{ partner.organisation }}/">{{ partner.name }}</a>
                     </td>
                     <td class="govuk-table__cell govuk-table__cell--numeric">{{ partner.shared_count }}</td>
                 </tr>
@@ -117,7 +117,7 @@
             <tbody class="govuk-table__body">
                 {% for adoption in adoptions %}
                 <tr class="govuk-table__row">
-                    <td class="govuk-table__cell"><a href="{{ path_prefix }}/product/{{ adoption.product|slugify }}/">{{ adoption.product }}</a></td>
+                    <td class="govuk-table__cell"><a href="{{ base_path }}/product/{{ adoption.product|slugify }}/">{{ adoption.product }}</a></td>
                     <td class="govuk-table__cell">{{ adoption.adoption_status }}</td>
                     <td class="govuk-table__cell">{{ adoption.start_date|govuk_date }}</td>
                     <td class="govuk-table__cell">
@@ -146,8 +146,8 @@
                 {% for award in awards %}
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">{{ award.start_date|govuk_date }}</td>
-                    <td class="govuk-table__cell"><a href="{{ path_prefix }}/fund/{{ award.fund }}/">{{ award.fund_name }}</a></td>
-                    <td class="govuk-table__cell"><a href="{{ path_prefix }}/intervention/{{ award.intervention }}/">{{ award.intervention_name }}</a></td>
+                    <td class="govuk-table__cell"><a href="{{ base_path }}/fund/{{ award.fund }}/">{{ award.fund_name }}</a></td>
+                    <td class="govuk-table__cell"><a href="{{ base_path }}/intervention/{{ award.intervention }}/">{{ award.intervention_name }}</a></td>
                     <td class="govuk-table__cell" data-sort="{{ award.amount }}">£{{ "{:,}".format(award.amount) }}</td>
                 </tr>
                 {% endfor %}

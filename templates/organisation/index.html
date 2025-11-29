@@ -30,14 +30,14 @@
                 {% for org in lpas %}
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">
-                        <a href="{{ path_prefix }}/organisation/{{ org.organisation }}/" class="govuk-link">{{ org.name }}</a>
+                        <a href="{{BASE_PATH}}/{{ org.organisation }}/" class="govuk-link">{{ org.name }}</a>
                         {% if org.is_dissolved %}
                         <strong class="govuk-tag govuk-tag--dissolved">DISSOLVED</strong>
                         {% endif %}
                     </td>
                     <td class="govuk-table__cell">
                         {% for intervention in org.interventions %}
-                        <a href="{{ path_prefix }}/intervention/{{ intervention.intervention }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}
+                        <a href="{{BASE_PATH}}/intervention/{{ intervention.intervention }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}
                         {% endfor %}
                     </td>
                     <td class="govuk-table__cell govuk-table__cell--numeric">{{ org.award_count }}</td>
@@ -66,14 +66,14 @@
                 {% for org in other_orgs %}
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">
-                        <a href="{{ path_prefix }}/organisation/{{ org.organisation }}/" class="govuk-link">{{ org.name }}</a>
+                        <a href="{{BASE_PATH}}/{{ org.organisation }}/" class="govuk-link">{{ org.name }}</a>
                         {% if org.is_dissolved %}
                         <strong class="govuk-tag govuk-tag--dissolved">DISSOLVED</strong>
                         {% endif %}
                     </td>
                     <td class="govuk-table__cell">
                         {% for intervention in org.interventions %}
-                        <a href="{{ path_prefix }}/intervention/{{ intervention.intervention }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}
+                        <a href="{{BASE_PATH}}/intervention/{{ intervention.intervention }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}
                         {% endfor %}
                     </td>
                     <td class="govuk-table__cell govuk-table__cell--numeric">{{ org.award_count }}</td>

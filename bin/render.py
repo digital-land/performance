@@ -15,13 +15,7 @@ from jinja2 import Environment, FileSystemLoader
 from html import escape
 
 DATABASE_PATH = "dataset/performance.sqlite3"
-PATH_PREFIX = os.environ.get('PATH_PREFIX', '')
-
-
-def url(path):
-    """Prepend path prefix to URL."""
-    return f"{PATH_PREFIX}{path}"
-
+BASE_PATH="/performance"
 
 # Award page legends
 AWARD_LEGENDS = [
@@ -139,7 +133,7 @@ def format_govuk_date(date_str):
         return date_str
 
 
-def render(path, template, docs="docs", **kwargs):
+def render(path, template, docs="docs/performance/", **kwargs):
     """Render a template to a file."""
     path = os.path.join(docs, path)
     directory = os.path.dirname(path)
@@ -147,7 +141,7 @@ def render(path, template, docs="docs", **kwargs):
         os.makedirs(directory)
     with open(path, "w") as f:
         print(f"creating {path}", file=sys.stderr)
-        f.write(template.render(**kwargs))
+        f.write(template.render(BASE_PATH=BASE_PATH, **kwargs))
 
 
 def get_db_connection():
@@ -498,7 +492,7 @@ def render_organisations(env, conn):
         partners.sort(key=lambda x: (-x['shared_count'], x['name']))
 
         breadcrumbs = [
-            {'text': 'Organisations', 'url': url('/organisation/')},
+            {'text': 'Organisations', 'url': f'{BASE_PATH}/organisation/'},
             {'text': org['name']}
         ]
 
@@ -571,7 +565,7 @@ def render_projects(env, conn):
         points_svg = process_points_svg(conn, filter_type='project', filter_value=project_id)
 
         breadcrumbs = [
-            {'text': 'Projects', 'url': url('/project/')},
+            {'text': 'Projects', 'url': f'{BASE_PATH}/project/'},
             {'text': project['name']}
         ]
 
@@ -745,7 +739,7 @@ def render_products(env, conn):
             totals['all'] += amount
 
         breadcrumbs = [
-            {'text': 'Products', 'url': url('/product/')},
+            {'text': 'Products', 'url': f'{BASE_PATH}/product/'},
             {'text': product['name']}
         ]
 
@@ -889,7 +883,7 @@ def render_interventions(env, conn):
         points_svg = process_points_svg(conn, filter_type='intervention', filter_value=intervention_id)
 
         breadcrumbs = [
-            {'text': 'Interventions', 'url': url('/intervention/')},
+            {'text': 'Interventions', 'url': 'intervention/'},
             {'text': intervention['name']}
         ]
 
@@ -983,7 +977,7 @@ def render_funds(env, conn):
         points_svg = process_points_svg(conn, filter_type='fund', filter_value=fund_id)
 
         breadcrumbs = [
-            {'text': 'Funds', 'url': url('/fund/')},
+            {'text': 'Funds', 'url': 'fund/'},
             {'text': fund['name']}
         ]
 
@@ -1474,7 +1468,7 @@ def process_shapes_svg(conn, filter_type=None, filter_value=None):
 
             if 'class="local-planning-authority"' in line:
                 org_link = f"/organisation/{lpa_orgs[current_lpa]['organisation']}/" if current_lpa and current_lpa in lpa_orgs else "#"
-                line = line.replace("<path", f'<a href="{org_link}"><path')
+                line = line.replace("<path", f'<a href="{BASE_PATH}{org_link}"><path')
                 line = line.replace(
                     'class="local-planning-authority"/>',
                     f'class="local-planning-authority {current_class}"><title>{current_name}</title></path></a>'
@@ -1510,10 +1504,9 @@ def render_awards(env, conn):
         if row['organisations_list']:
             partner_orgs = [p for p in row['organisations_list'].split(";") if p]
             cursor.execute("""
-                SELECT name FROM organisations WHERE organisation IN ({})
+                SELECT organisation, name FROM organisations WHERE organisation IN ({})
             """.format(','.join(['?'] * len(partner_orgs))), partner_orgs)
-            partner_names = [escape(r['name']) for r in cursor.fetchall()]
-            partners_html = ", ".join([f'<a href="/organisation/{row["organisation"]}/">{name}</a>' for name in partner_names])
+            partners_html = ", ".join([f'<a href="{BASE_PATH}organisation/{r["organisation"]}/">{escape(r["name"])}</a>' for r in cursor.fetchall()])
 
         awards.append({
             'award': row['award'],
@@ -1594,9 +1587,6 @@ def main():
     env.filters['urlencode'] = lambda s: quote(str(s), safe='')
     env.filters['slugify'] = lambda s: str(s).replace('/', '-')
     env.filters['govuk_date'] = lambda s: format_govuk_date(s)
-
-    # Add global variables
-    env.globals['path_prefix'] = PATH_PREFIX
 
     try:
         print("Rendering pages...", file=sys.stderr)

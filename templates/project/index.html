@@ -19,7 +19,7 @@
                 {% for project in projects %}
                 <tr class="govuk-table__row">
                     <td class="govuk-table__cell">
-                        <a href="{{ path_prefix }}/project/{{ project.project }}/" class="govuk-link">{{ project.name }}</a>
+                        <a href="{{BASE_PATH}}/project/{{ project.project }}/" class="govuk-link">{{ project.name }}</a>
                     </td>
                     <td class="govuk-table__cell govuk-table__cell--numeric">{{ project.org_count }}</td>
                 </tr>
