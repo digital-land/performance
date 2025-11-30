@@ -435,7 +435,7 @@ def render_organisation_index(env, conn):
     lpas = [org for org in all_orgs if org["role"] == "local-planning-authority"]
     other_orgs = [org for org in all_orgs if org["role"] != "local-planning-authority"]
 
-    breadcrumbs = [{"text": "Organisations"}]
+    breadcrumbs = [{"text": "Organisation"}]
 
     template = env.get_template("organisation/index.html")
     render(
@@ -871,7 +871,7 @@ def render_products(env, conn):
             totals["all"] += amount
 
         breadcrumbs = [
-            {"text": "Products", "url": f"{BASE_PATH}/product/"},
+            {"text": "Product", "url": f"{BASE_PATH}/product/"},
             {"text": product["name"]},
         ]
 
@@ -920,7 +920,7 @@ def render_product_index(env, conn):
         prod["slug"] = prod["product"].replace("/", "-")
         products.append(prod)
 
-    breadcrumbs = [{"text": "Products"}]
+    breadcrumbs = [{"text": "Product"}]
 
     template = env.get_template("product/index.html")
     render("product/index.html", template, products=products, breadcrumbs=breadcrumbs)
@@ -944,7 +944,7 @@ def render_project_index(env, conn):
 
     projects = [dict(row) for row in cursor.fetchall()]
 
-    breadcrumbs = [{"text": "Projects"}]
+    breadcrumbs = [{"text": "Project"}]
 
     template = env.get_template("project/index.html")
     render("project/index.html", template, projects=projects, breadcrumbs=breadcrumbs)
@@ -970,7 +970,7 @@ def render_intervention_index(env, conn):
 
     interventions = [dict(row) for row in cursor.fetchall()]
 
-    breadcrumbs = [{"text": "Interventions"}]
+    breadcrumbs = [{"text": "Intervention"}]
 
     template = env.get_template("intervention/index.html")
     render(
@@ -1033,7 +1033,7 @@ def render_interventions(env, conn):
         )
 
         breadcrumbs = [
-            {"text": "Interventions", "url": "intervention/"},
+            {"text": "Intervention", "url": "intervention/"},
             {"text": intervention["name"]},
         ]
 
@@ -1119,7 +1119,7 @@ def render_fund_index(env, conn):
             partner_orgs.update(partners)
     summary["partner_orgs"] = len(partner_orgs)
 
-    breadcrumbs = [{"text": "Funds"}]
+    breadcrumbs = [{"text": "Fund"}]
 
     template = env.get_template("fund/index.html")
     render("fund/index.html", template, funds=funds, summary=summary, breadcrumbs=breadcrumbs)
@@ -1172,7 +1172,7 @@ def render_funds(env, conn):
         shapes_svg = process_shapes_svg(conn, filter_type="fund", filter_value=fund_id)
         points_svg = process_points_svg(conn, filter_type="fund", filter_value=fund_id)
 
-        breadcrumbs = [{"text": "Funds", "url": "fund/"}, {"text": fund["name"]}]
+        breadcrumbs = [{"text": "Fund", "url": "fund/"}, {"text": fund["name"]}]
 
         template = env.get_template("fund/detail.html")
         render(
@@ -1869,7 +1869,7 @@ def render_awards(env, conn):
     )
     total = cursor.fetchone()[0]
 
-    breadcrumbs = [{"text": "Awards"}]
+    breadcrumbs = [{"text": "Award"}]
 
     template = env.get_template("award/index.html")
     render(
