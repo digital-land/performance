@@ -607,10 +607,12 @@ def render_projects(env, conn):
         # Get organisations in this project
         cursor.execute(
             """
-            SELECT o.*
+            SELECT o.*, MIN(a.start_date) as start_date
             FROM organisations o
             JOIN project_organisations po ON o.organisation = po.organisation
+            LEFT JOIN awards a ON o.organisation = a.organisation
             WHERE po.project = ?
+            GROUP BY o.organisation
             ORDER BY o.score DESC
         """,
             (project_id,),
