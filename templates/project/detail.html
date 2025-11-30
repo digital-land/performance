@@ -125,27 +125,26 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-chart {
   display: flex;
   align-items: flex-end;
-  gap: 2em;
+  width: 100%;
   padding: 2em 0;
   margin: 1em 0;
-  overflow-x: auto;
 }
 
 .timeline-year-group {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5em;
+  flex: 1;
 }
 
 .timeline-year-bars {
   display: flex;
   align-items: flex-end;
-  gap: 0.25em;
+  width: 100%;
 }
 
 .timeline-bar {
-  width: 2.5em;
+  flex: 1;
   background-color: #1d70b8;
   display: flex;
   align-items: flex-start;
@@ -162,7 +161,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 
 .timeline-year-label {
   font-weight: bold;
-  font-size: 1em;
+  font-size: 0.9em;
   margin-top: 0.5em;
 }
 </style>
@@ -190,14 +189,19 @@ th[role=columnheader]:not(.no-sort):hover:after {
         <div class="timeline-chart">
             {% for year_data in timeline_bars %}
             <div class="timeline-year-group">
-                <div class="timeline-year-label">{{ year_data.year }}</div>
                 <div class="timeline-year-bars">
+                    {% set all_same = year_data.quarters[0] == year_data.quarters[1] == year_data.quarters[2] == year_data.quarters[3] %}
                     {% for count in year_data.quarters %}
                     <div class="timeline-bar" style="height: {{ (count / max_count * 200)|round(0) }}px;">
+                        {% if all_same and loop.index == 3 %}
                         <span class="timeline-count">{{ count }}</span>
+                        {% elif not all_same %}
+                        <span class="timeline-count">{{ count }}</span>
+                        {% endif %}
                     </div>
                     {% endfor %}
                 </div>
+                <div class="timeline-year-label">{{ year_data.year }}</div>
             </div>
             {% endfor %}
         </div>
