@@ -1775,16 +1775,20 @@ def process_shapes_svg(conn, filter_type=None, filter_value=None):
                         current_class = ""
 
             if 'class="local-planning-authority"' in line:
-                org_link = (
-                    f"/organisation/{all_lpa_orgs[current_lpa]['organisation']}/"
-                    if current_lpa and current_lpa in all_lpa_orgs
-                    else "#"
-                )
-                line = line.replace("<path", f'<a href="{BASE_PATH}{org_link}"><path')
-                line = line.replace(
-                    'class="local-planning-authority"/>',
-                    f'class="local-planning-authority {current_class}"><title>{current_name}</title></path></a>',
-                )
+                # Only add link if we have a valid organisation
+                if current_lpa and current_lpa in all_lpa_orgs:
+                    org_link = f"/organisation/{all_lpa_orgs[current_lpa]['organisation']}/"
+                    line = line.replace("<path", f'<a href="{BASE_PATH}{org_link}"><path')
+                    line = line.replace(
+                        'class="local-planning-authority"/>',
+                        f'class="local-planning-authority {current_class}"><title>{current_name}</title></path></a>',
+                    )
+                else:
+                    # No link for areas not in database
+                    line = line.replace(
+                        'class="local-planning-authority"/>',
+                        f'class="local-planning-authority {current_class}"><title>{current_name}</title></path>',
+                    )
 
             output.append(line)
 
