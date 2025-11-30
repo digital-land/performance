@@ -263,6 +263,42 @@ th[role=columnheader]:not(.no-sort):hover:after {
 	visibility: visible;
 	opacity: 1;
 }
+
+/* timeline chart */
+.timeline-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 1em;
+  padding: 2em 0;
+  margin: 1em 0;
+}
+
+.timeline-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.timeline-bar {
+  width: 3em;
+  background-color: #1d70b8;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.5em;
+  min-height: 2em;
+}
+
+.timeline-count {
+  color: white;
+  font-weight: bold;
+}
+
+.timeline-year {
+  font-weight: bold;
+  order: 2;
+}
 </style>
 
 <div class="govuk-grid-row">
@@ -687,6 +723,48 @@ th[role=columnheader]:not(.no-sort):hover:after {
 
             </div>
         </div>
+
+        
+        <h2 class="govuk-heading-m">Timeline</h2>
+        <div class="timeline-chart">
+            
+            <div class="timeline-bar-container">
+                <div class="timeline-year">2021</div>
+                <div class="timeline-bar" style="height: 100.0px;">
+                    <span class="timeline-count">13</span>
+                </div>
+            </div>
+            
+            <div class="timeline-bar-container">
+                <div class="timeline-year">2022</div>
+                <div class="timeline-bar" style="height: 200.0px;">
+                    <span class="timeline-count">26</span>
+                </div>
+            </div>
+            
+            <div class="timeline-bar-container">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-bar" style="height: 23.0px;">
+                    <span class="timeline-count">3</span>
+                </div>
+            </div>
+            
+            <div class="timeline-bar-container">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-bar" style="height: 154.0px;">
+                    <span class="timeline-count">20</span>
+                </div>
+            </div>
+            
+            <div class="timeline-bar-container">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-bar" style="height: 31.0px;">
+                    <span class="timeline-count">4</span>
+                </div>
+            </div>
+            
+        </div>
+        
 
         <table id="organisations-table" class="govuk-table sortable">
             <thead class="govuk-table__head">

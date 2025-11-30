@@ -120,6 +120,42 @@ th[role=columnheader]:not(.no-sort):hover:after {
 	visibility: visible;
 	opacity: 1;
 }
+
+/* timeline chart */
+.timeline-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 1em;
+  padding: 2em 0;
+  margin: 1em 0;
+}
+
+.timeline-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.timeline-bar {
+  width: 3em;
+  background-color: #1d70b8;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.5em;
+  min-height: 2em;
+}
+
+.timeline-count {
+  color: white;
+  font-weight: bold;
+}
+
+.timeline-year {
+  font-weight: bold;
+  order: 2;
+}
 </style>
 
 <div class="govuk-grid-row">
@@ -139,6 +175,20 @@ th[role=columnheader]:not(.no-sort):hover:after {
             {{ shapes_svg|safe }}
             </div>
         </div>
+
+        {% if timeline_years %}
+        <h2 class="govuk-heading-m">Timeline</h2>
+        <div class="timeline-chart">
+            {% for year in timeline_years %}
+            <div class="timeline-bar-container">
+                <div class="timeline-year">{{ year }}</div>
+                <div class="timeline-bar" style="height: {{ (timeline_counts[loop.index0] / max_count * 200)|round(0) }}px;">
+                    <span class="timeline-count">{{ timeline_counts[loop.index0] }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
 
         <table id="organisations-table" class="govuk-table sortable">
             <thead class="govuk-table__head">

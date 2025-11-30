@@ -654,6 +654,18 @@ def render_projects(env, conn):
                     counts[bucket] = counts.get(bucket, 0) + 1
                     total += 1
 
+        # Generate timeline data - count organisations by year
+        timeline_data = {}
+        for org in organisations:
+            if org["start_date"]:
+                year = org["start_date"][:4]  # Extract year from YYYY-MM-DD
+                timeline_data[year] = timeline_data.get(year, 0) + 1
+
+        # Sort by year and prepare for template
+        timeline_years = sorted(timeline_data.keys())
+        timeline_counts = [timeline_data[year] for year in timeline_years]
+        max_count = max(timeline_counts) if timeline_counts else 0
+
         # Generate maps for this project
         shapes_svg = process_shapes_svg(
             conn, filter_type="project", filter_value=project_id
@@ -678,6 +690,9 @@ def render_projects(env, conn):
             legends=AWARD_LEGENDS,
             counts=counts,
             total=total,
+            timeline_years=timeline_years,
+            timeline_counts=timeline_counts,
+            max_count=max_count,
             breadcrumbs=breadcrumbs,
         )
 
