@@ -150,7 +150,12 @@ th[role=columnheader]:not(.no-sort):hover:after {
   align-items: flex-start;
   justify-content: center;
   padding-top: 0.5em;
-  min-height: 2em;
+}
+
+.timeline-bar-zero {
+  background-color: #dee0e2;
+  height: 0;
+  padding-top: 0;
 }
 
 .timeline-count {
@@ -192,6 +197,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
                 <div class="timeline-year-bars">
                     {% set all_same = year_data.quarters[0] == year_data.quarters[1] == year_data.quarters[2] == year_data.quarters[3] %}
                     {% for count in year_data.quarters %}
+                    {% if count > 0 %}
                     <div class="timeline-bar" style="height: {{ (count / max_count * 200)|round(0) }}px;">
                         {% if all_same and loop.index == 3 %}
                         <span class="timeline-count">{{ count }}</span>
@@ -199,6 +205,9 @@ th[role=columnheader]:not(.no-sort):hover:after {
                         <span class="timeline-count">{{ count }}</span>
                         {% endif %}
                     </div>
+                    {% else %}
+                    <div class="timeline-bar timeline-bar-zero"></div>
+                    {% endif %}
                     {% endfor %}
                 </div>
                 <div class="timeline-year-label">{{ year_data.year }}</div>
