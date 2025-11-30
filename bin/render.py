@@ -654,16 +654,23 @@ def render_projects(env, conn):
                     counts[bucket] = counts.get(bucket, 0) + 1
                     total += 1
 
-        # Generate timeline data - count organisations by year
+        # Generate timeline data - count organisations by quarter
         timeline_data = {}
         for org in organisations:
             if org["start_date"]:
-                year = org["start_date"][:4]  # Extract year from YYYY-MM-DD
-                timeline_data[year] = timeline_data.get(year, 0) + 1
+                year = org["start_date"][:4]
+                month = int(org["start_date"][5:7])
+                quarter = (month - 1) // 3 + 1
+                period = f"{year} Q{quarter}"
+                timeline_data[period] = timeline_data.get(period, 0) + 1
 
-        # Sort by year and prepare for template
-        timeline_years = sorted(timeline_data.keys())
-        timeline_counts = [timeline_data[year] for year in timeline_years]
+        # Sort by period and calculate cumulative totals
+        timeline_periods = sorted(timeline_data.keys())
+        timeline_counts = []
+        cumulative = 0
+        for period in timeline_periods:
+            cumulative += timeline_data[period]
+            timeline_counts.append(cumulative)
         max_count = max(timeline_counts) if timeline_counts else 0
 
         # Generate maps for this project
@@ -690,7 +697,7 @@ def render_projects(env, conn):
             legends=AWARD_LEGENDS,
             counts=counts,
             total=total,
-            timeline_years=timeline_years,
+            timeline_periods=timeline_periods,
             timeline_counts=timeline_counts,
             max_count=max_count,
             breadcrumbs=breadcrumbs,
