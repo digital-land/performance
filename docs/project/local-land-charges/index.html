@@ -228,6 +228,41 @@ li.key-item {
 .stacked-chart .bar.Plan-making { background-color: #eee; color: #000 }
 .key-item.Plan-making { border-color: #eee; }
 
+
+/* sortable table */
+th[role=columnheader]:not(.no-sort) {
+	cursor: pointer;
+}
+
+th[role=columnheader]:not(.no-sort):after {
+	content: '';
+	float: right;
+	margin-top: 7px;
+	border-width: 0 4px 4px;
+	border-style: solid;
+	border-color: #404040 transparent;
+	visibility: hidden;
+	opacity: 0;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+th[aria-sort=ascending]:not(.no-sort):after {
+	border-bottom: none;
+	border-width: 4px 4px 0;
+}
+
+th[aria-sort]:not(.no-sort):after {
+	visibility: visible;
+	opacity: 0.4;
+}
+
+th[role=columnheader]:not(.no-sort):hover:after {
+	visibility: visible;
+	opacity: 1;
+}
 </style>
 
 <div class="govuk-grid-row">
@@ -653,1608 +688,1608 @@ li.key-item {
             </div>
         </div>
 
-        <table class="govuk-table">
+        <table id="organisations-table" class="govuk-table sortable">
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
-                    <th scope="col" class="govuk-table__header">Organisation</th>
                     <th scope="col" class="govuk-table__header">Start date</th>
+                    <th scope="col" class="govuk-table__header" aria-sort="ascending">Organisation</th>
                     <th scope="col" class="govuk-table__header">Interventions</th>
                 </tr>
             </thead>
             <tbody class="govuk-table__body">
                 
                 <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:EPS/">Epsom and Ewell Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2022</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/engagement/">Engagement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>, 
-                        
-                        <a href="/performance/intervention/software/">Software</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SWK/">London Borough of Southwark</a>
-                    </td>
-                    <td class="govuk-table__cell">1 September 2022</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/software/">Software</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WBK/">West Berkshire Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2023</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/integration/">Integration</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:TEW/">Tewkesbury Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 January 2022</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/integration/">Integration</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>, 
-                        
-                        <a href="/performance/intervention/software/">Software</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:LBH/">London Borough of Lambeth</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2022</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/engagement/">Engagement</a>, 
-                        
-                        <a href="/performance/intervention/innovation/">Innovation</a>, 
-                        
-                        <a href="/performance/intervention/software/">Software</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:MDW/">Medway Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 January 2022</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>, 
-                        
-                        <a href="/performance/intervention/software/">Software</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:CAT/">Canterbury City Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2023</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>, 
-                        
-                        <a href="/performance/intervention/software/">Software</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:PLY/">Plymouth City Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2022</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/engagement/">Engagement</a>, 
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/innovation/">Innovation</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:PTE/">Peterborough City Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:BST/">Bristol City Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SAW/">Sandwell Metropolitan Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:DOV/">Dover District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2023</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/integration/">Integration</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:NLN/">North Lincolnshire Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 October 2021</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/engagement/">Engagement</a>, 
-                        
-                        <a href="/performance/intervention/integration/">Integration</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:TAN/">Tandridge District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/innovation/">Innovation</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SST/">South Staffordshire Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SNO/">South Norfolk District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:CAS/">Castle Point Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:ECA/">East Cambridgeshire District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SGC/">South Gloucestershire Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:LND/">City of London Corporation</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:ENF/">London Borough of Enfield</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SLF/">Salford City Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2023</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/innovation/">Innovation</a>, 
-                        
-                        <a href="/performance/intervention/integration/">Integration</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WOX/">West Oxfordshire District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2022</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/engagement/">Engagement</a>, 
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/innovation/">Innovation</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:TRF/">Trafford Metropolitan Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:EHE/">East Hertfordshire District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/innovation/">Innovation</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:KTT/">Royal Borough of Kingston upon Thames</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2023</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/integration/">Integration</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:MIK/">Milton Keynes City Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:UTT/">Uttlesford District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">28 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WEA/">Wealden District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">14 March 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SPE/">Spelthorne Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SFT/">Sefton Metropolitan Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">14 March 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:NNO/">North Norfolk District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">28 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:KHL/">Hull City Council</a>
-                    </td>
-                    <td class="govuk-table__cell">28 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:CHT/">Cheltenham Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">28 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:BUR/">Bury Metropolitan Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">28 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:LDS/">Leeds City Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/integration/">Integration</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:HRY/">London Borough of Haringey</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2022</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/engagement/">Engagement</a>, 
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/innovation/">Innovation</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:EPP/">Epping Forest District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2022</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/engagement/">Engagement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:NKE/">North Kesteven District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/innovation/">Innovation</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WND/">London Borough of Wandsworth</a>
-                    </td>
-                    <td class="govuk-table__cell">1 October 2021</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/engagement/">Engagement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WAT/">Watford Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 October 2021</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/engagement/">Engagement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SKP/">Stockport Metropolitan Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 October 2021</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/engagement/">Engagement</a>, 
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:BAE/">Bassetlaw District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">28 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WGN/">Wigan Metropolitan Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/innovation/">Innovation</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SEV/">Sevenoaks District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 January 2022</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/innovation/">Innovation</a>, 
-                        
-                        <a href="/performance/intervention/integration/">Integration</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:RUN/">Runnymede Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2022</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/engagement/">Engagement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:LEE/">Lewes District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2022</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/engagement/">Engagement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:HAO/">Harborough District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2022</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/engagement/">Engagement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:KWL/">Knowsley Metropolitan Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">14 March 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:GED/">Gedling Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:YOR/">City of York Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 February 2024</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WYC/">Wychavon District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">23 September 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WOC/">Worcester City Council</a>
-                    </td>
-                    <td class="govuk-table__cell">23 September 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:TAM/">Tameside Metropolitan Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">28 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:MAV/">Malvern Hills District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">23 September 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:LIV/">Liverpool City Council</a>
-                    </td>
-                    <td class="govuk-table__cell">1 March 2023</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/integration/">Integration</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:HAL/">Halton Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">14 March 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:FEN/">Fenland District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">19 March 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:DER/">Derby City Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:CLD/">Calderdale Metropolitan Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:CHL/">Chelmsford City Council</a>
-                    </td>
-                    <td class="govuk-table__cell">23 September 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:BPL/">Blackpool Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:BEX/">London Borough of Bexley</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/improvement/">Improvement</a>, 
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:HRW/">London Borough of Harrow</a>
-                    </td>
-                    <td class="govuk-table__cell">1 January 2022</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/integration/">Integration</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WDE/">West Devon Borough Council</a>
-                    </td>
                     <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SHA/">South Hams District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WLI/">West Lindsey District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:THE/">Three Rivers District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:LIC/">City of Lincoln Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:HER/">Hertsmere Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WOI/">Woking Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SOL/">Solihull Metropolitan Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SKE/">South Kesteven District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">19 March 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:RUT/">Rutland County Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:POR/">Portsmouth City Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:NOW/">Norwich City Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:IOS/">Council of the Isles of Scilly</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:BDF/">Bedford Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:BBD/">Blackburn with Darwen Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:DUD/">Dudley Metropolitan Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:CAR/">Carlisle City Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WYR/">Wyre Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WYE/">Wyre Forest District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WSK/">West Suffolk Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WLV/">City of Wolverhampton Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WKF/">Wakefield Metropolitan District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WEW/">Welwyn Hatfield Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:WAW/">Warwick District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:TOR/">Torridge District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:TON/">Tonbridge and Malling Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:THR/">Thurrock Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:STT/">Stockton-on-Tees Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:STR/">Stratford-on-Avon District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:STO/">Stroud District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:STN/">London Borough of Sutton</a>
-                    </td>
-                    <td class="govuk-table__cell">19 March 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SEL/">Selby District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:SCE/">Scarborough Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:RYE/">Ryedale District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:RUS/">Rushcliffe Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:RUG/">Rugby Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:RIH/">Richmondshire District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:RED/">Redditch Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:PEN/">Pendle Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:OAD/">Oadby and Wigston Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">19 March 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:NWL/">North West Leicestershire District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">19 March 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:NUN/">Nuneaton and Bedworth Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:NHE/">North Hertfordshire District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:NEC/">Newcastle-under-Lyme Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:NEA/">Newark and Sherwood District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:MSU/">Mid Suffolk District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:MSS/">Mid Sussex District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:MDE/">Mid Devon District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:MAL/">Maldon District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:IOW/">Isle of Wight Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:HIG/">High Peak Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:HAS/">Hastings Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">19 March 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:HAG/">Harrogate Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:HAE/">Hambleton District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:GRA/">Gravesham Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:ELI/">East Lindsey District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:EDE/">East Devon District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:CRA/">Craven District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:BUN/">Burnley Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:BRX/">Broxbourne Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:BRT/">Broxtowe Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:BRM/">Bromsgrove District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">27 February 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:BOT/">Boston Borough Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:BLA/">Blaby District Council</a>
-                    </td>
-                    <td class="govuk-table__cell">19 March 2025</td>
-                    <td class="govuk-table__cell">
-                        
-                        <a href="/performance/intervention/plan-making/">Plan-making</a>
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">
-                        <a href="/performance/organisation/local-authority:BAB/">Babergh District Council</a>
-                    </td>
-                    <td class="govuk-table__cell"></td>
-                    <td class="govuk-table__cell">
-                        
-                    </td>
-                </tr>
-                
-                <tr class="govuk-table__row">
                     <td class="govuk-table__cell">
                         <a href="/performance/organisation/local-authority:ASH/">Ashfield District Council</a>
                     </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
                     <td class="govuk-table__cell"></td>
                     <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BAB/">Babergh District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">28 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BAE/">Bassetlaw District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BDF/">Bedford Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">19 March 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BLA/">Blaby District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BBD/">Blackburn with Darwen Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BPL/">Blackpool Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BOT/">Boston Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BST/">Bristol City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BRM/">Bromsgrove District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BRX/">Broxbourne Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BRT/">Broxtowe Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BUN/">Burnley Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">28 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BUR/">Bury Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:CLD/">Calderdale Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2023</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:CAT/">Canterbury City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>, 
+                        
+                        <a href="/performance/intervention/software/">Software</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:CAR/">Carlisle City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:CAS/">Castle Point Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">23 September 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:CHL/">Chelmsford City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">28 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:CHT/">Cheltenham Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:LIC/">City of Lincoln Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:LND/">City of London Corporation</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WLV/">City of Wolverhampton Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:YOR/">City of York Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:IOS/">Council of the Isles of Scilly</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:CRA/">Craven District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:DER/">Derby City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2023</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:DOV/">Dover District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/integration/">Integration</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:DUD/">Dudley Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:ECA/">East Cambridgeshire District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:EDE/">East Devon District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:EHE/">East Hertfordshire District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/innovation/">Innovation</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:ELI/">East Lindsey District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:EPP/">Epping Forest District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/engagement/">Engagement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:EPS/">Epsom and Ewell Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/engagement/">Engagement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>, 
+                        
+                        <a href="/performance/intervention/software/">Software</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">19 March 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:FEN/">Fenland District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:GED/">Gedling Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:GRA/">Gravesham Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">14 March 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:HAL/">Halton Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:HAE/">Hambleton District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:HAO/">Harborough District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/engagement/">Engagement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:HAG/">Harrogate Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">19 March 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:HAS/">Hastings Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:HER/">Hertsmere Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:HIG/">High Peak Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">28 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:KHL/">Hull City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:IOW/">Isle of Wight Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">14 March 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:KWL/">Knowsley Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:LDS/">Leeds City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/integration/">Integration</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:LEE/">Lewes District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/engagement/">Engagement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2023</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:LIV/">Liverpool City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/integration/">Integration</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:BEX/">London Borough of Bexley</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:ENF/">London Borough of Enfield</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:HRY/">London Borough of Haringey</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/engagement/">Engagement</a>, 
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/innovation/">Innovation</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 January 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:HRW/">London Borough of Harrow</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/integration/">Integration</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:LBH/">London Borough of Lambeth</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/engagement/">Engagement</a>, 
+                        
+                        <a href="/performance/intervention/innovation/">Innovation</a>, 
+                        
+                        <a href="/performance/intervention/software/">Software</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 September 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SWK/">London Borough of Southwark</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/software/">Software</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">19 March 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:STN/">London Borough of Sutton</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 October 2021</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WND/">London Borough of Wandsworth</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/engagement/">Engagement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:MAL/">Maldon District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">23 September 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:MAV/">Malvern Hills District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 January 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:MDW/">Medway Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>, 
+                        
+                        <a href="/performance/intervention/software/">Software</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:MDE/">Mid Devon District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:MSU/">Mid Suffolk District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:MSS/">Mid Sussex District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:MIK/">Milton Keynes City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:NEA/">Newark and Sherwood District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:NEC/">Newcastle-under-Lyme Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:NHE/">North Hertfordshire District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:NKE/">North Kesteven District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/innovation/">Innovation</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 October 2021</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:NLN/">North Lincolnshire Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/engagement/">Engagement</a>, 
+                        
+                        <a href="/performance/intervention/integration/">Integration</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">28 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:NNO/">North Norfolk District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">19 March 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:NWL/">North West Leicestershire District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:NOW/">Norwich City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:NUN/">Nuneaton and Bedworth Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">19 March 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:OAD/">Oadby and Wigston Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:PEN/">Pendle Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:PTE/">Peterborough City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:PLY/">Plymouth City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/engagement/">Engagement</a>, 
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/innovation/">Innovation</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:POR/">Portsmouth City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:RED/">Redditch Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:RIH/">Richmondshire District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2023</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:KTT/">Royal Borough of Kingston upon Thames</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/integration/">Integration</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:RUG/">Rugby Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:RUN/">Runnymede Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/engagement/">Engagement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:RUS/">Rushcliffe Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:RUT/">Rutland County Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:RYE/">Ryedale District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2023</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SLF/">Salford City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/innovation/">Innovation</a>, 
+                        
+                        <a href="/performance/intervention/integration/">Integration</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SAW/">Sandwell Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SCE/">Scarborough Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">14 March 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SFT/">Sefton Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SEL/">Selby District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 January 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SEV/">Sevenoaks District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/innovation/">Innovation</a>, 
+                        
+                        <a href="/performance/intervention/integration/">Integration</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SOL/">Solihull Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SGC/">South Gloucestershire Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SHA/">South Hams District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">19 March 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SKE/">South Kesteven District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SNO/">South Norfolk District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SST/">South Staffordshire Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SPE/">Spelthorne Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 October 2021</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:SKP/">Stockport Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/engagement/">Engagement</a>, 
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:STT/">Stockton-on-Tees Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:STR/">Stratford-on-Avon District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:STO/">Stroud District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">28 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:TAM/">Tameside Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:TAN/">Tandridge District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/innovation/">Innovation</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 January 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:TEW/">Tewkesbury Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/integration/">Integration</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>, 
+                        
+                        <a href="/performance/intervention/software/">Software</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:THE/">Three Rivers District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:THR/">Thurrock Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:TON/">Tonbridge and Malling Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:TOR/">Torridge District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:TRF/">Trafford Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">28 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:UTT/">Uttlesford District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WKF/">Wakefield Metropolitan District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WAW/">Warwick District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 October 2021</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WAT/">Watford Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/engagement/">Engagement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">14 March 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WEA/">Wealden District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WEW/">Welwyn Hatfield Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2023</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WBK/">West Berkshire Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/integration/">Integration</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WDE/">West Devon Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WLI/">West Lindsey District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 March 2022</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WOX/">West Oxfordshire District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/engagement/">Engagement</a>, 
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>, 
+                        
+                        <a href="/performance/intervention/innovation/">Innovation</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WSK/">West Suffolk Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">1 February 2024</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WGN/">Wigan Metropolitan Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/innovation/">Innovation</a>, 
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WOI/">Woking Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">23 September 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WOC/">Worcester City Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">23 September 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WYC/">Wychavon District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/improvement/">Improvement</a>
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"></td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WYR/">Wyre Borough Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                    </td>
+                </tr>
+                
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">27 February 2025</td>
+                    <td class="govuk-table__cell">
+                        <a href="/performance/organisation/local-authority:WYE/">Wyre Forest District Council</a>
+                    </td>
+                    <td class="govuk-table__cell">
+                        
+                        <a href="/performance/intervention/plan-making/">Plan-making</a>
                         
                     </td>
                 </tr>
@@ -2263,6 +2298,12 @@ li.key-item {
         </table>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js" integrity="sha512-F/gIMdDfda6OD2rnzt/Iyp2V9JLHlFQ+EUyixDg9+rkwjqgW1snpkpx7FD5FV1+gG2fmFj7I3r6ReQDUidHelA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+new Tablesort(document.getElementById('organisations-table'));
+</script>
+
 
     </main>
 </div>

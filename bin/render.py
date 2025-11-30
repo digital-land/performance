@@ -613,7 +613,7 @@ def render_projects(env, conn):
             LEFT JOIN awards a ON o.organisation = a.organisation
             WHERE po.project = ?
             GROUP BY o.organisation
-            ORDER BY o.score DESC
+            ORDER BY o.name
         """,
             (project_id,),
         )
