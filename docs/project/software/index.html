@@ -268,22 +268,27 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-chart {
   display: flex;
   align-items: flex-end;
-  gap: 0.5em;
+  gap: 2em;
   padding: 2em 0;
   margin: 1em 0;
   overflow-x: auto;
 }
 
-.timeline-bar-container {
+.timeline-year-group {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5em;
-  min-width: 4em;
+}
+
+.timeline-year-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25em;
 }
 
 .timeline-bar {
-  width: 100%;
+  width: 2.5em;
   background-color: #1d70b8;
   display: flex;
   align-items: flex-start;
@@ -295,14 +300,13 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-count {
   color: white;
   font-weight: bold;
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 
-.timeline-period {
+.timeline-year-label {
   font-weight: bold;
-  order: 2;
-  font-size: 0.85em;
-  text-align: center;
+  font-size: 1em;
+  margin-top: 0.5em;
 }
 </style>
 

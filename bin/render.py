@@ -661,17 +661,32 @@ def render_projects(env, conn):
                 year = org["start_date"][:4]
                 month = int(org["start_date"][5:7])
                 quarter = (month - 1) // 3 + 1
-                period = f"{year} Q{quarter}"
+                period = f"{year}-Q{quarter}"
                 timeline_data[period] = timeline_data.get(period, 0) + 1
 
-        # Sort by period and calculate cumulative totals
-        timeline_periods = sorted(timeline_data.keys())
-        timeline_counts = []
-        cumulative = 0
-        for period in timeline_periods:
-            cumulative += timeline_data[period]
-            timeline_counts.append(cumulative)
-        max_count = max(timeline_counts) if timeline_counts else 0
+        # Get all years that have data
+        if timeline_data:
+            all_periods = sorted(timeline_data.keys())
+            start_year = int(all_periods[0][:4])
+            end_year = int(all_periods[-1][:4])
+
+            # Create complete timeline with all quarters for each year
+            timeline_bars = []
+            cumulative = 0
+            for year in range(start_year, end_year + 1):
+                year_bars = []
+                for quarter in range(1, 5):
+                    period = f"{year}-Q{quarter}"
+                    cumulative += timeline_data.get(period, 0)
+                    year_bars.append(cumulative)
+                timeline_bars.append({
+                    'year': str(year),
+                    'quarters': year_bars
+                })
+            max_count = cumulative
+        else:
+            timeline_bars = []
+            max_count = 0
 
         # Generate maps for this project
         shapes_svg = process_shapes_svg(
@@ -697,8 +712,7 @@ def render_projects(env, conn):
             legends=AWARD_LEGENDS,
             counts=counts,
             total=total,
-            timeline_periods=timeline_periods,
-            timeline_counts=timeline_counts,
+            timeline_bars=timeline_bars,
             max_count=max_count,
             breadcrumbs=breadcrumbs,
         )

@@ -268,22 +268,27 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-chart {
   display: flex;
   align-items: flex-end;
-  gap: 0.5em;
+  gap: 2em;
   padding: 2em 0;
   margin: 1em 0;
   overflow-x: auto;
 }
 
-.timeline-bar-container {
+.timeline-year-group {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5em;
-  min-width: 4em;
+}
+
+.timeline-year-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25em;
 }
 
 .timeline-bar {
-  width: 100%;
+  width: 2.5em;
   background-color: #1d70b8;
   display: flex;
   align-items: flex-start;
@@ -295,14 +300,13 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-count {
   color: white;
   font-weight: bold;
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 
-.timeline-period {
+.timeline-year-label {
   font-weight: bold;
-  order: 2;
-  font-size: 0.85em;
-  text-align: center;
+  font-size: 1em;
+  margin-top: 0.5em;
 }
 </style>
 
@@ -733,45 +737,118 @@ th[role=columnheader]:not(.no-sort):hover:after {
         <h2 class="govuk-heading-m">Timeline</h2>
         <div class="timeline-chart">
             
-            <div class="timeline-bar-container">
-                <div class="timeline-period">2021 Q4</div>
-                <div class="timeline-bar" style="height: 39.0px;">
-                    <span class="timeline-count">13</span>
+            <div class="timeline-year-group">
+                <div class="timeline-year-label">2021</div>
+                <div class="timeline-year-bars">
+                    
+                    <div class="timeline-bar" style="height: 0.0px;">
+                        <span class="timeline-count">0</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 0.0px;">
+                        <span class="timeline-count">0</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 0.0px;">
+                        <span class="timeline-count">0</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 39.0px;">
+                        <span class="timeline-count">13</span>
+                    </div>
+                    
                 </div>
             </div>
             
-            <div class="timeline-bar-container">
-                <div class="timeline-period">2022 Q1</div>
-                <div class="timeline-bar" style="height: 118.0px;">
-                    <span class="timeline-count">39</span>
+            <div class="timeline-year-group">
+                <div class="timeline-year-label">2022</div>
+                <div class="timeline-year-bars">
+                    
+                    <div class="timeline-bar" style="height: 118.0px;">
+                        <span class="timeline-count">39</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 118.0px;">
+                        <span class="timeline-count">39</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 118.0px;">
+                        <span class="timeline-count">39</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 118.0px;">
+                        <span class="timeline-count">39</span>
+                    </div>
+                    
                 </div>
             </div>
             
-            <div class="timeline-bar-container">
-                <div class="timeline-period">2023 Q1</div>
-                <div class="timeline-bar" style="height: 127.0px;">
-                    <span class="timeline-count">42</span>
+            <div class="timeline-year-group">
+                <div class="timeline-year-label">2023</div>
+                <div class="timeline-year-bars">
+                    
+                    <div class="timeline-bar" style="height: 127.0px;">
+                        <span class="timeline-count">42</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 127.0px;">
+                        <span class="timeline-count">42</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 127.0px;">
+                        <span class="timeline-count">42</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 127.0px;">
+                        <span class="timeline-count">42</span>
+                    </div>
+                    
                 </div>
             </div>
             
-            <div class="timeline-bar-container">
-                <div class="timeline-period">2024 Q1</div>
-                <div class="timeline-bar" style="height: 188.0px;">
-                    <span class="timeline-count">62</span>
+            <div class="timeline-year-group">
+                <div class="timeline-year-label">2024</div>
+                <div class="timeline-year-bars">
+                    
+                    <div class="timeline-bar" style="height: 188.0px;">
+                        <span class="timeline-count">62</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 188.0px;">
+                        <span class="timeline-count">62</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 188.0px;">
+                        <span class="timeline-count">62</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 188.0px;">
+                        <span class="timeline-count">62</span>
+                    </div>
+                    
                 </div>
             </div>
             
-            <div class="timeline-bar-container">
-                <div class="timeline-period">2025 Q1</div>
-                <div class="timeline-bar" style="height: 197.0px;">
-                    <span class="timeline-count">65</span>
-                </div>
-            </div>
-            
-            <div class="timeline-bar-container">
-                <div class="timeline-period">2025 Q3</div>
-                <div class="timeline-bar" style="height: 200.0px;">
-                    <span class="timeline-count">66</span>
+            <div class="timeline-year-group">
+                <div class="timeline-year-label">2025</div>
+                <div class="timeline-year-bars">
+                    
+                    <div class="timeline-bar" style="height: 197.0px;">
+                        <span class="timeline-count">65</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 197.0px;">
+                        <span class="timeline-count">65</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 200.0px;">
+                        <span class="timeline-count">66</span>
+                    </div>
+                    
+                    <div class="timeline-bar" style="height: 200.0px;">
+                        <span class="timeline-count">66</span>
+                    </div>
+                    
                 </div>
             </div>
             

@@ -125,22 +125,27 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-chart {
   display: flex;
   align-items: flex-end;
-  gap: 0.5em;
+  gap: 2em;
   padding: 2em 0;
   margin: 1em 0;
   overflow-x: auto;
 }
 
-.timeline-bar-container {
+.timeline-year-group {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5em;
-  min-width: 4em;
+}
+
+.timeline-year-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25em;
 }
 
 .timeline-bar {
-  width: 100%;
+  width: 2.5em;
   background-color: #1d70b8;
   display: flex;
   align-items: flex-start;
@@ -152,14 +157,13 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-count {
   color: white;
   font-weight: bold;
-  font-size: 0.9em;
+  font-size: 0.8em;
 }
 
-.timeline-period {
+.timeline-year-label {
   font-weight: bold;
-  order: 2;
-  font-size: 0.85em;
-  text-align: center;
+  font-size: 1em;
+  margin-top: 0.5em;
 }
 </style>
 
@@ -181,14 +185,18 @@ th[role=columnheader]:not(.no-sort):hover:after {
             </div>
         </div>
 
-        {% if timeline_periods %}
+        {% if timeline_bars %}
         <h2 class="govuk-heading-m">Timeline</h2>
         <div class="timeline-chart">
-            {% for period in timeline_periods %}
-            <div class="timeline-bar-container">
-                <div class="timeline-period">{{ period }}</div>
-                <div class="timeline-bar" style="height: {{ (timeline_counts[loop.index0] / max_count * 200)|round(0) }}px;">
-                    <span class="timeline-count">{{ timeline_counts[loop.index0] }}</span>
+            {% for year_data in timeline_bars %}
+            <div class="timeline-year-group">
+                <div class="timeline-year-label">{{ year_data.year }}</div>
+                <div class="timeline-year-bars">
+                    {% for count in year_data.quarters %}
+                    <div class="timeline-bar" style="height: {{ (count / max_count * 200)|round(0) }}px;">
+                        <span class="timeline-count">{{ count }}</span>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
             {% endfor %}
