@@ -1657,6 +1657,21 @@ def process_shapes_svg(conn, filter_type=None, filter_value=None):
             "name": row["name"],
         }
 
+    # Get ALL organisations with LPA codes for linking all shapes
+    cursor.execute(
+        """
+        SELECT organisation, local_planning_authority, name
+        FROM organisations
+        WHERE local_planning_authority != ''
+        """
+    )
+    all_lpa_orgs = {}
+    for row in cursor.fetchall():
+        all_lpa_orgs[row["local_planning_authority"]] = {
+            "organisation": row["organisation"],
+            "name": row["name"],
+        }
+
     # Get interventions per organisation to calculate bucket
     if filter_type == "fund":
         cursor.execute(
@@ -1744,21 +1759,25 @@ def process_shapes_svg(conn, filter_type=None, filter_value=None):
                 lpa = match.group("lpa")
                 if lpa in found:
                     print(f"already found {lpa}", file=sys.stderr)
-                if lpa not in lpa_orgs:
+                if lpa not in all_lpa_orgs:
                     current_class = ""
                     current_lpa = ""
                     current_name = ""
                 else:
                     found.add(lpa)
-                    organisation = lpa_orgs[lpa]["organisation"]
-                    current_name = lpa_orgs[lpa]["name"]
-                    current_class = org_buckets.get(organisation, "")
                     current_lpa = lpa
+                    current_name = all_lpa_orgs[lpa]["name"]
+                    # Only set class if this org has funding
+                    if lpa in lpa_orgs:
+                        organisation = lpa_orgs[lpa]["organisation"]
+                        current_class = org_buckets.get(organisation, "")
+                    else:
+                        current_class = ""
 
             if 'class="local-planning-authority"' in line:
                 org_link = (
-                    f"/organisation/{lpa_orgs[current_lpa]['organisation']}/"
-                    if current_lpa and current_lpa in lpa_orgs
+                    f"/organisation/{all_lpa_orgs[current_lpa]['organisation']}/"
+                    if current_lpa and current_lpa in all_lpa_orgs
                     else "#"
                 )
                 line = line.replace("<path", f'<a href="{BASE_PATH}{org_link}"><path')
