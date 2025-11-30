@@ -93,13 +93,12 @@ li.key-item {
         <p class="govuk-body">{{ project.description }}</p>
         {% endif %}
 
+
+        <h2 class="govuk-heading-m">Organisations</h2>
+
         <div class="maps-container">
             <div class="shapes map">
             {{ shapes_svg|safe }}
-            </div>
-
-            <div class="points map">
-            {{ points_svg|safe }}
             </div>
         </div>
 
@@ -121,15 +120,11 @@ li.key-item {
         {% endfor %}
         </ul>
 
-        <h2 class="govuk-heading-m">Organisations ({{ organisations|length }})</h2>
-
         <table class="govuk-table">
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                     <th scope="col" class="govuk-table__header">Organisation</th>
                     <th scope="col" class="govuk-table__header">Interventions</th>
-                    <th scope="col" class="govuk-table__header">Funding</th>
-                    <th scope="col" class="govuk-table__header">Adoption status</th>
                 </tr>
             </thead>
             <tbody class="govuk-table__body">
@@ -143,12 +138,6 @@ li.key-item {
                         <a href="{{BASE_PATH}}/intervention/{{ intervention.intervention }}/">{{ intervention.name }}</a>{% if not loop.last %}, {% endif %}
                         {% endfor %}
                     </td>
-                    <td class="govuk-table__cell">
-                        {% if org.amount > 0 %}
-                        £{{ "{:,}".format(org.amount) }}
-                        {% endif %}
-                    </td>
-                    <td class="govuk-table__cell">{{ org.adoption_status }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

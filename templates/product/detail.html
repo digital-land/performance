@@ -142,13 +142,13 @@
         {% endif %}
 
         <h2 class="govuk-heading-l" id="funnel">Adoption funnel</h2>
-        <p class="govuk-body">Organisations potentially able to adopt {{ product.name }}.</p>
+        <p class="govuk-body">Numbers of organisations able to adopt the {{ product.name }} product.</p>
 
         <div class="adoption-bar-chart">
             {% set max_count = counts.lpa %}
 
             <div class="adoption-bar-row">
-                <div class="adoption-bar-label">Local Planning Authority</div>
+                <div class="adoption-bar-label">Are a <a href="{{BASE_PATH}}/role/local-planning-authority/">Local Planning Authority</a></div>
                 <div class="adoption-bar-container">
                     <div class="adoption-bar" style="width: {{ (counts.active_lpa / max_count * 100)|round(1) }}%;">
                         <span class="adoption-bar-count">{{ counts.active_lpa }}</span>
@@ -157,10 +157,19 @@
             </div>
 
             <div class="adoption-bar-row">
-                <div class="adoption-bar-label"><a href="{{BASE_PATH}}/award/">Awarded funding</a></div>
+                <div class="adoption-bar-label">Have been <a href="{{BASE_PATH}}/award/">awarded funding</a> related to planning</div>
                 <div class="adoption-bar-container">
                     <div class="adoption-bar" style="width: {{ (counts.funded / max_count * 100)|round(1) }}%;">
                         <span class="adoption-bar-count">{{ counts.funded }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="adoption-bar-row">
+                <div class="adoption-bar-label">Are a member of the <a href="{{BASE_PATH}}/project/open-digital-planning/">Open Digital Planning</a> community</div>
+                <div class="adoption-bar-container">
+                    <div class="adoption-bar" style="width: {{ (counts.odp / max_count * 100)|round(1) }}%;">
+                        <span class="adoption-bar-count">{{ counts.odp }}</span>
                     </div>
                 </div>
             </div>
@@ -186,7 +195,7 @@
             </div>
 
             <div class="adoption-bar-row">
-                <div class="adoption-bar-label">Data ready for {{ product.name }}</div>
+                <div class="adoption-bar-label">Have data ready</div>
                 <div class="adoption-bar-container">
                     {% if counts.data_ready > 0 %}
                     <div class="adoption-bar" style="width: {{ (counts.data_ready / max_count * 100)|round(1) }}%;">
@@ -197,7 +206,7 @@
             </div>
 
             <div class="adoption-bar-row">
-                <div class="adoption-bar-label">Preparing to launch {{ product.name }}</div>
+                <div class="adoption-bar-label">Preparing to launch</div>
                 <div class="adoption-bar-container">
                     {% if counts.interested_or_adopting > 0 %}
                     <div class="adoption-bar" style="width: {{ (counts.interested_or_adopting / max_count * 100)|round(1) }}%;">
@@ -208,7 +217,7 @@
             </div>
 
             <div class="adoption-bar-row">
-                <div class="adoption-bar-label"><a href="#organisations">Have adopted {{ product.name }}</a></div>
+                <div class="adoption-bar-label"><a href="#organisations">Have adopted the {{ product.name }} product</a></div>
                 <div class="adoption-bar-container">
                     {% if counts.live > 0 %}
                     <div class="adoption-bar" style="width: {{ (counts.live / max_count * 100)|round(1) }}%;">
@@ -226,7 +235,7 @@
 
         {% if timeline_data %}
         <h2 class="govuk-heading-l" id="timeline">Adoption timeline</h2>
-        <p class="govuk-body">Timeline of organisations adopting {{ product.name }}.</p>
+        <p class="govuk-body">Timeline of organisations adopting the {{ product.name }} product.</p>
 
         <div class="timeline-container">
             <div class="timeline-header">
@@ -250,6 +259,7 @@
 
         {% if treemap_svg %}
         <h2 class="govuk-heading-l">Funding and adoption</h2>
+        <p class="govuk-body">The relationship between Software and PropTech funding, and adoption of {{ product.name }}.</p>
 
         <div class="treemap-container">
             {{ treemap_svg|safe }}
