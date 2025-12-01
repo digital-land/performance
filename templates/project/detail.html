@@ -185,13 +185,28 @@ th[role=columnheader]:not(.no-sort):hover:after {
   top: 50%;
 }
 
-.timeline-y-tick {
-  font-size: 0.85em;
-  color: #505a5f;
+.timeline-y-tick-wrapper {
   height: 60px;
   display: flex;
   align-items: flex-start;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.timeline-y-tick-text {
+  font-size: 0.85em;
+  color: #505a5f;
   line-height: 1;
+  text-align: right;
+}
+
+.timeline-y-tick-mark {
+  position: absolute;
+  right: -0.5em;
+  width: 5px;
+  height: 1px;
+  background-color: #b1b4b6;
+  top: 0;
 }
 
 .timeline-chart-area {
@@ -234,15 +249,31 @@ th[role=columnheader]:not(.no-sort):hover:after {
   padding-bottom: 2px;
 }
 
+.timeline-x-axis {
+  margin-left: 0.5em;
+}
+
 .timeline-x-labels {
   position: relative;
   height: 2em;
   margin-top: 0.5em;
-  margin-left: 0.5em;
+}
+
+.timeline-x-label-wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.timeline-x-tick-mark {
+  width: 1px;
+  height: 5px;
+  background-color: #b1b4b6;
+  margin-bottom: 2px;
 }
 
 .timeline-x-label {
-  position: absolute;
   font-size: 0.9em;
   color: #505a5f;
   font-weight: bold;
@@ -282,7 +313,10 @@ th[role=columnheader]:not(.no-sort):hover:after {
                     <div class="timeline-y-axis">
                         <div class="timeline-y-label">Number of organisations</div>
                         {% for i in range(5, -1, -1) %}
-                        <div class="timeline-y-tick">{{ (max_count * i / 5)|round(0)|int }}</div>
+                        <div class="timeline-y-tick-wrapper">
+                            <span class="timeline-y-tick-text">{{ (max_count * i / 5)|round(0)|int }}</span>
+                            <span class="timeline-y-tick-mark"></span>
+                        </div>
                         {% endfor %}
                     </div>
                     <div class="timeline-chart-area">
@@ -297,14 +331,19 @@ th[role=columnheader]:not(.no-sort):hover:after {
                             </div>
                             {% endfor %}
                         </div>
-                        <div class="timeline-x-labels">
-                            {% for month in timeline_months %}
-                            {% set month_name = month.label.split(' ')[0] %}
-                            {% if month_name == 'Jan' %}
-                            {% set year = month.label.split(' ')[1] %}
-                            <div class="timeline-x-label" style="left: {{ (loop.index0 / timeline_months|length * 100) }}%;">{{ year }}</div>
-                            {% endif %}
-                            {% endfor %}
+                        <div class="timeline-x-axis">
+                            <div class="timeline-x-labels">
+                                {% for month in timeline_months %}
+                                {% set month_name = month.label.split(' ')[0] %}
+                                {% if month_name == 'Jan' %}
+                                {% set year = month.label.split(' ')[1] %}
+                                <div class="timeline-x-label-wrapper" style="left: {{ (loop.index0 / timeline_months|length * 100) }}%;">
+                                    <div class="timeline-x-tick-mark"></div>
+                                    <div class="timeline-x-label">{{ year }}</div>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
                         </div>
                     </div>
                 </div>

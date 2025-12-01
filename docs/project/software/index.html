@@ -328,13 +328,28 @@ th[role=columnheader]:not(.no-sort):hover:after {
   top: 50%;
 }
 
-.timeline-y-tick {
-  font-size: 0.85em;
-  color: #505a5f;
+.timeline-y-tick-wrapper {
   height: 60px;
   display: flex;
   align-items: flex-start;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.timeline-y-tick-text {
+  font-size: 0.85em;
+  color: #505a5f;
   line-height: 1;
+  text-align: right;
+}
+
+.timeline-y-tick-mark {
+  position: absolute;
+  right: -0.5em;
+  width: 5px;
+  height: 1px;
+  background-color: #b1b4b6;
+  top: 0;
 }
 
 .timeline-chart-area {
@@ -377,15 +392,31 @@ th[role=columnheader]:not(.no-sort):hover:after {
   padding-bottom: 2px;
 }
 
+.timeline-x-axis {
+  margin-left: 0.5em;
+}
+
 .timeline-x-labels {
   position: relative;
   height: 2em;
   margin-top: 0.5em;
-  margin-left: 0.5em;
+}
+
+.timeline-x-label-wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.timeline-x-tick-mark {
+  width: 1px;
+  height: 5px;
+  background-color: #b1b4b6;
+  margin-bottom: 2px;
 }
 
 .timeline-x-label {
-  position: absolute;
   font-size: 0.9em;
   color: #505a5f;
   font-weight: bold;
