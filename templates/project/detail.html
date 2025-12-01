@@ -160,7 +160,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 /* timeline chart */
 .timeline-chart-container {
   display: flex;
-  gap: 0.5em;
+  gap: 0.75em;
   padding: 1em 0;
   margin: 1em 0;
 }
@@ -178,8 +178,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
   position: absolute;
   writing-mode: vertical-rl;
   transform: rotate(180deg) translateX(50%);
-  font-size: 0.9em;
-  font-weight: bold;
+  font-size: 0.75em;
   color: #505a5f;
   left: -3em;
   top: 50%;
@@ -194,9 +193,9 @@ th[role=columnheader]:not(.no-sort):hover:after {
 }
 
 .timeline-y-tick-text {
-  font-size: 0.85em;
+  font-size: 0.75em;
   color: #505a5f;
-  line-height: 1;
+  line-height: 0.25;
   text-align: right;
 }
 
@@ -219,7 +218,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-bars {
   display: flex;
   align-items: flex-end;
-  gap: 1px;
+  gap: 3px;
   height: 300px;
   border-left: 2px solid #b1b4b6;
   border-bottom: 2px solid #b1b4b6;
@@ -243,10 +242,10 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-increase-label {
   position: absolute;
   bottom: 100%;
-  font-size: 0.7em;
-  font-weight: bold;
+  font-size: 0.68em;
   color: #505a5f;
   padding-bottom: 2px;
+  left: -.5em;
 }
 
 .timeline-x-axis {
@@ -257,6 +256,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
   position: relative;
   height: 2em;
   margin-top: 0.5em;
+  font-size: 0.9em;
 }
 
 .timeline-x-label-wrapper {
@@ -276,7 +276,6 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-x-label {
   font-size: 0.9em;
   color: #505a5f;
-  font-weight: bold;
 }
 </style>
 
@@ -354,16 +353,16 @@ th[role=columnheader]:not(.no-sort):hover:after {
                     <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
                             <th scope="col" class="govuk-table__header">Month</th>
-                            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Increase</th>
                             <th scope="col" class="govuk-table__header govuk-table__header--numeric">Cumulative</th>
+                            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Change</th>
                         </tr>
                     </thead>
                     <tbody class="govuk-table__body">
                         {% for month in timeline_months %}
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">{{ month.label }}</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">{% if month.increase > 0 %}+{{ month.increase }}{% else %}{{ month.increase }}{% endif %}</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">{{ month.cumulative }}</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric">{% if month.increase != 0 %}{{ month.increase }}{% endif %}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
