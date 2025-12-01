@@ -121,53 +121,126 @@ th[role=columnheader]:not(.no-sort):hover:after {
 	opacity: 1;
 }
 
-/* timeline chart */
-.timeline-chart {
+/* timeline tabs */
+.timeline-tabs {
   display: flex;
-  align-items: flex-end;
-  width: 100%;
-  padding: 2em 0;
+  gap: 0;
+  border-bottom: 1px solid #b1b4b6;
+  margin-bottom: 1em;
+}
+
+.timeline-tab {
+  background: none;
+  border: none;
+  padding: 0.75em 1.5em;
+  cursor: pointer;
+  font-size: 1em;
+  color: #1d70b8;
+  border-bottom: 4px solid transparent;
+}
+
+.timeline-tab:hover {
+  background-color: #f3f2f1;
+}
+
+.timeline-tab.active {
+  border-bottom-color: #1d70b8;
+  font-weight: bold;
+  color: #0b0c0c;
+}
+
+.timeline-view {
+  display: none;
+}
+
+.timeline-view.active {
+  display: block;
+}
+
+/* timeline chart */
+.timeline-chart-container {
+  display: flex;
+  gap: 1em;
+  padding: 1em 0;
   margin: 1em 0;
 }
 
-.timeline-year-group {
+.timeline-y-axis {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  flex: 1;
+  justify-content: space-between;
+  min-width: 80px;
+  text-align: right;
+  padding-right: 0.5em;
 }
 
-.timeline-year-bars {
+.timeline-y-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+
+.timeline-y-tick {
+  font-size: 0.85em;
+  color: #505a5f;
+  height: 60px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.timeline-chart-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.timeline-bars {
   display: flex;
   align-items: flex-end;
-  width: 100%;
+  height: 300px;
+  border-left: 1px solid #b1b4b6;
+  border-bottom: 2px solid #0b0c0c;
+  position: relative;
 }
 
-.timeline-bar {
+.timeline-bar-wrapper {
   flex: 1;
-  background-color: #1d70b8;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.timeline-bar-new {
+  width: 100%;
+  background-color: #12436d;
+  position: relative;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 0.5em;
+  padding-top: 0.25em;
 }
 
-.timeline-bar-zero {
-  background-color: #dee0e2;
-  height: 0;
-  padding-top: 0;
-}
-
-.timeline-count {
+.timeline-increase {
   color: white;
+  font-size: 0.7em;
   font-weight: bold;
-  font-size: 0.8em;
 }
 
-.timeline-year-label {
-  font-weight: bold;
-  font-size: 0.9em;
-  margin-top: 0.5em;
+.timeline-x-labels {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.5em;
+  margin-left: 0;
+}
+
+.timeline-x-label {
+  font-size: 0.8em;
+  color: #505a5f;
+  transform: rotate(-45deg);
+  transform-origin: top left;
+  margin-top: 1em;
 }
 </style>
 
@@ -189,30 +262,75 @@ th[role=columnheader]:not(.no-sort):hover:after {
             </div>
         </div>
 
-        {% if timeline_bars %}
-        <h2 class="govuk-heading-m">Timeline</h2>
-        <div class="timeline-chart">
-            {% for year_data in timeline_bars %}
-            <div class="timeline-year-group">
-                <div class="timeline-year-bars">
-                    {% set all_same = year_data.quarters[0] == year_data.quarters[1] == year_data.quarters[2] == year_data.quarters[3] %}
-                    {% for count in year_data.quarters %}
-                    {% if count > 0 %}
-                    <div class="timeline-bar" style="height: {{ (count / max_count * 200)|round(0) }}px;">
-                        {% if all_same and loop.index == 3 %}
-                        <span class="timeline-count">{{ count }}</span>
-                        {% elif not all_same %}
-                        <span class="timeline-count">{{ count }}</span>
-                        {% endif %}
+        {% if timeline_months %}
+        <h2 class="govuk-heading-m">Cumulative number of organisations by month</h2>
+
+        <div class="timeline-tabs">
+            <button class="timeline-tab active" data-tab="chart">Chart</button>
+            <button class="timeline-tab" data-tab="table">Tabular data</button>
+            <button class="timeline-tab" data-tab="download">Download</button>
+        </div>
+
+        <div class="timeline-content">
+            <div id="chart-view" class="timeline-view active">
+                <div class="timeline-chart-container">
+                    <div class="timeline-y-axis">
+                        <div class="timeline-y-label">Number of organisations</div>
+                        {% for i in range(5, -1, -1) %}
+                        <div class="timeline-y-tick">{{ (max_count * i / 5)|round(0)|int }}</div>
+                        {% endfor %}
                     </div>
-                    {% else %}
-                    <div class="timeline-bar timeline-bar-zero"></div>
-                    {% endif %}
-                    {% endfor %}
+                    <div class="timeline-chart-area">
+                        <div class="timeline-bars">
+                            {% for month in timeline_months %}
+                            <div class="timeline-bar-wrapper">
+                                <div class="timeline-bar-new" style="height: {{ (month.cumulative / max_count * 300)|round(0) }}px;" title="{{ month.label }}: {{ month.cumulative }} ({% if month.increase > 0 %}+{{ month.increase }}{% else %}{{ month.increase }}{% endif %})">
+                                    {% if month.increase > 0 %}
+                                    <span class="timeline-increase">+{{ month.increase }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="timeline-x-labels">
+                            {% for month in timeline_months %}
+                            {% if loop.index0 % 3 == 0 %}
+                            <div class="timeline-x-label">{{ month.label }}</div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
                 </div>
-                <div class="timeline-year-label">{{ year_data.year }}</div>
             </div>
-            {% endfor %}
+
+            <div id="table-view" class="timeline-view">
+                <table class="govuk-table">
+                    <thead class="govuk-table__head">
+                        <tr class="govuk-table__row">
+                            <th scope="col" class="govuk-table__header">Month</th>
+                            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Increase</th>
+                            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Cumulative</th>
+                        </tr>
+                    </thead>
+                    <tbody class="govuk-table__body">
+                        {% for month in timeline_months %}
+                        <tr class="govuk-table__row">
+                            <td class="govuk-table__cell">{{ month.label }}</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric">{% if month.increase > 0 %}+{{ month.increase }}{% else %}{{ month.increase }}{% endif %}</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric">{{ month.cumulative }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="download-view" class="timeline-view">
+                <p class="govuk-body">Download the data in the following formats:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li><a href="#" class="govuk-link download-csv">CSV</a></li>
+                    <li><a href="#" class="govuk-link download-json">JSON</a></li>
+                </ul>
+            </div>
         </div>
         {% endif %}
 
@@ -246,6 +364,49 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js" integrity="sha512-F/gIMdDfda6OD2rnzt/Iyp2V9JLHlFQ+EUyixDg9+rkwjqgW1snpkpx7FD5FV1+gG2fmFj7I3r6ReQDUidHelA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 new Tablesort(document.getElementById('organisations-table'));
+
+// Timeline tab switching
+document.querySelectorAll('.timeline-tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+        const targetTab = this.dataset.tab;
+
+        // Update tab buttons
+        document.querySelectorAll('.timeline-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        // Update views
+        document.querySelectorAll('.timeline-view').forEach(v => v.classList.remove('active'));
+        document.getElementById(targetTab + '-view').classList.add('active');
+    });
+});
+
+// Download functionality
+{% if timeline_months %}
+const timelineData = {{ timeline_months|tojson }};
+
+document.querySelector('.download-csv')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    const csv = 'Month,Increase,Cumulative\n' +
+        timelineData.map(m => `${m.label},${m.increase},${m.cumulative}`).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'timeline-data.csv';
+    a.click();
+});
+
+document.querySelector('.download-json')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    const json = JSON.stringify(timelineData, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'timeline-data.json';
+    a.click();
+});
+{% endif %}
 </script>
 
 {% endblock content %}

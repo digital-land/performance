@@ -654,38 +654,56 @@ def render_projects(env, conn):
                     counts[bucket] = counts.get(bucket, 0) + 1
                     total += 1
 
-        # Generate timeline data - count organisations by quarter
+        # Generate timeline data - count organisations by month
+        from datetime import datetime
         timeline_data = {}
         for org in organisations:
             if org["start_date"]:
                 year = org["start_date"][:4]
-                month = int(org["start_date"][5:7])
-                quarter = (month - 1) // 3 + 1
-                period = f"{year}-Q{quarter}"
+                month = org["start_date"][5:7]
+                period = f"{year}-{month}"
                 timeline_data[period] = timeline_data.get(period, 0) + 1
 
-        # Get all years that have data
+        # Get all months that have data and create complete timeline
         if timeline_data:
             all_periods = sorted(timeline_data.keys())
             start_year = int(all_periods[0][:4])
+            start_month = int(all_periods[0][5:7])
             end_year = int(all_periods[-1][:4])
+            end_month = int(all_periods[-1][5:7])
 
-            # Create complete timeline with all quarters for each year
-            timeline_bars = []
+            # Create complete timeline with all months
+            timeline_months = []
             cumulative = 0
-            for year in range(start_year, end_year + 1):
-                year_bars = []
-                for quarter in range(1, 5):
-                    period = f"{year}-Q{quarter}"
-                    cumulative += timeline_data.get(period, 0)
-                    year_bars.append(cumulative)
-                timeline_bars.append({
-                    'year': str(year),
-                    'quarters': year_bars
+
+            current_year = start_year
+            current_month = start_month
+
+            while current_year < end_year or (current_year == end_year and current_month <= end_month):
+                period = f"{current_year}-{current_month:02d}"
+                increase = timeline_data.get(period, 0)
+                cumulative += increase
+
+                # Format month label
+                date_obj = datetime(current_year, current_month, 1)
+                month_label = date_obj.strftime("%b %Y")
+
+                timeline_months.append({
+                    'period': period,
+                    'label': month_label,
+                    'cumulative': cumulative,
+                    'increase': increase
                 })
+
+                # Move to next month
+                current_month += 1
+                if current_month > 12:
+                    current_month = 1
+                    current_year += 1
+
             max_count = cumulative
         else:
-            timeline_bars = []
+            timeline_months = []
             max_count = 0
 
         # Generate maps for this project
@@ -712,7 +730,7 @@ def render_projects(env, conn):
             legends=AWARD_LEGENDS,
             counts=counts,
             total=total,
-            timeline_bars=timeline_bars,
+            timeline_months=timeline_months,
             max_count=max_count,
             breadcrumbs=breadcrumbs,
         )
