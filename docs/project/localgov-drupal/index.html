@@ -264,42 +264,6 @@ th[role=columnheader]:not(.no-sort):hover:after {
 	opacity: 1;
 }
 
-/* timeline tabs */
-.timeline-tabs {
-  display: flex;
-  gap: 0;
-  border-bottom: 1px solid #b1b4b6;
-  margin-bottom: 1em;
-}
-
-.timeline-tab {
-  background: none;
-  border: none;
-  padding: 0.75em 1.5em;
-  cursor: pointer;
-  font-size: 1em;
-  color: #1d70b8;
-  border-bottom: 4px solid transparent;
-}
-
-.timeline-tab:hover {
-  background-color: #f3f2f1;
-}
-
-.timeline-tab.active {
-  border-bottom-color: #1d70b8;
-  font-weight: bold;
-  color: #0b0c0c;
-}
-
-.timeline-view {
-  display: none;
-}
-
-.timeline-view.active {
-  display: block;
-}
-
 /* timeline chart */
 .timeline-chart-container {
   display: flex;
@@ -886,16 +850,22 @@ th[role=columnheader]:not(.no-sort):hover:after {
         </div>
 
         
-        <h2 class="govuk-heading-m">Cumulative number of organisations by month</h2>
+        <div class="govuk-tabs" data-module="govuk-tabs">
+            <h2 class="govuk-tabs__title">Cumulative number of organisations by month</h2>
 
-        <div class="timeline-tabs">
-            <button class="timeline-tab active" data-tab="chart">Chart</button>
-            <button class="timeline-tab" data-tab="table">Table</button>
-            <button class="timeline-tab" data-tab="download">Download</button>
-        </div>
+            <ul class="govuk-tabs__list">
+                <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                    <a class="govuk-tabs__tab" href="#chart">Chart</a>
+                </li>
+                <li class="govuk-tabs__list-item">
+                    <a class="govuk-tabs__tab" href="#table">Table</a>
+                </li>
+                <li class="govuk-tabs__list-item">
+                    <a class="govuk-tabs__tab" href="#download">Download</a>
+                </li>
+            </ul>
 
-        <div class="timeline-content">
-            <div id="chart-view" class="timeline-view active">
+            <div class="govuk-tabs__panel" id="chart">
                 <div class="timeline-chart-container">
                     <div class="timeline-y-axis">
                         <div class="timeline-y-label">Number of organisations</div>
@@ -1418,7 +1388,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
                 </div>
             </div>
 
-            <div id="table-view" class="timeline-view">
+            <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="table">
                 <table class="govuk-table">
                     <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
@@ -1721,7 +1691,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
                 </table>
             </div>
 
-            <div id="download-view" class="timeline-view">
+            <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="download">
                 <p class="govuk-body">Download the data in the following formats:</p>
                 <ul class="govuk-list govuk-list--bullet">
                     <li><a href="#" class="govuk-link download-csv">CSV</a></li>
@@ -2477,21 +2447,6 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js" integrity="sha512-F/gIMdDfda6OD2rnzt/Iyp2V9JLHlFQ+EUyixDg9+rkwjqgW1snpkpx7FD5FV1+gG2fmFj7I3r6ReQDUidHelA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 new Tablesort(document.getElementById('organisations-table'));
-
-// Timeline tab switching
-document.querySelectorAll('.timeline-tab').forEach(tab => {
-    tab.addEventListener('click', function() {
-        const targetTab = this.dataset.tab;
-
-        // Update tab buttons
-        document.querySelectorAll('.timeline-tab').forEach(t => t.classList.remove('active'));
-        this.classList.add('active');
-
-        // Update views
-        document.querySelectorAll('.timeline-view').forEach(v => v.classList.remove('active'));
-        document.getElementById(targetTab + '-view').classList.add('active');
-    });
-});
 
 // Download functionality
 
