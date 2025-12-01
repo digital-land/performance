@@ -303,7 +303,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 /* timeline chart */
 .timeline-chart-container {
   display: flex;
-  gap: 1em;
+  gap: 0.5em;
   padding: 1em 0;
   margin: 1em 0;
 }
@@ -312,17 +312,19 @@ th[role=columnheader]:not(.no-sort):hover:after {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-width: 80px;
+  min-width: 50px;
   text-align: right;
   padding-right: 0.5em;
 }
 
 .timeline-y-label {
+  position: absolute;
   writing-mode: vertical-rl;
-  transform: rotate(180deg);
+  transform: rotate(180deg) translateX(50%);
   font-size: 0.9em;
   font-weight: bold;
-  margin-bottom: 1em;
+  left: -3em;
+  top: 50%;
 }
 
 .timeline-y-tick {
@@ -331,21 +333,24 @@ th[role=columnheader]:not(.no-sort):hover:after {
   height: 60px;
   display: flex;
   align-items: flex-start;
+  line-height: 1;
 }
 
 .timeline-chart-area {
   flex: 1;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .timeline-bars {
   display: flex;
   align-items: flex-end;
+  gap: 2px;
   height: 300px;
-  border-left: 1px solid #b1b4b6;
+  border-left: 2px solid #0b0c0c;
   border-bottom: 2px solid #0b0c0c;
-  position: relative;
+  padding-left: 0.5em;
 }
 
 .timeline-bar-wrapper {
@@ -372,18 +377,17 @@ th[role=columnheader]:not(.no-sort):hover:after {
 }
 
 .timeline-x-labels {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 0.5em;
-  margin-left: 0;
+  position: relative;
+  height: 2em;
+  margin-top: 0.5em;
+  margin-left: 0.5em;
 }
 
 .timeline-x-label {
-  font-size: 0.8em;
+  position: absolute;
+  font-size: 0.9em;
   color: #505a5f;
-  transform: rotate(-45deg);
-  transform-origin: top left;
-  margin-top: 1em;
+  font-weight: bold;
 }
 </style>
 
@@ -1151,130 +1155,291 @@ th[role=columnheader]:not(.no-sort):hover:after {
                         <div class="timeline-x-labels">
                             
                             
-                            <div class="timeline-x-label">Oct 2021</div>
                             
                             
+                            <div class="timeline-x-label" style="left: 0.0%;">2021</div>
                             
                             
                             
                             
                             
-                            <div class="timeline-x-label">Jan 2022</div>
+                            <div class="timeline-x-label" style="left: 2.083333333333333%;">2021</div>
                             
                             
                             
                             
                             
+                            <div class="timeline-x-label" style="left: 4.166666666666666%;">2021</div>
                             
                             
-                            <div class="timeline-x-label">Apr 2022</div>
                             
                             
                             
+                            <div class="timeline-x-label" style="left: 6.25%;">2022</div>
                             
                             
                             
                             
-                            <div class="timeline-x-label">Jul 2022</div>
                             
+                            <div class="timeline-x-label" style="left: 8.333333333333332%;">2022</div>
                             
                             
                             
                             
                             
+                            <div class="timeline-x-label" style="left: 10.416666666666668%;">2022</div>
                             
-                            <div class="timeline-x-label">Oct 2022</div>
                             
                             
                             
                             
+                            <div class="timeline-x-label" style="left: 12.5%;">2022</div>
                             
                             
                             
-                            <div class="timeline-x-label">Jan 2023</div>
                             
                             
+                            <div class="timeline-x-label" style="left: 14.583333333333334%;">2022</div>
                             
                             
                             
                             
                             
-                            <div class="timeline-x-label">Apr 2023</div>
+                            <div class="timeline-x-label" style="left: 16.666666666666664%;">2022</div>
                             
                             
                             
                             
                             
+                            <div class="timeline-x-label" style="left: 18.75%;">2022</div>
                             
                             
-                            <div class="timeline-x-label">Jul 2023</div>
                             
                             
                             
+                            <div class="timeline-x-label" style="left: 20.833333333333336%;">2022</div>
                             
                             
                             
                             
-                            <div class="timeline-x-label">Oct 2023</div>
                             
+                            <div class="timeline-x-label" style="left: 22.916666666666664%;">2022</div>
                             
                             
                             
                             
                             
+                            <div class="timeline-x-label" style="left: 25.0%;">2022</div>
                             
-                            <div class="timeline-x-label">Jan 2024</div>
                             
                             
                             
                             
+                            <div class="timeline-x-label" style="left: 27.083333333333332%;">2022</div>
                             
                             
                             
-                            <div class="timeline-x-label">Apr 2024</div>
                             
                             
+                            <div class="timeline-x-label" style="left: 29.166666666666668%;">2022</div>
                             
                             
                             
                             
                             
-                            <div class="timeline-x-label">Jul 2024</div>
+                            <div class="timeline-x-label" style="left: 31.25%;">2023</div>
                             
                             
                             
                             
                             
+                            <div class="timeline-x-label" style="left: 33.33333333333333%;">2023</div>
                             
                             
-                            <div class="timeline-x-label">Oct 2024</div>
                             
                             
                             
+                            <div class="timeline-x-label" style="left: 35.41666666666667%;">2023</div>
                             
                             
                             
                             
-                            <div class="timeline-x-label">Jan 2025</div>
                             
+                            <div class="timeline-x-label" style="left: 37.5%;">2023</div>
                             
                             
                             
                             
                             
+                            <div class="timeline-x-label" style="left: 39.58333333333333%;">2023</div>
                             
-                            <div class="timeline-x-label">Apr 2025</div>
                             
                             
                             
                             
+                            <div class="timeline-x-label" style="left: 41.66666666666667%;">2023</div>
                             
                             
                             
-                            <div class="timeline-x-label">Jul 2025</div>
                             
                             
+                            <div class="timeline-x-label" style="left: 43.75%;">2023</div>
                             
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 45.83333333333333%;">2023</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 47.91666666666667%;">2023</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 50.0%;">2023</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 52.083333333333336%;">2023</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 54.166666666666664%;">2023</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 56.25%;">2024</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 58.333333333333336%;">2024</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 60.416666666666664%;">2024</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 62.5%;">2024</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 64.58333333333334%;">2024</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 66.66666666666666%;">2024</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 68.75%;">2024</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 70.83333333333334%;">2024</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 72.91666666666666%;">2024</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 75.0%;">2024</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 77.08333333333334%;">2024</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 79.16666666666666%;">2024</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 81.25%;">2025</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 83.33333333333334%;">2025</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 85.41666666666666%;">2025</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 87.5%;">2025</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 89.58333333333334%;">2025</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 91.66666666666666%;">2025</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 93.75%;">2025</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 95.83333333333334%;">2025</div>
+                            
+                            
+                            
+                            
+                            
+                            <div class="timeline-x-label" style="left: 97.91666666666666%;">2025</div>
                             
                             
                             
