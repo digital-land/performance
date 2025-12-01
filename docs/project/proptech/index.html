@@ -303,7 +303,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 /* timeline chart */
 .timeline-chart-container {
   display: flex;
-  gap: 0.5em;
+  gap: 0.75em;
   padding: 1em 0;
   margin: 1em 0;
 }
@@ -321,8 +321,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
   position: absolute;
   writing-mode: vertical-rl;
   transform: rotate(180deg) translateX(50%);
-  font-size: 0.9em;
-  font-weight: bold;
+  font-size: 0.75em;
   color: #505a5f;
   left: -3em;
   top: 50%;
@@ -337,9 +336,9 @@ th[role=columnheader]:not(.no-sort):hover:after {
 }
 
 .timeline-y-tick-text {
-  font-size: 0.85em;
+  font-size: 0.75em;
   color: #505a5f;
-  line-height: 1;
+  line-height: 0.25;
   text-align: right;
 }
 
@@ -362,7 +361,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-bars {
   display: flex;
   align-items: flex-end;
-  gap: 1px;
+  gap: 3px;
   height: 300px;
   border-left: 2px solid #b1b4b6;
   border-bottom: 2px solid #b1b4b6;
@@ -386,10 +385,10 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-increase-label {
   position: absolute;
   bottom: 100%;
-  font-size: 0.7em;
-  font-weight: bold;
+  font-size: 0.68em;
   color: #505a5f;
   padding-bottom: 2px;
+  left: -.5em;
 }
 
 .timeline-x-axis {
@@ -400,6 +399,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
   position: relative;
   height: 2em;
   margin-top: 0.5em;
+  font-size: 0.9em;
 }
 
 .timeline-x-label-wrapper {
@@ -419,7 +419,6 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-x-label {
   font-size: 0.9em;
   color: #505a5f;
-  font-weight: bold;
 }
 </style>
 
@@ -1380,298 +1379,298 @@ th[role=columnheader]:not(.no-sort):hover:after {
                     <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
                             <th scope="col" class="govuk-table__header">Month</th>
-                            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Increase</th>
                             <th scope="col" class="govuk-table__header govuk-table__header--numeric">Cumulative</th>
+                            <th scope="col" class="govuk-table__header govuk-table__header--numeric">Change</th>
                         </tr>
                     </thead>
                     <tbody class="govuk-table__body">
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Oct 2021</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">+13</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric">13</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">13</td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Nov 2021</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">13</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Dec 2021</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">13</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Jan 2022</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">+4</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">17</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric">4</td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Feb 2022</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">17</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Mar 2022</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">+22</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">39</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric">22</td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Apr 2022</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">39</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">May 2022</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">39</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Jun 2022</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">39</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Jul 2022</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">39</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Aug 2022</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">39</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Sep 2022</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">39</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Oct 2022</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">39</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Nov 2022</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">39</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Dec 2022</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">39</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Jan 2023</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">39</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Feb 2023</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">39</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Mar 2023</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">+3</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">42</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric">3</td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Apr 2023</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">42</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">May 2023</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">42</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Jun 2023</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">42</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Jul 2023</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">42</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Aug 2023</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">42</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Sep 2023</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">42</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Oct 2023</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">42</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Nov 2023</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">42</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Dec 2023</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">42</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Jan 2024</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">42</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Feb 2024</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">+20</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">62</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric">20</td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Mar 2024</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">62</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Apr 2024</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">62</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">May 2024</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">62</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Jun 2024</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">62</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Jul 2024</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">62</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Aug 2024</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">62</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Sep 2024</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">62</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Oct 2024</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">62</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Nov 2024</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">62</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Dec 2024</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">62</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Jan 2025</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">62</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Feb 2025</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">+3</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">65</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric">3</td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Mar 2025</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">65</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Apr 2025</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">65</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">May 2025</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">65</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Jun 2025</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">65</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Jul 2025</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">65</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Aug 2025</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">0</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">65</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric"></td>
                         </tr>
                         
                         <tr class="govuk-table__row">
                             <td class="govuk-table__cell">Sep 2025</td>
-                            <td class="govuk-table__cell govuk-table__cell--numeric">+1</td>
                             <td class="govuk-table__cell govuk-table__cell--numeric">66</td>
+                            <td class="govuk-table__cell govuk-table__cell--numeric">1</td>
                         </tr>
                         
                     </tbody>
