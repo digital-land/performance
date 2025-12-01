@@ -346,7 +346,6 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-bars {
   display: flex;
   align-items: flex-end;
-  gap: 2px;
   height: 300px;
   border-left: 2px solid #0b0c0c;
   border-bottom: 2px solid #0b0c0c;
@@ -356,24 +355,24 @@ th[role=columnheader]:not(.no-sort):hover:after {
 .timeline-bar-wrapper {
   flex: 1;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
 }
 
 .timeline-bar-new {
   width: 100%;
   background-color: #12436d;
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 0.25em;
 }
 
-.timeline-increase {
-  color: white;
+.timeline-increase-label {
+  position: absolute;
+  bottom: 100%;
   font-size: 0.7em;
   font-weight: bold;
+  color: #0b0c0c;
+  padding-bottom: 2px;
 }
 
 .timeline-x-labels {
