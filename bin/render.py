@@ -654,8 +654,34 @@ def render_projects(env, conn):
                     counts[bucket] = counts.get(bucket, 0) + 1
                     total += 1
 
-        # Generate timeline data - count organisations by month
+        # Calculate summary statistics
         from datetime import datetime
+        today = datetime.now().date()
+
+        summary = {
+            'total_orgs': len(organisations),
+            'dissolved_orgs': 0,
+            'intervention_counts': {}
+        }
+
+        # Count dissolved organisations and interventions
+        for org in organisations:
+            # Check if organisation is dissolved
+            if org.get('end_date'):
+                try:
+                    end_date = datetime.strptime(org['end_date'], '%Y-%m-%d').date()
+                    if end_date < today:
+                        summary['dissolved_orgs'] += 1
+                        org['is_dissolved'] = True
+                except:
+                    pass
+
+            # Count interventions
+            for intervention in org.get('interventions', []):
+                int_name = intervention['name']
+                summary['intervention_counts'][int_name] = summary['intervention_counts'].get(int_name, 0) + 1
+
+        # Generate timeline data - count organisations by month
         timeline_data = {}
         for org in organisations:
             if org["start_date"]:
@@ -730,6 +756,7 @@ def render_projects(env, conn):
             legends=AWARD_LEGENDS,
             counts=counts,
             total=total,
+            summary=summary,
             timeline_months=timeline_months,
             max_count=max_count,
             breadcrumbs=breadcrumbs,

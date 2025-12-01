@@ -288,6 +288,26 @@ th[role=columnheader]:not(.no-sort):hover:after {
         <p class="govuk-body">{{ project.description }}</p>
         {% endif %}
 
+        <h2 class="govuk-heading-m">Summary</h2>
+
+        <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Total organisations</dt>
+                <dd class="govuk-summary-list__value">{{ summary.total_orgs }}</dd>
+            </div>
+            {% if summary.dissolved_orgs > 0 %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">Dissolved organisations</dt>
+                <dd class="govuk-summary-list__value">{{ summary.dissolved_orgs }}</dd>
+            </div>
+            {% endif %}
+            {% for intervention_name, count in summary.intervention_counts.items()|sort %}
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">{{ intervention_name }}</dt>
+                <dd class="govuk-summary-list__value">{{ count }}</dd>
+            </div>
+            {% endfor %}
+        </dl>
 
         <h2 class="govuk-heading-m">Organisations</h2>
 
@@ -393,6 +413,9 @@ th[role=columnheader]:not(.no-sort):hover:after {
                     <td class="govuk-table__cell">{{ org.start_date|govuk_date }}</td>
                     <td class="govuk-table__cell">
                         <a href="{{BASE_PATH}}/organisation/{{ org.organisation }}/">{{ org.name }}</a>
+                        {% if org.get('is_dissolved') %}
+                        <strong class="govuk-tag govuk-tag--grey">DISSOLVED</strong>
+                        {% endif %}
                     </td>
                     <td class="govuk-table__cell">
                         {% for intervention in org.interventions %}
