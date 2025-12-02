@@ -281,16 +281,6 @@ th[role=columnheader]:not(.no-sort):hover:after {
   padding-right: 0.5em;
 }
 
-.timeline-y-label {
-  position: absolute;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg) translateX(50%);
-  font-size: 0.75em;
-  color: #505a5f;
-  left: -3em;
-  top: 50%;
-}
-
 .timeline-y-tick-wrapper {
   height: 60px;
   display: flex;
@@ -868,7 +858,6 @@ th[role=columnheader]:not(.no-sort):hover:after {
             <div class="govuk-tabs__panel" id="chart">
                 <div class="timeline-chart-container">
                     <div class="timeline-y-axis">
-                        <div class="timeline-y-label">Number of organisations</div>
                         
                         <div class="timeline-y-tick-wrapper">
                             <span class="timeline-y-tick-text">66</span>
@@ -2839,6 +2828,42 @@ th[role=columnheader]:not(.no-sort):hover:after {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tablesort/5.2.1/tablesort.min.js" integrity="sha512-F/gIMdDfda6OD2rnzt/Iyp2V9JLHlFQ+EUyixDg9+rkwjqgW1snpkpx7FD5FV1+gG2fmFj7I3r6ReQDUidHelA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
 new Tablesort(document.getElementById('organisations-table'));
+
+// Fallback tabs initialization if GOV.UK Frontend doesn't load
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        // Check if tabs are working
+        const tabsContainer = document.querySelector('.govuk-tabs');
+        if (tabsContainer && !tabsContainer.classList.contains('govuk-tabs--initialised')) {
+            // Manual tabs implementation
+            const tabs = tabsContainer.querySelectorAll('.govuk-tabs__tab');
+            const panels = tabsContainer.querySelectorAll('.govuk-tabs__panel');
+
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+
+                    // Hide all panels
+                    panels.forEach(function(panel) {
+                        panel.classList.add('govuk-tabs__panel--hidden');
+                    });
+
+                    // Remove selected from all tabs
+                    tabsContainer.querySelectorAll('.govuk-tabs__list-item').forEach(function(item) {
+                        item.classList.remove('govuk-tabs__list-item--selected');
+                    });
+
+                    // Show target panel
+                    document.getElementById(targetId).classList.remove('govuk-tabs__panel--hidden');
+
+                    // Mark tab as selected
+                    this.parentElement.classList.add('govuk-tabs__list-item--selected');
+                });
+            });
+        }
+    }, 100);
+});
 
 // Download functionality
 
