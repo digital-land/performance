@@ -1123,7 +1123,7 @@ def render_interventions(env, conn):
         )
 
         breadcrumbs = [
-            {"text": "Intervention", "url": "/intervention/"},
+            {"text": "Intervention", "url": f"{BASE_PATH}/intervention/"},
             {"text": intervention["name"]},
         ]
 
