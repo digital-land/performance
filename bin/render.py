@@ -656,30 +656,33 @@ def render_projects(env, conn):
 
         # Calculate summary statistics
         from datetime import datetime
+
         today = datetime.now().date()
 
         summary = {
-            'total_orgs': len(organisations),
-            'dissolved_orgs': 0,
-            'intervention_counts': {}
+            "total_orgs": len(organisations),
+            "dissolved_orgs": 0,
+            "intervention_counts": {},
         }
 
         # Count dissolved organisations and interventions
         for org in organisations:
             # Check if organisation is dissolved
-            if org.get('end_date'):
+            if org.get("end_date"):
                 try:
-                    end_date = datetime.strptime(org['end_date'], '%Y-%m-%d').date()
+                    end_date = datetime.strptime(org["end_date"], "%Y-%m-%d").date()
                     if end_date < today:
-                        summary['dissolved_orgs'] += 1
-                        org['is_dissolved'] = True
+                        summary["dissolved_orgs"] += 1
+                        org["is_dissolved"] = True
                 except:
                     pass
 
             # Count interventions
-            for intervention in org.get('interventions', []):
-                int_name = intervention['name']
-                summary['intervention_counts'][int_name] = summary['intervention_counts'].get(int_name, 0) + 1
+            for intervention in org.get("interventions", []):
+                int_name = intervention["name"]
+                summary["intervention_counts"][int_name] = (
+                    summary["intervention_counts"].get(int_name, 0) + 1
+                )
 
         # Generate timeline data - count organisations by month
         timeline_data = {}
@@ -705,7 +708,9 @@ def render_projects(env, conn):
             current_year = start_year
             current_month = start_month
 
-            while current_year < end_year or (current_year == end_year and current_month <= end_month):
+            while current_year < end_year or (
+                current_year == end_year and current_month <= end_month
+            ):
                 period = f"{current_year}-{current_month:02d}"
                 increase = timeline_data.get(period, 0)
                 cumulative += increase
@@ -714,12 +719,14 @@ def render_projects(env, conn):
                 date_obj = datetime(current_year, current_month, 1)
                 month_label = date_obj.strftime("%b %Y")
 
-                timeline_months.append({
-                    'period': period,
-                    'label': month_label,
-                    'cumulative': cumulative,
-                    'increase': increase
-                })
+                timeline_months.append(
+                    {
+                        "period": period,
+                        "label": month_label,
+                        "cumulative": cumulative,
+                        "increase": increase,
+                    }
+                )
 
                 # Move to next month
                 current_month += 1
@@ -1183,9 +1190,7 @@ def render_fund_index(env, conn):
     summary["total_amount"] = cursor.fetchone()["total"]
 
     # Number of organisations directly awarded funding
-    cursor.execute(
-        "SELECT COUNT(DISTINCT organisation) as count FROM awards"
-    )
+    cursor.execute("SELECT COUNT(DISTINCT organisation) as count FROM awards")
     summary["direct_orgs"] = cursor.fetchone()["count"]
 
     # Number of organisations awarded funding through partnerships
@@ -1198,14 +1203,22 @@ def render_fund_index(env, conn):
     partner_orgs = set()
     for row in cursor.fetchall():
         if row["organisations_list"]:
-            partners = [p.strip() for p in row["organisations_list"].split(";") if p.strip()]
+            partners = [
+                p.strip() for p in row["organisations_list"].split(";") if p.strip()
+            ]
             partner_orgs.update(partners)
     summary["partner_orgs"] = len(partner_orgs)
 
     breadcrumbs = [{"text": "Fund"}]
 
     template = env.get_template("fund/index.html")
-    render("fund/index.html", template, funds=funds, summary=summary, breadcrumbs=breadcrumbs)
+    render(
+        "fund/index.html",
+        template,
+        funds=funds,
+        summary=summary,
+        breadcrumbs=breadcrumbs,
+    )
 
 
 def render_funds(env, conn):
@@ -1255,7 +1268,10 @@ def render_funds(env, conn):
         shapes_svg = process_shapes_svg(conn, filter_type="fund", filter_value=fund_id)
         points_svg = process_points_svg(conn, filter_type="fund", filter_value=fund_id)
 
-        breadcrumbs = [{"text": "Fund", "url": f"{BASE_PATH}/fund/"}, {"text": fund["name"]}]
+        breadcrumbs = [
+            {"text": "Fund", "url": f"{BASE_PATH}/fund/"},
+            {"text": fund["name"]},
+        ]
 
         template = env.get_template("fund/detail.html")
         render(
@@ -1860,8 +1876,12 @@ def process_shapes_svg(conn, filter_type=None, filter_value=None):
             if 'class="local-planning-authority"' in line:
                 # Only add link if we have a valid organisation
                 if current_lpa and current_lpa in all_lpa_orgs:
-                    org_link = f"/organisation/{all_lpa_orgs[current_lpa]['organisation']}/"
-                    line = line.replace("<path", f'<a href="{BASE_PATH}{org_link}"><path')
+                    org_link = (
+                        f"/organisation/{all_lpa_orgs[current_lpa]['organisation']}/"
+                    )
+                    line = line.replace(
+                        "<path", f'<a href="{BASE_PATH}{org_link}"><path'
+                    )
                     line = line.replace(
                         'class="local-planning-authority"/>',
                         f'class="local-planning-authority {current_class}"><title>{current_name}</title></path></a>',
