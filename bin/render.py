@@ -1116,7 +1116,7 @@ def render_interventions(env, conn):
         )
 
         breadcrumbs = [
-            {"text": "Intervention", "url": "intervention/"},
+            {"text": "Intervention", "url": "/intervention/"},
             {"text": intervention["name"]},
         ]
 
@@ -1255,7 +1255,7 @@ def render_funds(env, conn):
         shapes_svg = process_shapes_svg(conn, filter_type="fund", filter_value=fund_id)
         points_svg = process_points_svg(conn, filter_type="fund", filter_value=fund_id)
 
-        breadcrumbs = [{"text": "Fund", "url": "fund/"}, {"text": fund["name"]}]
+        breadcrumbs = [{"text": "Fund", "url": f"{BASE_PATH}/fund/"}, {"text": fund["name"]}]
 
         template = env.get_template("fund/detail.html")
         render(
