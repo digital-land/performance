@@ -207,7 +207,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
 {% for award in awards %}
 <tr class='govuk-table__row'>
 <td class='govuk-table__cell govuk-table__cell--numeric'>{{ award.award }}</td>
-<td class='govuk-table__cell'>{{ award.start_date|govuk_date }}</td>
+<td class='govuk-table__cell' data-sort="{{ award.start_date }}">{{ award.start_date|govuk_date }}</td>
 <td class='govuk-table__cell'><a href="../organisation/{{ award.organisation }}/" class="govuk-link">{{ award.org_name }}</a></td>
 <td class='govuk-table__cell'><a href="../fund/{{ award.fund }}/" class="govuk-link">{{ award.fund_name }}</a></td>
 <td class='govuk-table__cell'><a href="../intervention/{{ award.intervention }}/" class="govuk-link">{{ award.intervention_name }}</a></td>

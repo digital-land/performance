@@ -146,7 +146,8 @@ def create_schema(conn):
             fund TEXT PRIMARY KEY,
             name TEXT,
             description TEXT,
-            start_date TEXT
+            start_date TEXT,
+            documentation_url TEXT
         )
     """)
 
@@ -201,9 +202,9 @@ def load_data(conn):
     funds = load_csv("specification/fund.csv", "fund")
     for fund, row in funds.items():
         cursor.execute("""
-            INSERT OR REPLACE INTO funds (fund, name, description, start_date)
-            VALUES (?, ?, ?, ?)
-        """, (fund, row.get("name", ""), row.get("description", ""), row.get("start-date", "")))
+            INSERT OR REPLACE INTO funds (fund, name, description, start_date, documentation_url)
+            VALUES (?, ?, ?, ?, ?)
+        """, (fund, row.get("name", ""), row.get("description", ""), row.get("start-date", ""), row.get("documentation-url", "")))
 
     print("Loading awards...", file=sys.stderr)
     awards = load_csv("specification/award.csv", "award")

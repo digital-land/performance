@@ -369,7 +369,7 @@ th[role=columnheader]:not(.no-sort):hover:after {
             <tbody class="govuk-table__body">
                 {% for org in organisations %}
                 <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">{{ org.start_date|govuk_date }}</td>
+                    <td class="govuk-table__cell" data-sort="{{ org.start_date }}">{{ org.start_date|govuk_date }}</td>
                     <td class="govuk-table__cell">
                         <a href="{{BASE_PATH}}/organisation/{{ org.organisation }}/">{{ org.name }}</a>
                         {% if org.get('is_dissolved') %}

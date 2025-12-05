@@ -104,7 +104,7 @@ svg path:hover { opacity: 0.5 }
             <tbody class="govuk-table__body">
                 {% for award in awards %}
                 <tr class="govuk-table__row">
-                    <td class="govuk-table__cell">{{ award.start_date|govuk_date }}</td>
+                    <td class="govuk-table__cell" data-sort="{{ award.start_date }}">{{ award.start_date|govuk_date }}</td>
                     <td class="govuk-table__cell">
                         <a href="{{BASE_PATH}}/organisation/{{ award.organisation }}/">{{ award.org_name }}</a>
                     </td>
