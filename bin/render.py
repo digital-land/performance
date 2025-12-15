@@ -281,14 +281,14 @@ def render_organisations(env, conn):
         quality = [dict(row) for row in cursor.fetchall()]
 
         # Get partner organisations - partnerships are bidirectional
-        # 1. Get awards where this org is the main recipient (has partners in organisations_list)
-        # 2. Get awards where this org is in the organisations_list (partner to another org)
+        # 1. Get awards where this org is the main recipient (has partners in organisations)
+        # 2. Get awards where this org is in the organisations (partner to another org)
 
         cursor.execute(
             """
-            SELECT award, organisation, organisations_list
+            SELECT award, organisation, organisations
             FROM awards
-            WHERE organisation = ? OR organisations_list LIKE ?
+            WHERE organisation = ? OR organisations LIKE ?
         """,
             (organisation_id, f"%{organisation_id}%"),
         )
@@ -299,11 +299,11 @@ def render_organisations(env, conn):
         for row in award_rows:
             # Collect all organisations in this award
             all_orgs = [row["organisation"]]
-            if row["organisations_list"]:
+            if row["organisations"]:
                 all_orgs.extend(
                     [
                         org.strip()
-                        for org in row["organisations_list"].split(";")
+                        for org in row["organisations"].split(";")
                         if org.strip()
                     ]
                 )
@@ -968,15 +968,15 @@ def render_fund_index(env, conn):
     # Number of organisations awarded funding through partnerships
     cursor.execute(
         """
-        SELECT organisations_list FROM awards
-        WHERE organisations_list IS NOT NULL AND organisations_list != ''
+        SELECT organisations FROM awards
+        WHERE organisations IS NOT NULL AND organisations != ''
         """
     )
     partner_orgs = set()
     for row in cursor.fetchall():
-        if row["organisations_list"]:
+        if row["organisations"]:
             partners = [
-                p.strip() for p in row["organisations_list"].split(";") if p.strip()
+                p.strip() for p in row["organisations"].split(";") if p.strip()
             ]
             partner_orgs.update(partners)
     summary["partner_orgs"] = len(partner_orgs)
@@ -1678,7 +1678,7 @@ def render_awards(env, conn):
     cursor.execute(
         """
         SELECT a.award, a.start_date, a.organisation, a.intervention, a.fund,
-               a.amount, a.organisations_list, a.notes,
+               a.amount, a.organisations, a.notes,
                o.name as org_name,
                i.name as intervention_name,
                f.name as fund_name
@@ -1694,8 +1694,8 @@ def render_awards(env, conn):
     for row in cursor.fetchall():
         # Format partners
         partners_html = ""
-        if row["organisations_list"]:
-            partner_orgs = [p for p in row["organisations_list"].split(";") if p]
+        if row["organisations"]:
+            partner_orgs = [p for p in row["organisations"].split(";") if p]
             cursor.execute(
                 """
                 SELECT organisation, name FROM organisations WHERE organisation IN ({})

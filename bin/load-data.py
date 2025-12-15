@@ -125,7 +125,7 @@ def create_schema(conn):
             intervention TEXT,
             fund TEXT,
             amount INTEGER,
-            organisations_list TEXT,
+            organisations TEXT,
             notes TEXT,
             FOREIGN KEY (organisation) REFERENCES organisations(organisation)
         )
@@ -214,7 +214,7 @@ def load_data(conn):
     for award, row in awards.items():
         cursor.execute("""
             INSERT OR REPLACE INTO awards
-            (award, start_date, end_date, organisation, intervention, fund, amount, organisations_list, notes)
+            (award, start_date, end_date, organisation, intervention, fund, amount, organisations, notes)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             award,
