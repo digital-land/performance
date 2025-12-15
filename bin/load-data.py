@@ -208,8 +208,6 @@ def load_data(conn):
 
     print("Loading awards...", file=sys.stderr)
     awards = load_csv("specification/award.csv", "award")
-    # Remove awards before the programme
-    awards = {k: v for k, v in awards.items()}
 
     for award, row in awards.items():
         cursor.execute("""
