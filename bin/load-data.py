@@ -254,11 +254,11 @@ def load_data(conn):
 
     print("Loading projects...", file=sys.stderr)
     projects = {
+        "digital-planning": "Digital Planning Programme",
         "open-digital-planning": "Open Digital Planning",
+        "planning-reform": "Planning Reform",
         "local-land-charges": "Local Land Charges",
         "localgov-drupal": "LocalGov Drupal",
-        "proptech": "PropTech",
-        "software": "Software"
     }
 
     for project, name in projects.items():
