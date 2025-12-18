@@ -1,314 +1,314 @@
 organisation,reference,name,volume,percentage
-local-authority:BBD,E06000008,Blackburn with Darwen,432.0,100.0
-local-authority:HPL,E06000001,Hartlepool,200.0,100.0
-development-corporation:Q124604981,E51000007,Hartlepool Development Corporation5,18.0,100.0
-development-corporation:Q20648596,E51000002,Old Oak and Park Royal Development Corporation,34.0,100.0
-local-authority:ROT,E08000018,Rotherham,748.0,99.9
-local-authority:BUR,E08000002,Bury,643.0,99.8
-local-authority:TFW,E06000020,Telford and Wrekin,535.0,99.8
-local-authority:FAR,E07000087,Fareham,584.0,99.7
-local-authority:CHO,E07000118,Chorley,517.0,99.6
-local-authority:SHN,E08000013,St. Helens,444.0,99.5
-local-authority:WOK,E06000041,Wokingham,1080.0,99.5
-local-authority:SOS,E06000033,Southend-on-Sea,870.0,99.4
-local-authority:BOS,E07000033,Bolsover,283.0,99.3
-local-authority:NTY,E08000022,North Tyneside,612.0,99.3
-local-authority:SST,E07000196,South Staffordshire,539.0,99.3
-local-authority:AMB,E07000032,Amber Valley,621.0,99.2
-local-authority:STV,E07000243,Stevenage,247.0,99.2
-local-authority:SKP,E08000007,Stockport,1209.0,99.2
-local-authority:MDE,E07000042,Mid Devon,563.0,98.8
-local-authority:NEL,E06000012,North East Lincolnshire,378.0,98.7
-local-authority:RUT,E06000017,Rutland,387.0,98.7
-local-authority:THE,E07000102,Three Rivers,772.0,98.7
-local-authority:WLV,E08000031,Wolverhampton,691.0,98.6
-local-authority:CAS,E07000069,Castle Point,435.0,98.4
-local-authority:LUT,E06000032,Luton,673.0,98.4
-local-authority:MSS,E07000228,Mid Sussex,934.0,98.4
-local-authority:SPE,E07000213,Spelthorne,593.0,98.3
-national-park-authority:Q4972284,E26000007,The Broads Authority,117.0,98.3
-local-authority:SFT,E08000014,Sefton,883.0,98.2
-local-authority:THR,E06000034,Thurrock,676.0,98.2
-local-authority:BDG,E09000002,Barking and Dagenham,629.0,98.1
-local-authority:IPS,E07000202,Ipswich,372.0,98.1
-local-authority:NUN,E07000219,Nuneaton and Bedworth,262.0,98.1
-local-authority:HAS,E07000062,Hastings,288.0,97.9
-local-authority:EAL,E09000009,Ealing,1748.0,97.8
-local-authority:STN,E09000029,Sutton,918.0,97.8
-local-authority:SHE,E07000112,Folkestone and Hythe,619.0,97.7
-local-authority:MAI,E07000110,Maidstone,933.0,97.6
-local-authority:MAS,E07000174,Mansfield,248.0,97.6
-local-authority:COV,E08000026,Coventry,1228.0,97.5
-local-authority:ERY,E06000011,East Riding of Yorkshire,1581.0,97.5
-local-authority:PRE,E07000123,Preston,562.0,97.5
-local-authority:ARU,E07000224,Arun,616.0,97.4
-local-authority:COL,E07000071,Colchester,901.0,97.4
-national-park-authority:Q72617890,E26000004,Northumberland National Park,38.0,97.4
-local-authority:BEX,E09000004,Bexley,1255.0,97.3
-development-corporation:Q72463795,E51000003,Ebbsfleet Development Corporation,36.0,97.2
-local-authority:NDE,E07000043,North Devon,739.0,97.2
-local-authority:SND,E08000024,Sunderland,460.0,97.2
-local-authority:NKE,E07000139,North Kesteven,482.0,97.1
-local-authority:ISL,E09000019,Islington,1151.0,97.0
-local-authority:POR,E06000044,Portsmouth,568.0,97.0
-local-authority:WIL,E06000054,Wiltshire,2896.0,96.8
-local-authority:HAV,E09000016,Havering,1405.0,96.7
-local-authority:PLY,E06000026,Plymouth,553.0,96.7
-local-authority:TAN,E07000215,Tandridge,633.0,96.7
-local-authority:DUD,E08000027,Dudley,731.0,96.6
-local-authority:WYE,E07000239,Wyre Forest,350.0,96.6
-local-authority:GRA,E07000109,Gravesham,520.0,96.5
-local-authority:GRY,E07000145,Great Yarmouth,314.0,96.5
-local-authority:WAE,E07000216,Waverley,1273.0,96.3
-local-authority:EPS,E07000208,Epsom and Ewell,555.0,96.2
-local-authority:CRW,E07000226,Crawley,206.0,96.1
-local-authority:STO,E07000082,Stroud,850.0,96.1
-local-authority:BUN,E07000117,Burnley,223.0,96.0
-local-authority:KWL,E08000011,Knowsley,325.0,96.0
-local-authority:STY,E08000023,South Tyneside,346.0,96.0
-local-authority:IOW,E06000046,Isle of Wight,733.0,95.9
-local-authority:LEW,E09000023,Lewisham,1377.0,95.9
-local-authority:MIK,E06000042,Milton Keynes,937.0,95.9
-local-authority:WOC,E07000237,Worcester,290.0,95.9
-local-authority:KEC,E09000020,Kensington and Chelsea,1661.0,95.8
-local-authority:NEW,E07000091,New Forest,765.0,95.8
-local-authority:SEV,E07000111,Sevenoaks,1111.0,95.8
-local-authority:WEW,E07000241,Welwyn Hatfield,601.0,95.8
-local-authority:FYL,E07000119,Fylde,372.0,95.7
-local-authority:BNE,E09000003,Barnet,2477.0,95.6
-local-authority:NNO,E07000147,North Norfolk,801.0,95.6
-local-authority:SLF,E08000006,Salford,712.0,95.6
-local-authority:VAL,E07000180,Vale of White Horse,798.0,95.6
-national-park-authority:Q72617784,E26000002,Exmoor National Park,132.0,95.5
-local-authority:MDW,E06000035,Medway,892.0,95.5
-local-authority:TES,E07000093,Test Valley,827.0,95.5
-local-authority:TOR,E07000046,Torridge,576.0,95.5
-local-authority:BRT,E07000172,Broxtowe,439.0,95.4
-local-authority:NEC,E07000195,Newcastle-under-Lyme,436.0,95.4
-local-authority:OAD,E07000135,Oadby and Wigston,283.0,95.4
-local-authority:WEA,E07000065,Wealden,1277.0,95.4
-local-authority:WYR,E07000128,Wyre,497.0,95.4
-local-authority:CBF,E06000056,Central Bedfordshire,1408.0,95.3
-local-authority:SWK,E09000028,Southwark,1106.0,95.3
-local-authority:WLL,E08000030,Walsall,773.0,95.3
-local-authority:ASF,E07000105,Ashford,788.0,95.2
-local-authority:TEI,E07000045,Teignbridge,620.0,95.2
-local-authority:WOX,E07000181,West Oxfordshire,1008.0,95.2
-local-authority:CHT,E07000078,Cheltenham,791.0,95.1
-local-authority:GLO,E07000081,Gloucester,359.0,95.0
-local-authority:HAL,E06000006,Halton,238.0,95.0
-local-authority:SAW,E08000028,Sandwell,881.0,95.0
-local-authority:WOT,E07000229,Worthing,478.0,95.0
-local-authority:ERE,E07000036,Erewash,376.0,94.9
-local-authority:GOS,E07000088,Gosport,215.0,94.9
-local-authority:STE,E06000021,Stoke-on-Trent,411.0,94.9
-local-authority:CAN,E07000192,Cannock Chase,232.0,94.8
-local-authority:HMF,E09000013,Hammersmith and Fulham,1205.0,94.8
-local-authority:RCH,E08000005,Rochdale,581.0,94.8
-local-authority:BRW,E07000068,Brentwood,623.0,94.7
-local-authority:LND,E09000001,City of London,208.0,94.7
-local-authority:TAM,E08000008,Tameside,506.0,94.7
-local-authority:WRT,E06000007,Warrington,757.0,94.7
-local-authority:SHO,E07000140,South Holland,479.0,94.6
-local-authority:WLI,E07000142,West Lindsey,429.0,94.6
+local-authority:BDG,E09000002,Barking and Dagenham,668.0,100.0
+local-authority:BBD,E06000008,Blackburn with Darwen,437.0,100.0
+development-corporation:Q72463795,E51000003,Ebbsfleet Development Corporation 4,31.0,100.0
+local-authority:ROT,E08000018,Rotherham,742.0,100.0
+local-authority:SHN,E08000013,St. Helens,457.0,99.8
+local-authority:TFW,E06000020,Telford and Wrekin,520.0,99.8
+local-authority:BOS,E07000033,Bolsover,283.0,99.6
+local-authority:BUR,E08000002,Bury,675.0,99.6
+local-authority:FAR,E07000087,Fareham,566.0,99.5
+local-authority:HPL,E06000001,Hartlepool,188.0,99.5
+local-authority:NTY,E08000022,North Tyneside,598.0,99.5
+local-authority:SOS,E06000033,Southend-on-Sea,840.0,99.4
+local-authority:WOK,E06000041,Wokingham,1042.0,99.3
+local-authority:CHO,E07000118,Chorley,523.0,99.2
+local-authority:RUT,E06000017,Rutland,363.0,99.2
+local-authority:CAS,E07000069,Castle Point,403.0,99.0
+local-authority:SST,E07000196,South Staffordshire,520.0,99.0
+local-authority:AMB,E07000032,Amber Valley,629.0,98.9
+local-authority:WLV,E08000031,Wolverhampton,674.0,98.8
+local-authority:THE,E07000102,Three Rivers,770.0,98.7
+local-authority:NEL,E06000012,North East Lincolnshire,414.0,98.6
+local-authority:SKP,E08000007,Stockport,1168.0,98.6
+national-park-authority:Q72617784,E26000002,Exmoor National Park,129.0,98.4
+local-authority:IPS,E07000202,Ipswich,375.0,98.4
+local-authority:NUN,E07000219,Nuneaton and Bedworth,252.0,98.4
+local-authority:SHE,E07000112,Folkestone and Hythe,603.0,98.3
+local-authority:MDE,E07000042,Mid Devon,558.0,98.2
+local-authority:MAI,E07000110,Maidstone,914.0,98.1
+local-authority:SPE,E07000213,Spelthorne,585.0,98.1
+local-authority:ERY,E06000011,East Riding of Yorkshire,1536.0,98.0
+local-authority:THR,E06000034,Thurrock,647.0,98.0
+local-authority:WOC,E07000237,Worcester,295.0,98.0
+local-authority:SFT,E08000014,Sefton,869.0,97.9
+local-authority:ARU,E07000224,Arun,648.0,97.8
+local-authority:MSS,E07000228,Mid Sussex,895.0,97.7
+local-authority:COV,E08000026,Coventry,1144.0,97.6
+local-authority:HAL,E06000006,Halton,245.0,97.6
+local-authority:LIF,E07000194,Lichfield,580.0,97.6
+local-authority:COL,E07000071,Colchester,893.0,97.4
+local-authority:ISL,E09000019,Islington,1143.0,97.4
+local-authority:BEX,E09000004,Bexley,1277.0,97.3
+local-authority:HAS,E07000062,Hastings,264.0,97.3
+local-authority:NDE,E07000043,North Devon,786.0,97.3
+development-corporation:Q20648596,E51000002,Old Oak and Park Royal Development Corporation 4,37.0,97.3
+local-authority:POR,E06000044,Portsmouth,527.0,97.3
+local-authority:BRT,E07000172,Broxtowe,449.0,97.1
+national-park-authority:Q72617890,E26000004,Northumberland National Park,35.0,97.1
+local-authority:PRE,E07000123,Preston,544.0,97.1
+local-authority:EAL,E09000009,Ealing,1724.0,97.0
+local-authority:GRA,E07000109,Gravesham,541.0,97.0
+local-authority:GRY,E07000145,Great Yarmouth,330.0,97.0
+local-authority:NKE,E07000139,North Kesteven,495.0,97.0
+local-authority:STE,E06000021,Stoke-on-Trent,366.0,97.0
+local-authority:TEI,E07000045,Teignbridge,608.0,97.0
+local-authority:LUT,E06000032,Luton,621.0,96.9
+local-authority:TAN,E07000215,Tandridge,622.0,96.9
+local-authority:WLI,E07000142,West Lindsey,447.0,96.9
+local-authority:SAW,E08000028,Sandwell,873.0,96.8
+local-authority:STY,E08000023,South Tyneside,339.0,96.8
+local-authority:TOR,E07000046,Torridge,524.0,96.8
+local-authority:STN,E09000029,Sutton,904.0,96.7
+local-authority:FYL,E07000119,Fylde,388.0,96.6
+local-authority:MAS,E07000174,Mansfield,260.0,96.5
+local-authority:STO,E07000082,Stroud,846.0,96.5
+local-authority:CRW,E07000226,Crawley,193.0,96.4
+local-authority:HAV,E09000016,Havering,1413.0,96.4
+local-authority:PLY,E06000026,Plymouth,549.0,96.4
+local-authority:WIL,E06000054,Wiltshire,2942.0,96.4
+local-authority:RUH,E07000092,Rushmoor,246.0,96.3
+local-authority:OAD,E07000135,Oadby and Wigston,264.0,96.2
+local-authority:SHO,E07000140,South Holland,474.0,96.2
+local-authority:ASF,E07000105,Ashford,760.0,96.1
+local-authority:CBF,E06000056,Central Bedfordshire,1350.0,96.1
+local-authority:DUD,E08000027,Dudley,710.0,96.1
+local-authority:EPS,E07000208,Epsom and Ewell,542.0,96.1
+local-authority:SND,E08000024,Sunderland,462.0,96.1
+local-authority:WYE,E07000239,Wyre Forest,355.0,96.1
+local-authority:MDW,E06000035,Medway,885.0,96.0
+local-authority:LEW,E09000023,Lewisham,1298.0,95.9
+local-authority:SRI,E07000126,South Ribble,370.0,95.9
+local-authority:STV,E07000243,Stevenage,241.0,95.9
+local-authority:CHI,E07000225,Chichester,792.0,95.8
+local-authority:EHE,E07000242,East Hertfordshire,1021.0,95.8
+local-authority:IOW,E06000046,Isle of Wight,721.0,95.8
+local-authority:KEC,E09000020,Kensington and Chelsea,1680.0,95.8
+local-authority:MIK,E06000042,Milton Keynes,948.0,95.8
+local-authority:LND,E09000001,City of London,186.0,95.7
+local-authority:KWL,E08000011,Knowsley,299.0,95.7
+local-authority:TES,E07000093,Test Valley,841.0,95.7
+local-authority:WAE,E07000216,Waverley,1266.0,95.7
+local-authority:BNE,E09000003,Barnet,2460.0,95.6
+local-authority:CAN,E07000192,Cannock Chase,223.0,95.5
+local-authority:NEW,E07000091,New Forest,771.0,95.5
+local-authority:SLF,E08000006,Salford,698.0,95.4
+local-authority:VAL,E07000180,Vale of White Horse,777.0,95.4
+local-authority:TAM,E08000008,Tameside,512.0,95.3
+local-authority:WOX,E07000181,West Oxfordshire,943.0,95.3
+local-authority:CHT,E07000078,Cheltenham,787.0,95.2
+local-authority:SWK,E09000028,Southwark,1198.0,95.2
+local-authority:BUN,E07000117,Burnley,225.0,95.1
+national-park-authority:Q4972284,E26000007,The Broads Authority,102.0,95.1
+local-authority:WEA,E07000065,Wealden,1210.0,95.1
+local-authority:BRA,E07000067,Braintree,733.0,95.0
+local-authority:NEC,E07000195,Newcastle-under-Lyme,417.0,95.0
+local-authority:WGN,E08000010,Wigan,635.0,95.0
+local-authority:HMF,E09000013,Hammersmith and Fulham,1246.0,94.9
+local-authority:LBH,E09000022,Lambeth,1352.0,94.9
+local-authority:NNO,E07000147,North Norfolk,782.0,94.9
+local-authority:WLL,E08000030,Walsall,807.0,94.8
+local-authority:TUN,E07000116,Tunbridge Wells,1013.0,94.7
+local-authority:WRT,E06000007,Warrington,805.0,94.7
+local-authority:BRW,E07000068,Brentwood,632.0,94.6
+local-authority:RIC,E09000027,Richmond upon Thames,1860.0,94.6
+local-authority:RCH,E08000005,Rochdale,576.0,94.6
+local-authority:WEW,E07000241,Welwyn Hatfield,592.0,94.6
 local-authority:BAB,E07000200,Babergh,617.0,94.5
-local-authority:EHE,E07000242,East Hertfordshire,1098.0,94.5
-local-authority:LBH,E09000022,Lambeth,1335.0,94.5
-local-authority:SRI,E07000126,South Ribble,399.0,94.5
-local-authority:RUH,E07000092,Rushmoor,266.0,94.4
-local-authority:SWL,E07000113,Swale,535.0,94.4
-local-authority:RUS,E07000176,Rushcliffe,684.0,94.3
-local-authority:WGN,E08000010,Wigan,661.0,94.3
-local-authority:BRA,E07000067,Braintree,747.0,94.2
-local-authority:SHR,E06000051,Shropshire,1790.0,94.2
-local-authority:CHI,E07000225,Chichester,761.0,94.1
-local-authority:TWH,E09000030,Tower Hamlets,640.0,94.1
-local-authority:LIF,E07000194,Lichfield,569.0,94.0
-local-authority:MAN,E08000003,Manchester,1309.0,94.0
-local-authority:MSU,E07000203,Mid Suffolk,730.0,94.0
-local-authority:TUN,E07000116,Tunbridge Wells,1024.0,94.0
-local-authority:CLD,E08000033,Calderdale,822.0,93.9
-local-authority:RCC,E06000003,Redcar and Cleveland,378.0,93.9
-local-authority:STT,E06000004,Stockton-on-Tees,524.0,93.9
-local-authority:HAT,E07000089,Hart,577.0,93.8
-local-authority:HIL,E09000017,Hillingdon,1770.0,93.8
-local-authority:BLA,E07000129,Blaby,461.0,93.7
-local-authority:HRY,E09000014,Haringey,1350.0,93.7
-local-authority:SCA,E07000012,South Cambridgeshire,1172.0,93.6
-local-authority:SOX,E07000179,South Oxfordshire,1156.0,93.6
-local-authority:KIN,E07000146,King’s Lynn and West Norfolk,1151.0,93.5
-local-authority:ROS,E07000125,Rossendale,232.0,93.5
-local-authority:GRE,E09000011,Greenwich,1359.0,93.4
-local-authority:SHA,E07000044,South Hams,914.0,93.4
-local-authority:ADU,E07000223,Adur,300.0,93.3
-local-authority:BNH,E06000043,Brighton and Hove,1347.0,93.3
-local-authority:CAB,E07000008,Cambridge,824.0,93.2
-local-authority:DST,E06000059,Dorset,2344.0,93.2
-local-authority:WIN,E07000094,Winchester,857.0,93.2
-local-authority:EPP,E07000072,Epping Forest,1231.0,93.1
-local-authority:HIG,E07000037,High Peak,318.0,93.1
-local-authority:RDB,E09000026,Redbridge,1543.0,93.1
-local-authority:BRO,E07000144,Broadland,689.0,93.0
-local-authority:HUN,E07000011,Huntingdonshire,866.0,93.0
-local-authority:TRF,E08000009,Trafford,1308.0,93.0
-local-authority:NEA,E07000175,Newark and Sherwood,593.0,92.9
-local-authority:CON,E06000052,Cornwall,4342.0,92.8
-local-authority:MDB,E06000002,Middlesbrough,305.0,92.8
-local-authority:DNC,E08000017,Doncaster,767.0,92.7
-local-authority:HAR,E07000073,Harlow,206.0,92.7
-local-authority:STH,E06000045,Southampton,619.0,92.7
-local-authority:TAW,E07000199,Tamworth,149.0,92.6
-local-authority:WRL,E08000015,Wirral,960.0,92.6
-local-authority:WYC,E07000238,Wychavon,932.0,92.6
-local-authority:ECA,E07000009,East Cambridgeshire,558.0,92.5
-local-authority:BEN,E09000005,Brent,1879.0,92.4
-local-authority:EAT,E07000086,Eastleigh,514.0,92.4
-local-authority:NED,E07000038,North East Derbyshire,511.0,92.4
-local-authority:WAW,E07000222,Warwick,712.0,92.4
-local-authority:CHW,E06000050,Cheshire West and Chester,1464.0,92.3
-local-authority:OLD,E08000004,Oldham,741.0,92.3
-local-authority:SDE,E07000039,South Derbyshire,519.0,92.3
-national-park-authority:Q72617988,E26000006,Peak District National Park,454.0,92.1
-local-authority:RIC,E09000027,Richmond upon Thames,1945.0,92.1
-local-authority:DAL,E06000005,Darlington,311.0,92.0
-local-authority:PEN,E07000122,Pendle,427.0,92.0
-local-authority:BRC,E06000036,Bracknell Forest,493.0,91.9
-local-authority:MAV,E07000235,Malvern Hills,604.0,91.9
-local-authority:STF,E07000198,Staffordshire Moorlands,418.0,91.9
-local-authority:ELM,E07000207,Elmbridge,1324.0,91.8
-local-authority:ROH,E07000064,Rother,723.0,91.8
-local-authority:WDE,E07000047,West Devon,288.0,91.7
-local-authority:WLA,E07000127,West Lancashire,587.0,91.7
-local-authority:FOE,E07000080,Forest of Dean,549.0,91.6
-local-authority:REI,E07000211,Reigate and Banstead,982.0,91.6
-local-authority:MRT,E09000024,Merton,1135.0,91.5
-local-authority:TEN,E07000076,Tendring,780.0,91.4
-local-authority:COT,E07000079,Cotswold,1052.0,91.3
-local-authority:GRT,E07000209,Guildford,1057.0,91.3
-local-authority:LDS,E08000035,Leeds,3129.0,91.3
-local-authority:MOL,E07000210,Mole Valley,907.0,91.3
-local-authority:BUC,E06000060,Buckinghamshire,4312.0,91.2
-local-authority:CRY,E09000008,Croydon,1555.0,91.2
-local-authority:LAC,E07000121,Lancaster,613.0,91.2
-local-authority:HER,E07000098,Hertsmere,666.0,91.0
-local-authority:DAR,E07000107,Dartford,473.0,90.9
-local-authority:KIR,E08000034,Kirklees,1622.0,90.9
-local-authority:SNO,E07000149,South Norfolk,836.0,90.9
-local-authority:WND,E09000032,Wandsworth,1867.0,90.8
-local-authority:WFUA,E06000064,Westmorland and Furness,979.0,90.8
-local-authority:FEN,E07000010,Fenland,497.0,90.7
-local-authority:WKF,E08000036,Wakefield,1034.0,90.7
-local-authority:RIB,E07000124,Ribble Valley,488.0,90.6
-local-authority:HRW,E09000015,Harrow,1312.0,90.5
-national-park-authority:Q5225646,E26000001,Dartmoor National Park,249.0,90.4
-local-authority:CHL,E07000070,Chelmsford,1144.0,90.3
-local-authority:OXO,E07000178,Oxford,866.0,90.3
-national-park-authority:Q20198711,E26000010,South Downs National Park,1334.0,90.3
-local-authority:HCK,E09000012,Hackney,1155.0,90.2
-local-authority:SUR,E07000214,Surrey Heath,562.0,90.2
-local-authority:DER,E06000015,Derby,822.0,90.1
-local-authority:NBL,E06000057,Northumberland,1437.0,89.9
-local-authority:SUA,E06000066,Somerset,3055.0,89.9
-local-authority:MAL,E07000074,Maldon,373.0,89.8
-local-authority:RUN,E07000212,Runnymede,637.0,89.8
-local-authority:RED,E07000236,Redditch,135.0,89.6
-local-authority:WNUA,E06000062,West Northamptonshire,1672.0,89.4
-local-authority:WNM,E06000040,Windsor and Maidenhead,1331.0,89.3
-local-authority:NNUA,E06000061,North Northamptonshire,1083.0,89.2
-local-authority:CHA,E07000130,Charnwood,691.0,89.0
-local-authority:HAA,E07000090,Havant,456.0,88.8
-local-authority:KTT,E09000021,Kingston upon Thames,1062.0,88.7
-local-authority:NOW,E07000148,Norwich,487.0,88.7
-local-authority:GED,E07000173,Gedling,436.0,88.5
-development-corporation:Q117149370,E51000006,Middlesbrough Development Corporation5,26.0,88.5
-local-authority:SGC,E06000025,South Gloucestershire,1406.0,88.5
-local-authority:STR,E07000221,Stratford-on-Avon,1051.0,88.5
-local-authority:DOV,E07000108,Dover,657.0,88.3
-local-authority:MEL,E07000133,Melton,255.0,88.2
-local-authority:NWL,E07000134,North West Leicestershire,465.0,88.2
-local-authority:YOR,E06000014,York,1053.0,88.2
-local-authority:LIC,E07000138,Lincoln,253.0,88.1
-local-authority:LIV,E08000012,Liverpool,1113.0,88.1
-local-authority:BRE,E07000143,Breckland,568.0,88.0
-local-authority:EXE,E07000041,Exeter,415.0,88.0
-,E08000038,Barnsley7,554.0,87.9
-local-authority:BOL,E08000001,Bolton,920.0,87.7
-local-authority:NHE,E07000099,North Hertfordshire,859.0,87.7
-local-authority:BOT,E07000136,Boston,234.0,87.6
-local-authority:NSM,E06000024,North Somerset,1024.0,87.6
-local-authority:BRM,E07000234,Bromsgrove,425.0,87.5
-local-authority:CHE,E06000049,Cheshire East,2019.0,87.3
-local-authority:CHS,E07000034,Chesterfield,267.0,87.3
-local-authority:HOR,E07000227,Horsham,1041.0,87.1
-local-authority:DUR,E06000047,County Durham,1372.0,86.9
-local-authority:HNS,E09000018,Hounslow,1209.0,86.8
-local-authority:ELI,E07000137,East Lindsey,666.0,86.6
-local-authority:NYUA,E06000065,North Yorkshire,3923.0,86.6
-local-authority:NLN,E06000013,North Lincolnshire,652.0,86.5
-local-authority:SAL,E07000240,St Albans,1256.0,86.4
-local-authority:RUG,E07000220,Rugby,473.0,86.3
-local-authority:BAS,E06000022,Bath and North East Somerset,1336.0,86.2
-local-authority:GAT,E08000037,Gateshead,392.0,86.2
-local-authority:BDF,E06000055,Bedford,844.0,86.1
-local-authority:CMD,E09000007,Camden,1452.0,86.1
-local-authority:WSK,E07000245,West Suffolk,759.0,85.9
-local-authority:TEW,E07000083,Tewkesbury,606.0,85.8
-local-authority:EST,E07000193,East Staffordshire,467.0,85.7
-local-authority:ASH,E07000170,Ashfield,310.0,85.5
-local-authority:BRX,E07000095,Broxbourne,435.0,85.5
-local-authority:SWD,E06000030,Swindon,717.0,85.5
-local-authority:NET,E08000021,Newcastle upon Tyne,670.0,85.4
-national-park-authority:Q27178932,E26000012,Yorkshire Dales National Park,357.0,85.2
-,E08000039,Sheffield7,1531.0,85.0
-local-authority:BRY,E09000006,Bromley,1954.0,84.9
-local-authority:HYN,E07000120,Hyndburn,232.0,84.9
-local-authority:NWA,E07000218,North Warwickshire,355.0,84.8
-local-authority:ENF,E09000010,Enfield,1748.0,84.6
-local-authority:IOS,E06000053,Isles of Scilly,52.0,84.6
-national-park-authority:Q27159704,E26000011,Lake District National Park,700.0,84.4
-local-authority:BRD,E08000032,Bradford,2064.0,84.3
-local-authority:CHR,E07000177,Cherwell,934.0,84.3
-local-authority:WBK,E06000037,West Berkshire,997.0,84.3
-local-authority:BPC,E06000058,"Bournemouth, Christchurch and Poole",2054.0,84.2
-local-authority:DEB,E07000035,Derbyshire Dales,456.0,83.8
-local-authority:SOL,E08000029,Solihull,1126.0,83.7
-local-authority:EHA,E07000085,East Hampshire,528.0,83.5
-local-authority:HIN,E07000132,Hinckley and Bosworth,412.0,83.5
-local-authority:STA,E07000197,Stafford,472.0,83.5
-local-authority:HAO,E07000131,Harborough,609.0,83.4
-local-authority:BAI,E07000066,Basildon,639.0,83.3
-national-park-authority:Q72617669,E26000005,North York Moors National Park,401.0,83.3
-local-authority:BST,E06000023,"Bristol, City of",1853.0,83.2
-local-authority:RDG,E06000038,Reading,542.0,82.8
-local-authority:WSM,E09000033,Westminster,2674.0,82.8
-local-authority:NGM,E06000018,Nottingham,760.0,82.6
-local-authority:BAN,E07000084,Basingstoke and Deane,871.0,82.1
-local-authority:WFT,E09000031,Waltham Forest,1311.0,81.8
-national-park-authority:Q72617158,E26000009,New Forest National Park,433.0,81.5
-local-authority:EDE,E07000040,East Devon,1057.0,81.4
-local-authority:PTE,E06000031,Peterborough,647.0,81.3
-local-authority:BPL,E06000009,Blackpool,303.0,81.2
-local-authority:UTT,E07000077,Uttlesford,962.0,80.7
-local-authority:DAC,E07000096,Dacorum,1015.0,80.6
-local-authority:SLG,E06000039,Slough,619.0,80.6
-local-authority:NWM,E09000025,Newham,887.0,80.4
-local-authority:CUA,E06000063,Cumberland,1014.0,80.2
-local-authority:TON,E07000115,Tonbridge and Malling,674.0,80.0
-local-authority:WAT,E07000103,Watford,455.0,80.0
-local-authority:EAS,E07000061,Eastbourne,279.0,79.6
-local-authority:TOB,E06000027,Torbay,475.0,79.6
-local-authority:HEF,E06000019,"Herefordshire, County of",1072.0,78.5
-local-authority:CAT,E07000106,Canterbury,980.0,78.1
-local-authority:SKE,E07000141,South Kesteven,710.0,77.7
-local-authority:ESK,E07000244,East Suffolk,1608.0,77.6
-local-authority:THA,E07000114,Thanet,643.0,76.7
-local-authority:WOI,E07000217,Woking,736.0,76.5
-local-authority:BAE,E07000171,Bassetlaw,439.0,75.4
-development-corporation:Q6670544,E51000001,London Legacy Development Corporation6,48.0,72.9
-local-authority:LEE,E07000063,Lewes,360.0,72.5
-local-authority:BIR,E08000025,Birmingham,2828.0,71.4
-local-authority:KHL,E06000010,"Kingston upon Hull, City of",349.0,71.3
-local-authority:LCE,E06000016,Leicester,1080.0,68.6
-local-authority:ROC,E07000075,Rochford,461.0,68.1
+local-authority:SEV,E07000111,Sevenoaks,1071.0,94.5
+local-authority:WOT,E07000229,Worthing,491.0,94.5
+local-authority:GOS,E07000088,Gosport,225.0,94.2
+local-authority:HRY,E09000014,Haringey,1311.0,94.2
+local-authority:ROH,E07000064,Rother,688.0,94.2
+local-authority:ADU,E07000223,Adur,286.0,94.1
+local-authority:GRE,E09000011,Greenwich,1299.0,94.1
+local-authority:KIN,E07000146,King’s Lynn and West Norfolk,1082.0,94.1
+local-authority:RUN,E07000212,Runnymede,615.0,94.1
+local-authority:IOS,E06000053,Isles of Scilly,50.0,94.0
+local-authority:MSU,E07000203,Mid Suffolk,729.0,94.0
+local-authority:HAR,E07000073,Harlow,194.0,93.8
+local-authority:HOR,E07000227,Horsham,1035.0,93.8
+local-authority:WRL,E08000015,Wirral,898.0,93.8
+local-authority:WYR,E07000128,Wyre,514.0,93.8
+local-authority:BEN,E09000005,Brent,1901.0,93.7
+local-authority:CAB,E07000008,Cambridge,810.0,93.6
+local-authority:HIL,E09000017,Hillingdon,1713.0,93.6
+local-authority:SWL,E07000113,Swale,528.0,93.6
+local-authority:TRF,E08000009,Trafford,1325.0,93.6
+local-authority:CLD,E08000033,Calderdale,766.0,93.5
+local-authority:NED,E07000038,North East Derbyshire,478.0,93.5
+local-authority:HUN,E07000011,Huntingdonshire,847.0,93.4
+local-authority:WIN,E07000094,Winchester,785.0,93.4
+local-authority:CON,E06000052,Cornwall,4261.0,93.2
+local-authority:MAN,E08000003,Manchester,1302.0,93.2
+local-authority:EPP,E07000072,Epping Forest,1187.0,93.1
+local-authority:DST,E06000059,Dorset,2225.0,93.0
+local-authority:BNH,E06000043,Brighton and Hove,1268.0,92.9
+local-authority:BLA,E07000129,Blaby,458.0,92.8
+local-authority:ECA,E07000009,East Cambridgeshire,570.0,92.8
+local-authority:ELM,E07000207,Elmbridge,1216.0,92.8
+local-authority:SHA,E07000044,South Hams,878.0,92.7
+local-authority:TWH,E09000030,Tower Hamlets,648.0,92.7
+local-authority:HAT,E07000089,Hart,598.0,92.6
+local-authority:MRT,E09000024,Merton,1095.0,92.5
+local-authority:MDB,E06000002,Middlesbrough,294.0,92.5
+local-authority:SCA,E07000012,South Cambridgeshire,1223.0,92.5
+local-authority:HIG,E07000037,High Peak,301.0,92.4
+local-authority:SHR,E06000051,Shropshire,1729.0,92.4
+local-authority:SOX,E07000179,South Oxfordshire,1190.0,92.4
+local-authority:HNS,E09000018,Hounslow,1203.0,92.3
+local-authority:ROS,E07000125,Rossendale,209.0,92.3
+local-authority:WYC,E07000238,Wychavon,914.0,92.3
+local-authority:BRO,E07000144,Broadland,702.0,92.2
+local-authority:DAL,E06000005,Darlington,321.0,92.2
+local-authority:HRW,E09000015,Harrow,1305.0,92.2
+local-authority:OLD,E08000004,Oldham,765.0,92.2
+local-authority:RDB,E09000026,Redbridge,1580.0,92.2
+local-authority:REI,E07000211,Reigate and Banstead,930.0,92.2
+local-authority:WAW,E07000222,Warwick,721.0,92.2
+local-authority:COT,E07000079,Cotswold,976.0,92.1
+local-authority:FEN,E07000010,Fenland,496.0,92.1
+local-authority:SDE,E07000039,South Derbyshire,517.0,92.1
+local-authority:TAW,E07000199,Tamworth,139.0,92.1
+local-authority:EAT,E07000086,Eastleigh,474.0,92.0
+local-authority:WLA,E07000127,West Lancashire,572.0,92.0
+local-authority:GLO,E07000081,Gloucester,376.0,91.8
+local-authority:HER,E07000098,Hertsmere,682.0,91.8
+local-authority:MAV,E07000235,Malvern Hills,584.0,91.8
+local-authority:NEA,E07000175,Newark and Sherwood,609.0,91.8
+local-authority:STF,E07000198,Staffordshire Moorlands,389.0,91.8
+local-authority:STT,E06000004,Stockton-on-Tees,527.0,91.8
+local-authority:WFUA,E06000064,Westmorland and Furness,978.0,91.8
+local-authority:DNC,E08000017,Doncaster,760.0,91.6
+local-authority:GRT,E07000209,Guildford,1112.0,91.5
+national-park-authority:Q20198711,E26000010,South Downs National Park,1272.0,91.5
+local-authority:WKF,E08000036,Wakefield,1003.0,91.5
+local-authority:CHW,E06000050,Cheshire West and Chester,1407.0,91.4
+local-authority:CRY,E09000008,Croydon,1501.0,91.4
+local-authority:NNUA,E06000061,North Northamptonshire,976.0,91.4
+local-authority:RUS,E07000176,Rushcliffe,686.0,91.4
+local-authority:LAC,E07000121,Lancaster,607.0,91.3
+national-park-authority:Q72617988,E26000006,Peak District National Park,438.0,91.3
+local-authority:STH,E06000045,Southampton,624.0,91.2
+local-authority:FOE,E07000080,Forest of Dean,530.0,91.1
+local-authority:WNM,E06000040,Windsor and Maidenhead,1320.0,91.0
+local-authority:LIV,E08000012,Liverpool,1089.0,90.9
+local-authority:NBL,E06000057,Northumberland,1477.0,90.9
+local-authority:WND,E09000032,Wandsworth,1896.0,90.9
+national-park-authority:Q5225646,E26000001,Dartmoor National Park,246.0,90.7
+local-authority:KIR,E08000034,Kirklees,1522.0,90.7
+local-authority:BRC,E06000036,Bracknell Forest,438.0,90.6
+local-authority:HCK,E09000012,Hackney,1172.0,90.6
+local-authority:WDE,E07000047,West Devon,299.0,90.6
+local-authority:DAR,E07000107,Dartford,515.0,90.5
+local-authority:LDS,E08000035,Leeds,3046.0,90.5
+local-authority:SNO,E07000149,South Norfolk,874.0,90.5
+local-authority:RCC,E06000003,Redcar and Cleveland,350.0,90.3
+local-authority:RIB,E07000124,Ribble Valley,472.0,90.3
+local-authority:OXO,E07000178,Oxford,833.0,90.2
+local-authority:RED,E07000236,Redditch,143.0,90.2
+local-authority:WBK,E06000037,West Berkshire,956.0,90.0
+local-authority:CHL,E07000070,Chelmsford,1143.0,89.9
+local-authority:ERE,E07000036,Erewash,368.0,89.7
+local-authority:GED,E07000173,Gedling,428.0,89.7
+local-authority:CMD,E09000007,Camden,1351.0,89.6
+local-authority:TEN,E07000076,Tendring,761.0,89.6
+local-authority:DER,E06000015,Derby,824.0,89.4
+local-authority:DOV,E07000108,Dover,669.0,89.4
+local-authority:SUA,E06000066,Somerset,3153.0,89.4
+local-authority:STR,E07000221,Stratford-on-Avon,1037.0,89.0
+local-authority:CHA,E07000130,Charnwood,657.0,88.9
+local-authority:DUR,E06000047,County Durham,1329.0,88.9
+local-authority:NOW,E07000148,Norwich,378.0,88.9
+local-authority:BRE,E07000143,Breckland,554.0,88.8
+local-authority:KTT,E09000021,Kingston upon Thames,1087.0,88.8
+local-authority:MAL,E07000074,Maldon,367.0,88.8
+local-authority:SAL,E07000240,St Albans,1245.0,88.8
+local-authority:YOR,E06000014,York,1029.0,88.8
+local-authority:WNUA,E06000062,West Northamptonshire,1563.0,88.7
+local-authority:NHE,E07000099,North Hertfordshire,867.0,88.6
+local-authority:SUR,E07000214,Surrey Heath,566.0,88.5
+local-authority:EXE,E07000041,Exeter,411.0,88.3
+local-authority:LIC,E07000138,Lincoln,231.0,88.3
+local-authority:PEN,E07000122,Pendle,408.0,88.2
+local-authority:SWD,E06000030,Swindon,671.0,88.2
+development-corporation:Q124604981,E51000007,"Hartlepool Development Corporation 4,5",25.0,88.0
+local-authority:NYUA,E06000065,North Yorkshire,3948.0,88.0
+local-authority:BOT,E07000136,Boston,232.0,87.9
+local-authority:BUC,E06000060,Buckinghamshire,4121.0,87.9
+local-authority:BRM,E07000234,Bromsgrove,433.0,87.8
+local-authority:NSM,E06000024,North Somerset,1030.0,87.6
+local-authority:HAA,E07000090,Havant,417.0,87.5
+local-authority:ELI,E07000137,East Lindsey,707.0,87.4
+local-authority:GAT,E08000037,Gateshead,399.0,87.2
+local-authority:BDF,E06000055,Bedford,858.0,87.1
+local-authority:NLN,E06000013,North Lincolnshire,639.0,86.9
+local-authority:CHE,E06000049,Cheshire East,2028.0,86.7
+local-authority:WSM,E09000033,Westminster,2602.0,86.5
+local-authority:MEL,E07000133,Melton,214.0,86.4
+local-authority:SGC,E06000025,South Gloucestershire,1408.0,86.4
+local-authority:CHS,E07000034,Chesterfield,271.0,86.3
+local-authority:BOL,E08000001,Bolton,886.0,86.2
+local-authority:NWA,E07000218,North Warwickshire,355.0,86.2
+local-authority:EHA,E07000085,East Hampshire,495.0,86.1
+local-authority:EST,E07000193,East Staffordshire,455.0,85.9
+,E08000039,Sheffield 7,1539.0,85.8
+local-authority:TEW,E07000083,Tewkesbury,625.0,85.8
+local-authority:NET,E08000021,Newcastle upon Tyne,678.0,85.5
+local-authority:BST,E06000023,"Bristol, City of",1744.0,85.4
+local-authority:BRX,E07000095,Broxbourne,444.0,85.4
+local-authority:RDG,E06000038,Reading,504.0,85.3
+local-authority:WSK,E07000245,West Suffolk,808.0,85.3
+local-authority:NWL,E07000134,North West Leicestershire,439.0,85.0
+local-authority:DEB,E07000035,Derbyshire Dales,414.0,84.8
+local-authority:HYN,E07000120,Hyndburn,215.0,84.7
+national-park-authority:Q27178932,E26000012,Yorkshire Dales National Park,364.0,84.6
+local-authority:BAN,E07000084,Basingstoke and Deane,895.0,84.5
+local-authority:BAS,E06000022,Bath and North East Somerset,1312.0,84.4
+national-park-authority:Q27159704,E26000011,Lake District National Park,679.0,84.4
+local-authority:RUG,E07000220,Rugby,449.0,84.4
+local-authority:TON,E07000115,Tonbridge and Malling,736.0,84.4
+local-authority:ENF,E09000010,Enfield,1730.0,84.3
+local-authority:SOL,E08000029,Solihull,1099.0,84.3
+local-authority:NWM,E09000025,Newham,882.0,84.2
+local-authority:BAI,E07000066,Basildon,636.0,84.1
+local-authority:BPL,E06000009,Blackpool,312.0,84.0
+,E08000038,Barnsley 7,540.0,83.9
+national-park-authority:Q72617669,E26000005,North York Moors National Park,370.0,83.5
+local-authority:CHR,E07000177,Cherwell,912.0,83.2
+local-authority:PTE,E06000031,Peterborough,603.0,82.8
+local-authority:BRD,E08000032,Bradford,1986.0,82.4
+local-authority:BRY,E09000006,Bromley,1993.0,82.4
+local-authority:BPC,E06000058,"Bournemouth, Christchurch and Poole",2001.0,82.3
+local-authority:ASH,E07000170,Ashfield,331.0,82.2
+local-authority:UTT,E07000077,Uttlesford,995.0,82.0
+local-authority:WAT,E07000103,Watford,451.0,82.0
+local-authority:DAC,E07000096,Dacorum,1013.0,81.8
+local-authority:CAT,E07000106,Canterbury,871.0,81.6
+local-authority:EAS,E07000061,Eastbourne,261.0,81.6
+local-authority:HAO,E07000131,Harborough,633.0,81.5
+local-authority:MOL,E07000210,Mole Valley,866.0,81.5
+local-authority:HIN,E07000132,Hinckley and Bosworth,397.0,81.4
+local-authority:HEF,E06000019,"Herefordshire, County of",1081.0,81.1
+local-authority:WFT,E09000031,Waltham Forest,1280.0,80.9
+development-corporation:Q117149370,E51000006,"Middlesbrough Development Corporation 4,5",41.0,80.5
+local-authority:EDE,E07000040,East Devon,1087.0,80.2
+local-authority:WOI,E07000217,Woking,739.0,80.0
+local-authority:SKE,E07000141,South Kesteven,736.0,79.6
+local-authority:THA,E07000114,Thanet,629.0,79.2
+local-authority:ESK,E07000244,East Suffolk,1633.0,79.0
+local-authority:SLG,E06000039,Slough,607.0,78.9
+local-authority:STA,E07000197,Stafford,456.0,78.9
+local-authority:TOB,E06000027,Torbay,463.0,78.4
+local-authority:BAE,E07000171,Bassetlaw,426.0,77.7
+local-authority:CUA,E06000063,Cumberland,943.0,76.4
+local-authority:KHL,E06000010,"Kingston upon Hull, City of",325.0,75.4
+local-authority:NGM,E06000018,Nottingham,761.0,75.2
+local-authority:BIR,E08000025,Birmingham,3039.0,74.8
+local-authority:LCE,E06000016,Leicester,1084.0,74.6
+local-authority:LEE,E07000063,Lewes,381.0,74.5
+national-park-authority:Q72617158,E26000009,New Forest National Park,455.0,74.5
+development-corporation:Q6670544,E51000001,"London Legacy Development Corporation 4,6",27.0,74.1
+local-authority:ROC,E07000075,Rochford,454.0,71.1
 ,,,,
 ,,,,
