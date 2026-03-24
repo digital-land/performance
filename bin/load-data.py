@@ -354,6 +354,16 @@ def load_data(conn):
 
         set_add(intervention, organisation)
 
+        # Add organisation to the intervention's project
+        if intervention in interventions:
+            project = interventions[intervention].get("project", "")
+            if project:
+                cursor.execute("""
+                    INSERT OR IGNORE INTO project_organisations (project, organisation, start_date, end_date)
+                    VALUES (?, ?, ?, ?)
+                """, (project, organisation, row.get("start-date", ""), ""))
+                set_add(project, organisation)
+
         if intervention in ["software", "integration", "improvement"]:
             bucket = "Software"
         elif intervention in ["engagement", "innovation"]:

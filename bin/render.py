@@ -1603,7 +1603,7 @@ def process_shapes_svg(conn, filter_type=None, filter_value=None):
             buckets.add("PropTech")
         if interventions & set(["software", "integration", "improvement"]):
             buckets.add("Software")
-        if interventions & set(["plan-making"]):
+        if interventions & set(["plan-making", "local-plan-pathfinders", "local-plan-delivery", "green-belt-reviews"]):
             buckets.add("Plan-making")
         org_buckets[org] = "_".join(sorted(list(buckets)))
 
@@ -1751,7 +1751,7 @@ def render_awards(env, conn):
             buckets.add("PropTech")
         if interventions & set(["software", "integration", "improvement"]):
             buckets.add("Software")
-        if interventions & set(["plan-making"]):
+        if interventions & set(["plan-making", "local-plan-pathfinders", "local-plan-delivery", "green-belt-reviews"]):
             buckets.add("Plan-making")
         bucket_key = "_".join(sorted(list(buckets)))
         if bucket_key in counts:
